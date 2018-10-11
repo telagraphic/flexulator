@@ -1,47 +1,25 @@
 # Checklist
 - [Front End Checklist](https://frontendchecklist.io/)
 
-# Grids
-- [Grid: Floats](https://css-tricks.com/dont-overthink-it-grids/)
-- [Grid: Flexbox](https://css-tricks.com/dont-overthink-flexbox-grids/)
+# Rachel Andrews Series on Smashing Magazine
+- [What Happens When You Create A Flexbox Flex Container?](https://www.smashingmagazine.com/2018/08/flexbox-display-flex-container/)
+- [Everything You Need To Know About Alignment In Flexbox](https://www.smashingmagazine.com/2018/08/flexbox-alignment/)
+- [Flexbox: How Big Is That Flexible Box?](https://www.smashingmagazine.com/2018/09/flexbox-sizing-flexible-box/)
+- [Use Cases For Flexbox](https://www.smashingmagazine.com/2018/10/flexbox-use-cases/)
 
-# Guides
-- [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
-- [CSS grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
-- [Codrops Grid Guide](https://tympanus.net/codrops/css_reference/grid/)
+# Flexbox calculator
 
-# Reference
-- [Dev Hints](https://devhints.io)
-- [HTML Reference](https://htmlreference.io/)
-- [CSS Reference](https://cssreference.io/)
+- [Mike by Mike](https://www.madebymike.com.au/writing/understanding-flexbox/)
+- [Chris Wright](https://chriswrightdesign.com/experiments/flexbox-adventures/)
+
+
 
 # Tools
-- [CSS Normalize](https://github.com/necolas/normalize.css/blob/master/normalize.css)
-- [Autoprefixer](https://autoprefixer.github.io/)
-- [Href Tools](https://hreftools.com)
-- [HTML Validator](https://validator.w3.org)
-- [CSS Validator](https://jigsaw.w3.org/css-validator/)
-- [Formatter](https://codebeautify.org)
+- [http://the-echoplex.net/flexyboxes/](http://the-echoplex.net/flexyboxes/)
+- [https://www.madebymike.com.au/demos/flexbox-tester/](https://www.madebymike.com.au/demos/flexbox-tester/)
+- [https://loading.io/flexbox/](https://loading.io/flexbox/)
+- [http://flexboxplayground.catchmyfame.com/](http://flexboxplayground.catchmyfame.com/)
 
-# JS
-- [PlainJS](https://plainjs.com/)
-- [No jQuery](http://youmightnotneedjquery.com/)
-
-# CSS
-- [CSS Normalize](https://github.com/necolas/normalize.css/blob/master/normalize.css)
-- [Gradienter](https://cssgradient.io/)
-- [Filters](https://www.cssfilters.co/)
-- [No JS](https://github.com/you-dont-need/You-Dont-Need-JavaScript)
-
-# Type
-- [Fluid Type Formula](https://css-tricks.com/snippets/css/fluid-typography/)
-- [Type-Scale](https://type-scale.com/)
-- [Grid Lover](https://www.gridlover.net/try)
-- [Modular Scale](http://www.modularscale.com)
-- [Google Fonts](https://fonts.google.com/)
-
-# Learning
-- [Learn HTML/CSS](https://marksheet.io/)
-- [Front End Interview Book](https://github.com/yangshun/front-end-interview-handbook)
-- [CSS Pro Tips](https://github.com/AllThingsSmitty/css-protips)
-- [Pedantic CSS](http://book.mixu.net/css/)
+# Guides
+- [CSS-Tricks Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+- [Codrops Guide](https://tympanus.net/codrops/css_reference/flexbox/)
