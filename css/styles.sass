@@ -2,6 +2,8 @@ main
   display: flex
   flex-direction: column
 
+  font-family: "Inter UI"
+
 
   header
     display: flex
@@ -17,6 +19,18 @@ main
     table
       display: flex
       flex-direction: column
+
+      --flex-row: 1 1 20%
+      --flex-value: 1 1 20%
+      --flex-info: 1 1 20%
+
+      --b-10: #86c3fa
+      --b-20: #57abf5
+      --b-30: #3095ed
+      --b-40: #1382e4
+      --b-50: #0071d7
+      --b-60: #0068c7
+
       width: 100%
 
       thead
@@ -25,19 +39,24 @@ main
           display: flex
 
           th:nth-child(1)
-            flex: 1 1 auto
+            flex: var(--flex-row)
+            background-color: var(--b-10)
 
           th:nth-child(2)
-            flex: 1 1 auto
+            flex: var(--flex-value)
+            background-color: var(--b-20)
 
           th:nth-child(3)
-            flex: 1 1 auto
+            flex: var(--flex-value)
+            background-color: var(--b-30)
 
           th:nth-child(4)
-            flex: 1 1 auto
+            flex: var(--flex-value)
+            background-color: var(--b-40)
 
           th:nth-child(5)
-            flex: 1 1 auto
+            flex: var(--flex-info)
+            background-color: var(--b-50)
 
 
       tbody
@@ -46,20 +65,29 @@ main
           display: flex
           align-items: center
 
+          td
+            display: flex
+            justify-content: center
+
           td:nth-child(1)
-            flex: 1 1 auto
+            flex: var(--flex-row)
+            background-color: var(--b-10)
 
           td:nth-child(2)
-            flex: 1 1 auto
+            flex: var(--flex-value)
+            background-color: var(--b-20)
 
           td:nth-child(3)
-            flex: 1 1 auto
+            flex: var(--flex-value)
+            background-color: var(--b-30)
 
           td:nth-child(4)
-            flex: 1 1 auto
+            flex: var(--flex-value)
+            background-color: var(--b-40)
 
           td:nth-child(5)
-            flex: 1 1 auto
+            flex: var(--flex-info)
+            background-color: var(--b-50)
 
 
   .flex-examples

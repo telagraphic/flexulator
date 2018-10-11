@@ -1,6 +1,7 @@
 main {
   display: flex;
   flex-direction: column;
+  font-family: "Inter UI";
 }
 
 main header {
@@ -18,6 +19,15 @@ main .flex-combo-table {
 main .flex-combo-table table {
   display: flex;
   flex-direction: column;
+  --flex-row: 1 1 20%;
+  --flex-value: 1 1 20%;
+  --flex-info: 1 1 20%;
+  --b-10: #86c3fa;
+  --b-20: #57abf5;
+  --b-30: #3095ed;
+  --b-40: #1382e4;
+  --b-50: #0071d7;
+  --b-60: #0068c7;
   width: 100%;
 }
 
@@ -26,23 +36,28 @@ main .flex-combo-table table thead tr {
 }
 
 main .flex-combo-table table thead tr th:nth-child(1) {
-  flex: 1 1 auto;
+  flex: var(--flex-row);
+  background-color: var(--b-10);
 }
 
 main .flex-combo-table table thead tr th:nth-child(2) {
-  flex: 1 1 auto;
+  flex: var(--flex-value);
+  background-color: var(--b-20);
 }
 
 main .flex-combo-table table thead tr th:nth-child(3) {
-  flex: 1 1 auto;
+  flex: var(--flex-value);
+  background-color: var(--b-30);
 }
 
 main .flex-combo-table table thead tr th:nth-child(4) {
-  flex: 1 1 auto;
+  flex: var(--flex-value);
+  background-color: var(--b-40);
 }
 
 main .flex-combo-table table thead tr th:nth-child(5) {
-  flex: 1 1 auto;
+  flex: var(--flex-info);
+  background-color: var(--b-50);
 }
 
 main .flex-combo-table table tbody tr {
@@ -50,22 +65,32 @@ main .flex-combo-table table tbody tr {
   align-items: center;
 }
 
+main .flex-combo-table table tbody tr td {
+  display: flex;
+  justify-content: center;
+}
+
 main .flex-combo-table table tbody tr td:nth-child(1) {
-  flex: 1 1 auto;
+  flex: var(--flex-row);
+  background-color: var(--b-10);
 }
 
 main .flex-combo-table table tbody tr td:nth-child(2) {
-  flex: 1 1 auto;
+  flex: var(--flex-value);
+  background-color: var(--b-20);
 }
 
 main .flex-combo-table table tbody tr td:nth-child(3) {
-  flex: 1 1 auto;
+  flex: var(--flex-value);
+  background-color: var(--b-30);
 }
 
 main .flex-combo-table table tbody tr td:nth-child(4) {
-  flex: 1 1 auto;
+  flex: var(--flex-value);
+  background-color: var(--b-40);
 }
 
 main .flex-combo-table table tbody tr td:nth-child(5) {
-  flex: 1 1 auto;
+  flex: var(--flex-info);
+  background-color: var(--b-50);
 }
