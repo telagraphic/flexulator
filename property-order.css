@@ -36,14 +36,10 @@ main {
   object-position: 50% 50%;
 
   /* Font */
-
   font-family: Helvetica;
   font-size: 16px;
   font-weight: 400;
   font-style: normal;
-  font-stretch: expanded;
-  font-display: swap;
-  font-kerning: none;
   font-variant: small-caps;
 
   text-transform: capitalize;
@@ -56,7 +52,6 @@ main {
   letter-spacing: normal;
 
   /* Transition  & Animation */
-
   transition-duration: .1s;
   transition-property: color;
   transition-timing-function: ease-in;
