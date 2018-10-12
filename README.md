@@ -13,7 +13,6 @@
 - [Chris Wright](https://chriswrightdesign.com/experiments/flexbox-adventures/)
 
 
-
 # Tools
 - [http://the-echoplex.net/flexyboxes/](http://the-echoplex.net/flexyboxes/)
 - [https://www.madebymike.com.au/demos/flexbox-tester/](https://www.madebymike.com.au/demos/flexbox-tester/)
@@ -23,3 +22,8 @@
 # Guides
 - [CSS-Tricks Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 - [Codrops Guide](https://tympanus.net/codrops/css_reference/flexbox/)
+
+
+# Flex container
+
+- the *display* property has outer and inner display context
