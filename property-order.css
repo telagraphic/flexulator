@@ -36,7 +36,6 @@ main {
   object-position: 50% 50%;
 
   /* Font */
-
   font-family: Helvetica;
   font-size: 16px;
   font-weight: 400;
@@ -56,7 +55,6 @@ main {
   letter-spacing: normal;
 
   /* Transition  & Animation */
-
   transition-duration: .1s;
   transition-property: color;
   transition-timing-function: ease-in;
