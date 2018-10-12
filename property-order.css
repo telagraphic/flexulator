@@ -1,0 +1,66 @@
+main {
+  /* Positioning */
+  position: relative;
+  float: left;
+  clear: both;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  /* Display & Box Model */
+  display: grid | flex | block | inline | inline-block;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 1fr 1rem;
+  overflow: scroll;
+
+  width: 100vw;
+  height: 100vh;
+  padding: 1rem;
+  margin: 0;
+  border: 1px solid black;
+
+  /* Visual */
+  background-color: black;
+  color: red;
+  box-shadow: 1px 1px black;
+  border-radius: 1rem;
+
+  background-image: url("image.png");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+
+  object-fit: contain;
+  object-position: 50% 50%;
+
+  /* Font */
+
+  font-family: Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: expanded;
+  font-display: swap;
+  font-kerning: none;
+  font-variant: small-caps;
+
+  text-transform: capitalize;
+  text-align: center;
+  text-decoration: none;
+  text-indent: inherit;
+  text-shadow: 10px black;
+
+  line-height: 1rem;
+  letter-spacing: normal;
+
+  /* Transition  & Animation */
+
+  transition-duration: .1s;
+  transition-property: color;
+  transition-timing-function: ease-in;
+
+  animation-name: color-change;
+  animation-duration: .2s;
+}
