@@ -91,6 +91,97 @@ main
 
 
   .flex-examples
+    display: flex
+    flex-flow: column nowrap
+
+    padding: 1rem
+
+    background-color: var(--flex-container)
+
+    --flex-container: #5e65ae
+    --flex-item: #8eb5e0
+    --flex-header: black
+
+    .example
+      padding: 2rem 0
+
+      .description
+        padding: 1rem 0
+        color: var(--flex-header)
+
+      .code
+        display: flex
+        flex-flow: row nowrap
+
+        section
+          padding: 1rem
+
+          background-color: var(--flex-item)
+
+    .example:nth-of-type(1)
+      section
+        flex: 0 0 0
+
+
+    .example:nth-of-type(2)
+      .code
+        section
+          flex: 0 0 200px
+
+
+    .example:nth-of-type(3)
+      .code
+        section
+          flex: 1 0 0
+
+    .example:nth-of-type(4)
+      .code
+        section
+          flex: 1 0 200px
+
+    .example:nth-of-type(5)
+      .code
+        section
+          flex: 0 1 0
+
+    .example:nth-of-type(6)
+      .code
+        section
+          flex: 0 1 200px
+
+    .example:nth-of-type(7)
+      .code
+        section
+          flex: 1 1 0
+
+    .example:nth-of-type(8)
+      .code
+        section
+          flex: 1 1 200px
+
+    .example:nth-of-type(9)
+      .code
+        section
+          flex: 2 1 0
+
+    .example:nth-of-type(10)
+      .code
+        section
+          flex: 2 1 200px
+
+    .example:nth-of-type(11)
+      .code
+        section
+          flex: 1 2 0
+
+    .example:nth-of-type(12)
+      .code
+        section
+          flex: 1 2 200px
+
+
+
+
 
 
   .flex-calculator

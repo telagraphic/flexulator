@@ -7,6 +7,11 @@
 - [Flexbox: How Big Is That Flexible Box?](https://www.smashingmagazine.com/2018/09/flexbox-sizing-flexible-box/)
 - [Use Cases For Flexbox](https://www.smashingmagazine.com/2018/10/flexbox-use-cases/)
 
+# Specs
+
+- [Display](https://www.w3.org/TR/css-display-3/#intro)
+- [Box Alignment](https://www.w3.org/TR/css-align-3/)
+
 # Flexbox calculator
 
 - [Mike by Mike](https://www.madebymike.com.au/writing/understanding-flexbox/)
@@ -26,4 +31,20 @@
 
 # Flex container
 
-- the *display* property has outer and inner display context
+- the **display** property has outer and inner display context
+- **display: inline flex** or **display: block flex** is how the browser interprets the property
+
+
+- **flex-flow: row nowrap** doubles for **flex-direction** and **flex-wrap**
+
+- **justify-** concerns the main axis, X is the default
+- **align-** concerns the cross axis, Y is the default
+- you need spare space to use the two above properties for them to have an effect
+
+- **main-start** and **main-end** are the values that determine flex begin and end
+
+- **align-content** can be used when **flex: flex-wrap** is applied to wrap items to create **flex-lines**!
+
+- **place-content: space-between stretch** sets align and justify
+
+- **align-items** is set to stretch by default, which is why columns stretch to meet the tallest items height automatically
