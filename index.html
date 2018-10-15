@@ -323,24 +323,29 @@
       <p>
         Add or Remove flex items to see how the grow or shrink values distribute the remaining space.
       </p>
-      <section>
-        <section>
-          <button>+</button> <button>-</button>
+      <section class="flex-values">
+        <h4>Container: <span id="container-width">100</span></h4>
+        <h4>Item 1: <span id="item-1-width"></span></h4>
+      </section>
+      <section class="">
+        <section class"flex-buttons">
+          <form action="">
+            <input type="number" id="flex-grow" value="1" placeholder="grow: 1">
+            <input type="number" id="flex-shrink" value="1" placeholder="shrink: 1">
+            <input type="number" id="flex-basis" value="100" placeholder="basis: 500">
+            <button id="add-flex-item-button">+</button>
+          </form>
         </section>
-        <section>
-          <section>flex: 0 0 0;</section>
-          <section>flex: 0 0 0;</section>
-          <section>flex: 0 0 0;</section>
+        <section id="flex-container" class="flex-container">
+          <section id="flex-item-1" class="flex-item">flex: 0 0 0;</section>
+          <section id="flex-item-2" class="flex-item">flex: 0 0 0;</section>
+          <section id="flex-item-3" class="flex-item">flex: 0 0 0;</section>
         </section>
       </section>
     </section>
 
 
-
-
-
   </main>
-  <script src="js/main.js"></script>
 
   <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
   <script>

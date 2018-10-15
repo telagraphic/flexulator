@@ -40,11 +40,12 @@
 - **justify-** concerns the main axis, X is the default
 - **align-** concerns the cross axis, Y is the default
 - you need spare space to use the two above properties for them to have an effect
-
 - **main-start** and **main-end** are the values that determine flex begin and end
 
-- **align-content** can be used when **flex: flex-wrap** is applied to wrap items to create **flex-lines**!
 
+- **align-content** can be used when **flex: flex-wrap** is applied to wrap items to create **flex-lines**
 - **place-content: space-between stretch** sets align and justify
+- the **align-/justify-content** works on the flex lines as a group
+- each flex line acts as its own separate flex group
 
 - **align-items** is set to stretch by default, which is why columns stretch to meet the tallest items height automatically
