@@ -1,16 +1,17 @@
 // get container and item values
 var flexContainer = document.getElementById('flex-container');
-var flexItem1 = document.getElementById('flex-item');
 var addFlexItemButton = document.getElementById('add-flex-item-button');
 
 // get fields on ui to update
 var flexContainerWidth = document.getElementById('container-width');
 
 // on window load, get values
+updateContainerWidth();
+updateItemWidth();
 
-document.addEventListener('DOMContentLoaded', function (event) {
-  updateContainerWidth();
-});
+// document.addEventListener('DOMContentLoaded', function (event) {
+//   updateContainerWidth();
+// });
 
 addFlexItemButton.addEventListener('click', function (event) {
   event.preventDefault();
@@ -20,14 +21,21 @@ addFlexItemButton.addEventListener('click', function (event) {
 // on resize, update values
 window.addEventListener('resize', function (event) {
   updateContainerWidth();
+  updateItemWidth();
 });
 
 function updateContainerWidth() {
   flexContainerWidth.textContent = flexContainer.clientWidth;
-}
+};
 
-function updateFlexItemWidth() {
+// Flex Items
 
+function updateItemWidth() {
+  var flexItems = Array.prototype.slice.call(document.getElementsByClassName('flex-item'));
+  flexItems.forEach(function (item) {
+    console.log(item);
+    item.lastElementChild.textContent = item.offsetWidth;
+  });
 }
 
 function addFlexItem() {
@@ -43,28 +51,37 @@ function addFlexItem() {
   var length = flexitems.length;
   length++;
 
-  console.log(flexitems.length);
-
   // get flex styles
-  var grow, shrink, basis;
 
-  grow = document.getElementById('flex-grow').value;
-  shrink = document.getElementById('flex-shrink').value;
-  basis = document.getElementById('flex-basis').value;
+  var grow = document.getElementById('flex-grow').value;
+  var shrink = document.getElementById('flex-shrink').value;
+  var basis = document.getElementById('flex-basis').value;
+  console.log(basis);
 
   // create new element with flex values
 
   var flexItem = document.createElement('section');
+  var itemContent = document.createElement('h4');
+  itemContent.setAttribute('class', 'item-content');
+  itemContent.textContent = 'flex: ' + grow + ' ' + shrink + ' ' + basis;
+
+  var itemWidth = document.createElement('h4');
+  itemWidth.setAttribute('class', 'item-width');
+  itemWidth.textContent = '100';
+
   flexItem.setAttribute('class', 'flex-item');
   flexItem.setAttribute('id', 'flex-item-' + length);
-  flexItem.style.display = 'flex';
+  // flexItem.style.display = 'flex';
   flexItem.style.flexGrow = grow;
   flexItem.style.flexShrink = shrink;
-  flexItem.style.flexBasis = basis;
-  flexItem.textContent = 'flex: ' + grow + ' ' + shrink + ' ' + basis;
+  flexItem.style.flexBasis = basis + 'px';
+  flexItem.appendChild(itemContent);
+  flexItem.appendChild(itemWidth);
 
   // add to flex-container
   flexContainer.appendChild(flexItem);
+
+  updateItemWidth();
 }
 
 function removeFlexItem() {

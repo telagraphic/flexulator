@@ -204,11 +204,10 @@ main
   .flex-calculator
     display: flex
     flex-flow: column nowrap
-    padding: 1rem
-    background-color: var(--b-60)
-
 
     height: 100vh
+
+    background-color: var(--b-60)
 
     --b-10: #86c3fa
     --b-20: #57abf5
@@ -217,19 +216,31 @@ main
     --b-50: #0071d7
     --b-60: #0068c7
 
-    h3
+    header
+
+      h3
+        align-self: center
+
+    .flex-values
       align-self: center
+      padding: 1rem
 
 
-    .flex-buttons
 
+    .flex-form
+      align-self: center
+      padding: 1rem
+
+
+    form
+      display: flex
+      flex-direction: column
 
     .flex-container
       display: flex
       flex-flow: row nowrap
 
-
       .flex-item
-        flex: 1 1 auto
+        flex: 1 1 100px
         text-align: center
         background-color: var(--b-10)

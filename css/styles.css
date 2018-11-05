@@ -175,9 +175,8 @@ main .flex-examples .example:nth-of-type(12) .code section {
 main .flex-calculator {
   display: flex;
   flex-flow: column nowrap;
-  padding: 1rem;
-  background-color: var(--b-60);
   height: 100vh;
+  background-color: var(--b-60);
   --b-10: #86c3fa;
   --b-20: #57abf5;
   --b-30: #3095ed;
@@ -186,8 +185,23 @@ main .flex-calculator {
   --b-60: #0068c7;
 }
 
-main .flex-calculator h3 {
+main .flex-calculator header h3 {
   align-self: center;
+}
+
+main .flex-calculator .flex-values {
+  align-self: center;
+  padding: 1rem;
+}
+
+main .flex-calculator .flex-form {
+  align-self: center;
+  padding: 1rem;
+}
+
+main .flex-calculator form {
+  display: flex;
+  flex-direction: column;
 }
 
 main .flex-calculator .flex-container {
@@ -196,7 +210,7 @@ main .flex-calculator .flex-container {
 }
 
 main .flex-calculator .flex-container .flex-item {
-  flex: 1 1 auto;
+  flex: 1 1 100px;
   text-align: center;
   background-color: var(--b-10);
 }

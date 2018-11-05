@@ -30,6 +30,57 @@
       <h2>A space calculator for responsive flexbox learning</h2>
     </header>
 
+    <section class="flex-calculator">
+      <header>
+        <h3>Flexulator</h3>
+        <p>
+          Add or Remove flex items to see how the grow
+          or shrink values distribute the remaining space.
+        </p>
+      </header>
+
+      <section class="flex-form">
+        <form class="form" action="">
+          <label for="flex-grow">
+            <h4>Grow</h4>
+            <input name="flex-grow" type="number" id="flex-grow" value="1" placeholder="grow: 1">
+          </label>
+
+          <label for="flex-shrink">
+            <h4>Shrink</h4>
+            <input name="flex-shrink" type="number" id="flex-shrink" value="1" placeholder="shrink: 1">
+          </label>
+
+          <label for="flex-basis">
+            <h4>Basis</h4>
+            <input name="flex-basis" type="number" id="flex-basis" value="100" placeholder="basis: 100">
+          </label>
+
+          <button id="add-flex-item-button">+</button>
+        </form>
+      </section>
+
+      <section class="flex-values">
+        <h4>Container: <span id="container-width">100</span></h4>
+        <!-- <h4>Item 1: <span id="item-1-width"></span></h4> -->
+      </section>
+
+      <section id="flex-container" class="flex-container">
+        <section id="flex-item-1" class="flex-item">
+          <h4 class="item-content">flex: 1 1 auto;</h4>
+          <h4 class="item-width"></h4>
+        </section>
+        <section id="flex-item-2" class="flex-item">
+          <h4 class="item-content">flex: 1 1 auto;</h4>
+          <h4 class="item-width"></h4>
+        </section>
+        <section id="flex-item-3" class="flex-item">
+          <h4 class="item-content">flex: 1 1 auto;</h4>
+          <h4 class="item-width"></h4>
+        </section>
+      </section>
+    </section>
+
     <section class="flex-combo-table">
       <h3>Flex combinations table</h3>
       <table>
@@ -314,35 +365,9 @@
           <section>flex: 0 0 0;</section>
         </section>
       </section>
-
-
     </section>
 
-    <section class="flex-calculator">
-      <h3>Flexulator</h3>
-      <p>
-        Add or Remove flex items to see how the grow or shrink values distribute the remaining space.
-      </p>
-      <section class="flex-values">
-        <h4>Container: <span id="container-width">100</span></h4>
-        <h4>Item 1: <span id="item-1-width"></span></h4>
-      </section>
-      <section class="">
-        <section class"flex-buttons">
-          <form action="">
-            <input type="number" id="flex-grow" value="1" placeholder="grow: 1">
-            <input type="number" id="flex-shrink" value="1" placeholder="shrink: 1">
-            <input type="number" id="flex-basis" value="100" placeholder="basis: 500">
-            <button id="add-flex-item-button">+</button>
-          </form>
-        </section>
-        <section id="flex-container" class="flex-container">
-          <section id="flex-item-1" class="flex-item">flex: 0 0 0;</section>
-          <section id="flex-item-2" class="flex-item">flex: 0 0 0;</section>
-          <section id="flex-item-3" class="flex-item">flex: 0 0 0;</section>
-        </section>
-      </section>
-    </section>
+
 
 
   </main>
