@@ -207,10 +207,25 @@ main .flex-calculator form {
 main .flex-calculator .flex-container {
   display: flex;
   flex-flow: row nowrap;
+  min-height: 15rem;
+  background-color: var(--b-30);
 }
 
 main .flex-calculator .flex-container .flex-item {
   flex: 1 1 100px;
+  flex-flow: column nowrap;
   text-align: center;
   background-color: var(--b-10);
+}
+
+main .flex-calculator .flex-container .flex-item .item-values {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-items: center;
+  padding: 1rem;
+}
+
+main .flex-calculator .flex-container .flex-item .item-values input {
+  width: 50%;
 }

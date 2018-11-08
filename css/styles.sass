@@ -240,7 +240,24 @@ main
       display: flex
       flex-flow: row nowrap
 
+      min-height: 15rem
+
+      background-color: var(--b-30)
+
       .flex-item
         flex: 1 1 100px
+        flex-flow: column nowrap
         text-align: center
         background-color: var(--b-10)
+
+
+        .item-values
+          display: flex
+          flex-flow: column nowrap
+          align-items: center
+          justify-items: center
+
+          padding: 1rem
+
+          input
+            width: 50%
