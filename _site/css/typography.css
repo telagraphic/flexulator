@@ -1,0 +1,13 @@
+/*
+https://type-scale.com/
+https://www.gridlover.net/try
+http://www.modularscale.com
+https://fonts.google.com/
+https://css-tricks.com/snippets/css/fluid-typography/
+https://trello.com/c/UoSWXBEt
+*/
+
+body {
+  font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));
+  font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+}

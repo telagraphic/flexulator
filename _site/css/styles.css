@@ -232,11 +232,11 @@ main .flex-calculator .flex-container .flex-item .item-values input {
 
 .flex-calculations {
   display: flex;
+  flex-flow: column nowrap;
 }
 
 .flex-calculations section {
   flex: 1 1 50%;
-  text-align: center;
 }
 
 .flex-calculations section h3 {

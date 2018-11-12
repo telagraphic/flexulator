@@ -3,9 +3,7 @@ var flexContainer = document.getElementById('flex-container');
 var addFlexItemButton = document.getElementById('add-flex-item-button');
 
 // get fields on ui to update
-// var flexContainerWidth = document.getElementById('container-width');
-var flexContainerWidth = Array.prototype.slice.call(document.getElementsByClassName('container-width'));
-
+var flexContainerWidth = document.getElementById('container-width');
 
 // on window load, get values
 updateContainerWidth();
@@ -27,9 +25,7 @@ window.addEventListener('resize', function (event) {
 });
 
 function updateContainerWidth() {
-  flexContainerWidth.forEach(function (item) {
-    item.textContent = flexContainer.clientWidth;
-  });
+  flexContainerWidth.textContent = flexContainer.clientWidth;
 };
 
 // Flex Items
@@ -38,11 +34,6 @@ function updateItemWidth() {
   var flexItems = Array.prototype.slice.call(document.getElementsByClassName('flex-item'));
   flexItems.forEach(function (item) {
     item.firstElementChild.textContent = item.offsetWidth;
-    item.children[3].firstElementChild.firstElementChild.children[1].textContent = item.offsetWidth;
-    item.children[3].firstElementChild.firstElementChild.children[2].textContent = flexContainer.clientWidth - item.offsetWidth;
-    console.log(item);
-    // var totalFlexBasis = item.querySelector('.total-flex-basis');
-    // totalFlexBasis.textContent = item.offsetWidth;
   });
 }
 
@@ -140,30 +131,24 @@ function editFlexItem() {
 }
 
 function removeFlexItem() {
+
   var flexItems = Array.prototype.slice.call(document.getElementsByClassName('flex-item'));
   flexItems.forEach(function (item) {
+    console.log(item);
     item.addEventListener('click', function (event) {
+      // var parent = event.target.parentElement.parentElement;
       if (event.target.matches('.remove-item-button')) {
         event.target.parentElement.remove();
       }
+
       updateItemWidth();
     });
   });
+
 }
 
 editFlexItem();
 removeFlexItem();
 
+
 //  Calculate Flex Grow
-
-function updateItemValues() {
-
-  var flexItems = Array.prototype.slice.call(document.getElementsByClassName('flex-item'));
-  flexItems.forEach(function (item) {
-    // get flex-grow-values
-    var flexGrow = item.children[3];
-    console.log(flexGrow.firstElementChild);
-  });
-}
-
-updateItemValues();
