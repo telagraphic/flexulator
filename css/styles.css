@@ -212,7 +212,6 @@ main .flex-calculator .flex-container {
 }
 
 main .flex-calculator .flex-container .flex-item {
-  flex: 1 1 100px;
   flex-flow: column nowrap;
   text-align: center;
   background-color: var(--b-10);

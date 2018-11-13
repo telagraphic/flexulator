@@ -61,99 +61,125 @@
       </section>
 
       <section class="flex-values">
-        <h4>Container: <span class="container-width">100</span></h4>
+        <h4>Container: <span id="container-width" class="container-width">0</span></h4>
+        <h4>Total Flex Basis: <span id="total-flex-basis">0</h4>
+        <h4>Remaining Space: <span class="flex-remaining-space">0</span></h4>
       </section>
 
       <section id="flex-container" class="flex-container">
-        <section id="flex-item-1" class="flex-item">
+        <section id="flex-item-1" class="flex-item" style="flex: 1 1 100px;">
           <h4 class="item-width"></h4>
           <section class="item-values">
             <input type="number" class="item-grow" value="1"></input>
             <input type="number" class="item-shrink" value="1"></input>
-            <input type="text" class="item-basis" value="auto"></input>
+            <input type="text" class="item-basis" value="100"></input>
           </section>
           <button class="remove-item-button">X</button>
           <section class="item-flexulations">
             <section class="flex-grow-flexulations">
               <p>
-                <span class="container-width"></span> - <span class="total-flex-basis">
-                </span> = <span class="flex-remaining-space"></span>
-              </p>
-              <p>
-                <span class="grow-item-value"></span>/<span class="grow-total"></span> * <span class="flex-remaining-space">
-                </span> = <span class="grow-item-space"></span>
+                <span class="grow-item-value"></span>
+                <span> / </span>
+                <span class="grow-total"></span>
+                <span> * </span>
+                <span class="flex-remaining-space"></span>
+                <span> = </span>
+                <span class="grow-item-space"></span>
               </p>
             </section>
             <section class="flex-shrink-flexulations">
               <p>
-                <span class="container-width"></span> - <span class="grow-total-flex-basis">
-                </span> = <span class="grow-remaining-space"></span>
-              </p>
-              <p>
-                (<span class="shrink-item-value"></span> * <span class="shrink-item-basis"></span>) / <span class="total-flex-basis"></span>
-                = <span class="shrink-value"></span> * <span class="flex-remaining-space"></span>
+                <span>(</span>
+                <span class="shrink-item-value"></span>
+                <span> * </span>
+                <span class="shrink-item-basis"></span>
+                <span>) </span>
+                <span> / </span>
+                <span class="total-flex-basis"></span>
+                <span> = </span>
+                <span class="shrink-value"></span>
+                <span> * </span>
+                <span class="flex-remaining-space"></span>
+                <span> = </span>
+                <span class="shrink-flex-value"></span>
               </p>
             </section>
           </section>
         </section>
-        <section id="flex-item-2" class="flex-item">
+        <section id="flex-item-2" class="flex-item" style="flex: 1 1 100px;">
           <h4 class="item-width"></h4>
           <section class="item-values">
             <input type="number" class="item-grow" value="1"></input>
             <input type="number" class="item-shrink" value="1"></input>
-            <input type="text" class="item-basis" value="auto"></input>
+            <input type="text" class="item-basis" value="100"></input>
           </section>
           <button class="remove-item-button">X</button>
           <section class="item-flexulations">
             <section class="flex-grow-flexulations">
               <p>
-                <span class="container-width"></span> - <span class="total-flex-basis">
-                </span> = <span class="flex-remaining-space"></span>
-              </p>
-              <p>
-                <span class="grow-item-value"></span>/<span class="grow-total"></span> * <span class="flex-remaining-space">
-                </span> = <span class="grow-item-space"></span>
+                <span class="grow-item-value"></span>
+                <span> / </span>
+                <span class="grow-total"></span>
+                <span> * </span>
+                <span class="flex-remaining-space"></span>
+                <span> = </span>
+                <span class="grow-item-space"></span>
               </p>
             </section>
             <section class="flex-shrink-flexulations">
               <p>
-                <span class="container-width"></span> - <span class="grow-total-flex-basis">
-                </span> = <span class="grow-remaining-space"></span>
-              </p>
-              <p>
-                (<span class="shrink-item-value"></span> * <span class="shrink-item-basis"></span>) / <span class="total-flex-basis"></span>
-                = <span class="shrink-value"></span> * <span class="flex-remaining-space"></span>
+                <span>(</span>
+                <span class="shrink-item-value"></span>
+                <span> * </span>
+                <span class="shrink-item-basis"></span>
+                <span>) </span>
+                <span> / </span>
+                <span class="total-flex-basis"></span>
+                <span> = </span>
+                <span class="shrink-value"></span>
+                <span> * </span>
+                <span class="flex-remaining-space"></span>
+                <span> = </span>
+                <span class="shrink-flex-value"></span>
               </p>
             </section>
           </section>
         </section>
-        <section id="flex-item-3" class="flex-item">
+        <section id="flex-item-3" class="flex-item" style="flex: 1 1 100px;">
           <h4 class="item-width"></h4>
           <section class="item-values">
             <input type="number" class="item-grow" value="1"></input>
             <input type="number" class="item-shrink" value="1"></input>
-            <input type="text" class="item-basis" value="auto"></input>
+            <input type="text" class="item-basis" value="100"></input>
           </section>
           <button class="remove-item-button">X</button>
           <section class="item-flexulations">
             <section class="flex-grow-flexulations">
               <p>
-                <span class="container-width"></span> - <span class="total-flex-basis">
-                </span> = <span class="flex-remaining-space"></span>
-              </p>
-              <p>
-                <span class="grow-item-value"></span>/<span class="grow-total"></span> * <span class="flex-remaining-space">
-                </span> = <span class="grow-item-space"></span>
+                <span class="grow-item-value"></span>
+                <span> / </span>
+                <span class="grow-total"></span>
+                <span> * </span>
+                <span class="flex-remaining-space"></span>
+                <span> = </span>
+                <span class="grow-item-space"></span>
               </p>
             </section>
             <section class="flex-shrink-flexulations">
               <p>
-                <span class="container-width"></span> - <span class="grow-total-flex-basis">
-                </span> = <span class="grow-remaining-space"></span>
-              </p>
-              <p>
-                (<span class="shrink-item-value"></span> * <span class="shrink-item-basis"></span>) / <span class="total-flex-basis"></span>
-                = <span class="shrink-value"></span> * <span class="flex-remaining-space"></span>
+                <span>(</span>
+                <span class="shrink-item-value"></span>
+                <span> * </span>
+                <span class="shrink-item-basis"></span>
+                <span>) </span>
+                <span> / </span>
+                <span class="total-flex-basis"></span>
+                <span> = </span>
+                <span class="shrink-value"></span>
+                <span> * </span>
+                <span class="flex-remaining-space"></span>
+                <span> = </span>
+                <span class="shrink-flex-value"></span>
               </p>
             </section>
           </section>
