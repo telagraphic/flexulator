@@ -33,6 +33,7 @@ window.addEventListener('resize', function (event) {
   totalRemainingSpace();
   updateItemWidth();
   updateGrowItemSpace();
+  // editFlexItem();
 });
 
 function updateContainerWidth() {
@@ -42,18 +43,6 @@ function updateContainerWidth() {
 };
 
 
-
-function updateTotalFlexBasis() {
-  var totalFlexBasis = 0;
-  getFlexItems().forEach(function (item) {
-    totalFlexBasis += parseInt(item.style.flexBasis);
-  });
-
-  showTotalFlexBasis.textContent = totalFlexBasis;
-  totalRemainingSpace();
-
-}
-
 function totalRemainingSpace() {
   var containerWidth = document.getElementById('container-width');
   var displayRemainingSpace = Array.prototype.slice.call(document.getElementsByClassName('flex-remaining-space'));
@@ -62,8 +51,6 @@ function totalRemainingSpace() {
     item.textContent = remainingSpace;
   });
 }
-
-updateTotalFlexBasis();
 
 // Flex Items
 
@@ -132,17 +119,11 @@ function addFlexItem() {
   button.setAttribute('class', 'remove-item-button');
   button.textContent = 'X';
 
-  var flexulatorContainer = document.createElement('section');
-  flexulatorContainer.setAttribute('class', 'item-flexulations');
-
-  var growContainer = document.createElement('section');
-  growContainer.setAttribute('class', 'flex-grow-flexulations');
-
-  var growParagraph = document.createElement('p');
+  // Grow Section
 
   var empty = document.createElement('span');
   var division = document.createElement('span');
-  division.textContent = ' / ';
+  division.textContent = '/';
   var multiply = document.createElement('span');
   multiply.textContent = ' * ';
   var equals = document.createElement('span');
@@ -151,6 +132,14 @@ function addFlexItem() {
   openParens.textContent = '(';
   var closeParens = document.createElement('span');
   closeParens.textContent = ') ';
+
+  var flexulatorContainer = document.createElement('section');
+  flexulatorContainer.setAttribute('class', 'item-flexulations');
+
+  var growContainer = document.createElement('section');
+  growContainer.setAttribute('class', 'flex-grow-flexulations');
+
+  var growParagraph = document.createElement('p');
 
   var growItemValue = document.createElement('span');
   growItemValue.setAttribute('class', 'grow-item-value');
@@ -174,6 +163,20 @@ function addFlexItem() {
   growContainer.appendChild(growParagraph);
   flexulatorContainer.appendChild(growContainer);
 
+  // Shrink section
+
+  var empty = document.createElement('span');
+  var division = document.createElement('span');
+  division.textContent = '/';
+  var multiply = document.createElement('span');
+  multiply.textContent = ' * ';
+  var equals = document.createElement('span');
+  equals.textContent = ' = ';
+  var openParens = document.createElement('span');
+  openParens.textContent = '(';
+  var closeParens = document.createElement('span');
+  closeParens.textContent = ') ';
+
   var shrinkContainer = document.createElement('section');
   shrinkContainer.setAttribute('class', 'flex-shrink-flexulations');
 
@@ -187,6 +190,9 @@ function addFlexItem() {
 
   var totalFlexBasis = document.createElement('span');
   totalFlexBasis.setAttribute('class', 'total-flex-basis');
+
+  var flexRemainingSpace = document.createElement('span');
+  flexRemainingSpace.setAttribute('class', 'flex-remaining-space');
 
   var shrinkValue = document.createElement('span');
   shrinkValue.setAttribute('class', 'shrink-value');
@@ -211,27 +217,28 @@ function addFlexItem() {
   shrinkContainer.appendChild(shrinkParagraph);
   flexulatorContainer.appendChild(shrinkContainer);
 
+
   flexItem.appendChild(itemWidth);
   flexItem.appendChild(flexValues);
   flexItem.appendChild(button);
   flexItem.appendChild(flexulatorContainer);
+  console.log(flexulatorContainer.innerHTML);
 
 
   // add to flex-container
   flexContainer.appendChild(flexItem);
 
   updateItemWidth();
-  editFlexItem();
   updateTotalFlexBasis();
   updateTotalFlexGrow();
   setFlexItemGrow();
   updateGrowItemSpace();
+  editFlexItem();
+  setFlexItemShrink();
 };
 
 function editFlexItem() {
-
-  var flexItems = Array.prototype.slice.call(document.getElementsByClassName('flex-item'));
-  flexItems.forEach(function (item) {
+  getFlexItems().forEach(function (item) {
     item.addEventListener('input', function (event) {
       var parent = event.target.parentElement.parentElement;
       if (event.target.matches('.item-grow')) {
@@ -242,15 +249,19 @@ function editFlexItem() {
         parent.style.flexBasis = event.target.value + 'px';
       }
 
+      // move out of loop?
       updateTotalFlexBasis();
       updateTotalFlexGrow();
       setFlexItemGrow();
       updateGrowItemSpace();
+      setFlexItemShrink();
     });
   });
 }
 
 editFlexItem();
+
+// read once with a function, then write to each element
 
 function removeFlexItem() {
   getFlexItems().forEach(function (item) {
@@ -266,10 +277,24 @@ function removeFlexItem() {
     });
   });
 }
-
 removeFlexItem();
 
+function updateTotalFlexBasis() {
+  var totalFlexBasis = 0;
+  getFlexItems().forEach(function (item) {
+    totalFlexBasis += parseInt(item.style.flexBasis);
+  });
 
+  showTotalFlexBasis.textContent = totalFlexBasis;
+
+  var totalFlexBasisElements = Array.prototype.slice.call(document.getElementsByClassName('total-flex-basis'));
+  totalFlexBasisElements.forEach(function (element) {
+    element.textContent = totalFlexBasis;
+  });
+
+  totalRemainingSpace();
+}
+updateTotalFlexBasis();
 
 function updateTotalFlexGrow() {
   var totalFlexGrow = 0;
@@ -286,6 +311,7 @@ function updateTotalFlexGrow() {
 }
 updateTotalFlexGrow();
 
+// update the grow value in the formula when updated
 function setFlexItemGrow() {
   getFlexItems().forEach(function (element) {
     var itemGrowValue = 0;
@@ -296,6 +322,7 @@ function setFlexItemGrow() {
 setFlexItemGrow();
 
 
+// update the formula with item grow space
 function updateGrowItemSpace() {
 
   var itemGrow;
@@ -305,7 +332,7 @@ function updateGrowItemSpace() {
   var totalSpace = document.getElementsByClassName('container-width')[0];
 
   getFlexItems().forEach(function (item) {
-    console.log(item);
+    // console.log(item);
     itemGrow = item.children[3].firstElementChild.firstElementChild.children[0].textContent;
     growTotal = item.children[3].firstElementChild.firstElementChild.children[2].textContent;
     growFraction = parseInt(itemGrow) / parseInt(growTotal);
@@ -314,3 +341,26 @@ function updateGrowItemSpace() {
   });
 }
 updateGrowItemSpace();
+
+
+function setFlexItemShrink() {
+  var totalBasis = document.getElementById('total-flex-basis');
+  getFlexItems().forEach(function (element) {
+    var itemShrinkValue = 0;
+    var itemBasis = 0;
+    var remainingSpace = element.children[3].lastElementChild.firstElementChild.children[10].textContent
+
+    itemShrinkValue = element.style.flexShrink;
+    itemBasis = element.style.flexBasis;
+
+    var shrinkValue = parseInt(itemShrinkValue, 10) * parseInt(itemBasis, 10);
+    var shrinkFactor = shrinkValue / parseInt(totalBasis.textContent, 10);
+    element.children[3].lastElementChild.firstElementChild.children[1].textContent = itemShrinkValue;
+    element.children[3].lastElementChild.firstElementChild.children[3].textContent = parseInt(itemBasis);
+    element.children[3].lastElementChild.firstElementChild.children[8].textContent = shrinkFactor;
+    element.children[3].lastElementChild.firstElementChild.children[12].textContent = parseInt(shrinkFactor * remainingSpace, 10);
+  });
+
+}
+
+setFlexItemShrink();
