@@ -33,6 +33,7 @@ window.addEventListener('resize', function (event) {
   totalRemainingSpace();
   updateItemWidth();
   updateGrowItemSpace();
+  setFlexItemShrink();
   // editFlexItem();
 });
 
@@ -357,7 +358,7 @@ function setFlexItemShrink() {
     var shrinkFactor = shrinkValue / parseInt(totalBasis.textContent, 10);
     element.children[3].lastElementChild.firstElementChild.children[1].textContent = itemShrinkValue;
     element.children[3].lastElementChild.firstElementChild.children[3].textContent = parseInt(itemBasis);
-    element.children[3].lastElementChild.firstElementChild.children[8].textContent = shrinkFactor;
+    element.children[3].lastElementChild.firstElementChild.children[8].textContent = shrinkFactor.toPrecision(2);
     element.children[3].lastElementChild.firstElementChild.children[12].textContent = parseInt(shrinkFactor * remainingSpace, 10);
   });
 
