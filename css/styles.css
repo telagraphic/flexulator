@@ -217,6 +217,10 @@ main .flex-calculator .flex-container .flex-item {
   background-color: var(--b-10);
 }
 
+main .flex-calculator .flex-container .flex-item:nth-of-type(even) {
+  background-color: var(--b-20);
+}
+
 main .flex-calculator .flex-container .flex-item .item-values {
   display: flex;
   flex-flow: column nowrap;
