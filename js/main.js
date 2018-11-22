@@ -261,6 +261,7 @@ function editFlexItem() {
       setFlexItemShrink();
     });
   });
+
 }
 
 editFlexItem();
