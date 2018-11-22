@@ -1,6 +1,5 @@
 // get container and item values
 var flexContainer = document.getElementById('flex-container');
-console.log(flexContainer);
 var addFlexItemButton = document.getElementById('add-flex-item-button');
 var showTotalFlexBasis = document.getElementById('total-flex-basis');
 var flexContainerWidth = Array.prototype.slice.call(document.getElementsByClassName('container-width'));
@@ -121,12 +120,10 @@ function addFlexItem() {
   button.textContent = 'X';
 
   // Grow Section
-
-  var empty = document.createElement('span');
   var division = document.createElement('span');
   division.textContent = '/';
-  var multiply = document.createElement('span');
-  multiply.textContent = ' * ';
+  var growMultiply = document.createElement('span');
+  growMultiply.textContent = ' * ';
   var equals = document.createElement('span');
   equals.textContent = ' = ';
   var openParens = document.createElement('span');
@@ -157,26 +154,31 @@ function addFlexItem() {
   growParagraph.appendChild(growItemValue);
   growParagraph.appendChild(division);
   growParagraph.appendChild(growTotalValue);
-  growParagraph.appendChild(multiply);
+  growParagraph.appendChild(growMultiply);
   growParagraph.appendChild(flexRemainingSpace);
   growParagraph.appendChild(equals);
   growParagraph.appendChild(growItemSpace);
   growContainer.appendChild(growParagraph);
   flexulatorContainer.appendChild(growContainer);
+  console.log(growContainer)
 
   // Shrink section
-
-  var empty = document.createElement('span');
   var division = document.createElement('span');
   division.textContent = '/';
-  var multiply = document.createElement('span');
-  multiply.textContent = ' * ';
-  var equals = document.createElement('span');
-  equals.textContent = ' = ';
-  var openParens = document.createElement('span');
-  openParens.textContent = '(';
-  var closeParens = document.createElement('span');
-  closeParens.textContent = ') ';
+  var shrinkMultiply = document.createElement('span');
+  shrinkMultiply.textContent = ' * ';
+  var shrinkMultiplyTwo = document.createElement('span');
+  shrinkMultiplyTwo.textContent = ' * ';
+  var shrinkEqualsOne = document.createElement('span');
+  shrinkEqualsOne.textContent = ' = ';
+  var shrinkEqualsTwo = document.createElement('span');
+  shrinkEqualsTwo.textContent = ' = ';
+  var shrinkEqualsThree = document.createElement('span');
+  shrinkEqualsThree.textContent = ' = ';
+  var shrinkOpenParens = document.createElement('span');
+  shrinkOpenParens.textContent = '(';
+  var shrinkCloseParens = document.createElement('span');
+  shrinkCloseParens.textContent = ') ';
 
   var shrinkContainer = document.createElement('section');
   shrinkContainer.setAttribute('class', 'flex-shrink-flexulations');
@@ -203,17 +205,18 @@ function addFlexItem() {
   var shrinkFlexValue = document.createElement('span');
   shrinkFlexValue.setAttribute('class', 'shrink-flex-value');
 
-  shrinkParagraph.appendChild(openParens);
+  shrinkParagraph.appendChild(shrinkOpenParens);
   shrinkParagraph.appendChild(shrinkItemValue);
-  shrinkParagraph.appendChild(multiply);
+  shrinkParagraph.appendChild(shrinkMultiply);
   shrinkParagraph.appendChild(shrinkItemBasis);
-  shrinkParagraph.appendChild(closeParens);
+  shrinkParagraph.appendChild(shrinkCloseParens);
   shrinkParagraph.appendChild(division);
   shrinkParagraph.appendChild(totalFlexBasis);
-  shrinkParagraph.appendChild(equals);
+  shrinkParagraph.appendChild(shrinkEqualsOne);
   shrinkParagraph.appendChild(shrinkValue);
+  shrinkParagraph.appendChild(shrinkMultiplyTwo);
   shrinkParagraph.appendChild(flexRemainingSpace);
-  shrinkParagraph.appendChild(equals);
+  shrinkParagraph.appendChild(shrinkEqualsTwo);
   shrinkParagraph.appendChild(shrinkFlexValue);
   shrinkContainer.appendChild(shrinkParagraph);
   flexulatorContainer.appendChild(shrinkContainer);
@@ -223,7 +226,6 @@ function addFlexItem() {
   flexItem.appendChild(flexValues);
   flexItem.appendChild(button);
   flexItem.appendChild(flexulatorContainer);
-  console.log(flexulatorContainer.innerHTML);
 
 
   // add to flex-container
@@ -236,6 +238,7 @@ function addFlexItem() {
   updateGrowItemSpace();
   editFlexItem();
   setFlexItemShrink();
+  removeFlexItem();
 };
 
 function editFlexItem() {
