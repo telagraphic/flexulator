@@ -20,14 +20,26 @@ addFlexItemButton.addEventListener('click', function (event) {
   addFlexItem();
 });
 
-// on resize, update values
-window.addEventListener('resize', function (event) {
+// window.addEventListener('resize', function (event) {
+//   updateContainerWidth();
+//   totalRemainingSpace();
+//   updateItemWidth();
+//   updateGrowItemSpace();
+//   setFlexItemShrink();
+// });
+
+
+
+window.addEventListener('resize', _.debounce(resizeFunctions, 1000));
+
+function resizeFunctions() {
+  console.log("debouncing");
   updateContainerWidth();
   totalRemainingSpace();
   updateItemWidth();
   updateGrowItemSpace();
   setFlexItemShrink();
-});
+}
 
 function updateContainerWidth() {
   // all set
@@ -49,9 +61,17 @@ function totalRemainingSpace() {
 
 // Flex Items
 function updateItemWidth() {
-  // read & write
-  getFlexItems().forEach(function (item) {
-    item.firstElementChild.textContent = item.offsetWidth;
+  // read
+  var reads = [];
+  var items = getFlexItems();
+
+  items.forEach(function (item) {
+    reads.push(item.offsetWidth);
+  });
+
+  // writes
+  items.forEach(function (item, index) {
+    item.firstElementChild.textContent = items[index].offsetWidth;
   });
 }
 
@@ -261,8 +281,6 @@ function editFlexItem() {
 
 editFlexItem();
 
-// read once with a function, then write to each element
-
 function removeFlexItem() {
   getFlexItems().forEach(function (item) {
     item.addEventListener('click', function (event) {
@@ -316,38 +334,49 @@ updateTotalFlexGrow();
 
 // update the grow value in the formula when updated
 function setFlexItemGrow() {
-  getFlexItems().forEach(function (element) {
 
-    // reads
-    var itemGrowValue = 0;
-    itemGrowValue = element.style.flexGrow;
+  var itemGrowValues = [];
+  var flexItems = getFlexItems();
 
-    // writes
-    element.children[3].firstElementChild.firstElementChild.firstElementChild.textContent = itemGrowValue;
+  // reads
+  flexItems.forEach(function (element) {
+    itemGrowValues.push(element.style.flexGrow);
   });
+
+
+  // writes
+  flexItems.forEach(function (element, index) {
+    element.children[3].firstElementChild.firstElementChild.firstElementChild.textContent = itemGrowValues[index];
+  });
+
 }
 setFlexItemGrow();
 
 
 // update the formula with item grow space
 function updateGrowItemSpace() {
-
+  var newUpdates = [];
   var itemGrow;
   var growTotal;
   var growFraction;
   var remainingSpace;
-  var totalSpace = document.getElementsByClassName('container-width')[0];
+  var itemsToUpdate = getFlexItems();
 
-  getFlexItems().forEach(function (item) {
+  itemsToUpdate.forEach(function (item) {
+    var update = {};
 
     // reads
-    itemGrow = item.children[3].firstElementChild.firstElementChild.children[0].textContent;
-    growTotal = item.children[3].firstElementChild.firstElementChild.children[2].textContent;
-    remainingSpace = item.children[3].firstElementChild.firstElementChild.children[4].textContent;
+    update.itemGrow = item.children[3].firstElementChild.firstElementChild.children[0].textContent;
+    update.growTotal = item.children[3].firstElementChild.firstElementChild.children[2].textContent;
+    update.remainingSpace = item.children[3].firstElementChild.firstElementChild.children[4].textContent;
+    update.growFraction = parseInt(update.itemGrow) / parseInt(update.growTotal);
+    update.newSpace = parseInt(update.growFraction * parseInt(update.remainingSpace), 10);
+    newUpdates.push(update);
+  });
 
-    // writes
-    growFraction = parseInt(itemGrow) / parseInt(growTotal);
-    item.children[3].firstElementChild.firstElementChild.lastElementChild.textContent = parseInt(growFraction * parseInt(remainingSpace), 10);
+  // writes
+  itemsToUpdate.forEach(function (item, index) {
+    item.children[3].firstElementChild.firstElementChild.lastElementChild.textContent = newUpdates[index].newSpace;
   });
 }
 
@@ -355,23 +384,38 @@ updateGrowItemSpace();
 
 
 function setFlexItemShrink() {
+  var itemsToChange = getFlexItems();
+  var changes = [];
+
+  // var values = {
+  //   itemGrow: 0,
+  //   growTotal: 0,
+  //   remainingSpace: 0,
+  //   growFraction: 0,
+  //
+  // };
+
   var totalBasis = document.getElementById('total-flex-basis');
-  getFlexItems().forEach(function (element) {
-
+  itemsToChange.forEach(function (element) {
+    var change = {};
     // reads
-    var itemShrinkValue = 0;
-    var itemBasis = 0;
-    var remainingSpace = element.children[3].lastElementChild.firstElementChild.children[10].textContent;
-    itemShrinkValue = element.style.flexShrink;
-    itemBasis = element.style.flexBasis;
+    change.itemShrinkValue = 0;
+    change.itemBasis = 0;
+    change.remainingSpace = element.children[3].lastElementChild.firstElementChild.children[10].textContent;
+    change.itemShrinkValue = element.style.flexShrink;
+    change.itemBasis = element.style.flexBasis;
+    change.shrinkValue = parseInt(change.itemShrinkValue, 10) * parseInt(change.itemBasis, 10);
+    change.shrinkFactor = change.shrinkValue / parseInt(totalBasis.textContent, 10);
+    changes.push(change);
+  });
 
+  itemsToChange.forEach(function (element, index) {
     // writes
-    var shrinkValue = parseInt(itemShrinkValue, 10) * parseInt(itemBasis, 10);
-    var shrinkFactor = shrinkValue / parseInt(totalBasis.textContent, 10);
-    element.children[3].lastElementChild.firstElementChild.children[1].textContent = itemShrinkValue;
-    element.children[3].lastElementChild.firstElementChild.children[3].textContent = parseInt(itemBasis);
-    element.children[3].lastElementChild.firstElementChild.children[8].textContent = shrinkFactor.toPrecision(2);
-    element.children[3].lastElementChild.firstElementChild.children[12].textContent = parseInt(shrinkFactor * remainingSpace, 10);
+
+    element.children[3].lastElementChild.firstElementChild.children[1].textContent = changes[index].itemShrinkValue;
+    element.children[3].lastElementChild.firstElementChild.children[3].textContent = parseInt(changes[index].itemBasis);
+    element.children[3].lastElementChild.firstElementChild.children[8].textContent = changes[index].shrinkFactor.toPrecision(2);
+    element.children[3].lastElementChild.firstElementChild.children[12].textContent = parseInt(changes[index].shrinkFactor * changes[index].remainingSpace, 10);
   });
 
 }
