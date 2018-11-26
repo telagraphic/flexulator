@@ -13,6 +13,7 @@ function getFlexItems() {
 updateContainerWidth();
 totalRemainingSpace();
 updateItemWidth();
+updateGrowItemSpace();
 
 
 addFlexItemButton.addEventListener('click', function (event) {
@@ -46,14 +47,14 @@ function updateContainerWidth() {
   flexContainerWidth.forEach(function (item) {
     item.textContent = flexContainer.clientWidth;
   });
-};
-
+}
 
 function totalRemainingSpace() {
   // all set
   var containerWidth = document.getElementById('container-width');
   var displayRemainingSpace = Array.prototype.slice.call(document.getElementsByClassName('flex-remaining-space'));
   var remainingSpace = parseInt(containerWidth.textContent) - parseInt(showTotalFlexBasis.textContent);
+
   displayRemainingSpace.forEach(function (item) {
     item.textContent = remainingSpace;
   });
@@ -66,14 +67,15 @@ function updateItemWidth() {
   var items = getFlexItems();
 
   items.forEach(function (item) {
-    reads.push(item.offsetWidth);
-  });
-
-  // writes
-  items.forEach(function (item, index) {
-    item.firstElementChild.textContent = items[index].offsetWidth;
+    fastdom.measure(function () {
+      var width = item.offsetWidth;
+      fastdom.mutate(function () {
+        item.firstElementChild.textContent = width;
+      });
+    });
   });
 }
+
 
 function addFlexItem() {
   // get item count
@@ -307,7 +309,10 @@ function updateTotalFlexBasis() {
 
   var totalFlexBasisElements = Array.prototype.slice.call(document.getElementsByClassName('total-flex-basis'));
   totalFlexBasisElements.forEach(function (element) {
-    element.textContent = totalFlexBasis;
+    requestAnimationFrame(function () {
+      element.textContent = totalFlexBasis;
+    });
+
   });
 
   totalRemainingSpace();
@@ -319,14 +324,18 @@ function updateTotalFlexGrow() {
   var totalFlexGrow = 0;
   var flexGrowElements = Array.prototype.slice.call(document.getElementsByClassName('grow-total'));
 
-  // reads
-  getFlexItems().forEach(function (item) {
-    totalFlexGrow += parseInt(item.style.flexGrow);
-  });
+  fastdom.measure(function () {
+    // reads
+    getFlexItems().forEach(function (item) {
+      totalFlexGrow += parseInt(item.style.flexGrow);
+    });
 
-  // writes
-  flexGrowElements.forEach(function (element) {
-    element.textContent = totalFlexGrow;
+    fastdom.mutate(function () {
+      // writes
+      flexGrowElements.forEach(function (element) {
+        element.textContent = totalFlexGrow;
+      });
+    });
   });
 
 }
@@ -334,49 +343,38 @@ updateTotalFlexGrow();
 
 // update the grow value in the formula when updated
 function setFlexItemGrow() {
-
-  var itemGrowValues = [];
-  var flexItems = getFlexItems();
-
-  // reads
-  flexItems.forEach(function (element) {
-    itemGrowValues.push(element.style.flexGrow);
+  getFlexItems().forEach(function (element) {
+    fastdom.measure(function () {
+      var flexGrow = element.style.flexGrow;
+      fastdom.mutate(function () {
+        element.children[3].firstElementChild.firstElementChild.firstElementChild.textContent = flexGrow;
+      });
+    });
   });
-
-
-  // writes
-  flexItems.forEach(function (element, index) {
-    element.children[3].firstElementChild.firstElementChild.firstElementChild.textContent = itemGrowValues[index];
-  });
-
 }
+
 setFlexItemGrow();
 
 
 // update the formula with item grow space
 function updateGrowItemSpace() {
-  var newUpdates = [];
+
   var itemGrow;
   var growTotal;
   var growFraction;
   var remainingSpace;
-  var itemsToUpdate = getFlexItems();
+  var totalSpace = document.getElementsByClassName('container-width')[0];
 
-  itemsToUpdate.forEach(function (item) {
-    var update = {};
-
-    // reads
-    update.itemGrow = item.children[3].firstElementChild.firstElementChild.children[0].textContent;
-    update.growTotal = item.children[3].firstElementChild.firstElementChild.children[2].textContent;
-    update.remainingSpace = item.children[3].firstElementChild.firstElementChild.children[4].textContent;
-    update.growFraction = parseInt(update.itemGrow) / parseInt(update.growTotal);
-    update.newSpace = parseInt(update.growFraction * parseInt(update.remainingSpace), 10);
-    newUpdates.push(update);
-  });
-
-  // writes
-  itemsToUpdate.forEach(function (item, index) {
-    item.children[3].firstElementChild.firstElementChild.lastElementChild.textContent = newUpdates[index].newSpace;
+  getFlexItems().forEach(function (item) {
+    fastdom.measure(function () {
+      itemGrow = item.children[3].firstElementChild.firstElementChild.children[0].textContent;
+      growTotal = item.children[3].firstElementChild.firstElementChild.children[2].textContent;
+      remainingSpace = item.children[3].firstElementChild.firstElementChild.children[4].textContent;
+      growFraction = parseInt(itemGrow) / parseInt(growTotal);
+      fastdom.mutate(function () {
+        item.children[3].firstElementChild.firstElementChild.lastElementChild.textContent = parseInt(growFraction * parseInt(remainingSpace), 10);
+      })
+    });
   });
 }
 
@@ -384,38 +382,24 @@ updateGrowItemSpace();
 
 
 function setFlexItemShrink() {
-  var itemsToChange = getFlexItems();
-  var changes = [];
-
-  // var values = {
-  //   itemGrow: 0,
-  //   growTotal: 0,
-  //   remainingSpace: 0,
-  //   growFraction: 0,
-  //
-  // };
-
   var totalBasis = document.getElementById('total-flex-basis');
-  itemsToChange.forEach(function (element) {
-    var change = {};
-    // reads
-    change.itemShrinkValue = 0;
-    change.itemBasis = 0;
-    change.remainingSpace = element.children[3].lastElementChild.firstElementChild.children[10].textContent;
-    change.itemShrinkValue = element.style.flexShrink;
-    change.itemBasis = element.style.flexBasis;
-    change.shrinkValue = parseInt(change.itemShrinkValue, 10) * parseInt(change.itemBasis, 10);
-    change.shrinkFactor = change.shrinkValue / parseInt(totalBasis.textContent, 10);
-    changes.push(change);
-  });
+  getFlexItems().forEach(function (element) {
 
-  itemsToChange.forEach(function (element, index) {
-    // writes
-
-    element.children[3].lastElementChild.firstElementChild.children[1].textContent = changes[index].itemShrinkValue;
-    element.children[3].lastElementChild.firstElementChild.children[3].textContent = parseInt(changes[index].itemBasis);
-    element.children[3].lastElementChild.firstElementChild.children[8].textContent = changes[index].shrinkFactor.toPrecision(2);
-    element.children[3].lastElementChild.firstElementChild.children[12].textContent = parseInt(changes[index].shrinkFactor * changes[index].remainingSpace, 10);
+    fastdom.measure(function () {
+      var itemShrinkValue = 0;
+      var itemBasis = 0;
+      var remainingSpace = element.children[3].lastElementChild.firstElementChild.children[10].textContent;
+      itemShrinkValue = element.style.flexShrink;
+      itemBasis = element.style.flexBasis;
+      var shrinkValue = parseInt(itemShrinkValue, 10) * parseInt(itemBasis, 10);
+      var shrinkFactor = shrinkValue / parseInt(totalBasis.textContent, 10);
+      fastdom.mutate(function () {
+        element.children[3].lastElementChild.firstElementChild.children[1].textContent = itemShrinkValue;
+        element.children[3].lastElementChild.firstElementChild.children[3].textContent = parseInt(itemBasis);
+        element.children[3].lastElementChild.firstElementChild.children[8].textContent = shrinkFactor.toPrecision(2);
+        element.children[3].lastElementChild.firstElementChild.children[12].textContent = parseInt(shrinkFactor * remainingSpace, 10);
+      });
+    })
   });
 
 }
