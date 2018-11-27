@@ -81,24 +81,54 @@ function addFlexItem() {
   var flexValues = document.createElement('section');
   flexValues.setAttribute('class', 'item-values');
 
+  var growSection = document.createElement('section');
+
+  var incrementGrowButton = document.createElement('button');
+  incrementGrowButton.setAttribute('class', 'increment-grow-value');
+  incrementGrowButton.textContent = '+';
+
   var growInput = document.createElement('input');
   growInput.setAttribute('type', 'number');
   growInput.setAttribute('class', 'item-grow');
   growInput.setAttribute('value', grow);
+
+  var decrementGrowButton = document.createElement('button');
+  decrementGrowButton.setAttribute('class', 'decrement-grow-value');
+  decrementGrowButton.textContent = '-';
+
+  growSection.appendChild(incrementGrowButton);
+  growSection.appendChild(growInput);
+  growSection.appendChild(decrementGrowButton);
+
+  var shrinkSection = document.createElement('section');
+
+  var incrementShrinkButton = document.createElement('button');
+  incrementShrinkButton.setAttribute('class', 'increment-shrink-value');
+  incrementShrinkButton.textContent = '+';
 
   var shrinkInput = document.createElement('input');
   shrinkInput.setAttribute('type', 'number');
   shrinkInput.setAttribute('class', 'item-shrink');
   shrinkInput.setAttribute('value', shrink);
 
+  var decrementShrinkButton = document.createElement('button');
+  decrementShrinkButton.setAttribute('class', 'decrement-shrink-value');
+  decrementShrinkButton.textContent = '-';
+
+  shrinkSection.appendChild(incrementShrinkButton);
+  shrinkSection.appendChild(shrinkInput);
+  shrinkSection.appendChild(decrementShrinkButton);
+
+  var basisSection = document.createElement('section');
   var basisInput = document.createElement('input');
   basisInput.setAttribute('type', 'text');
   basisInput.setAttribute('class', 'item-basis');
   basisInput.setAttribute('value', basis);
+  basisSection.appendChild(basisInput);
 
-  flexValues.appendChild(growInput);
-  flexValues.appendChild(shrinkInput);
-  flexValues.appendChild(basisInput);
+  flexValues.appendChild(growSection);
+  flexValues.appendChild(shrinkSection);
+  flexValues.appendChild(basisSection);
 
   // flexItem.style.display = 'flex';
   flexItem.style.flexGrow = grow;
@@ -236,10 +266,29 @@ function addFlexItem() {
   removeFlexItem();
 };
 
+
+function updateFlexItem() {
+  getFlexItems().forEach(function (item) {
+
+  });
+}
+
+updateFlexItem();
+
+// function inputChanges() {
+//   var inputs = Array.prototype.slice.call(document.getElementsByTagName('input'));
+//   inputs.forEach(function (input) {
+//     input.addEventListener('change', runChanges);
+//   });
+// }
+//
+// inputChanges();
+
 function editFlexItem() {
   getFlexItems().forEach(function (item) {
     item.addEventListener('input', function (event) {
-      var parent = event.target.parentElement.parentElement;
+      console.log(event);
+      var parent = event.target.parentElement.parentElement.parentElement;
       if (event.target.matches('.item-grow')) {
         parent.style.flexGrow = event.target.value;
       } else if (event.target.matches('.item-shrink')) {
@@ -249,14 +298,40 @@ function editFlexItem() {
       }
 
       // move out of loop?
-      updateTotalFlexBasis();
-      updateTotalFlexGrow();
-      setFlexItemGrow();
-      updateGrowItemSpace();
-      setFlexItemShrink();
+      runChanges();
+
+    });
+
+    item.addEventListener('click', function (event) {
+      var parentItem = event.target.parentElement.parentElement.parentElement;
+      var growValue;
+      var shrinkValue;
+      if (event.target.matches('.increment-grow-value')) {
+        growValue = event.target.nextElementSibling.value;
+        ++growValue;
+        event.target.nextElementSibling.value = growValue;
+        parentItem.style.flexGrow = growValue;
+      } else if (event.target.matches('.decrement-grow-value')) {
+        growValue = event.target.previousElementSibling.value;
+        --growValue;
+        event.target.previousElementSibling.value = growValue;
+        parentItem.style.flexGrow = growValue;
+      } else if (event.target.matches('.increment-shrink-value')) {
+        shrinkValue = event.target.nextElementSibling.value;
+        ++shrinkValue;
+        event.target.nextElementSibling.value = shrinkValue;
+        parentItem.style.flexShrink = shrinkValue;
+      } else if (event.target.matches('.decrement-shrink-value')) {
+        shrinkValue = event.target.previousElementSibling.value;
+        --shrinkValue;
+        event.target.previousElementSibling.value = shrinkValue;
+        parentItem.style.flexShrink = shrinkValue;
+      }
+
+      runChanges();
+
     });
   });
-
 }
 
 editFlexItem();
@@ -269,14 +344,21 @@ function removeFlexItem() {
       if (event.target.matches('.remove-item-button')) {
         event.target.parentElement.remove();
       }
-      updateItemWidth();
-      updateTotalFlexGrow();
-      setFlexItemGrow();
-      updateGrowItemSpace();
+      runChanges();
+
     });
   });
 };
 removeFlexItem();
+
+function runChanges() {
+  updateItemWidth();
+  updateTotalFlexGrow();
+  setFlexItemGrow();
+  updateGrowItemSpace();
+  updateTotalFlexBasis();
+  setFlexItemShrink();
+}
 
 function updateTotalFlexBasis() {
   // all set
@@ -352,7 +434,6 @@ function updateGrowItemSpace() {
 }
 
 updateGrowItemSpace();
-
 
 function setFlexItemShrink() {
   var totalBasis = document.getElementById('total-flex-basis');
