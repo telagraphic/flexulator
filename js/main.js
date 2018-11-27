@@ -264,12 +264,41 @@ function addFlexItem() {
   editFlexItem();
   setFlexItemShrink();
   removeFlexItem();
+  updateFlexItem();
 };
 
 
 function updateFlexItem() {
   getFlexItems().forEach(function (item) {
+    item.addEventListener('click', function (event) {
+      var parentItem = event.target.parentElement.parentElement.parentElement;
+      var growValue;
+      var shrinkValue;
+      if (event.target.matches('.increment-grow-value')) {
+        growValue = event.target.nextElementSibling.value;
+        ++growValue;
+        event.target.nextElementSibling.value = growValue;
+        parentItem.style.flexGrow = growValue;
+      } else if (event.target.matches('.decrement-grow-value')) {
+        growValue = event.target.previousElementSibling.value;
+        --growValue;
+        event.target.previousElementSibling.value = growValue;
+        parentItem.style.flexGrow = growValue;
+      } else if (event.target.matches('.increment-shrink-value')) {
+        shrinkValue = event.target.nextElementSibling.value;
+        ++shrinkValue;
+        event.target.nextElementSibling.value = shrinkValue;
+        parentItem.style.flexShrink = shrinkValue;
+      } else if (event.target.matches('.decrement-shrink-value')) {
+        shrinkValue = event.target.previousElementSibling.value;
+        --shrinkValue;
+        event.target.previousElementSibling.value = shrinkValue;
+        parentItem.style.flexShrink = shrinkValue;
+      }
 
+      runChanges();
+
+    });
   });
 }
 
@@ -297,36 +326,6 @@ function editFlexItem() {
       }
 
       // move out of loop?
-      runChanges();
-
-    });
-
-    item.addEventListener('click', function (event) {
-      var parentItem = event.target.parentElement.parentElement.parentElement;
-      var growValue;
-      var shrinkValue;
-      if (event.target.matches('.increment-grow-value')) {
-        growValue = event.target.nextElementSibling.value;
-        ++growValue;
-        event.target.nextElementSibling.value = growValue;
-        parentItem.style.flexGrow = growValue;
-      } else if (event.target.matches('.decrement-grow-value')) {
-        growValue = event.target.previousElementSibling.value;
-        --growValue;
-        event.target.previousElementSibling.value = growValue;
-        parentItem.style.flexGrow = growValue;
-      } else if (event.target.matches('.increment-shrink-value')) {
-        shrinkValue = event.target.nextElementSibling.value;
-        ++shrinkValue;
-        event.target.nextElementSibling.value = shrinkValue;
-        parentItem.style.flexShrink = shrinkValue;
-      } else if (event.target.matches('.decrement-shrink-value')) {
-        shrinkValue = event.target.previousElementSibling.value;
-        --shrinkValue;
-        event.target.previousElementSibling.value = shrinkValue;
-        parentItem.style.flexShrink = shrinkValue;
-      }
-
       runChanges();
 
     });
