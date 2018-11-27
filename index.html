@@ -27,12 +27,11 @@
 
     <header>
       <h1>Flexulator</h1>
-      <h2>A space calculator for responsive flexbox learning</h2>
+      <h2>A space distribution calculator for responsive flexbox learning</h2>
     </header>
 
     <section class="flex-calculator">
       <header>
-        <h3>Flexulator</h3>
         <p>
           Add or Remove flex items to see how the grow
           or shrink values distribute the remaining space.
@@ -42,17 +41,17 @@
       <section class="flex-form">
         <form class="form" action="">
           <label for="flex-grow">
-            <h4>Grow</h4>
+            <h4>Grow:</h4>
             <input name="flex-grow" type="number" id="flex-grow" value="1" placeholder="grow: 1">
           </label>
 
           <label for="flex-shrink">
-            <h4>Shrink</h4>
+            <h4>Shrink:</h4>
             <input name="flex-shrink" type="number" id="flex-shrink" value="1" placeholder="shrink: 1">
           </label>
 
           <label for="flex-basis">
-            <h4>Basis</h4>
+            <h4>Basis:</h4>
             <input name="flex-basis" type="number" id="flex-basis" value="100" placeholder="basis: 100">
           </label>
 
@@ -61,9 +60,38 @@
       </section>
 
       <section class="flex-values">
-        <h4>Container: <span id="container-width" class="container-width">0</span></h4>
-        <h4>Total Flex Basis: <span id="total-flex-basis">0</h4>
-        <h4>Remaining Space: <span class="flex-remaining-space">0</span></h4>
+        <!-- <h4>Container: <span id="container-width" class="container-width">0</span></h4>
+        <h4>Total Flex Basis: <span id="total-flex-basis">0</span></h4>
+        <h4>Remaining Space: <span class="flex-remaining-space">0</span></h4> -->
+        <!-- <section>
+          <section>
+            <span id="container-width" class="container-width">0</span> - <span id="total-flex-basis">0</span> = <span class="flex-remaining-space">0</span>
+          </section>
+          <section class="flex-value-formula">
+            <span>Container</span> - <span>Total Flex Basis</span> = <span>Remaining Space</span>
+          </section>
+        </section> -->
+
+        <section class="flex-values-formula">
+          <section class="flex-operand">
+            <span id="container-width" class="container-width">0</span>
+            <span>Container</span>
+          </section>
+          <section class="flex-operand">
+            <span> - </span>
+          </section>
+          <section class="flex-operand">
+            <span id="total-flex-basis">0</span>
+            <span>Total Flex Basis</span>
+          </section>
+          <section class="flex-operand">
+            <span> = </span>
+          </section>
+          <section class="flex-operand">
+            <span class="flex-remaining-space">0</span>
+            <span>Remaining Space</span>
+          </section>
+        </section>
       </section>
 
       <section id="flex-container" class="flex-container">

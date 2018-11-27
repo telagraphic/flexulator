@@ -287,7 +287,6 @@ updateFlexItem();
 function editFlexItem() {
   getFlexItems().forEach(function (item) {
     item.addEventListener('input', function (event) {
-      console.log(event);
       var parent = event.target.parentElement.parentElement.parentElement;
       if (event.target.matches('.item-grow')) {
         parent.style.flexGrow = event.target.value;
@@ -341,11 +340,12 @@ editFlexItem();
 function removeFlexItem() {
   getFlexItems().forEach(function (item) {
     item.addEventListener('click', function (event) {
+      var sibling = event.target.parentElement.previousElementSibling || event.target.parentElement.nextElementSibling;
       if (event.target.matches('.remove-item-button')) {
         event.target.parentElement.remove();
+        sibling.click();
       }
       runChanges();
-
     });
   });
 };

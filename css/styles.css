@@ -194,6 +194,27 @@ main .flex-calculator .flex-values {
   padding: 1rem;
 }
 
+main .flex-calculator .flex-values .flex-values-formula {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+main .flex-calculator .flex-values .flex-values-formula .flex-operand {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  padding: 0 .5rem;
+}
+
+main .flex-calculator .flex-values .flex-values-formula .flex-operand span {
+  flex: 1 1 auto;
+  font-size: 2.5rem;
+}
+
+main .flex-calculator .flex-values .flex-values-formula .flex-operand span:nth-child(2) {
+  font-size: 1rem;
+}
+
 main .flex-calculator .flex-form {
   align-self: center;
   padding: 1rem;
@@ -202,6 +223,21 @@ main .flex-calculator .flex-form {
 main .flex-calculator form {
   display: flex;
   flex-direction: column;
+}
+
+main .flex-calculator form label {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+main .flex-calculator form label h4 {
+  flex: 1 0 auto;
+}
+
+main .flex-calculator form label input {
+  width: 4rem;
 }
 
 main .flex-calculator .flex-container {
@@ -233,6 +269,10 @@ main .flex-calculator .flex-container .flex-item .item-values input {
   width: 50%;
 }
 
+main .flex-calculator .flex-container .flex-item .item-flexulations {
+  font-size: 1rem;
+}
+
 .flex-calculations {
   display: flex;
 }
@@ -244,4 +284,8 @@ main .flex-calculator .flex-container .flex-item .item-values input {
 
 .flex-calculations section h3 {
   color: white;
+}
+
+.flex-calculations .flex-grow-math, .flex-calculations .flex-shrink-math {
+  font-size: 1rem;
 }
