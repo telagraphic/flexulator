@@ -205,7 +205,7 @@ main
     display: flex
     flex-flow: column nowrap
 
-    height: 100vh
+    min-height: 100vh
 
     background-color: var(--b-60)
 
@@ -253,8 +253,7 @@ main
     .flex-form
       align-self: center
       padding: 1rem
-
-
+      
     form
       display: flex
       flex-direction: column
@@ -286,8 +285,6 @@ main
           &:focus,
           &:hover
             border-bottom: 2px solid white
-
-
 
         input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button
           -webkit-appearance: none

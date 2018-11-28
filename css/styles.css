@@ -175,7 +175,7 @@ main .flex-examples .example:nth-of-type(12) .code section {
 main .flex-calculator {
   display: flex;
   flex-flow: column nowrap;
-  height: 100vh;
+  min-height: 100vh;
   background-color: var(--b-60);
   --b-10: #86c3fa;
   --b-20: #57abf5;

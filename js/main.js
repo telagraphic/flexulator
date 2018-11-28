@@ -315,7 +315,7 @@ function updateFlexItem(item) {
       event.target.previousElementSibling.value = shrinkValue;
       parentItem.style.flexShrink = shrinkValue;
     }
-
+    runChanges();
   });
 
   item.addEventListener('input', function(event) {
@@ -328,11 +328,18 @@ function updateFlexItem(item) {
     } else if (event.target.matches('.item-basis')) {
       parent.style.flexBasis = event.target.value + 'px';
     }
+    runChanges();
   });
 
-  runChanges();
 }
 
+function tabKeyUpdate(key) {
+  if (key.keyCode == 9) {
+    runChanges();
+  }
+}
+
+window.addEventListener('keyup', tabKeyUpdate);
 
 // read once with a function, then write to each element
 
