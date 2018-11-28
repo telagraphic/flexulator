@@ -13,7 +13,14 @@ function getFlexItems() {
 updateContainerWidth();
 totalRemainingSpace();
 updateItemWidth();
+initFlexItems();
 
+function initFlexItems() {
+  getFlexItems().forEach(function (item) {
+    updateFlexItem(item);
+    removeFlexItem(item);
+  });
+};
 
 addFlexItemButton.addEventListener('click', function (event) {
   event.preventDefault();
@@ -252,6 +259,9 @@ function addFlexItem() {
   flexItem.appendChild(button);
   flexItem.appendChild(flexulatorContainer);
 
+  // add events
+  updateFlexItem(flexItem);
+  removeFlexItem(flexItem);
 
   // add to flex-container
   flexContainer.appendChild(flexItem);
@@ -261,94 +271,68 @@ function addFlexItem() {
   updateTotalFlexGrow();
   setFlexItemGrow();
   updateGrowItemSpace();
-  editFlexItem();
   setFlexItemShrink();
   removeFlexItem();
-  updateFlexItem();
 };
 
+function updateFlexItem(item) {
 
-function updateFlexItem() {
-  getFlexItems().forEach(function (item) {
-    item.addEventListener('click', function (event) {
-      var parentItem = event.target.parentElement.parentElement.parentElement;
-      var growValue;
-      var shrinkValue;
-      if (event.target.matches('.increment-grow-value')) {
-        growValue = event.target.nextElementSibling.value;
-        ++growValue;
-        event.target.nextElementSibling.value = growValue;
-        parentItem.style.flexGrow = growValue;
-      } else if (event.target.matches('.decrement-grow-value')) {
-        growValue = event.target.previousElementSibling.value;
-        --growValue;
-        event.target.previousElementSibling.value = growValue;
-        parentItem.style.flexGrow = growValue;
-      } else if (event.target.matches('.increment-shrink-value')) {
-        shrinkValue = event.target.nextElementSibling.value;
-        ++shrinkValue;
-        event.target.nextElementSibling.value = shrinkValue;
-        parentItem.style.flexShrink = shrinkValue;
-      } else if (event.target.matches('.decrement-shrink-value')) {
-        shrinkValue = event.target.previousElementSibling.value;
-        --shrinkValue;
-        event.target.previousElementSibling.value = shrinkValue;
-        parentItem.style.flexShrink = shrinkValue;
-      }
+  item.addEventListener('click', function (event) {
+    var parentItem = event.target.parentElement.parentElement.parentElement;
+    var growValue;
+    var shrinkValue;
+    if (event.target.matches('.increment-grow-value')) {
+      growValue = event.target.nextElementSibling.value;
+      ++growValue;
+      event.target.nextElementSibling.value = growValue;
+      parentItem.style.flexGrow = growValue;
+    } else if (event.target.matches('.decrement-grow-value')) {
+      growValue = event.target.previousElementSibling.value;
+      --growValue;
+      event.target.previousElementSibling.value = growValue;
+      parentItem.style.flexGrow = growValue;
+    } else if (event.target.matches('.increment-shrink-value')) {
+      shrinkValue = event.target.nextElementSibling.value;
+      ++shrinkValue;
+      event.target.nextElementSibling.value = shrinkValue;
+      parentItem.style.flexShrink = shrinkValue;
+    } else if (event.target.matches('.decrement-shrink-value')) {
+      shrinkValue = event.target.previousElementSibling.value;
+      --shrinkValue;
+      event.target.previousElementSibling.value = shrinkValue;
+      parentItem.style.flexShrink = shrinkValue;
+    }
 
-      runChanges();
-
-    });
   });
+
+  item.addEventListener('input', function (event) {
+    // event.stopPropagation();
+    var parent = event.target.parentElement.parentElement.parentElement;
+    if (event.target.matches('.item-grow')) {
+      parent.style.flexGrow = event.target.value;
+    } else if (event.target.matches('.item-shrink')) {
+      parent.style.flexShrink = event.target.value;
+    } else if (event.target.matches('.item-basis')) {
+      parent.style.flexBasis = event.target.value + 'px';
+    }
+  });
+
+  runChanges();
 }
 
-updateFlexItem();
-
-// function inputChanges() {
-//   var inputs = Array.prototype.slice.call(document.getElementsByTagName('input'));
-//   inputs.forEach(function (input) {
-//     input.addEventListener('change', runChanges);
-//   });
-// }
-//
-// inputChanges();
-
-function editFlexItem() {
-  getFlexItems().forEach(function (item) {
-    item.addEventListener('input', function (event) {
-      var parent = event.target.parentElement.parentElement.parentElement;
-      if (event.target.matches('.item-grow')) {
-        parent.style.flexGrow = event.target.value;
-      } else if (event.target.matches('.item-shrink')) {
-        parent.style.flexShrink = event.target.value;
-      } else if (event.target.matches('.item-basis')) {
-        parent.style.flexBasis = event.target.value + 'px';
-      }
-
-      // move out of loop?
-      runChanges();
-
-    });
-  });
-}
-
-editFlexItem();
 
 // read once with a function, then write to each element
 
-function removeFlexItem() {
-  getFlexItems().forEach(function (item) {
-    item.addEventListener('click', function (event) {
-      var sibling = event.target.parentElement.previousElementSibling || event.target.parentElement.nextElementSibling;
-      if (event.target.matches('.remove-item-button')) {
-        event.target.parentElement.remove();
-        sibling.click();
-      }
-      runChanges();
-    });
+function removeFlexItem(item) {
+  item.addEventListener('click', function (event) {
+    var sibling = event.target.parentElement.previousElementSibling || event.target.parentElement.nextElementSibling;
+    if (event.target.matches('.remove-item-button')) {
+      event.target.parentElement.remove();
+      sibling.click();
+    }
+    runChanges();
   });
 };
-removeFlexItem();
 
 function runChanges() {
   updateItemWidth();
