@@ -16,19 +16,19 @@ updateItemWidth();
 initFlexItems();
 
 function initFlexItems() {
-  getFlexItems().forEach(function (item) {
+  getFlexItems().forEach(function(item) {
     updateFlexItem(item);
     removeFlexItem(item);
   });
 };
 
-addFlexItemButton.addEventListener('click', function (event) {
+addFlexItemButton.addEventListener('click', function(event) {
   event.preventDefault();
   addFlexItem();
 });
 
 // on resize, update values
-window.addEventListener('resize', function (event) {
+window.addEventListener('resize', function(event) {
   updateContainerWidth();
   totalRemainingSpace();
   updateItemWidth();
@@ -40,7 +40,7 @@ function updateContainerWidth() {
   var container_width_time = 'container-width';
   console.time(container_width_time);
   // all set
-  flexContainerWidth.forEach(function (item) {
+  flexContainerWidth.forEach(function(item) {
     item.textContent = flexContainer.clientWidth;
   });
   console.timeEnd(container_width_time);
@@ -52,7 +52,7 @@ function totalRemainingSpace() {
   var containerWidth = document.getElementById('container-width');
   var displayRemainingSpace = Array.prototype.slice.call(document.getElementsByClassName('flex-remaining-space'));
   var remainingSpace = parseInt(containerWidth.textContent) - parseInt(showTotalFlexBasis.textContent);
-  displayRemainingSpace.forEach(function (item) {
+  displayRemainingSpace.forEach(function(item) {
     item.textContent = remainingSpace;
   });
 }
@@ -60,7 +60,7 @@ function totalRemainingSpace() {
 // Flex Items
 function updateItemWidth() {
   // read & write
-  getFlexItems().forEach(function (item) {
+  getFlexItems().forEach(function(item) {
     item.firstElementChild.textContent = item.offsetWidth;
   });
 }
@@ -69,7 +69,7 @@ function addFlexItem() {
   // get item count
   var flexItemCount = Array.prototype.slice.call(flexContainer.childNodes);
   var flexitems = [];
-  flexItemCount.forEach(function (element) {
+  flexItemCount.forEach(function(element) {
     if (element.nodeType === 1) {
       flexitems.push(element);
     }
@@ -134,7 +134,17 @@ function addFlexItem() {
   basisInput.setAttribute('type', 'text');
   basisInput.setAttribute('class', 'item-basis');
   basisInput.setAttribute('value', basis);
+  var basisIncrementButton = document.createElement('button');
+  basisIncrementButton.setAttribute('class', 'increment-shrink-value');
+  basisIncrementButton.textContent = '+';
+
+  var basisDecrementButton = document.createElement('button');
+  basisDecrementButton.setAttribute('class', 'decrement-shrink-value');
+  basisDecrementButton.textContent = '-';
+
+  basisSection.appendChild(basisIncrementButton);
   basisSection.appendChild(basisInput);
+  basisSection.appendChild(basisDecrementButton);
 
   flexValues.appendChild(growSection);
   flexValues.appendChild(shrinkSection);
@@ -280,7 +290,7 @@ function addFlexItem() {
 
 function updateFlexItem(item) {
 
-  item.addEventListener('click', function (event) {
+  item.addEventListener('click', function(event) {
     var parentItem = event.target.parentElement.parentElement.parentElement;
     var growValue;
     var shrinkValue;
@@ -308,7 +318,7 @@ function updateFlexItem(item) {
 
   });
 
-  item.addEventListener('input', function (event) {
+  item.addEventListener('input', function(event) {
     // event.stopPropagation();
     var parent = event.target.parentElement.parentElement.parentElement;
     if (event.target.matches('.item-grow')) {
@@ -327,7 +337,7 @@ function updateFlexItem(item) {
 // read once with a function, then write to each element
 
 function removeFlexItem(item) {
-  item.addEventListener('click', function (event) {
+  item.addEventListener('click', function(event) {
     var sibling = event.target.parentElement.previousElementSibling || event.target.parentElement.nextElementSibling;
     if (event.target.matches('.remove-item-button')) {
       event.target.parentElement.remove();
@@ -349,14 +359,14 @@ function runChanges() {
 function updateTotalFlexBasis() {
   // all set
   var totalFlexBasis = 0;
-  getFlexItems().forEach(function (item) {
+  getFlexItems().forEach(function(item) {
     totalFlexBasis += parseInt(item.style.flexBasis);
   });
 
   showTotalFlexBasis.textContent = totalFlexBasis;
 
   var totalFlexBasisElements = Array.prototype.slice.call(document.getElementsByClassName('total-flex-basis'));
-  totalFlexBasisElements.forEach(function (element) {
+  totalFlexBasisElements.forEach(function(element) {
     element.textContent = totalFlexBasis;
   });
 
@@ -370,12 +380,12 @@ function updateTotalFlexGrow() {
   var flexGrowElements = Array.prototype.slice.call(document.getElementsByClassName('grow-total'));
 
   // reads
-  getFlexItems().forEach(function (item) {
+  getFlexItems().forEach(function(item) {
     totalFlexGrow += parseInt(item.style.flexGrow);
   });
 
   // writes
-  flexGrowElements.forEach(function (element) {
+  flexGrowElements.forEach(function(element) {
     element.textContent = totalFlexGrow;
   });
 
@@ -384,7 +394,7 @@ updateTotalFlexGrow();
 
 // update the grow value in the formula when updated
 function setFlexItemGrow() {
-  getFlexItems().forEach(function (element) {
+  getFlexItems().forEach(function(element) {
 
     // reads
     var itemGrowValue = 0;
@@ -408,7 +418,7 @@ function updateGrowItemSpace() {
 
 
   performance.mark('begin-grow-upate');
-  getFlexItems().forEach(function (item) {
+  getFlexItems().forEach(function(item) {
 
     // reads
     itemGrow = item.children[3].firstElementChild.firstElementChild.children[0].textContent;
@@ -431,7 +441,7 @@ updateGrowItemSpace();
 
 function setFlexItemShrink() {
   var totalBasis = document.getElementById('total-flex-basis');
-  getFlexItems().forEach(function (element) {
+  getFlexItems().forEach(function(element) {
 
     // reads
     var itemShrinkValue = 0;

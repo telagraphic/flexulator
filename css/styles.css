@@ -237,7 +237,37 @@ main .flex-calculator form label h4 {
 }
 
 main .flex-calculator form label input {
-  width: 4rem;
+  border-bottom: 2px solid transparent;
+  font-size: 2rem;
+  outline: 0;
+  margin: 0 1rem;
+  text-align: center;
+  width: 5rem;
+  padding: .5rem;
+  background-color: transparent;
+}
+
+main .flex-calculator form label input::selection, main .flex-calculator form label input::-moz-selection {
+  background: transparent;
+}
+
+main .flex-calculator form label input:focus, main .flex-calculator form label input:hover {
+  border-bottom: 2px solid white;
+}
+
+main .flex-calculator form label input[type="number"]::-webkit-outer-spin-button, main .flex-calculator form label input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+main .flex-calculator form label input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+main .flex-calculator form button {
+  padding: .5rem;
+  border-radius: 5px;
+  background-color: white;
 }
 
 main .flex-calculator .flex-container {
@@ -265,8 +295,32 @@ main .flex-calculator .flex-container .flex-item .item-values {
   padding: 1rem;
 }
 
+main .flex-calculator .flex-container .flex-item .item-values section {
+  display: flex;
+  padding: .25rem 0;
+}
+
+main .flex-calculator .flex-container .flex-item .item-values section:nth-of-type(3) button {
+  opacity: 0;
+}
+
 main .flex-calculator .flex-container .flex-item .item-values input {
-  width: 50%;
+  border: none;
+  border-radius: 5px;
+  outline: 0;
+  margin: 0 1rem;
+  text-align: center;
+  width: 5rem;
+  padding: .5rem;
+}
+
+main .flex-calculator .flex-container .flex-item .item-values input[type="number"]::-webkit-outer-spin-button, main .flex-calculator .flex-container .flex-item .item-values input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+main .flex-calculator .flex-container .flex-item .item-values input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 main .flex-calculator .flex-container .flex-item .item-flexulations {

@@ -42,36 +42,24 @@
         <form class="form" action="">
           <label for="flex-grow">
             <h4>Grow:</h4>
-            <input name="flex-grow" type="number" id="flex-grow" value="1" placeholder="grow: 1">
+            <input name="flex-grow" type="number" id="flex-grow" value="1">
           </label>
 
           <label for="flex-shrink">
             <h4>Shrink:</h4>
-            <input name="flex-shrink" type="number" id="flex-shrink" value="1" placeholder="shrink: 1">
+            <input name="flex-shrink" type="number" id="flex-shrink" value="1">
           </label>
 
           <label for="flex-basis">
             <h4>Basis:</h4>
-            <input name="flex-basis" type="number" id="flex-basis" value="100" placeholder="basis: 100">
+            <input name="flex-basis" type="number" id="flex-basis" value="100">
           </label>
 
-          <button id="add-flex-item-button">+</button>
+          <button id="add-flex-item-button">Add Item</button>
         </form>
       </section>
 
       <section class="flex-values">
-        <!-- <h4>Container: <span id="container-width" class="container-width">0</span></h4>
-        <h4>Total Flex Basis: <span id="total-flex-basis">0</span></h4>
-        <h4>Remaining Space: <span class="flex-remaining-space">0</span></h4> -->
-        <!-- <section>
-          <section>
-            <span id="container-width" class="container-width">0</span> - <span id="total-flex-basis">0</span> = <span class="flex-remaining-space">0</span>
-          </section>
-          <section class="flex-value-formula">
-            <span>Container</span> - <span>Total Flex Basis</span> = <span>Remaining Space</span>
-          </section>
-        </section> -->
-
         <section class="flex-values-formula">
           <section class="flex-operand">
             <span id="container-width" class="container-width">0</span>
@@ -100,16 +88,18 @@
           <section class="item-values">
             <section>
               <button class="increment-grow-value">+</button>
-              <input type="number" class="item-grow" value="1"></input>
+              <input type="number" min="0" class="item-grow" value="1"></input>
               <button class="decrement-grow-value">-</button>
             </section>
             <section>
               <button class="increment-shrink-value">+</button>
-              <input type="number" class="item-shrink" value="1"></input>
+              <input type="number" min="0" class="item-shrink" value="1"></input>
               <button class="decrement-shrink-value">-</button>
             </section>
             <section>
-              <input type="text" class="item-basis" value="100"></input>
+              <button class="increment-grow-value">+</button>
+              <input type="text" min="0" class="item-basis" value="100"></input>
+              <button class="decrement-shrink-value">-</button>
             </section>
           </section>
           <button class="remove-item-button">X</button>
@@ -158,7 +148,9 @@
               <button class="decrement-shrink-value">-</button>
             </section>
             <section>
-              <input type="text" class="item-basis" value="100"></input>
+              <button class="increment-grow-value">+</button>
+              <input type="text" min="0" class="item-basis" value="100"></input>
+              <button class="decrement-shrink-value">-</button>
             </section>
           </section>
           <button class="remove-item-button">X</button>
@@ -207,7 +199,9 @@
               <button class="decrement-shrink-value">-</button>
             </section>
             <section>
-              <input type="text" class="item-basis" value="100"></input>
+              <button class="increment-grow-value">+</button>
+              <input type="text" min="0" class="item-basis" value="100"></input>
+              <button class="decrement-shrink-value">-</button>
             </section>
           </section>
           <button class="remove-item-button">X</button>

@@ -194,9 +194,9 @@ main
   //       <button>+</button> <button>-</button>
   //     </section>
   //     <section class="flex-container">
-  //       <section class="flex-item">flex: 0 0 0;</section>
-  //       <section class="flex-item">flex: 0 0 0;</section>
-  //       <section class="flex-item">flex: 0 0 0;</section>
+  //       <section class="flex-item">flex: 0 0 0</section>
+  //       <section class="flex-item">flex: 0 0 0</section>
+  //       <section class="flex-item">flex: 0 0 0</section>
   //     </section>
   //   </section>
   // </section>
@@ -270,7 +270,36 @@ main
           flex: 1 0 auto
 
         input
-          width: 4rem
+          border-bottom: 2px solid transparent
+          font-size: 2rem
+          outline: 0
+          margin: 0 1rem
+          text-align: center
+          width: 5rem
+          padding: .5rem
+          background-color: transparent
+
+          &::selection,
+          &::-moz-selection
+           background: transparent
+
+          &:focus,
+          &:hover
+            border-bottom: 2px solid white
+
+
+
+        input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button
+          -webkit-appearance: none
+          margin: 0
+
+        input[type="number"]
+          -moz-appearance: textfield
+
+      button
+        padding: .5rem
+        border-radius: 5px
+        background-color: white
 
     .flex-container
       display: flex
@@ -300,8 +329,31 @@ main
 
           padding: 1rem
 
+          section
+            display: flex
+
+            padding: .25rem 0
+
+            &:nth-of-type(3)
+
+              button
+                opacity: 0
+
           input
-            width: 50%
+            border: none
+            border-radius: 5px
+            outline: 0
+            margin: 0 1rem
+            text-align: center
+            width: 5rem
+            padding: .5rem
+
+          input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button
+            -webkit-appearance: none
+            margin: 0
+
+          input[type="number"]
+            -moz-appearance: textfield
 
         .remove-item-button
 
