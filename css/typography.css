@@ -8,6 +8,8 @@ https://trello.com/c/UoSWXBEt
 */
 
 body {
+  /* font-family: "Inter UI"; */
+  font-family: 'Josefin Sans', sans-serif;
   font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));
   font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
 }

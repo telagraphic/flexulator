@@ -1,7 +1,6 @@
 main {
   display: flex;
   flex-direction: column;
-  font-family: "Inter UI";
 }
 
 main header {
@@ -197,6 +196,7 @@ main .flex-calculator .flex-values {
 main .flex-calculator .flex-values .flex-values-formula {
   display: flex;
   flex-flow: row nowrap;
+  font-weight: 400;
 }
 
 main .flex-calculator .flex-values .flex-values-formula .flex-operand {
@@ -251,7 +251,7 @@ main .flex-calculator form label input::selection, main .flex-calculator form la
   background: transparent;
 }
 
-main .flex-calculator form label input:focus, main .flex-calculator form label input:hover {
+main .flex-calculator form label input:focus {
   border-bottom: 2px solid white;
 }
 
@@ -281,10 +281,16 @@ main .flex-calculator .flex-container .flex-item {
   flex-flow: column nowrap;
   text-align: center;
   background-color: var(--b-10);
+  padding: 1rem 0;
+  font-weight: 300;
 }
 
 main .flex-calculator .flex-container .flex-item:nth-of-type(even) {
   background-color: var(--b-20);
+}
+
+main .flex-calculator .flex-container .flex-item h4 {
+  font-weight: 400;
 }
 
 main .flex-calculator .flex-container .flex-item .item-values {
@@ -323,8 +329,14 @@ main .flex-calculator .flex-container .flex-item .item-values input[type="number
   -moz-appearance: textfield;
 }
 
+main .flex-calculator .flex-container .flex-item .remove-item-button {
+  padding: .5rem;
+  border-radius: 5px;
+  background-color: white;
+}
+
 main .flex-calculator .flex-container .flex-item .item-flexulations {
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 
 .flex-calculations {

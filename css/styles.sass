@@ -2,9 +2,6 @@ main
   display: flex
   flex-direction: column
 
-  font-family: "Inter UI"
-
-
   header
     display: flex
     flex-direction: column
@@ -226,10 +223,11 @@ main
       align-self: center
       padding: 1rem
 
-
       .flex-values-formula
         display: flex
         flex-flow: row nowrap
+
+        font-weight: 400
 
         .flex-operand
           display: flex
@@ -237,8 +235,6 @@ main
           align-items: center
 
           padding: 0 .5rem
-
-
 
           span
             flex: 1 1 auto
@@ -253,7 +249,7 @@ main
     .flex-form
       align-self: center
       padding: 1rem
-      
+
     form
       display: flex
       flex-direction: column
@@ -282,8 +278,7 @@ main
           &::-moz-selection
            background: transparent
 
-          &:focus,
-          &:hover
+          &:focus
             border-bottom: 2px solid white
 
         input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button
@@ -312,8 +307,16 @@ main
         text-align: center
         background-color: var(--b-10)
 
+        padding: 1rem 0
+
+        font-weight: 300
+
         &:nth-of-type(even)
           background-color: var(--b-20)
+
+
+        h4
+          font-weight: 400
 
 
 
@@ -353,9 +356,14 @@ main
             -moz-appearance: textfield
 
         .remove-item-button
+          padding: .5rem
+          border-radius: 5px
+          background-color: white
+
+
 
         .item-flexulations
-          font-size: 1rem
+          font-size: 1.25rem
 
 .flex-calculations
   display: flex
