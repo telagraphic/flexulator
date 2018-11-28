@@ -1,13 +1,13 @@
 main {
   display: flex;
   flex-direction: column;
-  font-family: "Inter UI";
 }
 
 main header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 2rem 0;
 }
 
 main .flex-combo-table {
@@ -176,6 +176,7 @@ main .flex-calculator {
   display: flex;
   flex-flow: column nowrap;
   min-height: 100vh;
+  padding: 2rem 0;
   background-color: var(--b-60);
   --b-10: #86c3fa;
   --b-20: #57abf5;
@@ -192,6 +193,7 @@ main .flex-calculator header h3 {
 main .flex-calculator .flex-values {
   align-self: center;
   padding: 1rem;
+  font-weight: 700;
 }
 
 main .flex-calculator .flex-values .flex-values-formula {
@@ -242,7 +244,7 @@ main .flex-calculator form label input {
   outline: 0;
   margin: 0 1rem;
   text-align: center;
-  width: 5rem;
+  width: 6rem;
   padding: .5rem;
   background-color: transparent;
 }
@@ -281,10 +283,16 @@ main .flex-calculator .flex-container .flex-item {
   flex-flow: column nowrap;
   text-align: center;
   background-color: var(--b-10);
+  padding: 1rem 0;
 }
 
 main .flex-calculator .flex-container .flex-item:nth-of-type(even) {
   background-color: var(--b-20);
+}
+
+main .flex-calculator .flex-container .flex-item h4 {
+  font-size: 3rem;
+  font-weight: 500;
 }
 
 main .flex-calculator .flex-container .flex-item .item-values {
@@ -310,8 +318,9 @@ main .flex-calculator .flex-container .flex-item .item-values input {
   outline: 0;
   margin: 0 1rem;
   text-align: center;
-  width: 5rem;
+  width: 6rem;
   padding: .5rem;
+  background-color: transparent;
 }
 
 main .flex-calculator .flex-container .flex-item .item-values input[type="number"]::-webkit-outer-spin-button, main .flex-calculator .flex-container .flex-item .item-values input[type="number"]::-webkit-inner-spin-button {
@@ -325,6 +334,15 @@ main .flex-calculator .flex-container .flex-item .item-values input[type="number
 
 main .flex-calculator .flex-container .flex-item .item-flexulations {
   font-size: 1rem;
+  font-weight: 400;
+}
+
+main .flex-calculator .flex-container .flex-item .item-flexulations .flex-grow-flexulations {
+  padding: 1rem 0 .5rem 0;
+}
+
+main .flex-calculator .flex-container .flex-item .item-flexulations .flex-shrink-flexulations {
+  padding: .5rem 0;
 }
 
 .flex-calculations {
@@ -341,5 +359,5 @@ main .flex-calculator .flex-container .flex-item .item-flexulations {
 }
 
 .flex-calculations .flex-grow-math, .flex-calculations .flex-shrink-math {
-  font-size: 1rem;
+  font-size: 1.5rem;
 }

@@ -2,13 +2,13 @@ main
   display: flex
   flex-direction: column
 
-  font-family: "Inter UI"
-
 
   header
     display: flex
     flex-direction: column
     align-items: center
+
+    padding: 2rem 0
 
 
   .flex-combo-table
@@ -180,32 +180,13 @@ main
           flex: 1 2 200px
 
 
-  // <section class="flex-calculator">
-  //   <h3>Flexulator</h3>
-  //   <p>
-  //     Add or Remove flex items to see how the grow or shrink values distribute the remaining space.
-  //   </p>
-  //   <section class="flex-values">
-  //     <h4>Container: <span class="container-width"></span></h4>
-  //     <h4>Item 1: <span class="item-1-width"></span></h4>
-  //   </section>
-  //   <section class="">
-  //     <section class"flex-buttons">
-  //       <button>+</button> <button>-</button>
-  //     </section>
-  //     <section class="flex-container">
-  //       <section class="flex-item">flex: 0 0 0</section>
-  //       <section class="flex-item">flex: 0 0 0</section>
-  //       <section class="flex-item">flex: 0 0 0</section>
-  //     </section>
-  //   </section>
-  // </section>
-
   .flex-calculator
     display: flex
     flex-flow: column nowrap
 
     min-height: 100vh
+
+    padding: 2rem 0
 
     background-color: var(--b-60)
 
@@ -225,6 +206,8 @@ main
     .flex-values
       align-self: center
       padding: 1rem
+
+      font-weight: 700
 
 
       .flex-values-formula
@@ -253,7 +236,7 @@ main
     .flex-form
       align-self: center
       padding: 1rem
-      
+
     form
       display: flex
       flex-direction: column
@@ -274,7 +257,7 @@ main
           outline: 0
           margin: 0 1rem
           text-align: center
-          width: 5rem
+          width: 6rem
           padding: .5rem
           background-color: transparent
 
@@ -312,9 +295,15 @@ main
         text-align: center
         background-color: var(--b-10)
 
+        padding: 1rem 0
+
         &:nth-of-type(even)
           background-color: var(--b-20)
 
+
+        h4
+          font-size: 3rem
+          font-weight: 500
 
 
 
@@ -342,8 +331,9 @@ main
             outline: 0
             margin: 0 1rem
             text-align: center
-            width: 5rem
+            width: 6rem
             padding: .5rem
+            background-color: transparent
 
           input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button
             -webkit-appearance: none
@@ -356,6 +346,13 @@ main
 
         .item-flexulations
           font-size: 1rem
+          font-weight: 400
+
+          .flex-grow-flexulations
+            padding: 1rem 0 .5rem 0
+
+          .flex-shrink-flexulations
+            padding: .5rem 0
 
 .flex-calculations
   display: flex
@@ -370,4 +367,4 @@ main
 
 
   .flex-grow-math, .flex-shrink-math
-    font-size: 1rem
+    font-size: 1.5rem
