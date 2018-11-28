@@ -37,10 +37,13 @@ window.addEventListener('resize', function (event) {
 });
 
 function updateContainerWidth() {
+  var container_width_time = 'container-width';
+  console.time(container_width_time);
   // all set
   flexContainerWidth.forEach(function (item) {
     item.textContent = flexContainer.clientWidth;
   });
+  console.timeEnd(container_width_time);
 };
 
 
@@ -272,7 +275,7 @@ function addFlexItem() {
   setFlexItemGrow();
   updateGrowItemSpace();
   setFlexItemShrink();
-  removeFlexItem();
+
 };
 
 function updateFlexItem(item) {
@@ -403,6 +406,8 @@ function updateGrowItemSpace() {
   var remainingSpace;
   var totalSpace = document.getElementsByClassName('container-width')[0];
 
+
+  performance.mark('begin-grow-upate');
   getFlexItems().forEach(function (item) {
 
     // reads
@@ -414,6 +419,12 @@ function updateGrowItemSpace() {
     growFraction = parseInt(itemGrow) / parseInt(growTotal);
     item.children[3].firstElementChild.firstElementChild.lastElementChild.textContent = parseInt(growFraction * parseInt(remainingSpace), 10);
   });
+  performance.mark('end-grow-upate');
+  performance.measure('grow-item-space', 'begin-grow-upate', 'end-grow-upate');
+  var grow_item_space = performance.getEntriesByName('grow-item-space');
+  // var measure = measures[0];
+  console.log("grow-item-space milliseconds:", grow_item_space[0].duration);
+
 }
 
 updateGrowItemSpace();
