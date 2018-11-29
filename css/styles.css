@@ -385,9 +385,15 @@ main .flex-calculator .flex-container .flex-item .item-values .decrement-grow-va
 }
 
 main .flex-calculator .flex-container .flex-item .remove-item-button {
-  width: 100%;
   padding: 1rem;
+  margin: 1.5rem 0;
+  border-radius: 10px;
   background-color: transparent;
+  transition: background-color .15s ease-in;
+}
+
+main .flex-calculator .flex-container .flex-item .remove-item-button:hover, main .flex-calculator .flex-container .flex-item .remove-item-button:focus {
+  background-color: white;
 }
 
 main .flex-calculator .flex-container .flex-item .item-flexulations {
