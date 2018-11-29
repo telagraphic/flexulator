@@ -36,7 +36,6 @@ window.addEventListener('resize', function(event) {
   updateItemWidth();
   updateGrowItemSpace();
   setFlexItemShrink();
-
 });
 
 function updateContainerWidth() {
@@ -170,7 +169,7 @@ function addFlexItem() {
 
   var button = document.createElement('button');
   button.setAttribute('class', 'remove-item-button');
-  button.textContent = 'X';
+  button.textContent = 'Remove';
 
   // Grow Section
   var division = document.createElement('span');
@@ -277,8 +276,8 @@ function addFlexItem() {
 
   flexItem.appendChild(itemWidth);
   flexItem.appendChild(flexValues);
-  flexItem.appendChild(button);
   flexItem.appendChild(flexulatorContainer);
+  flexItem.appendChild(button);
 
   // add events
   updateFlexItem(flexItem);

@@ -190,15 +190,13 @@ main .flex-calculator {
 main .flex-calculator header {
   background-color: white;
   color: black;
-}
-
-main .flex-calculator header h3 {
-  align-self: center;
+  text-align: center;
 }
 
 main .flex-calculator .flex-values {
   align-self: center;
   padding: 3.5rem;
+  padding: 2.5rem 0 3.5rem 0;
   font-weight: 700;
 }
 
@@ -230,14 +228,13 @@ main .flex-calculator .flex-form {
 
 main .flex-calculator form {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 main .flex-calculator form label {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  padding-left: 2.5rem;
 }
 
 main .flex-calculator form label:nth-of-type(3) input {
@@ -253,13 +250,13 @@ main .flex-calculator form label h4 {
 main .flex-calculator form label input {
   padding: .5rem;
   margin: 0 1rem;
-  width: 4rem;
+  width: 8rem;
   background-color: transparent;
   border-bottom: 1px solid transparent;
   outline: 0;
   font-size: 2.5rem;
   text-align: center;
-  transition: border-bottom .1s ease-in;
+  transition: border-bottom .1s ease-in, background-color .15s ease-in;
 }
 
 main .flex-calculator form label input::selection, main .flex-calculator form label input::-moz-selection {
@@ -280,10 +277,11 @@ main .flex-calculator form label input[type="number"] {
 }
 
 main .flex-calculator form button {
-  margin-left: 2.5rem;
+  margin: 1.5rem 0;
   padding: .5rem;
   border-radius: 5px;
-  background-color: white;
+  background-color: var(--b-20);
+  color: white;
 }
 
 main .flex-calculator .flex-container {
@@ -407,6 +405,7 @@ main .flex-calculator .flex-container .flex-item .item-flexulations .flex-shrink
 
 .flex-calculations {
   display: flex;
+  padding: 2.5rem 0;
 }
 
 .flex-calculations section {
@@ -415,9 +414,11 @@ main .flex-calculator .flex-container .flex-item .item-flexulations .flex-shrink
 }
 
 .flex-calculations section h3 {
-  color: white;
+  font-size: 2.5rem;
+  color: black;
 }
 
 .flex-calculations .flex-grow-math, .flex-calculations .flex-shrink-math {
   font-size: 1.5rem;
+  line-height: 3.5rem;
 }
