@@ -1,6 +1,12 @@
 main {
   display: flex;
   flex-direction: column;
+  --b-10: #86c3fa;
+  --b-20: #57abf5;
+  --b-30: #3095ed;
+  --b-40: #1382e4;
+  --b-50: #0071d7;
+  --b-60: #0068c7;
 }
 
 main header {
@@ -8,6 +14,8 @@ main header {
   flex-direction: column;
   align-items: center;
   padding: 2rem 0;
+  background-color: var(--b-30);
+  color: white;
 }
 
 main .flex-combo-table {
@@ -177,13 +185,11 @@ main .flex-calculator {
   flex-flow: column nowrap;
   min-height: 100vh;
   padding: 2rem 0;
-  background-color: var(--b-60);
-  --b-10: #86c3fa;
-  --b-20: #57abf5;
-  --b-30: #3095ed;
-  --b-40: #1382e4;
-  --b-50: #0071d7;
-  --b-60: #0068c7;
+}
+
+main .flex-calculator header {
+  background-color: white;
+  color: black;
 }
 
 main .flex-calculator header h3 {
@@ -192,7 +198,7 @@ main .flex-calculator header h3 {
 
 main .flex-calculator .flex-values {
   align-self: center;
-  padding: 1rem;
+  padding: 3.5rem;
   font-weight: 700;
 }
 
@@ -210,7 +216,7 @@ main .flex-calculator .flex-values .flex-values-formula .flex-operand {
 
 main .flex-calculator .flex-values .flex-values-formula .flex-operand span {
   flex: 1 1 auto;
-  font-size: 2.5rem;
+  font-size: 5rem;
 }
 
 main .flex-calculator .flex-values .flex-values-formula .flex-operand span:nth-child(2) {
@@ -224,29 +230,36 @@ main .flex-calculator .flex-form {
 
 main .flex-calculator form {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 main .flex-calculator form label {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  padding: 1rem 0;
+  padding-left: 2.5rem;
+}
+
+main .flex-calculator form label:nth-of-type(3) input {
+  width: 8rem;
 }
 
 main .flex-calculator form label h4 {
   flex: 1 0 auto;
+  font-weight: 700;
+  font-size: 2.5rem;
 }
 
 main .flex-calculator form label input {
-  border-bottom: 2px solid transparent;
-  font-size: 2rem;
-  outline: 0;
-  margin: 0 1rem;
-  text-align: center;
-  width: 6rem;
   padding: .5rem;
+  margin: 0 1rem;
+  width: 4rem;
   background-color: transparent;
+  border-bottom: 1px solid transparent;
+  outline: 0;
+  font-size: 2.5rem;
+  text-align: center;
+  transition: border-bottom .1s ease-in;
 }
 
 main .flex-calculator form label input::selection, main .flex-calculator form label input::-moz-selection {
@@ -254,7 +267,7 @@ main .flex-calculator form label input::selection, main .flex-calculator form la
 }
 
 main .flex-calculator form label input:focus, main .flex-calculator form label input:hover {
-  border-bottom: 2px solid white;
+  border-bottom: 1px solid #444444;
 }
 
 main .flex-calculator form label input[type="number"]::-webkit-outer-spin-button, main .flex-calculator form label input[type="number"]::-webkit-inner-spin-button {
@@ -267,6 +280,7 @@ main .flex-calculator form label input[type="number"] {
 }
 
 main .flex-calculator form button {
+  margin-left: 2.5rem;
   padding: .5rem;
   border-radius: 5px;
   background-color: white;
@@ -276,14 +290,13 @@ main .flex-calculator .flex-container {
   display: flex;
   flex-flow: row nowrap;
   min-height: 15rem;
-  background-color: var(--b-30);
 }
 
 main .flex-calculator .flex-container .flex-item {
   flex-flow: column nowrap;
   text-align: center;
   background-color: var(--b-10);
-  padding: 1rem 0;
+  padding: 0;
 }
 
 main .flex-calculator .flex-container .flex-item:nth-of-type(even) {
@@ -291,6 +304,7 @@ main .flex-calculator .flex-container .flex-item:nth-of-type(even) {
 }
 
 main .flex-calculator .flex-container .flex-item h4 {
+  padding: 1rem 0;
   font-size: 3rem;
   font-weight: 500;
 }
@@ -299,28 +313,43 @@ main .flex-calculator .flex-container .flex-item .item-values {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  justify-items: center;
   padding: 1rem;
 }
 
 main .flex-calculator .flex-container .flex-item .item-values section {
-  display: flex;
+  width: 100%;
   padding: .25rem 0;
+}
+
+main .flex-calculator .flex-container .flex-item .item-values section:hover button {
+  opacity: 1;
+}
+
+main .flex-calculator .flex-container .flex-item .item-values section:hover input {
+  border-bottom: 1px solid white;
 }
 
 main .flex-calculator .flex-container .flex-item .item-values section:nth-of-type(3) button {
   opacity: 0;
+  visibility: hidden;
+  display: none;
+}
+
+main .flex-calculator .flex-container .flex-item .item-values section:nth-of-type(3) input {
+  width: 10rem;
 }
 
 main .flex-calculator .flex-container .flex-item .item-values input {
-  border: none;
-  border-radius: 5px;
-  outline: 0;
-  margin: 0 1rem;
-  text-align: center;
-  width: 6rem;
+  width: 5rem;
   padding: .5rem;
+  margin: 0 1rem;
+  border-bottom: 1px solid transparent;
   background-color: transparent;
+  outline: 0;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 100;
+  transition: border-bottom .15s ease-in;
 }
 
 main .flex-calculator .flex-container .flex-item .item-values input[type="number"]::-webkit-outer-spin-button, main .flex-calculator .flex-container .flex-item .item-values input[type="number"]::-webkit-inner-spin-button {
@@ -330,6 +359,37 @@ main .flex-calculator .flex-container .flex-item .item-values input[type="number
 
 main .flex-calculator .flex-container .flex-item .item-values input[type="number"] {
   -moz-appearance: textfield;
+}
+
+main .flex-calculator .flex-container .flex-item .item-values button {
+  align-items: center;
+  height: 25px;
+  width: 25px;
+  opacity: 0;
+  background-color: #000;
+  border-radius: 50%;
+  color: white;
+  transition: opacity .1s ease-in;
+}
+
+main .flex-calculator .flex-container .flex-item .item-values .increment-grow-value::after, main .flex-calculator .flex-container .flex-item .item-values .increment-shrink-value::after {
+  content: "+";
+  position: relative;
+  left: 0;
+  bottom: 3px;
+}
+
+main .flex-calculator .flex-container .flex-item .item-values .decrement-grow-value::after, main .flex-calculator .flex-container .flex-item .item-values .decrement-shrink-value::after {
+  content: "-";
+  position: relative;
+  left: 0;
+  bottom: 6px;
+}
+
+main .flex-calculator .flex-container .flex-item .remove-item-button {
+  width: 100%;
+  padding: 1rem;
+  background-color: transparent;
 }
 
 main .flex-calculator .flex-container .flex-item .item-flexulations {

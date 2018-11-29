@@ -32,32 +32,32 @@
 
     <header>
       <h1>Flexulator</h1>
-      <h2>A space distribution calculator for responsive flexbox learning</h2>
     </header>
 
     <section class="flex-calculator">
       <header>
-        <p>
+        <h2>A space distribution calculator for responsive flexbox learning</h2>
+        <!-- <p>
           Add or Remove flex items to see how the grow
           or shrink values distribute the remaining space.
-        </p>
+        </p> -->
       </header>
 
       <section class="flex-form">
         <form class="form" action="">
           <label for="flex-grow">
-            <h4>Grow:</h4>
-            <input name="flex-grow" type="number" id="flex-grow" value="1">
+            <h4>grow:</h4>
+            <input name="flex-grow" type="number" id="flex-grow" min="0" value="1">
           </label>
 
           <label for="flex-shrink">
-            <h4>Shrink:</h4>
-            <input name="flex-shrink" type="number" id="flex-shrink" value="1">
+            <h4>shrink:</h4>
+            <input name="flex-shrink" type="number" id="flex-shrink" min="0" value="1">
           </label>
 
           <label for="flex-basis">
-            <h4>Basis:</h4>
-            <input name="flex-basis" type="number" id="flex-basis" value="100">
+            <h4>basis:</h4>
+            <input name="flex-basis" type="number" id="flex-basis" min="0" value="100">
           </label>
 
           <button id="add-flex-item-button">Add Item</button>
@@ -92,22 +92,22 @@
           <h4 class="item-width"></h4>
           <section class="item-values">
             <section>
-              <button class="increment-grow-value">+</button>
+              <button class="increment-grow-value"></button>
               <input type="number" min="0" class="item-grow" value="1"></input>
-              <button class="decrement-grow-value">-</button>
+              <button class="decrement-grow-value"></button>
             </section>
             <section>
-              <button class="increment-shrink-value">+</button>
+              <button class="increment-shrink-value"></button>
               <input type="number" min="0" class="item-shrink" value="1"></input>
-              <button class="decrement-shrink-value">-</button>
+              <button class="decrement-shrink-value"></button>
             </section>
             <section>
-              <button class="increment-grow-value">+</button>
-              <input type="text" min="0" class="item-basis" value="100"></input>
-              <button class="decrement-shrink-value">-</button>
+              <button class="increment-grow-value"></button>
+              <input type="number" min="0" class="item-basis" value="100"></input>
+              <button class="decrement-shrink-value"></button>
             </section>
           </section>
-          <button class="remove-item-button">X</button>
+
           <section class="item-flexulations">
             <section class="flex-grow-flexulations">
               <p>
@@ -138,27 +138,28 @@
               </p>
             </section>
           </section>
+          <button class="remove-item-button">Remove</button>
         </section>
         <section id="flex-item-2" class="flex-item" style="flex: 1 1 100px;">
           <h4 class="item-width"></h4>
           <section class="item-values">
             <section>
-              <button class="increment-grow-value">+</button>
+              <button class="increment-grow-value"></button>
               <input type="number" class="item-grow" value="1"></input>
-              <button class="decrement-grow-value">-</button>
+              <button class="decrement-grow-value"></button>
             </section>
             <section>
-              <button class="increment-shrink-value">+</button>
+              <button class="increment-shrink-value"></button>
               <input type="number" class="item-shrink" value="1"></input>
-              <button class="decrement-shrink-value">-</button>
+              <button class="decrement-shrink-value"></button>
             </section>
             <section>
-              <button class="increment-grow-value">+</button>
-              <input type="text" min="0" class="item-basis" value="100"></input>
-              <button class="decrement-shrink-value">-</button>
+              <button class="increment-grow-value"></button>
+              <input type="number" min="0" class="item-basis" value="100"></input>
+              <button class="decrement-shrink-value"></button>
             </section>
           </section>
-          <button class="remove-item-button">X</button>
+
           <section class="item-flexulations">
             <section class="flex-grow-flexulations">
               <p>
@@ -189,27 +190,28 @@
               </p>
             </section>
           </section>
+          <button class="remove-item-button">Remove</button>
         </section>
         <section id="flex-item-3" class="flex-item" style="flex: 1 1 100px;">
           <h4 class="item-width"></h4>
           <section class="item-values">
             <section>
-              <button class="increment-grow-value">+</button>
+              <button class="increment-grow-value"></button>
               <input type="number" class="item-grow" value="1"></input>
-              <button class="decrement-grow-value">-</button>
+              <button class="decrement-grow-value"></button>
             </section>
             <section>
-              <button class="increment-shrink-value">+</button>
+              <button class="increment-shrink-value"></button>
               <input type="number" class="item-shrink" value="1"></input>
-              <button class="decrement-shrink-value">-</button>
+              <button class="decrement-shrink-value"></button>
             </section>
             <section>
-              <button class="increment-grow-value">+</button>
-              <input type="text" min="0" class="item-basis" value="100"></input>
-              <button class="decrement-shrink-value">-</button>
+              <button class="increment-grow-value"></button>
+              <input type="number" min="0" class="item-basis" value="100"></input>
+              <button class="decrement-shrink-value"></button>
             </section>
           </section>
-          <button class="remove-item-button">X</button>
+
           <section class="item-flexulations">
             <section class="flex-grow-flexulations">
               <p>
@@ -240,6 +242,7 @@
               </p>
             </section>
           </section>
+          <button class="remove-item-button">Remove</button>
         </section>
       </section>
 

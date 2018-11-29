@@ -2,7 +2,7 @@
 var flexContainer = document.getElementById('flex-container');
 var addFlexItemButton = document.getElementById('add-flex-item-button');
 var showTotalFlexBasis = document.getElementById('total-flex-basis');
-var flexContainerWidth = Array.prototype.slice.call(document.getElementsByClassName('container-width'));
+var flexContainerWidth = document.getElementById('container-width');
 
 function getFlexItems() {
   return Array.prototype.slice.call(document.getElementsByClassName('flex-item'));
@@ -10,13 +10,14 @@ function getFlexItems() {
 
 
 // on window load, get values
+// updateRemainingSpace();
 updateContainerWidth();
 totalRemainingSpace();
 updateItemWidth();
 initFlexItems();
 
 function initFlexItems() {
-  getFlexItems().forEach(function(item) {
+  getFlexItems().forEach(function (item) {
     updateFlexItem(item);
     removeFlexItem(item);
   });
@@ -29,41 +30,48 @@ addFlexItemButton.addEventListener('click', function(event) {
 
 // on resize, update values
 window.addEventListener('resize', function(event) {
+  updateRemainingSpace();
   updateContainerWidth();
   totalRemainingSpace();
   updateItemWidth();
   updateGrowItemSpace();
   setFlexItemShrink();
+
 });
 
 function updateContainerWidth() {
-  var container_width_time = 'container-width';
-  console.time(container_width_time);
-  // all set
-  flexContainerWidth.forEach(function(item) {
-    item.textContent = flexContainer.clientWidth;
-  });
-  console.timeEnd(container_width_time);
+  flexContainerWidth.textContent = flexContainer.clientWidth;
 };
 
 
 function totalRemainingSpace() {
-  // all set
-  var containerWidth = document.getElementById('container-width');
   var displayRemainingSpace = Array.prototype.slice.call(document.getElementsByClassName('flex-remaining-space'));
-  var remainingSpace = parseInt(containerWidth.textContent) - parseInt(showTotalFlexBasis.textContent);
-  displayRemainingSpace.forEach(function(item) {
+  var remainingSpace = parseInt(flexContainerWidth.textContent) - parseInt(showTotalFlexBasis.textContent);
+  displayRemainingSpace.forEach(function (item) {
     item.textContent = remainingSpace;
   });
 }
 
-// Flex Items
 function updateItemWidth() {
   // read & write
   getFlexItems().forEach(function(item) {
     item.firstElementChild.textContent = item.offsetWidth;
   });
 }
+
+function updateRemainingSpace() {
+  flexContainerWidth.textContent = flexContainer.clientWidth;
+  var displayRemainingSpace = Array.prototype.slice.call(document.getElementsByClassName('flex-remaining-space'));
+  var remainingSpace = parseInt(flexContainerWidth.textContent) - parseInt(showTotalFlexBasis.textContent);
+  displayRemainingSpace.forEach(function (item) {
+    item.textContent = remainingSpace;
+  });
+
+  getFlexItems().forEach(function (item) {
+    item.firstElementChild.textContent = item.offsetWidth;
+  });
+}
+
 
 function addFlexItem() {
   // get item count
@@ -95,7 +103,7 @@ function addFlexItem() {
 
   var incrementGrowButton = document.createElement('button');
   incrementGrowButton.setAttribute('class', 'increment-grow-value');
-  incrementGrowButton.textContent = '+';
+  // incrementGrowButton.textContent = '+';
 
   var growInput = document.createElement('input');
   growInput.setAttribute('type', 'number');
@@ -104,7 +112,7 @@ function addFlexItem() {
 
   var decrementGrowButton = document.createElement('button');
   decrementGrowButton.setAttribute('class', 'decrement-grow-value');
-  decrementGrowButton.textContent = '-';
+  // decrementGrowButton.textContent = '-';
 
   growSection.appendChild(incrementGrowButton);
   growSection.appendChild(growInput);
@@ -114,7 +122,7 @@ function addFlexItem() {
 
   var incrementShrinkButton = document.createElement('button');
   incrementShrinkButton.setAttribute('class', 'increment-shrink-value');
-  incrementShrinkButton.textContent = '+';
+  // incrementShrinkButton.textContent = '+';
 
   var shrinkInput = document.createElement('input');
   shrinkInput.setAttribute('type', 'number');
@@ -123,7 +131,7 @@ function addFlexItem() {
 
   var decrementShrinkButton = document.createElement('button');
   decrementShrinkButton.setAttribute('class', 'decrement-shrink-value');
-  decrementShrinkButton.textContent = '-';
+  // decrementShrinkButton.textContent = '-';
 
   shrinkSection.appendChild(incrementShrinkButton);
   shrinkSection.appendChild(shrinkInput);
@@ -134,17 +142,17 @@ function addFlexItem() {
   basisInput.setAttribute('type', 'text');
   basisInput.setAttribute('class', 'item-basis');
   basisInput.setAttribute('value', basis);
-  var basisIncrementButton = document.createElement('button');
-  basisIncrementButton.setAttribute('class', 'increment-shrink-value');
-  basisIncrementButton.textContent = '+';
+  // var basisIncrementButton = document.createElement('button');
+  // basisIncrementButton.setAttribute('class', 'increment-shrink-value');
+  // basisIncrementButton.textContent = '+';
 
-  var basisDecrementButton = document.createElement('button');
-  basisDecrementButton.setAttribute('class', 'decrement-shrink-value');
-  basisDecrementButton.textContent = '-';
+  // var basisDecrementButton = document.createElement('button');
+  // basisDecrementButton.setAttribute('class', 'decrement-shrink-value');
+  // basisDecrementButton.textContent = '-';
 
-  basisSection.appendChild(basisIncrementButton);
+  // basisSection.appendChild(basisIncrementButton);
   basisSection.appendChild(basisInput);
-  basisSection.appendChild(basisDecrementButton);
+  // basisSection.appendChild(basisDecrementButton);
 
   flexValues.appendChild(growSection);
   flexValues.appendChild(shrinkSection);
@@ -286,11 +294,11 @@ function addFlexItem() {
   updateGrowItemSpace();
   setFlexItemShrink();
 
-};
+}
 
 function updateFlexItem(item) {
 
-  item.addEventListener('click', function(event) {
+  item.addEventListener('click', function (event) {
     var parentItem = event.target.parentElement.parentElement.parentElement;
     var growValue;
     var shrinkValue;
@@ -318,7 +326,7 @@ function updateFlexItem(item) {
     runChanges();
   });
 
-  item.addEventListener('input', function(event) {
+  item.addEventListener('input', function (event) {
     // event.stopPropagation();
     var parent = event.target.parentElement.parentElement.parentElement;
     if (event.target.matches('.item-grow')) {
@@ -341,7 +349,6 @@ function tabKeyUpdate(key) {
 
 window.addEventListener('keyup', tabKeyUpdate);
 
-// read once with a function, then write to each element
 
 function removeFlexItem(item) {
   item.addEventListener('click', function(event) {
@@ -355,12 +362,13 @@ function removeFlexItem(item) {
 };
 
 function runChanges() {
-  updateItemWidth();
+  updateRemainingSpace();
   updateTotalFlexGrow();
   setFlexItemGrow();
   updateGrowItemSpace();
   updateTotalFlexBasis();
   setFlexItemShrink();
+
 }
 
 function updateTotalFlexBasis() {
@@ -408,7 +416,7 @@ function setFlexItemGrow() {
     itemGrowValue = element.style.flexGrow;
 
     // writes
-    element.children[3].firstElementChild.firstElementChild.firstElementChild.textContent = itemGrowValue;
+    element.children[2].firstElementChild.firstElementChild.firstElementChild.textContent = itemGrowValue;
   });
 }
 setFlexItemGrow();
@@ -423,24 +431,17 @@ function updateGrowItemSpace() {
   var remainingSpace;
   var totalSpace = document.getElementsByClassName('container-width')[0];
 
-
-  performance.mark('begin-grow-upate');
-  getFlexItems().forEach(function(item) {
+  getFlexItems().forEach(function (item) {
 
     // reads
-    itemGrow = item.children[3].firstElementChild.firstElementChild.children[0].textContent;
-    growTotal = item.children[3].firstElementChild.firstElementChild.children[2].textContent;
-    remainingSpace = item.children[3].firstElementChild.firstElementChild.children[4].textContent;
+    itemGrow = item.children[2].firstElementChild.firstElementChild.children[0].textContent;
+    growTotal = item.children[2].firstElementChild.firstElementChild.children[2].textContent;
+    remainingSpace = item.children[2].firstElementChild.firstElementChild.children[4].textContent;
 
     // writes
     growFraction = parseInt(itemGrow) / parseInt(growTotal);
-    item.children[3].firstElementChild.firstElementChild.lastElementChild.textContent = parseInt(growFraction * parseInt(remainingSpace), 10);
+    item.children[2].firstElementChild.firstElementChild.lastElementChild.textContent = parseInt(growFraction * parseInt(remainingSpace), 10);
   });
-  performance.mark('end-grow-upate');
-  performance.measure('grow-item-space', 'begin-grow-upate', 'end-grow-upate');
-  var grow_item_space = performance.getEntriesByName('grow-item-space');
-  // var measure = measures[0];
-  console.log("grow-item-space milliseconds:", grow_item_space[0].duration);
 
 }
 
@@ -448,22 +449,22 @@ updateGrowItemSpace();
 
 function setFlexItemShrink() {
   var totalBasis = document.getElementById('total-flex-basis');
-  getFlexItems().forEach(function(element) {
+  getFlexItems().forEach(function (element) {
 
     // reads
     var itemShrinkValue = 0;
     var itemBasis = 0;
-    var remainingSpace = element.children[3].lastElementChild.firstElementChild.children[10].textContent;
+    var remainingSpace = element.children[2].lastElementChild.firstElementChild.children[10].textContent;
     itemShrinkValue = element.style.flexShrink;
     itemBasis = element.style.flexBasis;
 
     // writes
     var shrinkValue = parseInt(itemShrinkValue, 10) * parseInt(itemBasis, 10);
     var shrinkFactor = shrinkValue / parseInt(totalBasis.textContent, 10);
-    element.children[3].lastElementChild.firstElementChild.children[1].textContent = itemShrinkValue;
-    element.children[3].lastElementChild.firstElementChild.children[3].textContent = parseInt(itemBasis);
-    element.children[3].lastElementChild.firstElementChild.children[8].textContent = shrinkFactor.toPrecision(2);
-    element.children[3].lastElementChild.firstElementChild.children[12].textContent = parseInt(shrinkFactor * remainingSpace, 10);
+    element.children[2].lastElementChild.firstElementChild.children[1].textContent = itemShrinkValue;
+    element.children[2].lastElementChild.firstElementChild.children[3].textContent = parseInt(itemBasis);
+    element.children[2].lastElementChild.firstElementChild.children[8].textContent = shrinkFactor.toPrecision(2);
+    element.children[2].lastElementChild.firstElementChild.children[12].textContent = parseInt(shrinkFactor * remainingSpace, 10);
   });
 
 }

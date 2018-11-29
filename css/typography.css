@@ -8,11 +8,11 @@ https://trello.com/c/UoSWXBEt
 */
 
 body {
-  /* font-family: 'Exo', sans-serif; */
+  font-family: 'Exo', sans-serif;
   /* font-family: 'Muli', sans-serif; */
   /* font-family: 'Titillium Web', sans-serif; */
   /* font-family: 'Jura', sans-serif; */
-  font-family: 'Michroma', sans-serif;
+  /* font-family: 'Michroma', sans-serif; */
   font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));
   font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
 }
