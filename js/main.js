@@ -9,6 +9,26 @@ function getFlexItems() {
 }
 
 
+var buttons = Array.from(document.querySelectorAll('.tabs button'));
+var tabs = Array.from(document.querySelectorAll('.tab-content'));
+
+buttons.forEach(function(button, index) {
+  button.addEventListener('click', function() {
+    removeActiveTab()
+    tabs[index].classList.add('toggle-tab');
+  });
+});
+
+function removeActiveTab() {
+  tabs.forEach(function(tab) {
+    tab.classList.remove('toggle-tab');
+  })
+}
+
+
+
+
+
 // on window load, get values
 // updateRemainingSpace();
 updateContainerWidth();
