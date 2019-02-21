@@ -436,6 +436,7 @@ main .flex-examples .example:nth-of-type(12) .code section {
 .formula-container .flex-calculations {
   display: flex;
   flex-direction: row;
+  min-height: 100vh;
   padding: 2.5rem 0;
 }
 
@@ -462,6 +463,45 @@ main .flex-examples .example:nth-of-type(12) .code section {
   font-size: inherit;
 }
 
+.formula-container .flex-calculations .flex-grow-math .grow-formula-text, .formula-container .flex-calculations .flex-shrink-math .grow-formula-text {
+  padding: 1.5rem 0;
+}
+
+.formula-container .flex-calculations .flex-grow-math .grow-formula-text h4, .formula-container .flex-calculations .flex-shrink-math .grow-formula-text h4 {
+  padding: 0 0 .75rem 0;
+}
+
 .formula-container .flex-calculations .flex-grow-math p, .formula-container .flex-calculations .flex-shrink-math p {
   padding: 1.5rem 0;
+}
+
+.formula-container .flex-calculations .flex-grow-math p, .formula-container .flex-calculations .flex-shrink-math p {
+  padding: .5rem 0;
+}
+
+.formula-container .learn-more {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.formula-container .learn-more h3 {
+  padding: 2rem 0;
+}
+
+.formula-container .learn-more ul {
+  list-style: none;
+}
+
+.formula-container .learn-more ul li {
+  padding: 1rem 0;
+}
+
+.formula-container .learn-more ul li:last-child {
+  padding: 1rem 0 3rem 0;
+}
+
+.formula-container .learn-more ul li a {
+  text-decoration: none;
 }
