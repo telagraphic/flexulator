@@ -9,21 +9,21 @@ function getFlexItems() {
 }
 
 
-var buttons = Array.from(document.querySelectorAll('.tabs button'));
-var tabs = Array.from(document.querySelectorAll('.tab-content'));
-
-buttons.forEach(function(button, index) {
-  button.addEventListener('click', function() {
-    removeActiveTab()
-    tabs[index].classList.add('toggle-tab');
-  });
-});
-
-function removeActiveTab() {
-  tabs.forEach(function(tab) {
-    tab.classList.remove('toggle-tab');
-  })
-}
+// var buttons = Array.from(document.querySelectorAll('.tabs button'));
+// var tabs = Array.from(document.querySelectorAll('.tab-content'));
+//
+// buttons.forEach(function(button, index) {
+//   button.addEventListener('click', function() {
+//     removeActiveTab()
+//     tabs[index].classList.add('toggle-tab');
+//   });
+// });
+//
+// function removeActiveTab() {
+//   tabs.forEach(function(tab) {
+//     tab.classList.remove('toggle-tab');
+//   })
+// }
 
 
 
@@ -231,6 +231,7 @@ function addFlexItem() {
   growParagraph.appendChild(equals);
   growParagraph.appendChild(growItemSpace);
   growContainer.appendChild(growParagraph);
+
   flexulatorContainer.appendChild(growContainer);
 
 
@@ -303,6 +304,8 @@ function addFlexItem() {
   updateFlexItem(flexItem);
   removeFlexItem(flexItem);
 
+
+  flexItem.style.animation = 'addItem .25s ease-in';
   // add to flex-container
   flexContainer.appendChild(flexItem);
 
@@ -373,7 +376,10 @@ function removeFlexItem(item) {
   item.addEventListener('click', function(event) {
     var sibling = event.target.parentElement.previousElementSibling || event.target.parentElement.nextElementSibling;
     if (event.target.matches('.remove-item-button')) {
-      event.target.parentElement.remove();
+      event.target.parentElement.classList.add('removing-item');
+      setTimeout(function() {
+        event.target.parentElement.remove();
+      }, 500);
       sibling.click();
     }
     runChanges();

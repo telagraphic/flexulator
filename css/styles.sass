@@ -14,21 +14,15 @@ main
   --b-60: #0068c7
 
 
-  .tabs
+  .flexulator-title
     display: flex
     flex-direction: row
     justify-content: space-around
     align-items: center
 
-
     padding: 2rem 0
 
-    background-color: var(--b-30)
-    color: white
-
-    button
-      width: 100%
-      height: 100%
+    color: #000
 
     h1
       flex: 1
@@ -205,19 +199,19 @@ main
           flex: 1 2 200px
 
 
-.tab-content
-  display: none
-
-.toggle-tab
-  display: flex
-  flex-direction: column
-  z-index: 100
+  // .tab-content
+  //   display: none
+  //
+  // .toggle-tab
+  //   display: flex
+  //   flex-direction: column
+  //   z-index: 100
 
 
 
 
   .flexulator-container
-    // display: none
+
 
   .flex-calculator
     display: flex
@@ -265,7 +259,7 @@ main
 
     form
       display: flex
-      flex-direction: column
+      flex-direction: row
 
       label
         display: flex
@@ -326,7 +320,17 @@ main
       display: flex
       flex-flow: row nowrap
 
-      min-height: 15rem
+      // min-height: 15rem
+
+      animation: fadeItems .3s ease-in
+
+      @keyframes fadeItems
+        0%
+          opacity: 0
+          transform: translateY(2.5rem)
+        100%
+          opacity: 1
+          transform: translateY(0rem)
 
       // background-color: var(--b-30)
 
@@ -334,12 +338,36 @@ main
         // flex: 1 1 100px
         flex-flow: column nowrap
         text-align: center
-        // background-color: var(--b-10)
+        background-color: var(--b-10)
 
         padding: 0
+        width: auto
+        height: 50vh
+        transition: width .5s ease-in, flex .5s ease-in
+        opacity: 1
+        transition: opacity .1s ease-out
+
+        & > *
+          opacity: 1
+          transition: opacity .1s ease-out
+
+        // animation: addItem .5s ease-in backwards
+        // transform-origin: 100% 100%
 
         &:nth-of-type(even)
-          // background-color: var(--b-20)
+          background-color: var(--b-20)
+
+        @keyframes addItem
+          0%
+            // transform: translate3d(0%, 0, 0)
+            visibility: hidden
+            opacity: 0
+            flex: 0
+          100%
+            // transform: translate3d(0%, 0, 0)
+            visibility: visible
+            opacity: 1
+            flex: auto
 
         h4
           padding: 1rem 0
@@ -471,7 +499,6 @@ main
             color: black
 
             transform: scale(1)
-
             transition: background-color .15s ease-in, color .15s ease-in, transform .15s ease-in
 
 
@@ -528,13 +555,29 @@ main
         h4
           padding: 0 0 .75rem 0
 
-
-
       p
         padding: 1.5rem 0
 
       p
         padding: .5rem 0
+
+@keyframes widthAdjust
+  0%
+    max-width: 100%
+    max-height: 100%
+    flex: auto
+    opacity: 1
+  100%
+    max-width: -100%
+    max-height: -100%
+    flex: 0
+    visibility: hidden
+    opacity: 0
+
+.removing-item
+  animation: widthAdjust .5s ease-out
+
+
 
   .learn-more
     display: flex
