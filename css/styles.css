@@ -1,12 +1,23 @@
+body {
+  --console-60-black: #0c0c0d;
+  --console-50-black: #1b1b1d;
+  --console-40-gray: #4a4a4f;
+  --console-30-gray: #939395;
+  --console-20-gray: #b1b1b3;
+  --console-60-blue: #163b61;
+  --console-40-blue: #1780ea;
+  --console-30-blue: #0c74dd;
+  --console-20-blue: #0ba2ff;
+  --console-15-blue: #75bfff;
+  --console-10-blue: #cbe8ff;
+  --console-60-pink: #541a4d;
+  --console-30-pink: #dd00a9;
+  --console-10-pink: #fbdef4;
+}
+
 main {
   display: flex;
   flex-direction: column;
-  --b-10: #86c3fa;
-  --b-20: #57abf5;
-  --b-30: #3095ed;
-  --b-40: #1382e4;
-  --b-50: #0071d7;
-  --b-60: #0068c7;
 }
 
 main .flexulator-title {
@@ -23,6 +34,7 @@ main .flexulator-title h1 {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: .2rem;
+  font-size: 5rem;
 }
 
 main .flex-combo-table {
@@ -34,16 +46,10 @@ main .flex-combo-table {
 main .flex-combo-table table {
   display: flex;
   flex-direction: column;
+  width: 100%;
   --flex-row: 1 1 20%;
   --flex-value: 1 1 20%;
   --flex-info: 1 1 20%;
-  --b-10: #86c3fa;
-  --b-20: #57abf5;
-  --b-30: #3095ed;
-  --b-40: #1382e4;
-  --b-50: #0071d7;
-  --b-60: #0068c7;
-  width: 100%;
 }
 
 main .flex-combo-table table thead tr {
@@ -187,10 +193,13 @@ main .flex-examples .example:nth-of-type(12) .code section {
   flex: 1 2 200px;
 }
 
+main .flexulator-container {
+  min-height: 100vh;
+}
+
 main .flex-calculator {
   display: flex;
   flex-flow: column nowrap;
-  min-height: 100vh;
   padding: 2rem 0;
 }
 
@@ -235,7 +244,7 @@ main .flex-calculator .flex-form {
 
 main .flex-calculator form {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 main .flex-calculator form label {
@@ -252,6 +261,7 @@ main .flex-calculator form label h4 {
   flex: 1 0 auto;
   font-weight: 700;
   font-size: 2.5rem;
+  text-transform: uppercase;
 }
 
 main .flex-calculator form label input {
@@ -259,7 +269,7 @@ main .flex-calculator form label input {
   margin: 0 1rem;
   width: 8rem;
   background-color: transparent;
-  border-bottom: 1px solid transparent;
+  border-bottom: 2px solid transparent;
   outline: 0;
   font-size: 2.5rem;
   text-align: center;
@@ -272,6 +282,8 @@ main .flex-calculator form label input::selection, main .flex-calculator form la
 
 main .flex-calculator form label input:focus, main .flex-calculator form label input:hover {
   border-bottom: 1px solid #444444;
+  background-color: var(--console-10-blue);
+  border-bottom: 2px dashed var(--console-30-blue);
 }
 
 main .flex-calculator form label input[type="number"]::-webkit-outer-spin-button, main .flex-calculator form label input[type="number"]::-webkit-inner-spin-button {
@@ -286,10 +298,18 @@ main .flex-calculator form label input[type="number"] {
 main .flex-calculator form button {
   margin: 1.5rem 0;
   padding: .5rem;
-  border-radius: 5px;
-  background-color: var(--b-20);
-  color: white;
+  color: var(--console-50-black);
   text-transform: uppercase;
+  background-color: var(--console-10-blue);
+  background-clip: padding-box;
+  border: 3px dotted var(--console-30-blue);
+  transition: background-color .15s ease-in, border .15s ease-in, color .15s ease-in;
+}
+
+main .flex-calculator form button:hover, main .flex-calculator form button:focus {
+  background-color: var(--console-30-blue);
+  border: 3px dotted var(--console-20-blue);
+  color: white;
 }
 
 main .flex-calculator .flex-container {
@@ -312,22 +332,19 @@ main .flex-calculator .flex-container {
 main .flex-calculator .flex-container .flex-item {
   flex-flow: column nowrap;
   text-align: center;
-  background-color: var(--b-10);
+  background-color: var(--console-10-blue);
+  background-clip: padding-box;
+  border: 5px dotted var(--console-20-blue);
+  color: var(--console-dark-black);
   padding: 0;
   width: auto;
-  height: 50vh;
-  transition: width .5s ease-in, flex .5s ease-in;
   opacity: 1;
-  transition: opacity .1s ease-out;
+  transition: width .5s ease-in, flex .5s ease-in, opacity .1s ease-out;
 }
 
 main .flex-calculator .flex-container .flex-item > * {
   opacity: 1;
   transition: opacity .1s ease-out;
-}
-
-main .flex-calculator .flex-container .flex-item:nth-of-type(even) {
-  background-color: var(--b-20);
 }
 
 @keyframes addItem {
@@ -346,7 +363,7 @@ main .flex-calculator .flex-container .flex-item:nth-of-type(even) {
 main .flex-calculator .flex-container .flex-item h4 {
   padding: 1rem 0;
   font-size: 3rem;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 main .flex-calculator .flex-container .flex-item .item-values {
@@ -356,6 +373,8 @@ main .flex-calculator .flex-container .flex-item .item-values {
 }
 
 main .flex-calculator .flex-container .flex-item .item-values section {
+  justify-content: center;
+  display: flex;
   width: 100%;
   padding: .25rem 0;
 }
@@ -410,23 +429,17 @@ main .flex-calculator .flex-container .flex-item .item-values input {
   width: 5rem;
   padding: .5rem;
   margin: 0 1rem;
-  border-bottom: 2px solid transparent;
+  border-bottom: 2px dashed transparent;
   background-color: transparent;
   outline: 0;
   text-align: center;
   font-size: 2.5rem;
   font-weight: 100;
   transition: border-bottom .15s ease-in, opacity .15s ease-in;
-  animation: borderToggle .15s ease-in forwards;
 }
 
-@keyframe borderToggle {
-  main .flex-calculator .flex-container .flex-item .item-values input 0% {
-    border-bottom: 2px solid transparent;
-  }
-  main .flex-calculator .flex-container .flex-item .item-values input 100% {
-    border-bottom: 2px solid black;
-  }
+main .flex-calculator .flex-container .flex-item .item-values input:hover, main .flex-calculator .flex-container .flex-item .item-values input:focus {
+  border-bottom: 2px dashed var(--console-40-blue);
 }
 
 main .flex-calculator .flex-container .flex-item .item-values input[type="number"]::-webkit-outer-spin-button, main .flex-calculator .flex-container .flex-item .item-values input[type="number"]::-webkit-inner-spin-button {
@@ -469,18 +482,17 @@ main .flex-calculator .flex-container .flex-item .item-values .decrement-grow-va
 main .flex-calculator .flex-container .flex-item .remove-item-button {
   padding: 1rem;
   margin: 1.5rem 0;
-  border-radius: 10px;
-  background-color: white;
-  border: 2px solid black;
+  background-color: var(--console-10-pink);
+  background-clip: padding-box;
+  border: 2px dotted var(--console-30-pink);
   color: black;
   transform: scale(1);
   transition: background-color .15s ease-in, color .15s ease-in, transform .15s ease-in;
 }
 
 main .flex-calculator .flex-container .flex-item .remove-item-button:hover, main .flex-calculator .flex-container .flex-item .remove-item-button:focus {
-  background-color: black;
+  background-color: var(--console-30-pink);
   color: white;
-  transform: scale(1.05);
 }
 
 main .flex-calculator .flex-container .flex-item .item-flexulations {

@@ -8,7 +8,7 @@ https://trello.com/c/UoSWXBEt
 */
 
 body {
-  font-family: 'Fjalla One', sans-serif;
+  font-family: 'Inconsolata', sans-serif;
   font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));
   font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
 }
