@@ -1,18 +1,33 @@
 body
   --console-60-black: #0c0c0d
   --console-50-black: #1b1b1d
+
+  --console-45-gray: #404041
   --console-40-gray: #4a4a4f
   --console-30-gray: #939395
+  --console-27-gray: #929294
+  --console-25-gray: #808080
   --console-20-gray: #b1b1b3
+  --console-15-gray: #cacad2
+  --console-10-gray: #e0e0e2
+  --console-05-gray: #ededf0
+  --console-04-gray: #edecf0
+
+  --console-30-purple: #a300ff
+
   --console-60-blue: #163b61
   --console-40-blue: #1780ea
+  --console-35-blue: #5dc6fa
+  --console-33-blue: #0089d2
   --console-30-blue: #0c74dd
   --console-20-blue: #0ba2ff
   --console-15-blue: #75bfff
   --console-10-blue: #cbe8ff
+
+
   --console-60-pink: #541a4d
   --console-30-pink: #dd00a9
-
+  --console-20-pink: #fe75f9
   --console-10-pink: #fbdef4
 
 
@@ -28,187 +43,18 @@ main
 
     padding: 2rem 0
 
-    color: #000
+    background-color: var(--console-05-gray)
+    border-top: 3px solid var(--console-10-gray)
+    border-bottom: 3px solid var(--console-10-gray)
+    color: var(--console-60-black)
 
     h1
       flex: 1
       text-align: center
-      text-transform: uppercase
-      letter-spacing: .2rem
+      text-transform: capitalize
+      letter-spacing: -.1rem
       font-size: 5rem
-
-  .flex-combo-table
-    display: flex
-    flex-direction: column
-    align-items: center
-
-    table
-      display: flex
-      flex-direction: column
-
-      width: 100%
-
-      --flex-row: 1 1 20%
-      --flex-value: 1 1 20%
-      --flex-info: 1 1 20%
-
-      thead
-
-        tr
-          display: flex
-
-          th:nth-child(1)
-            flex: var(--flex-row)
-            background-color: var(--b-10)
-
-          th:nth-child(2)
-            flex: var(--flex-value)
-            background-color: var(--b-20)
-
-          th:nth-child(3)
-            flex: var(--flex-value)
-            background-color: var(--b-30)
-
-          th:nth-child(4)
-            flex: var(--flex-value)
-            background-color: var(--b-40)
-
-          th:nth-child(5)
-            flex: var(--flex-info)
-            background-color: var(--b-50)
-
-
-      tbody
-
-        tr
-          display: flex
-          align-items: center
-
-          td
-            display: flex
-            justify-content: center
-
-          td:nth-child(1)
-            flex: var(--flex-row)
-            background-color: var(--b-10)
-
-          td:nth-child(2)
-            flex: var(--flex-value)
-            background-color: var(--b-20)
-
-          td:nth-child(3)
-            flex: var(--flex-value)
-            background-color: var(--b-30)
-
-          td:nth-child(4)
-            flex: var(--flex-value)
-            background-color: var(--b-40)
-
-          td:nth-child(5)
-            flex: var(--flex-info)
-            background-color: var(--b-50)
-
-
-  .flex-examples
-    display: flex
-    flex-flow: column nowrap
-
-    padding: 1rem
-
-    background-color: var(--flex-container)
-
-    --flex-container: #5e65ae
-    --flex-item: #8eb5e0
-    --flex-header: black
-
-    .example
-      padding: 2rem 0
-
-      .description
-        padding: 1rem 0
-        color: var(--flex-header)
-
-      .code
-        display: flex
-        flex-flow: row nowrap
-
-        section
-          padding: 1rem
-
-          background-color: var(--flex-item)
-
-    .example:nth-of-type(1)
-      section
-        flex: 0 0 0
-
-
-    .example:nth-of-type(2)
-      .code
-        section
-          flex: 0 0 200px
-
-
-    .example:nth-of-type(3)
-      .code
-        section
-          flex: 1 0 0
-
-    .example:nth-of-type(4)
-      .code
-        section
-          flex: 1 0 200px
-
-    .example:nth-of-type(5)
-      .code
-        section
-          flex: 0 1 0
-
-    .example:nth-of-type(6)
-      .code
-        section
-          flex: 0 1 200px
-
-    .example:nth-of-type(7)
-      .code
-        section
-          flex: 1 1 0
-
-    .example:nth-of-type(8)
-      .code
-        section
-          flex: 1 1 200px
-
-    .example:nth-of-type(9)
-      .code
-        section
-          flex: 2 1 0
-
-    .example:nth-of-type(10)
-      .code
-        section
-          flex: 2 1 200px
-
-    .example:nth-of-type(11)
-      .code
-        section
-          flex: 1 2 0
-
-    .example:nth-of-type(12)
-      .code
-        section
-          flex: 1 2 200px
-
-
-  // .tab-content
-  //   display: none
-  //
-  // .toggle-tab
-  //   display: flex
-  //   flex-direction: column
-  //   z-index: 100
-
-
-
+      font-weight: 700
 
 
   .flexulator-container
@@ -217,13 +63,11 @@ main
   .flex-calculator
     display: flex
     flex-flow: column nowrap
+    height: 100%
 
-    padding: 2rem 0
+    padding: 0
 
-    header
-      background-color: white
-      color: black
-      text-align: center
+    // background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFUlEQVQImWNgQAKLGf6nkcphYGAAABQDCCEc2tDBAAAAAElFTkSuQmCC) repeat
 
     .flex-values
       align-self: center
@@ -231,11 +75,16 @@ main
       padding: 2.5rem 0 3.5rem 0
 
       font-weight: 700
+      width: 100vw
+
+      border-top: 3px dashed var(--console-33-blue)
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat
 
 
       .flex-values-formula
         display: flex
         flex-flow: row nowrap
+        justify-content: center
 
         .flex-operand
           display: flex
@@ -244,94 +93,107 @@ main
 
           padding: 0 .5rem
 
+          color: var(--console-50-black)
+          font-weight: 700
+
+
           span
             flex: 1 1 auto
+
             font-size: 5rem
 
             &:nth-child(2)
               font-size: 1rem
+              font-weight: 400
 
     .flex-form
       align-self: center
       padding: 1rem
 
-
-    form
-      display: flex
-      flex-direction: column
-
-      label
+      form
         display: flex
-        flex-flow: row nowrap
-        align-items: center
+        flex-direction: column
 
-        &:nth-of-type(3)
+        label
+          display: flex
+          flex-flow: row nowrap
+          align-items: center
+          color: var(--console-40-blue)
+
+          &:nth-of-type(3)
+            input
+              width: 8rem
+
+          h4
+            flex: 1 0 auto
+            font-weight: 700
+            font-size: 2.5rem
+            text-transform: lowercase
+            font-weight: 400
+
           input
+            padding: .5rem
+            margin: 0 1rem
             width: 8rem
 
-        h4
-          flex: 1 0 auto
-          font-weight: 700
-          font-size: 2.5rem
+            background-color: transparent
+            border-bottom: 2px dashed transparent
+            outline: 0
+            color: var(--console-30-pink)
+
+            font-size: 2.5rem
+            text-align: center
+
+            transition: border-bottom .1s ease-in, background-color .15s ease-in
+
+            &::selection,
+            &::-moz-selection
+             background: transparent
+
+            &:focus,
+            &:hover
+              border-bottom: 1px solid #444444
+              background-color: var(--console-10-blue)
+              border-bottom: 2px dashed var(--console-30-blue)
+
+          input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button
+            -webkit-appearance: none
+            margin: 0
+
+          input[type="number"]
+            -moz-appearance: textfield
+
+        button
+          margin: 1.5rem 0
+          padding: .5rem
+
+          color: var(--console-50-black)
           text-transform: uppercase
 
-        input
-          padding: .5rem
-          margin: 0 1rem
-          width: 8rem
+          background-color: var(--console-04-gray)
+          background-clip: padding-box
+          border-radius: 5px
+          border: 3px solid var(--console-15-gray)
 
-          background-color: transparent
-          border-bottom: 2px solid transparent
-          outline: 0
+          text-transform: lowercase
 
-          font-size: 2.5rem
-          text-align: center
+          transition: background-color .15s ease-in, border .15s ease-in, color .15s ease-in
 
-          transition: border-bottom .1s ease-in, background-color .15s ease-in
+          &:hover,
+          &:focus
+            background-color: var(--console-40-blue)
+            // border: 3px dotted var(--console-20-blue)
+            color: white
 
-          &::selection,
-          &::-moz-selection
-           background: transparent
-
-          &:focus,
-          &:hover
-            border-bottom: 1px solid #444444
-            background-color: var(--console-10-blue)
-            border-bottom: 2px dashed var(--console-30-blue)
-
-        input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button
-          -webkit-appearance: none
-          margin: 0
-
-        input[type="number"]
-          -moz-appearance: textfield
-
-      button
-        margin: 1.5rem 0
-        padding: .5rem
-
-        color: var(--console-50-black)
-        text-transform: uppercase
-
-        background-color: var(--console-10-blue)
-        background-clip: padding-box
-
-        border: 3px dotted var(--console-30-blue)
-
-        transition: background-color .15s ease-in, border .15s ease-in, color .15s ease-in
-
-        &:hover,
-        &:focus
-          background-color: var(--console-30-blue)
-          border: 3px dotted var(--console-20-blue)
-          color: white
-
+          h5
+            font-weight: 400
 
     .flex-container
       display: flex
       flex-flow: row nowrap
 
       animation: fadeItems .3s ease-in
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFUlEQVQImWNgQAKLGf6nkcphYGAAABQDCCEc2tDBAAAAAElFTkSuQmCC) repeat
 
       @keyframes fadeItems
         0%
@@ -377,6 +239,8 @@ main
         h4
           padding: 1rem 0
 
+          color: var(--console-40-blue)
+
           font-size: 3rem
           font-weight: 700
 
@@ -385,13 +249,12 @@ main
           flex-flow: column nowrap
           align-items: center
 
-
           section
-            justify-content: center
             display: flex
+            justify-content: center
+            align-items: center
 
             width: 100%
-
             padding: .25rem 0
 
             &:hover button:first-child
@@ -402,7 +265,7 @@ main
               animation: slideInLeft .15s ease-in forwards
 
             &:hover input
-              border-bottom: 2px solid black
+              border-bottom: 2px dashed var(--console-25-gray)
               opacity: 1
 
             @keyframes slideInRight
@@ -428,9 +291,6 @@ main
                 visibility: hidden
                 display: none
 
-              input
-                width: 10rem
-
           input
             width: 5rem
             padding: .5rem
@@ -440,16 +300,17 @@ main
             background-color: transparent
             outline: 0
 
+            color: var(--console-30-pink)
+
             text-align: center
             font-size: 2.5rem
-            font-weight: 100
+            font-weight: 400
 
             transition: border-bottom .15s ease-in, opacity .15s ease-in
             // animation: borderToggle .15s ease-in forwards
 
-            &:hover,
-            &:focus
-              border-bottom: 2px dashed var(--console-40-blue)
+            &:hover
+              border-bottom: 2px dashed var(--console-25-gray)
 
             // @keyframe borderToggle
             //   0%
@@ -484,7 +345,7 @@ main
             left: 0
             bottom: 3px
 
-            color: #000
+            color: var(--console-50-black)
 
           .decrement-grow-value::after, .decrement-shrink-value::after
             content: "-"
@@ -492,7 +353,7 @@ main
             left: 0
             bottom: 6px
 
-            color: #000
+            color: var(--console-50-black)
 
         .remove-item-button
             padding: 1rem
@@ -500,7 +361,9 @@ main
             background-color: var(--console-10-pink)
             background-clip: padding-box
             border: 2px dotted var(--console-30-pink)
+
             color: black
+            font-weight: 400
 
             transform: scale(1)
             transition: background-color .15s ease-in, color .15s ease-in, transform .15s ease-in
@@ -521,45 +384,113 @@ main
           .flex-shrink-flexulations
             padding: .5rem 0
 
+    .flex-pattern
+      height: 10vh
+      border-bottom: 3px dashed var(--console-33-blue)
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat
+
 
 .formula-container
+  background-color: var(--console-50-black)
+
+  .formula-title
+    display: flex
+    flex-direction: row
+    justify-content: space-around
+    align-items: center
+
+    padding: 2rem 0
+
+    background-color: var(--console-60-black)
+    border-top: 3px solid var(--console-45-gray)
+    border-bottom: 3px solid var(--console-45-gray)
+    color: white
+
+    h1
+      font-size: 5rem
+
   .flex-calculations
     display: flex
     flex-direction: row
     min-height: 100vh
 
-    padding: 2.5rem 0
+    padding: 5.5rem 0
 
     @media (max-width: 1200px)
       flex-direction: column
 
     section
-      flex: 1 1 50%
+      display: flex
+      flex-direction: column
+
       text-align: center
 
       h2
         padding: 1.5rem 0
+        width: 50%
+        align-self: center
+
         font-size: 2.5rem
         text-transform: uppercase
-        color: black
+        font-weight: 700
+        letter-spacing: .15rem
 
+
+
+
+
+    .flex-grow-math
+      color: var(--console-35-blue)
+      // font-weight: 700
+
+      h2
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat
+        border: 1px solid var(--console-30-purple)
+
+      p
+        border: 1px solid var(--console-30-purple)
+
+        & + p
+          border-top: none
+
+
+
+
+    .flex-shrink-math
+      color: var(--console-20-pink)
+      // font-weight: 700
+
+      h2
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAKxx35uZsAGqChBOwAAnx8LPVdV3HMAAAAASUVORK5CYII=) repeat
+        border: 1px solid var(--console-35-blue)
+
+      p
+        border: 1px solid var(--console-35-blue)
+
+        & + p
+          border-top: none
 
     .flex-grow-math, .flex-shrink-math
-      padding: 0 1.5rem
+      flex: 1 1 50%
+      padding: 0 4.5rem
 
       font-size: inherit
+
+      section
+        padding: 3rem 0
 
       .grow-formula-text
         padding: 1.5rem 0
 
         h4
-          padding: 0 0 .75rem 0
+          padding: 2rem 0 1.25rem 0
 
       p
         padding: 1.5rem 0
 
       p
-        padding: .5rem 0
+        // padding: .5rem 0
+        // border: 2px solid var(--console-30-purple)
 
 @keyframes widthAdjust
   0%
@@ -577,24 +508,59 @@ main
 .removing-item
   animation: widthAdjust .5s ease-out
 
-  .learn-more
+.learn-more
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+
+  width: 100vw
+
+  .read-more-title
     display: flex
-    flex-direction: column
-    justify-content: center
+    flex-direction: row
+    justify-content: space-around
     align-items: center
 
-    h3
-      padding: 2rem 0
+    width: 100vw
+    padding: 2rem 0
 
-    ul
-      list-style: none
+    background-color: var(--console-05-gray)
+    border-top: 3px solid var(--console-10-gray)
+    border-bottom: 3px solid var(--console-10-gray)
+    color: var(--console-60-black)
 
-      li
-        padding: 1rem 0
+    h1
+      flex: 1
+      text-align: center
+      text-transform: capitalize
+      letter-spacing: -.1rem
+      font-size: 5rem
+      font-weight: 700
 
-        &:last-child
-          padding: 1rem 0 3rem 0
 
+  h3
+    padding: 2rem 0
 
-        a
-          text-decoration: none
+  ul
+    list-style: none
+    display: flex
+    flex-direction: column
+
+    li
+      padding: 1rem 0
+
+      &:last-child
+        padding: 1rem 0 3rem 0
+
+      // &:before
+      //   content: " "
+      //   width: 0
+      //   height: 0
+      //   border-style: solid
+      //   border-width: 12.5px 0 12.5px 15px
+      //   border-color: transparent transparent transparent #929294
+
+      a
+        color: var(--console-40-blue)
+        text-decoration: none

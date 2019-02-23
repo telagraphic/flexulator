@@ -1,17 +1,28 @@
 body {
   --console-60-black: #0c0c0d;
   --console-50-black: #1b1b1d;
+  --console-45-gray: #404041;
   --console-40-gray: #4a4a4f;
   --console-30-gray: #939395;
+  --console-27-gray: #929294;
+  --console-25-gray: #808080;
   --console-20-gray: #b1b1b3;
+  --console-15-gray: #cacad2;
+  --console-10-gray: #e0e0e2;
+  --console-05-gray: #ededf0;
+  --console-04-gray: #edecf0;
+  --console-30-purple: #a300ff;
   --console-60-blue: #163b61;
   --console-40-blue: #1780ea;
+  --console-35-blue: #5dc6fa;
+  --console-33-blue: #0089d2;
   --console-30-blue: #0c74dd;
   --console-20-blue: #0ba2ff;
   --console-15-blue: #75bfff;
   --console-10-blue: #cbe8ff;
   --console-60-pink: #541a4d;
   --console-30-pink: #dd00a9;
+  --console-20-pink: #fe75f9;
   --console-10-pink: #fbdef4;
 }
 
@@ -26,171 +37,19 @@ main .flexulator-title {
   justify-content: space-around;
   align-items: center;
   padding: 2rem 0;
-  color: #000;
+  background-color: var(--console-05-gray);
+  border-top: 3px solid var(--console-10-gray);
+  border-bottom: 3px solid var(--console-10-gray);
+  color: var(--console-60-black);
 }
 
 main .flexulator-title h1 {
   flex: 1;
   text-align: center;
-  text-transform: uppercase;
-  letter-spacing: .2rem;
+  text-transform: capitalize;
+  letter-spacing: -.1rem;
   font-size: 5rem;
-}
-
-main .flex-combo-table {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-main .flex-combo-table table {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  --flex-row: 1 1 20%;
-  --flex-value: 1 1 20%;
-  --flex-info: 1 1 20%;
-}
-
-main .flex-combo-table table thead tr {
-  display: flex;
-}
-
-main .flex-combo-table table thead tr th:nth-child(1) {
-  flex: var(--flex-row);
-  background-color: var(--b-10);
-}
-
-main .flex-combo-table table thead tr th:nth-child(2) {
-  flex: var(--flex-value);
-  background-color: var(--b-20);
-}
-
-main .flex-combo-table table thead tr th:nth-child(3) {
-  flex: var(--flex-value);
-  background-color: var(--b-30);
-}
-
-main .flex-combo-table table thead tr th:nth-child(4) {
-  flex: var(--flex-value);
-  background-color: var(--b-40);
-}
-
-main .flex-combo-table table thead tr th:nth-child(5) {
-  flex: var(--flex-info);
-  background-color: var(--b-50);
-}
-
-main .flex-combo-table table tbody tr {
-  display: flex;
-  align-items: center;
-}
-
-main .flex-combo-table table tbody tr td {
-  display: flex;
-  justify-content: center;
-}
-
-main .flex-combo-table table tbody tr td:nth-child(1) {
-  flex: var(--flex-row);
-  background-color: var(--b-10);
-}
-
-main .flex-combo-table table tbody tr td:nth-child(2) {
-  flex: var(--flex-value);
-  background-color: var(--b-20);
-}
-
-main .flex-combo-table table tbody tr td:nth-child(3) {
-  flex: var(--flex-value);
-  background-color: var(--b-30);
-}
-
-main .flex-combo-table table tbody tr td:nth-child(4) {
-  flex: var(--flex-value);
-  background-color: var(--b-40);
-}
-
-main .flex-combo-table table tbody tr td:nth-child(5) {
-  flex: var(--flex-info);
-  background-color: var(--b-50);
-}
-
-main .flex-examples {
-  display: flex;
-  flex-flow: column nowrap;
-  padding: 1rem;
-  background-color: var(--flex-container);
-  --flex-container: #5e65ae;
-  --flex-item: #8eb5e0;
-  --flex-header: black;
-}
-
-main .flex-examples .example {
-  padding: 2rem 0;
-}
-
-main .flex-examples .example .description {
-  padding: 1rem 0;
-  color: var(--flex-header);
-}
-
-main .flex-examples .example .code {
-  display: flex;
-  flex-flow: row nowrap;
-}
-
-main .flex-examples .example .code section {
-  padding: 1rem;
-  background-color: var(--flex-item);
-}
-
-main .flex-examples .example:nth-of-type(1) section {
-  flex: 0 0 0;
-}
-
-main .flex-examples .example:nth-of-type(2) .code section {
-  flex: 0 0 200px;
-}
-
-main .flex-examples .example:nth-of-type(3) .code section {
-  flex: 1 0 0;
-}
-
-main .flex-examples .example:nth-of-type(4) .code section {
-  flex: 1 0 200px;
-}
-
-main .flex-examples .example:nth-of-type(5) .code section {
-  flex: 0 1 0;
-}
-
-main .flex-examples .example:nth-of-type(6) .code section {
-  flex: 0 1 200px;
-}
-
-main .flex-examples .example:nth-of-type(7) .code section {
-  flex: 1 1 0;
-}
-
-main .flex-examples .example:nth-of-type(8) .code section {
-  flex: 1 1 200px;
-}
-
-main .flex-examples .example:nth-of-type(9) .code section {
-  flex: 2 1 0;
-}
-
-main .flex-examples .example:nth-of-type(10) .code section {
-  flex: 2 1 200px;
-}
-
-main .flex-examples .example:nth-of-type(11) .code section {
-  flex: 1 2 0;
-}
-
-main .flex-examples .example:nth-of-type(12) .code section {
-  flex: 1 2 200px;
+  font-weight: 700;
 }
 
 main .flexulator-container {
@@ -200,13 +59,8 @@ main .flexulator-container {
 main .flex-calculator {
   display: flex;
   flex-flow: column nowrap;
-  padding: 2rem 0;
-}
-
-main .flex-calculator header {
-  background-color: white;
-  color: black;
-  text-align: center;
+  height: 100%;
+  padding: 0;
 }
 
 main .flex-calculator .flex-values {
@@ -214,11 +68,15 @@ main .flex-calculator .flex-values {
   padding: 3.5rem;
   padding: 2.5rem 0 3.5rem 0;
   font-weight: 700;
+  width: 100vw;
+  border-top: 3px dashed var(--console-33-blue);
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat;
 }
 
 main .flex-calculator .flex-values .flex-values-formula {
   display: flex;
   flex-flow: row nowrap;
+  justify-content: center;
 }
 
 main .flex-calculator .flex-values .flex-values-formula .flex-operand {
@@ -226,6 +84,8 @@ main .flex-calculator .flex-values .flex-values-formula .flex-operand {
   flex-flow: column nowrap;
   align-items: center;
   padding: 0 .5rem;
+  color: var(--console-50-black);
+  font-weight: 700;
 }
 
 main .flex-calculator .flex-values .flex-values-formula .flex-operand span {
@@ -235,6 +95,7 @@ main .flex-calculator .flex-values .flex-values-formula .flex-operand span {
 
 main .flex-calculator .flex-values .flex-values-formula .flex-operand span:nth-child(2) {
   font-size: 1rem;
+  font-weight: 400;
 }
 
 main .flex-calculator .flex-form {
@@ -242,80 +103,89 @@ main .flex-calculator .flex-form {
   padding: 1rem;
 }
 
-main .flex-calculator form {
+main .flex-calculator .flex-form form {
   display: flex;
   flex-direction: column;
 }
 
-main .flex-calculator form label {
+main .flex-calculator .flex-form form label {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
+  color: var(--console-40-blue);
 }
 
-main .flex-calculator form label:nth-of-type(3) input {
+main .flex-calculator .flex-form form label:nth-of-type(3) input {
   width: 8rem;
 }
 
-main .flex-calculator form label h4 {
+main .flex-calculator .flex-form form label h4 {
   flex: 1 0 auto;
   font-weight: 700;
   font-size: 2.5rem;
-  text-transform: uppercase;
+  text-transform: lowercase;
+  font-weight: 400;
 }
 
-main .flex-calculator form label input {
+main .flex-calculator .flex-form form label input {
   padding: .5rem;
   margin: 0 1rem;
   width: 8rem;
   background-color: transparent;
-  border-bottom: 2px solid transparent;
+  border-bottom: 2px dashed transparent;
   outline: 0;
+  color: var(--console-30-pink);
   font-size: 2.5rem;
   text-align: center;
   transition: border-bottom .1s ease-in, background-color .15s ease-in;
 }
 
-main .flex-calculator form label input::selection, main .flex-calculator form label input::-moz-selection {
+main .flex-calculator .flex-form form label input::selection, main .flex-calculator .flex-form form label input::-moz-selection {
   background: transparent;
 }
 
-main .flex-calculator form label input:focus, main .flex-calculator form label input:hover {
+main .flex-calculator .flex-form form label input:focus, main .flex-calculator .flex-form form label input:hover {
   border-bottom: 1px solid #444444;
   background-color: var(--console-10-blue);
   border-bottom: 2px dashed var(--console-30-blue);
 }
 
-main .flex-calculator form label input[type="number"]::-webkit-outer-spin-button, main .flex-calculator form label input[type="number"]::-webkit-inner-spin-button {
+main .flex-calculator .flex-form form label input[type="number"]::-webkit-outer-spin-button, main .flex-calculator .flex-form form label input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-main .flex-calculator form label input[type="number"] {
+main .flex-calculator .flex-form form label input[type="number"] {
   -moz-appearance: textfield;
 }
 
-main .flex-calculator form button {
+main .flex-calculator .flex-form form button {
   margin: 1.5rem 0;
   padding: .5rem;
   color: var(--console-50-black);
   text-transform: uppercase;
-  background-color: var(--console-10-blue);
+  background-color: var(--console-04-gray);
   background-clip: padding-box;
-  border: 3px dotted var(--console-30-blue);
+  border-radius: 5px;
+  border: 3px solid var(--console-15-gray);
+  text-transform: lowercase;
   transition: background-color .15s ease-in, border .15s ease-in, color .15s ease-in;
 }
 
-main .flex-calculator form button:hover, main .flex-calculator form button:focus {
-  background-color: var(--console-30-blue);
-  border: 3px dotted var(--console-20-blue);
+main .flex-calculator .flex-form form button:hover, main .flex-calculator .flex-form form button:focus {
+  background-color: var(--console-40-blue);
   color: white;
+}
+
+main .flex-calculator .flex-form form button h5 {
+  font-weight: 400;
 }
 
 main .flex-calculator .flex-container {
   display: flex;
   flex-flow: row nowrap;
   animation: fadeItems .3s ease-in;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFUlEQVQImWNgQAKLGf6nkcphYGAAABQDCCEc2tDBAAAAAElFTkSuQmCC) repeat;
 }
 
 @keyframes fadeItems {
@@ -362,6 +232,7 @@ main .flex-calculator .flex-container .flex-item > * {
 
 main .flex-calculator .flex-container .flex-item h4 {
   padding: 1rem 0;
+  color: var(--console-40-blue);
   font-size: 3rem;
   font-weight: 700;
 }
@@ -373,8 +244,9 @@ main .flex-calculator .flex-container .flex-item .item-values {
 }
 
 main .flex-calculator .flex-container .flex-item .item-values section {
-  justify-content: center;
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   padding: .25rem 0;
 }
@@ -389,7 +261,7 @@ main .flex-calculator .flex-container .flex-item .item-values section:hover butt
 }
 
 main .flex-calculator .flex-container .flex-item .item-values section:hover input {
-  border-bottom: 2px solid black;
+  border-bottom: 2px dashed var(--console-25-gray);
   opacity: 1;
 }
 
@@ -421,10 +293,6 @@ main .flex-calculator .flex-container .flex-item .item-values section:nth-of-typ
   display: none;
 }
 
-main .flex-calculator .flex-container .flex-item .item-values section:nth-of-type(3) input {
-  width: 10rem;
-}
-
 main .flex-calculator .flex-container .flex-item .item-values input {
   width: 5rem;
   padding: .5rem;
@@ -432,14 +300,15 @@ main .flex-calculator .flex-container .flex-item .item-values input {
   border-bottom: 2px dashed transparent;
   background-color: transparent;
   outline: 0;
+  color: var(--console-30-pink);
   text-align: center;
   font-size: 2.5rem;
-  font-weight: 100;
+  font-weight: 400;
   transition: border-bottom .15s ease-in, opacity .15s ease-in;
 }
 
-main .flex-calculator .flex-container .flex-item .item-values input:hover, main .flex-calculator .flex-container .flex-item .item-values input:focus {
-  border-bottom: 2px dashed var(--console-40-blue);
+main .flex-calculator .flex-container .flex-item .item-values input:hover {
+  border-bottom: 2px dashed var(--console-25-gray);
 }
 
 main .flex-calculator .flex-container .flex-item .item-values input[type="number"]::-webkit-outer-spin-button, main .flex-calculator .flex-container .flex-item .item-values input[type="number"]::-webkit-inner-spin-button {
@@ -468,7 +337,7 @@ main .flex-calculator .flex-container .flex-item .item-values .increment-grow-va
   position: relative;
   left: 0;
   bottom: 3px;
-  color: #000;
+  color: var(--console-50-black);
 }
 
 main .flex-calculator .flex-container .flex-item .item-values .decrement-grow-value::after, main .flex-calculator .flex-container .flex-item .item-values .decrement-shrink-value::after {
@@ -476,7 +345,7 @@ main .flex-calculator .flex-container .flex-item .item-values .decrement-grow-va
   position: relative;
   left: 0;
   bottom: 6px;
-  color: #000;
+  color: var(--console-50-black);
 }
 
 main .flex-calculator .flex-container .flex-item .remove-item-button {
@@ -486,6 +355,7 @@ main .flex-calculator .flex-container .flex-item .remove-item-button {
   background-clip: padding-box;
   border: 2px dotted var(--console-30-pink);
   color: black;
+  font-weight: 400;
   transform: scale(1);
   transition: background-color .15s ease-in, color .15s ease-in, transform .15s ease-in;
 }
@@ -508,11 +378,37 @@ main .flex-calculator .flex-container .flex-item .item-flexulations .flex-shrink
   padding: .5rem 0;
 }
 
+main .flex-calculator .flex-pattern {
+  height: 10vh;
+  border-bottom: 3px dashed var(--console-33-blue);
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat;
+}
+
+.formula-container {
+  background-color: var(--console-50-black);
+}
+
+.formula-container .formula-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2rem 0;
+  background-color: var(--console-60-black);
+  border-top: 3px solid var(--console-45-gray);
+  border-bottom: 3px solid var(--console-45-gray);
+  color: white;
+}
+
+.formula-container .formula-title h1 {
+  font-size: 5rem;
+}
+
 .formula-container .flex-calculations {
   display: flex;
   flex-direction: row;
   min-height: 100vh;
-  padding: 2.5rem 0;
+  padding: 5.5rem 0;
 }
 
 @media (max-width: 1200px) {
@@ -522,20 +418,63 @@ main .flex-calculator .flex-container .flex-item .item-flexulations .flex-shrink
 }
 
 .formula-container .flex-calculations section {
-  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
   text-align: center;
 }
 
 .formula-container .flex-calculations section h2 {
   padding: 1.5rem 0;
+  width: 50%;
+  align-self: center;
   font-size: 2.5rem;
   text-transform: uppercase;
-  color: black;
+  font-weight: 700;
+  letter-spacing: .15rem;
+}
+
+.formula-container .flex-calculations .flex-grow-math {
+  color: var(--console-35-blue);
+}
+
+.formula-container .flex-calculations .flex-grow-math h2 {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat;
+  border: 1px solid var(--console-30-purple);
+}
+
+.formula-container .flex-calculations .flex-grow-math p {
+  border: 1px solid var(--console-30-purple);
+}
+
+.formula-container .flex-calculations .flex-grow-math p + p {
+  border-top: none;
+}
+
+.formula-container .flex-calculations .flex-shrink-math {
+  color: var(--console-20-pink);
+}
+
+.formula-container .flex-calculations .flex-shrink-math h2 {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAKxx35uZsAGqChBOwAAnx8LPVdV3HMAAAAASUVORK5CYII=) repeat;
+  border: 1px solid var(--console-35-blue);
+}
+
+.formula-container .flex-calculations .flex-shrink-math p {
+  border: 1px solid var(--console-35-blue);
+}
+
+.formula-container .flex-calculations .flex-shrink-math p + p {
+  border-top: none;
 }
 
 .formula-container .flex-calculations .flex-grow-math, .formula-container .flex-calculations .flex-shrink-math {
-  padding: 0 1.5rem;
+  flex: 1 1 50%;
+  padding: 0 4.5rem;
   font-size: inherit;
+}
+
+.formula-container .flex-calculations .flex-grow-math section, .formula-container .flex-calculations .flex-shrink-math section {
+  padding: 3rem 0;
 }
 
 .formula-container .flex-calculations .flex-grow-math .grow-formula-text, .formula-container .flex-calculations .flex-shrink-math .grow-formula-text {
@@ -543,15 +482,11 @@ main .flex-calculator .flex-container .flex-item .item-flexulations .flex-shrink
 }
 
 .formula-container .flex-calculations .flex-grow-math .grow-formula-text h4, .formula-container .flex-calculations .flex-shrink-math .grow-formula-text h4 {
-  padding: 0 0 .75rem 0;
+  padding: 2rem 0 1.25rem 0;
 }
 
 .formula-container .flex-calculations .flex-grow-math p, .formula-container .flex-calculations .flex-shrink-math p {
   padding: 1.5rem 0;
-}
-
-.formula-container .flex-calculations .flex-grow-math p, .formula-container .flex-calculations .flex-shrink-math p {
-  padding: .5rem 0;
 }
 
 @keyframes widthAdjust {
@@ -574,29 +509,55 @@ main .flex-calculator .flex-container .flex-item .item-flexulations .flex-shrink
   animation: widthAdjust .5s ease-out;
 }
 
-.removing-item .learn-more {
+.learn-more {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100vw;
 }
 
-.removing-item .learn-more h3 {
+.learn-more .read-more-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100vw;
+  padding: 2rem 0;
+  background-color: var(--console-05-gray);
+  border-top: 3px solid var(--console-10-gray);
+  border-bottom: 3px solid var(--console-10-gray);
+  color: var(--console-60-black);
+}
+
+.learn-more .read-more-title h1 {
+  flex: 1;
+  text-align: center;
+  text-transform: capitalize;
+  letter-spacing: -.1rem;
+  font-size: 5rem;
+  font-weight: 700;
+}
+
+.learn-more h3 {
   padding: 2rem 0;
 }
 
-.removing-item .learn-more ul {
+.learn-more ul {
   list-style: none;
+  display: flex;
+  flex-direction: column;
 }
 
-.removing-item .learn-more ul li {
+.learn-more ul li {
   padding: 1rem 0;
 }
 
-.removing-item .learn-more ul li:last-child {
+.learn-more ul li:last-child {
   padding: 1rem 0 3rem 0;
 }
 
-.removing-item .learn-more ul li a {
+.learn-more ul li a {
+  color: var(--console-40-blue);
   text-decoration: none;
 }
