@@ -65,12 +65,9 @@ main .flex-calculator {
 
 main .flex-calculator .flex-values {
   align-self: center;
-  padding: 3.5rem;
-  padding: 2.5rem 0 3.5rem 0;
+  padding: 6rem 0 1rem 0;
   font-weight: 700;
   width: 100vw;
-  border-top: 3px dashed var(--console-33-blue);
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat;
 }
 
 main .flex-calculator .flex-values .flex-values-formula {
@@ -368,6 +365,11 @@ main .flex-calculator .flex-container .flex-item .remove-item-button:hover, main
 main .flex-calculator .flex-container .flex-item .item-flexulations {
   font-size: 1rem;
   font-weight: 400;
+  letter-spacing: -.09rem;
+}
+
+main .flex-calculator .flex-container .flex-item .item-flexulations h5 {
+  letter-spacing: 0;
 }
 
 main .flex-calculator .flex-container .flex-item .item-flexulations .flex-grow-flexulations {
@@ -540,16 +542,23 @@ main .flex-calculator .flex-pattern {
 }
 
 .learn-more h3 {
-  padding: 2rem 0;
+  padding: 2rem 0 .5rem 0;
 }
 
 .learn-more ul {
-  list-style: none;
   display: flex;
   flex-direction: column;
+  list-style: none;
+}
+
+.learn-more ul:first-of-type {
+  padding: 4rem 0;
 }
 
 .learn-more ul li {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
   padding: 1rem 0;
 }
 
@@ -557,7 +566,21 @@ main .flex-calculator .flex-pattern {
   padding: 1rem 0 3rem 0;
 }
 
+.learn-more ul li .triangle {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 12.5px 0 12.5px 10px;
+  border-color: transparent transparent transparent var(--console-30-gray);
+}
+
 .learn-more ul li a {
+  margin: 0 0 0 1.5rem;
   color: var(--console-40-blue);
   text-decoration: none;
+  border-bottom: 2px dashed transparent;
+}
+
+.learn-more ul li a:hover, .learn-more ul li a:focus {
+  border-bottom: 2px dashed var(--console-10-gray);
 }

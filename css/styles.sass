@@ -71,14 +71,13 @@ main
 
     .flex-values
       align-self: center
-      padding: 3.5rem
-      padding: 2.5rem 0 3.5rem 0
+      padding: 6rem 0 1rem 0
 
       font-weight: 700
       width: 100vw
-
-      border-top: 3px dashed var(--console-33-blue)
-      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat
+      //
+      // border-top: 3px dashed var(--console-33-blue)
+      // background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat
 
 
       .flex-values-formula
@@ -377,6 +376,10 @@ main
         .item-flexulations
           font-size: 1rem
           font-weight: 400
+          letter-spacing: -.09rem
+
+          h5
+            letter-spacing: 0
 
           .flex-grow-flexulations
             padding: 1rem 0 .5rem 0
@@ -540,27 +543,41 @@ main
 
 
   h3
-    padding: 2rem 0
+    padding: 2rem 0 .5rem 0
 
   ul
-    list-style: none
     display: flex
     flex-direction: column
+    list-style: none
+
+    &:first-of-type
+      padding: 4rem 0
 
     li
+      display: flex
+      align-items: center
+      flex-direction: row
       padding: 1rem 0
+
 
       &:last-child
         padding: 1rem 0 3rem 0
 
-      // &:before
-      //   content: " "
-      //   width: 0
-      //   height: 0
-      //   border-style: solid
-      //   border-width: 12.5px 0 12.5px 15px
-      //   border-color: transparent transparent transparent #929294
+      .triangle
+        width: 0
+        height: 0
+        border-style: solid
+        border-width: 12.5px 0 12.5px 10px
+        border-color: transparent transparent transparent var(--console-30-gray)
 
       a
+        margin: 0 0 0 1.5rem
+
         color: var(--console-40-blue)
         text-decoration: none
+        border-bottom: 2px dashed transparent
+
+
+        &:hover,
+        &:focus
+          border-bottom: 2px dashed var(--console-10-gray)
