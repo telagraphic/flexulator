@@ -61,6 +61,7 @@ main .flex-calculator {
   flex-flow: column nowrap;
   height: 100%;
   padding: 0;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAFUlEQVQImWNgQAKLGP77MlAogAsAAPYwB7ld9b+yAAAAAElFTkSuQmCC) repeat;
 }
 
 main .flex-calculator .flex-values {
@@ -110,6 +111,17 @@ main .flex-calculator .flex-form form label {
   flex-flow: row nowrap;
   align-items: center;
   color: var(--console-40-blue);
+  background-color: white;
+  border: 1px solid #a300ff;
+  padding: .5rem 2rem;
+}
+
+main .flex-calculator .flex-form form label:nth-of-type(2) {
+  border-top: 1px solid transparent;
+}
+
+main .flex-calculator .flex-form form label:nth-of-type(3) {
+  border-top: 1px solid transparent;
 }
 
 main .flex-calculator .flex-form form label:nth-of-type(3) input {
@@ -181,6 +193,7 @@ main .flex-calculator .flex-form form button h5 {
 main .flex-calculator .flex-container {
   display: flex;
   flex-flow: row nowrap;
+  height: 100%;
   animation: fadeItems .3s ease-in;
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFUlEQVQImWNgQAKLGf6nkcphYGAAABQDCCEc2tDBAAAAAElFTkSuQmCC) repeat;
 }
@@ -378,12 +391,6 @@ main .flex-calculator .flex-container .flex-item .item-flexulations .flex-grow-f
 
 main .flex-calculator .flex-container .flex-item .item-flexulations .flex-shrink-flexulations {
   padding: .5rem 0;
-}
-
-main .flex-calculator .flex-pattern {
-  height: 10vh;
-  border-bottom: 3px dashed var(--console-33-blue);
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat;
 }
 
 .formula-container {

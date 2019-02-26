@@ -74,7 +74,7 @@ function totalRemainingSpace() {
 function updateItemWidth() {
   // read & write
   getFlexItems().forEach(function(item) {
-    item.firstElementChild.textContent = item.offsetWidth;
+    item.firstElementChild.textContent = parseInt(item.offsetWidth - 10);
   });
 }
 
@@ -465,7 +465,7 @@ function updateGrowItemSpace() {
 
     // writes
     growFraction = parseInt(itemGrow) / parseInt(growTotal);
-    item.children[2].firstElementChild.firstElementChild.lastElementChild.textContent = parseInt(growFraction * parseInt(remainingSpace), 10);
+    item.children[2].firstElementChild.firstElementChild.lastElementChild.textContent = parseInt(growFraction * parseInt(remainingSpace), 10) - parseInt(10);
   });
 
 }
@@ -489,7 +489,7 @@ function setFlexItemShrink() {
     element.children[2].lastElementChild.firstElementChild.children[1].textContent = itemShrinkValue;
     element.children[2].lastElementChild.firstElementChild.children[3].textContent = parseInt(itemBasis);
     element.children[2].lastElementChild.firstElementChild.children[8].textContent = shrinkFactor.toPrecision(2);
-    element.children[2].lastElementChild.firstElementChild.children[12].textContent = parseInt(shrinkFactor * remainingSpace, 10);
+    element.children[2].lastElementChild.firstElementChild.children[12].textContent = parseInt(shrinkFactor * remainingSpace, 10) - parseInt(10);
   });
 
 }
