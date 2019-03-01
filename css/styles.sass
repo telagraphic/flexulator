@@ -2,6 +2,8 @@ body
   --console-60-black: #0c0c0d
   --console-50-black: #1b1b1d
 
+
+
   --console-45-gray: #404041
   --console-40-gray: #4a4a4f
   --console-30-gray: #939395
@@ -10,6 +12,7 @@ body
   --console-20-gray: #b1b1b3
   --console-15-gray: #cacad2
   --console-10-gray: #e0e0e2
+  --console-06-gray: #f9f8fb
   --console-05-gray: #ededf0
   --console-04-gray: #edecf0
 
@@ -43,7 +46,7 @@ main
 
     padding: 2rem 0
 
-    background-color: var(--console-05-gray)
+    background-color: var(--console-06-gray)
     border-top: 3px solid var(--console-10-gray)
     border-bottom: 3px solid var(--console-10-gray)
     color: var(--console-60-black)
@@ -219,7 +222,7 @@ main
         background-color: var(--console-10-blue)
         background-clip: padding-box
 
-        border: 5px dotted var(--console-20-blue)
+        // border: 5px dotted var(--console-20-blue)
 
         color: var(--console-dark-black)
 
@@ -228,6 +231,21 @@ main
 
         opacity: 1
         transition: width .5s ease-in, flex .5s ease-in, opacity .1s ease-out
+
+        position: relative
+        z-index: 100
+
+        // &::before
+        //   position: absolute
+        //   content: ''
+        //   // border: 1px solid var(--console-30-purple)
+        //   border: 5px dotted var(--console-20-blue)
+        //   top: 0
+        //   left: 0
+        //   bottom: 0
+        //   right: 0
+        //   z-index: 1
+
 
         & > *
           opacity: 1
@@ -542,7 +560,7 @@ main
     width: 100vw
     padding: 2rem 0
 
-    background-color: var(--console-05-gray)
+    background-color: var(--console-06-gray)
     border-top: 3px solid var(--console-10-gray)
     border-bottom: 3px solid var(--console-10-gray)
     color: var(--console-60-black)

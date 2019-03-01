@@ -60,6 +60,7 @@ window.addEventListener('resize', function(event) {
 
 function updateContainerWidth() {
   flexContainerWidth.textContent = flexContainer.clientWidth;
+  console.log(flexContainerWidth.textContent);
 };
 
 
@@ -74,7 +75,7 @@ function totalRemainingSpace() {
 function updateItemWidth() {
   // read & write
   getFlexItems().forEach(function(item) {
-    item.firstElementChild.textContent = parseInt(item.offsetWidth - 10);
+    item.firstElementChild.textContent = parseInt(item.offsetWidth);
   });
 }
 
@@ -309,12 +310,21 @@ function addFlexItem() {
   // add to flex-container
   flexContainer.appendChild(flexItem);
 
-  updateItemWidth();
-  updateTotalFlexBasis();
-  updateTotalFlexGrow();
-  setFlexItemGrow();
-  updateGrowItemSpace();
-  setFlexItemShrink();
+  // updateItemWidth();
+  // updateTotalFlexBasis();
+  // updateTotalFlexGrow();
+  // setFlexItemGrow();
+  // updateGrowItemSpace();
+  // setFlexItemShrink();
+
+  setTimeout(function() {
+    updateItemWidth();
+    updateTotalFlexBasis();
+    updateTotalFlexGrow();
+    setFlexItemGrow();
+    updateGrowItemSpace();
+    setFlexItemShrink();
+  }, 500)
 
 }
 
@@ -345,7 +355,11 @@ function updateFlexItem(item) {
       event.target.previousElementSibling.value = shrinkValue;
       parentItem.style.flexShrink = shrinkValue;
     }
-    runChanges();
+
+    setTimeout(function() {
+       runChanges();
+    }, 500)
+
   });
 
   item.addEventListener('input', function (event) {
@@ -358,14 +372,18 @@ function updateFlexItem(item) {
     } else if (event.target.matches('.item-basis')) {
       parent.style.flexBasis = event.target.value + 'px';
     }
-    runChanges();
+    setTimeout(function() {
+       runChanges();
+    }, 500)
   });
 
 }
 
 function tabKeyUpdate(key) {
   if (key.keyCode == 9) {
-    runChanges();
+    setTimeout(function() {
+       runChanges();
+    }, 500)
   }
 }
 
@@ -382,7 +400,9 @@ function removeFlexItem(item) {
       }, 500);
       sibling.click();
     }
-    runChanges();
+    setTimeout(function() {
+       runChanges();
+    }, 500)
   });
 };
 
@@ -393,7 +413,6 @@ function runChanges() {
   updateGrowItemSpace();
   updateTotalFlexBasis();
   setFlexItemShrink();
-
 }
 
 function updateTotalFlexBasis() {
@@ -465,7 +484,7 @@ function updateGrowItemSpace() {
 
     // writes
     growFraction = parseInt(itemGrow) / parseInt(growTotal);
-    item.children[2].firstElementChild.firstElementChild.lastElementChild.textContent = parseInt(growFraction * parseInt(remainingSpace), 10) - parseInt(10);
+    item.children[2].firstElementChild.firstElementChild.lastElementChild.textContent = parseInt(growFraction * parseInt(remainingSpace), 10); // - parseInt(10)
   });
 
 }
@@ -489,7 +508,7 @@ function setFlexItemShrink() {
     element.children[2].lastElementChild.firstElementChild.children[1].textContent = itemShrinkValue;
     element.children[2].lastElementChild.firstElementChild.children[3].textContent = parseInt(itemBasis);
     element.children[2].lastElementChild.firstElementChild.children[8].textContent = shrinkFactor.toPrecision(2);
-    element.children[2].lastElementChild.firstElementChild.children[12].textContent = parseInt(shrinkFactor * remainingSpace, 10) - parseInt(10);
+    element.children[2].lastElementChild.firstElementChild.children[12].textContent = parseInt(shrinkFactor * remainingSpace, 10); // - parseInt(10)
   });
 
 }
