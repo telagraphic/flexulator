@@ -129,6 +129,11 @@ main .flex-calculator .flex-form form label:nth-of-type(3) input {
   width: 8rem;
 }
 
+main .flex-calculator .flex-form form label:last-of-type {
+  border-top: 0px solid transparent;
+  padding: 0;
+}
+
 main .flex-calculator .flex-form form label h4 {
   flex: 1 0 auto;
   font-weight: 700;
@@ -170,14 +175,11 @@ main .flex-calculator .flex-form form label input[type="number"] {
 }
 
 main .flex-calculator .flex-form form button {
-  margin: 1.5rem 0;
-  padding: .5rem;
+  padding: 1.5rem 2rem;
+  width: 100%;
+  height: 100%;
   color: var(--console-50-black);
   text-transform: uppercase;
-  background-color: var(--console-04-gray);
-  background-clip: padding-box;
-  border-radius: 5px;
-  border: 3px solid var(--console-15-gray);
   text-transform: lowercase;
   transition: background-color .15s ease-in, border .15s ease-in, color .15s ease-in;
 }
@@ -224,6 +226,17 @@ main .flex-calculator .flex-container .flex-item {
   z-index: 100;
 }
 
+main .flex-calculator .flex-container .flex-item::before {
+  position: absolute;
+  content: '';
+  border: 5px dotted var(--console-20-blue);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -10;
+}
+
 main .flex-calculator .flex-container .flex-item > * {
   opacity: 1;
   transition: opacity .1s ease-out;
@@ -253,6 +266,7 @@ main .flex-calculator .flex-container .flex-item .item-values {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  z-index: -100;
 }
 
 main .flex-calculator .flex-container .flex-item .item-values section {

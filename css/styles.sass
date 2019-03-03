@@ -135,6 +135,10 @@ main
             input
               width: 8rem
 
+          &:last-of-type
+            border-top: 0px solid transparent
+            padding: 0
+
           h4
             flex: 1 0 auto
             font-weight: 700
@@ -175,16 +179,22 @@ main
             -moz-appearance: textfield
 
         button
-          margin: 1.5rem 0
-          padding: .5rem
+          // margin: 1.5rem 0
+          padding: 1.5rem 2rem
+          width: 100%
+          height: 100%
 
           color: var(--console-50-black)
           text-transform: uppercase
 
-          background-color: var(--console-04-gray)
-          background-clip: padding-box
-          border-radius: 5px
-          border: 3px solid var(--console-15-gray)
+          // background-color: var(--console-04-gray)
+          // background-clip: padding-box
+          // border-radius: 5px
+          // border: 3px solid var(--console-15-gray)
+
+          // background-color: white
+          // border: 1px solid #a300ff
+          // padding: .5rem 2rem
 
           text-transform: lowercase
 
@@ -235,16 +245,16 @@ main
         position: relative
         z-index: 100
 
-        // &::before
-        //   position: absolute
-        //   content: ''
-        //   // border: 1px solid var(--console-30-purple)
-        //   border: 5px dotted var(--console-20-blue)
-        //   top: 0
-        //   left: 0
-        //   bottom: 0
-        //   right: 0
-        //   z-index: 1
+        &::before
+          position: absolute
+          content: ''
+          // border: 1px solid var(--console-30-purple)
+          border: 5px dotted var(--console-20-blue)
+          top: 0
+          left: 0
+          bottom: 0
+          right: 0
+          z-index: -10
 
 
         & > *
@@ -276,6 +286,8 @@ main
           display: flex
           flex-flow: column nowrap
           align-items: center
+
+          z-index: -100
 
           section
             display: flex

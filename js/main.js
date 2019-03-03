@@ -400,9 +400,6 @@ function removeFlexItem(item) {
       }, 500);
       sibling.click();
     }
-    setTimeout(function() {
-       runChanges();
-    }, 500)
   });
 };
 
@@ -430,6 +427,10 @@ function updateTotalFlexBasis() {
   });
 
   totalRemainingSpace();
+
+  setTimeout(function() {
+     runChanges();
+  }, 500)
 }
 updateTotalFlexBasis();
 
@@ -448,6 +449,10 @@ function updateTotalFlexGrow() {
     element.textContent = totalFlexGrow;
   });
 
+  // setTimeout(function() {
+  //    runChanges();
+  // }, 500)
+
 }
 updateTotalFlexGrow();
 
@@ -462,6 +467,10 @@ function setFlexItemGrow() {
     // writes
     element.children[2].firstElementChild.firstElementChild.firstElementChild.textContent = itemGrowValue;
   });
+
+  // setTimeout(function() {
+  //    runChanges();
+  // }, 500)
 }
 setFlexItemGrow();
 
@@ -487,6 +496,10 @@ function updateGrowItemSpace() {
     item.children[2].firstElementChild.firstElementChild.lastElementChild.textContent = parseInt(growFraction * parseInt(remainingSpace), 10); // - parseInt(10)
   });
 
+  // setTimeout(function() {
+  //    runChanges();
+  // }, 500)
+
 }
 
 updateGrowItemSpace();
@@ -510,6 +523,10 @@ function setFlexItemShrink() {
     element.children[2].lastElementChild.firstElementChild.children[8].textContent = shrinkFactor.toPrecision(2);
     element.children[2].lastElementChild.firstElementChild.children[12].textContent = parseInt(shrinkFactor * remainingSpace, 10); // - parseInt(10)
   });
+
+  // setTimeout(function() {
+  //    runChanges();
+  // }, 500)
 
 }
 
