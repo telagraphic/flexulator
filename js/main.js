@@ -306,12 +306,6 @@ function addFlexItem() {
   // add to flex-container
   flexContainer.appendChild(flexItem);
 
-  // updateItemWidth();
-  // updateTotalFlexBasis();
-  // updateTotalFlexGrow();
-  // setFlexItemGrow();
-  // updateGrowItemSpace();
-  // setFlexItemShrink();
 
   setTimeout(function() {
     updateItemWidth();
@@ -424,9 +418,9 @@ function updateTotalFlexBasis() {
 
   totalRemainingSpace();
 
-  setTimeout(function() {
-     runChanges();
-  }, 500)
+  // setTimeout(function() {
+  //    runChanges();
+  // }, 500)
 }
 
 // updateTotalFlexBasis();
@@ -487,7 +481,6 @@ function updateGrowItemSpace() {
     // update dom path
 
     // reads
-    console.dir(item.children[2].firstElementChild.children[1]);
     itemGrow = item.children[2].firstElementChild.lastElementChild.children[0].textContent;
     growTotal = item.children[2].firstElementChild.lastElementChild.children[2].textContent;
     remainingSpace = item.children[2].firstElementChild.lastElementChild.children[4].textContent;
@@ -503,14 +496,14 @@ function updateGrowItemSpace() {
 
 }
 
-updateGrowItemSpace();
+// updateGrowItemSpace();
 
 function setFlexItemShrink() {
   var totalBasis = document.getElementById('total-flex-basis');
   getFlexItems().forEach(function (element) {
 
     // update dom path
-
+    console.dir(element);
     // reads
     var itemShrinkValue = 0;
     var itemBasis = 0;
