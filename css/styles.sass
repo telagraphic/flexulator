@@ -39,6 +39,8 @@ main
   flex-direction: column
 
   .flexulator-title
+    position: relative
+
     display: flex
     flex-direction: row
     justify-content: space-around
@@ -56,9 +58,23 @@ main
       text-align: center
       text-transform: capitalize
       letter-spacing: -.1rem
-      font-size: 5rem
+      // font-size: 5rem
       font-weight: 700
 
+    a
+      position: absolute
+      padding: 0 1rem
+      right: 0
+      top: 1rem
+
+
+      img
+
+    iframe
+      position: absolute
+      padding: 0 1rem
+      right: 0
+      top: 1rem
 
   .flexulator-container
     min-height: 100vh
@@ -71,6 +87,8 @@ main
     padding: 0
 
     background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAFUlEQVQImWNgQAKLGP77MlAogAsAAPYwB7ld9b+yAAAAAElFTkSuQmCC) repeat
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat
+
 
     .flex-values
       align-self: center
@@ -97,6 +115,9 @@ main
 
           color: var(--console-50-black)
           font-weight: 700
+
+          background-color: white
+          border: 1px solid #a300ff
 
 
           span
@@ -142,7 +163,7 @@ main
           h4
             flex: 1 0 auto
             font-weight: 700
-            font-size: 2.5rem
+            font-size: calc(22px + (46 - 22) * ((100vw - 300px) / (1600 - 300)))
             text-transform: lowercase
             font-weight: 400
 
@@ -352,14 +373,8 @@ main
             &:hover
               border-bottom: 2px dashed var(--console-25-gray)
 
-            // @keyframe borderToggle
-            //   0%
-            //     border-bottom: 2px dashed transparent
-            //   100%
-            //     border-bottom: 2px dashed var(--console-40-blue)
-
-            // &:last-of-type
-            //   width: 7rem
+          .item-basis
+            width: 7rem
 
 
           input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button

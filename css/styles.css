@@ -33,6 +33,7 @@ main {
 }
 
 main .flexulator-title {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -49,8 +50,21 @@ main .flexulator-title h1 {
   text-align: center;
   text-transform: capitalize;
   letter-spacing: -.1rem;
-  font-size: 5rem;
   font-weight: 700;
+}
+
+main .flexulator-title a {
+  position: absolute;
+  padding: 0 1rem;
+  right: 0;
+  top: 1rem;
+}
+
+main .flexulator-title iframe {
+  position: absolute;
+  padding: 0 1rem;
+  right: 0;
+  top: 1rem;
 }
 
 main .flexulator-container {
@@ -63,6 +77,7 @@ main .flex-calculator {
   height: 100%;
   padding: 0;
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAFUlEQVQImWNgQAKLGP77MlAogAsAAPYwB7ld9b+yAAAAAElFTkSuQmCC) repeat;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat;
 }
 
 main .flex-calculator .flex-values {
@@ -85,6 +100,8 @@ main .flex-calculator .flex-values .flex-values-formula .flex-operand {
   padding: 0 .5rem;
   color: var(--console-50-black);
   font-weight: 700;
+  background-color: white;
+  border: 1px solid #a300ff;
 }
 
 main .flex-calculator .flex-values .flex-values-formula .flex-operand span {
@@ -137,7 +154,7 @@ main .flex-calculator .flex-form form label:last-of-type {
 main .flex-calculator .flex-form form label h4 {
   flex: 1 0 auto;
   font-weight: 700;
-  font-size: 2.5rem;
+  font-size: calc(22px + (46 - 22) * ((100vw - 300px) / (1600 - 300)));
   text-transform: lowercase;
   font-weight: 400;
 }
@@ -335,6 +352,10 @@ main .flex-calculator .flex-container .flex-item .item-values input {
 
 main .flex-calculator .flex-container .flex-item .item-values input:hover {
   border-bottom: 2px dashed var(--console-25-gray);
+}
+
+main .flex-calculator .flex-container .flex-item .item-values .item-basis {
+  width: 7rem;
 }
 
 main .flex-calculator .flex-container .flex-item .item-values input[type="number"]::-webkit-outer-spin-button, main .flex-calculator .flex-container .flex-item .item-values input[type="number"]::-webkit-inner-spin-button {

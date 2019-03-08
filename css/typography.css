@@ -7,8 +7,43 @@ https://css-tricks.com/snippets/css/fluid-typography/
 https://trello.com/c/UoSWXBEt
 */
 
+
+
+
+/*
+
+80px = 5 * 16
+     = 4.22 * 16
+     = 2.61 * 16
+     = 1.61 * 16
+     = 1.27 * 16
+*/
+
+
 body {
   font-family: 'Inconsolata', sans-serif;
-  font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));
+  font-size: 100%;
+  /* font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width]))); */
   font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+}
+
+h1 {
+  font-size: calc(55px + (85 - 55) * ((100vw - 300px) / (1600 - 300)));
+}
+
+h2 {
+  font-size: calc(32px + (46 - 32) * ((100vw - 300px) / (1600 - 300)));
+}
+
+h3 {
+  font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+}
+
+h4 {
+  font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+}
+
+
+.flex-operand span:nth-of-type(2) {
+
 }

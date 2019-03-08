@@ -1,6 +1,3 @@
-# Checklist
-- [Front End Checklist](https://frontendchecklist.io/)
-
 # Rachel Andrews Series on Smashing Magazine
 - [What Happens When You Create A Flexbox Flex Container?](https://www.smashingmagazine.com/2018/08/flexbox-display-flex-container/)
 - [Everything You Need To Know About Alignment In Flexbox](https://www.smashingmagazine.com/2018/08/flexbox-alignment/)
@@ -12,11 +9,10 @@
 - [Display](https://www.w3.org/TR/css-display-3/#intro)
 - [Box Alignment](https://www.w3.org/TR/css-align-3/)
 
-# Flexbox calculator
+# Deep Reads
 
 - [Mike by Mike](https://www.madebymike.com.au/writing/understanding-flexbox/)
 - [Chris Wright](https://chriswrightdesign.com/experiments/flexbox-adventures/)
-
 
 # Tools
 - [http://the-echoplex.net/flexyboxes/](http://the-echoplex.net/flexyboxes/)
@@ -24,12 +20,12 @@
 - [https://loading.io/flexbox/](https://loading.io/flexbox/)
 - [http://flexboxplayground.catchmyfame.com/](http://flexboxplayground.catchmyfame.com/)
 
-# Guides
+# Flexbox Guides
 - [CSS-Tricks Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 - [Codrops Guide](https://tympanus.net/codrops/css_reference/flexbox/)
 
 
-# Flex container
+<!-- # Flex container
 
 - the **display** property has outer and inner display context
 - **display: inline flex** or **display: block flex** is how the browser interprets the property
@@ -48,4 +44,4 @@
 - the **align-/justify-content** works on the flex lines as a group
 - each flex line acts as its own separate flex group
 
-- **align-items** is set to stretch by default, which is why columns stretch to meet the tallest items height automatically
+- **align-items** is set to stretch by default, which is why columns stretch to meet the tallest items height automatically -->
