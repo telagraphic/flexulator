@@ -2,8 +2,6 @@ body
   --console-60-black: #0c0c0d
   --console-50-black: #1b1b1d
 
-
-
   --console-45-gray: #404041
   --console-40-gray: #4a4a4f
   --console-30-gray: #939395
@@ -53,6 +51,10 @@ main
     border-bottom: 3px solid var(--console-10-gray)
     color: var(--console-60-black)
 
+    @media (max-width: 600px)
+      flex-direction: column
+
+
     h1
       flex: 1
       text-align: center
@@ -71,6 +73,10 @@ main
       img
 
     iframe
+
+      @media (max-width: 600px)
+        position: relative
+
       position: absolute
       padding: 0 1rem
       right: 0
@@ -86,7 +92,6 @@ main
 
     padding: 0
 
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAFUlEQVQImWNgQAKLGP77MlAogAsAAPYwB7ld9b+yAAAAAElFTkSuQmCC) repeat
     background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat
 
 
@@ -96,15 +101,14 @@ main
 
       font-weight: 700
       width: 100vw
-      //
-      // border-top: 3px dashed var(--console-33-blue)
-      // background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat
-
 
       .flex-values-formula
         display: flex
         flex-flow: row nowrap
         justify-content: center
+
+        span
+          font-size: calc(22px + (55 - 22) * ((100vw - 300px) / (1600 - 300)))
 
         .flex-operand
           display: flex
@@ -122,12 +126,13 @@ main
 
           span
             flex: 1 1 auto
-
-            font-size: 5rem
+            font-size: calc(22px + (55 - 22) * ((100vw - 300px) / (1600 - 300)))
 
             &:nth-child(2)
-              font-size: 1rem
+              // font-size: 1rem
               font-weight: 400
+              font-size: calc(12px + (32 - 22) * ((100vw - 300px) / (1600 - 300)))
+              text-align: center
 
     .flex-form
       align-self: center
@@ -208,15 +213,6 @@ main
           color: var(--console-50-black)
           text-transform: uppercase
 
-          // background-color: var(--console-04-gray)
-          // background-clip: padding-box
-          // border-radius: 5px
-          // border: 3px solid var(--console-15-gray)
-
-          // background-color: white
-          // border: 1px solid #a300ff
-          // padding: .5rem 2rem
-
           text-transform: lowercase
 
           transition: background-color .15s ease-in, border .15s ease-in, color .15s ease-in
@@ -229,8 +225,14 @@ main
 
           h5
             font-weight: 400
+            font-size: calc(22px + (32 - 22) * ((100vw - 300px) / (1600 - 300)))
+
 
     .flex-container
+
+      @media (max-width: 600px)
+        flex-flow: column nowrap
+
       display: flex
       flex-flow: row nowrap
 
@@ -470,6 +472,7 @@ main
 
     h1
       font-size: 5rem
+      text-align: center
 
   .flex-calculations
     display: flex

@@ -45,6 +45,12 @@ main .flexulator-title {
   color: var(--console-60-black);
 }
 
+@media (max-width: 600px) {
+  main .flexulator-title {
+    flex-direction: column;
+  }
+}
+
 main .flexulator-title h1 {
   flex: 1;
   text-align: center;
@@ -67,6 +73,12 @@ main .flexulator-title iframe {
   top: 1rem;
 }
 
+@media (max-width: 600px) {
+  main .flexulator-title iframe {
+    position: relative;
+  }
+}
+
 main .flexulator-container {
   min-height: 100vh;
 }
@@ -76,7 +88,6 @@ main .flex-calculator {
   flex-flow: column nowrap;
   height: 100%;
   padding: 0;
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAFUlEQVQImWNgQAKLGP77MlAogAsAAPYwB7ld9b+yAAAAAElFTkSuQmCC) repeat;
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat;
 }
 
@@ -93,6 +104,10 @@ main .flex-calculator .flex-values .flex-values-formula {
   justify-content: center;
 }
 
+main .flex-calculator .flex-values .flex-values-formula span {
+  font-size: calc(22px + (55 - 22) * ((100vw - 300px) / (1600 - 300)));
+}
+
 main .flex-calculator .flex-values .flex-values-formula .flex-operand {
   display: flex;
   flex-flow: column nowrap;
@@ -106,12 +121,13 @@ main .flex-calculator .flex-values .flex-values-formula .flex-operand {
 
 main .flex-calculator .flex-values .flex-values-formula .flex-operand span {
   flex: 1 1 auto;
-  font-size: 5rem;
+  font-size: calc(22px + (55 - 22) * ((100vw - 300px) / (1600 - 300)));
 }
 
 main .flex-calculator .flex-values .flex-values-formula .flex-operand span:nth-child(2) {
-  font-size: 1rem;
   font-weight: 400;
+  font-size: calc(12px + (32 - 22) * ((100vw - 300px) / (1600 - 300)));
+  text-align: center;
 }
 
 main .flex-calculator .flex-form {
@@ -208,6 +224,7 @@ main .flex-calculator .flex-form form button:hover, main .flex-calculator .flex-
 
 main .flex-calculator .flex-form form button h5 {
   font-weight: 400;
+  font-size: calc(22px + (32 - 22) * ((100vw - 300px) / (1600 - 300)));
 }
 
 main .flex-calculator .flex-container {
@@ -216,6 +233,12 @@ main .flex-calculator .flex-container {
   height: 100%;
   animation: fadeItems .3s ease-in;
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFUlEQVQImWNgQAKLGf6nkcphYGAAABQDCCEc2tDBAAAAAElFTkSuQmCC) repeat;
+}
+
+@media (max-width: 600px) {
+  main .flex-calculator .flex-container {
+    flex-flow: column nowrap;
+  }
 }
 
 @keyframes fadeItems {
@@ -448,6 +471,7 @@ main .flex-calculator .flex-container .flex-item .item-flexulations .flex-shrink
 
 .formula-container .formula-title h1 {
   font-size: 5rem;
+  text-align: center;
 }
 
 .formula-container .flex-calculations {
