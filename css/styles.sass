@@ -60,7 +60,7 @@ main
       text-align: center
       text-transform: capitalize
       letter-spacing: -.1rem
-      // font-size: 5rem
+      font-size: calc(55px + (85 - 55) * ((100vw - 300px) / (1600 - 300)))
       font-weight: 700
 
     a
@@ -471,7 +471,7 @@ main
     color: white
 
     h1
-      font-size: 5rem
+      font-size: calc(55px + (85 - 55) * ((100vw - 300px) / (1600 - 300)))
       text-align: center
 
   .flex-calculations
@@ -512,6 +512,11 @@ main
         background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat
         border: 1px solid var(--console-30-purple)
 
+        @media (max-width: 600px)
+          border-left: none
+          border-right: none
+
+
       p
         border: 1px solid var(--console-30-purple)
 
@@ -529,7 +534,15 @@ main
         background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAKxx35uZsAGqChBOwAAnx8LPVdV3HMAAAAASUVORK5CYII=) repeat
         border: 1px solid var(--console-35-blue)
 
+        @media (max-width: 600px)
+          border-left: none
+          border-right: none
+
       p
+        @media (max-width: 600px)
+          border-left: none
+          border-right: none
+
         border: 1px solid var(--console-35-blue)
 
         & + p
@@ -605,7 +618,7 @@ main
       text-align: center
       text-transform: capitalize
       letter-spacing: -.1rem
-      font-size: 5rem
+      font-size: calc(55px + (85 - 55) * ((100vw - 300px) / (1600 - 300)))
       font-weight: 700
 
 

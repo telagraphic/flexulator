@@ -56,6 +56,7 @@ main .flexulator-title h1 {
   text-align: center;
   text-transform: capitalize;
   letter-spacing: -.1rem;
+  font-size: calc(55px + (85 - 55) * ((100vw - 300px) / (1600 - 300)));
   font-weight: 700;
 }
 
@@ -470,7 +471,7 @@ main .flex-calculator .flex-container .flex-item .item-flexulations .flex-shrink
 }
 
 .formula-container .formula-title h1 {
-  font-size: 5rem;
+  font-size: calc(55px + (85 - 55) * ((100vw - 300px) / (1600 - 300)));
   text-align: center;
 }
 
@@ -518,6 +519,13 @@ main .flex-calculator .flex-container .flex-item .item-flexulations .flex-shrink
   border: 1px solid var(--console-30-purple);
 }
 
+@media (max-width: 600px) {
+  .formula-container .flex-calculations .flex-grow-math h2 {
+    border-left: none;
+    border-right: none;
+  }
+}
+
 .formula-container .flex-calculations .flex-grow-math p {
   border: 1px solid var(--console-30-purple);
 }
@@ -535,8 +543,22 @@ main .flex-calculator .flex-container .flex-item .item-flexulations .flex-shrink
   border: 1px solid var(--console-35-blue);
 }
 
+@media (max-width: 600px) {
+  .formula-container .flex-calculations .flex-shrink-math h2 {
+    border-left: none;
+    border-right: none;
+  }
+}
+
 .formula-container .flex-calculations .flex-shrink-math p {
   border: 1px solid var(--console-35-blue);
+}
+
+@media (max-width: 600px) {
+  .formula-container .flex-calculations .flex-shrink-math p {
+    border-left: none;
+    border-right: none;
+  }
 }
 
 .formula-container .flex-calculations .flex-shrink-math p + p {
@@ -617,7 +639,7 @@ main .flex-calculator .flex-container .flex-item .item-flexulations .flex-shrink
   text-align: center;
   text-transform: capitalize;
   letter-spacing: -.1rem;
-  font-size: 5rem;
+  font-size: calc(55px + (85 - 55) * ((100vw - 300px) / (1600 - 300)));
   font-weight: 700;
 }
 
