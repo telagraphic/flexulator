@@ -503,6 +503,12 @@ main .flex-calculator .flex-container .flex-item .item-flexulations .flex-shrink
   letter-spacing: .15rem;
 }
 
+@media (max-width: 600px) {
+  .formula-container .flex-calculations section h2 {
+    width: 100%;
+  }
+}
+
 .formula-container .flex-calculations .flex-grow-math {
   color: var(--console-35-blue);
 }
@@ -541,6 +547,12 @@ main .flex-calculator .flex-container .flex-item .item-flexulations .flex-shrink
   flex: 1 1 50%;
   padding: 0 4.5rem;
   font-size: inherit;
+}
+
+@media (max-width: 600px) {
+  .formula-container .flex-calculations .flex-grow-math, .formula-container .flex-calculations .flex-shrink-math {
+    padding: 0;
+  }
 }
 
 .formula-container .flex-calculations .flex-grow-math section, .formula-container .flex-calculations .flex-shrink-math section {

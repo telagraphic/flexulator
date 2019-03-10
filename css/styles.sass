@@ -491,6 +491,9 @@ main
       text-align: center
 
       h2
+        @media (max-width: 600px)
+          width: 100%
+
         padding: 1.5rem 0
         width: 50%
         align-self: center
@@ -499,9 +502,6 @@ main
         text-transform: uppercase
         font-weight: 700
         letter-spacing: .15rem
-
-
-
 
 
     .flex-grow-math
@@ -536,6 +536,11 @@ main
           border-top: none
 
     .flex-grow-math, .flex-shrink-math
+
+      @media (max-width: 600px)
+        padding: 0
+
+
       flex: 1 1 50%
       padding: 0 4.5rem
 
