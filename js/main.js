@@ -486,7 +486,7 @@ function updateGrowItemSpace() {
     remainingSpace = item.children[2].firstElementChild.lastElementChild.children[4].textContent;
 
     // writes
-    growFraction = parseInt(itemGrow) / parseInt(growTotal);
+    growFraction = parseFloat(itemGrow) / parseFloat(growTotal);
     item.children[2].firstElementChild.lastElementChild.lastElementChild.textContent = parseInt(growFraction * parseInt(remainingSpace), 10); // - parseInt(10)
   });
 
@@ -512,8 +512,8 @@ function setFlexItemShrink() {
     itemBasis = element.style.flexBasis;
 
     // writes
-    var shrinkValue = parseInt(itemShrinkValue, 10) * parseInt(itemBasis, 10);
-    var shrinkFactor = shrinkValue / parseInt(totalBasis.textContent, 10);
+    var shrinkValue = parseFloat(itemShrinkValue, 10) * parseFloat(itemBasis, 10);
+    var shrinkFactor = shrinkValue / parseFloat(totalBasis.textContent, 10);
     element.children[2].lastElementChild.lastElementChild.children[1].textContent = itemShrinkValue;
     element.children[2].lastElementChild.lastElementChild.children[3].textContent = parseInt(itemBasis);
     element.children[2].lastElementChild.lastElementChild.children[8].textContent = shrinkFactor.toPrecision(2);
