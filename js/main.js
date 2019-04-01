@@ -1,4 +1,3 @@
-// get container and item values
 var flexContainer = document.getElementById('flex-container');
 var addFlexItemButton = document.getElementById('add-flex-item-button');
 var showTotalFlexBasis = document.getElementById('total-flex-basis');
@@ -8,29 +7,6 @@ function getFlexItems() {
   return Array.prototype.slice.call(document.getElementsByClassName('flex-item'));
 }
 
-
-// var buttons = Array.from(document.querySelectorAll('.tabs button'));
-// var tabs = Array.from(document.querySelectorAll('.tab-content'));
-//
-// buttons.forEach(function(button, index) {
-//   button.addEventListener('click', function() {
-//     removeActiveTab()
-//     tabs[index].classList.add('toggle-tab');
-//   });
-// });
-//
-// function removeActiveTab() {
-//   tabs.forEach(function(tab) {
-//     tab.classList.remove('toggle-tab');
-//   })
-// }
-
-
-
-
-
-// on window load, get values
-// updateRemainingSpace();
 updateContainerWidth();
 totalRemainingSpace();
 updateItemWidth();
@@ -49,7 +25,6 @@ addFlexItemButton.addEventListener('click', function(event) {
   addFlexItem();
 });
 
-// on resize, update values
 window.addEventListener('resize', function(event) {
   updateRemainingSpace();
   updateContainerWidth();
@@ -73,7 +48,6 @@ function totalRemainingSpace() {
 }
 
 function updateItemWidth() {
-  // read & write
   getFlexItems().forEach(function(item) {
     item.firstElementChild.textContent = parseInt(item.offsetWidth);
   });
@@ -94,7 +68,6 @@ function updateRemainingSpace() {
 
 
 function addFlexItem() {
-  // get item count
   var flexItemCount = Array.prototype.slice.call(flexContainer.childNodes);
   var flexitems = [];
   flexItemCount.forEach(function(element) {
@@ -106,12 +79,10 @@ function addFlexItem() {
   var length = flexitems.length;
   length++;
 
-  // get flex styles
   var grow = document.getElementById('flex-grow').value;
   var shrink = document.getElementById('flex-shrink').value;
   var basis = document.getElementById('flex-basis').value;
 
-  // create new element with flex values
   var flexItem = document.createElement('section');
   flexItem.setAttribute('id', 'flex-item-' + length);
   flexItem.setAttribute('class', 'flex-item');
@@ -149,7 +120,6 @@ function addFlexItem() {
   var decrementShrinkButton = document.createElement('button');
   decrementShrinkButton.setAttribute('class', 'decrement-shrink-value');
 
-
   shrinkSection.appendChild(incrementShrinkButton);
   shrinkSection.appendChild(shrinkInput);
   shrinkSection.appendChild(decrementShrinkButton);
@@ -179,8 +149,6 @@ function addFlexItem() {
   button.setAttribute('class', 'remove-item-button');
   button.textContent = 'Remove';
 
-
-  // Grow Section
   var division = document.createElement('span');
   division.textContent = ' / ';
   var growMultiply = document.createElement('span');
@@ -227,8 +195,6 @@ function addFlexItem() {
 
   flexulatorContainer.appendChild(growContainer);
 
-
-  // Shrink section
   var division = document.createElement('span');
   division.textContent = ' / ';
   var shrinkMultiply = document.createElement('span');
@@ -266,8 +232,6 @@ function addFlexItem() {
   var shrinkValue = document.createElement('span');
   shrinkValue.setAttribute('class', 'shrink-value');
 
-  // use flexRemainingSpace from grow section
-
   var shrinkFlexValue = document.createElement('span');
   shrinkFlexValue.setAttribute('class', 'shrink-flex-value');
 
@@ -291,21 +255,16 @@ function addFlexItem() {
   shrinkContainer.appendChild(shrinkParagraph);
   flexulatorContainer.appendChild(shrinkContainer);
 
-
   flexItem.appendChild(itemWidth);
   flexItem.appendChild(flexValues);
   flexItem.appendChild(flexulatorContainer);
   flexItem.appendChild(button);
 
-  // add events
   updateFlexItem(flexItem);
   removeFlexItem(flexItem);
 
-
   flexItem.style.animation = 'addItem .25s ease-in';
-  // add to flex-container
   flexContainer.appendChild(flexItem);
-
 
   setTimeout(function() {
     updateItemWidth();
@@ -353,7 +312,6 @@ function updateFlexItem(item) {
   });
 
   item.addEventListener('input', function (event) {
-    // event.stopPropagation();
     var parent = event.target.parentElement.parentElement.parentElement;
     if (event.target.matches('.item-grow')) {
       parent.style.flexGrow = event.target.value;
@@ -379,7 +337,6 @@ function tabKeyUpdate(key) {
 
 window.addEventListener('keyup', tabKeyUpdate);
 
-
 function removeFlexItem(item) {
   item.addEventListener('click', function(event) {
     var sibling = event.target.parentElement.previousElementSibling || event.target.parentElement.nextElementSibling;
@@ -403,7 +360,6 @@ function runChanges() {
 }
 
 function updateTotalFlexBasis() {
-  // all set
   var totalFlexBasis = 0;
   getFlexItems().forEach(function(item) {
     totalFlexBasis += parseInt(item.style.flexBasis);
@@ -417,60 +373,37 @@ function updateTotalFlexBasis() {
   });
 
   totalRemainingSpace();
-
-  // setTimeout(function() {
-  //    runChanges();
-  // }, 500)
 }
 
-// updateTotalFlexBasis();
 
 function updateTotalFlexGrow() {
-  // all set
   var totalFlexGrow = 0;
   var flexGrowElements = Array.prototype.slice.call(document.getElementsByClassName('grow-total'));
 
-  // reads
   getFlexItems().forEach(function(item) {
     totalFlexGrow += parseInt(item.style.flexGrow);
   });
 
-  // writes
   flexGrowElements.forEach(function(element) {
     element.textContent = totalFlexGrow;
   });
 
-  // setTimeout(function() {
-  //    runChanges();
-  // }, 500)
-
 }
+
 updateTotalFlexGrow();
 
-// update the grow value in the formula when updated
 function setFlexItemGrow() {
   getFlexItems().forEach(function(element) {
 
-    // reads
     var itemGrowValue = 0;
     itemGrowValue = element.style.flexGrow;
 
-    // update dom path
-
-    // writes
     element.children[2].firstElementChild.lastElementChild.firstElementChild.textContent = itemGrowValue;
   });
-
-  // setTimeout(function() {
-  //    runChanges();
-  // }, 500)
 }
 setFlexItemGrow();
 
-
-// update the formula with item grow space
 function updateGrowItemSpace() {
-
   var itemGrow;
   var growTotal;
   var growFraction;
@@ -478,40 +411,25 @@ function updateGrowItemSpace() {
   var totalSpace = document.getElementsByClassName('container-width')[0];
 
   getFlexItems().forEach(function (item) {
-    // update dom path
-
-    // reads
     itemGrow = item.children[2].firstElementChild.lastElementChild.children[0].textContent;
     growTotal = item.children[2].firstElementChild.lastElementChild.children[2].textContent;
     remainingSpace = item.children[2].firstElementChild.lastElementChild.children[4].textContent;
 
-    // writes
     growFraction = parseFloat(itemGrow) / parseFloat(growTotal);
     item.children[2].firstElementChild.lastElementChild.lastElementChild.textContent = parseInt(growFraction * parseInt(remainingSpace), 10); // - parseInt(10)
   });
 
-  // setTimeout(function() {
-  //    runChanges();
-  // }, 500)
-
 }
-
-// updateGrowItemSpace();
 
 function setFlexItemShrink() {
   var totalBasis = document.getElementById('total-flex-basis');
   getFlexItems().forEach(function (element) {
-
-    // update dom path
-    console.dir(element);
-    // reads
     var itemShrinkValue = 0;
     var itemBasis = 0;
     var remainingSpace = element.children[2].lastElementChild.lastElementChild.children[10].textContent;
     itemShrinkValue = element.style.flexShrink;
     itemBasis = element.style.flexBasis;
 
-    // writes
     var shrinkValue = parseFloat(itemShrinkValue, 10) * parseFloat(itemBasis, 10);
     var shrinkFactor = shrinkValue / parseFloat(totalBasis.textContent, 10);
     element.children[2].lastElementChild.lastElementChild.children[1].textContent = itemShrinkValue;
@@ -519,11 +437,6 @@ function setFlexItemShrink() {
     element.children[2].lastElementChild.lastElementChild.children[8].textContent = shrinkFactor.toPrecision(2);
     element.children[2].lastElementChild.lastElementChild.children[12].textContent = parseInt(shrinkFactor * remainingSpace, 10); // - parseInt(10)
   });
-
-  // setTimeout(function() {
-  //    runChanges();
-  // }, 500)
-
 }
 
 setFlexItemShrink();
