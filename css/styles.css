@@ -683,6 +683,10 @@ main .flex-calculator .flex-container .flex-item .item-flexulations .flex-shrink
   border-color: transparent transparent transparent var(--console-30-gray);
 }
 
+.learn-more ul li b {
+  padding: 2rem 0 0 0;
+}
+
 .learn-more ul li a {
   margin: 0 0 0 1.5rem;
   color: var(--console-40-blue);
