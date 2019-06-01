@@ -114,8 +114,9 @@ main .flex-calculator .flex-values .flex-values-formula .flex-operand {
   flex-flow: column nowrap;
   align-items: center;
   padding: 0 .5rem;
+  padding: 0 1rem;
   color: var(--console-50-black);
-  font-weight: 700;
+  font-weight: 500;
   background-color: white;
   border: 1px solid #a300ff;
 }
@@ -126,7 +127,7 @@ main .flex-calculator .flex-values .flex-values-formula .flex-operand span {
 }
 
 main .flex-calculator .flex-values .flex-values-formula .flex-operand span:nth-child(2) {
-  font-weight: 400;
+  font-weight: 200;
   font-size: calc(12px + (32 - 22) * ((100vw - 300px) / (1600 - 300)));
   text-align: center;
 }
@@ -300,7 +301,7 @@ main .flex-calculator .flex-container .flex-item h4 {
   padding: 1rem 0;
   color: var(--console-40-blue);
   font-size: 3rem;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 main .flex-calculator .flex-container .flex-item .item-values {
@@ -429,6 +430,7 @@ main .flex-calculator .flex-container .flex-item .remove-item-button {
   font-weight: 400;
   transform: scale(1);
   transition: background-color .15s ease-in, color .15s ease-in, transform .15s ease-in;
+  text-transform: uppercase;
 }
 
 main .flex-calculator .flex-container .flex-item .remove-item-button:hover, main .flex-calculator .flex-container .flex-item .remove-item-button:focus {
@@ -444,6 +446,11 @@ main .flex-calculator .flex-container .flex-item .item-flexulations {
 
 main .flex-calculator .flex-container .flex-item .item-flexulations h5 {
   letter-spacing: 0;
+  font-weight: 500;
+}
+
+main .flex-calculator .flex-container .flex-item .item-flexulations p {
+  margin: .5rem 0;
 }
 
 main .flex-calculator .flex-container .flex-item .item-flexulations .flex-grow-flexulations {
