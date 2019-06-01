@@ -116,9 +116,10 @@ main
           align-items: center
 
           padding: 0 .5rem
+          padding: 0 1rem
 
           color: var(--console-50-black)
-          font-weight: 700
+          font-weight: 500
 
           background-color: white
           border: 1px solid #a300ff
@@ -130,7 +131,7 @@ main
 
             &:nth-child(2)
               // font-size: 1rem
-              font-weight: 400
+              font-weight: 200
               font-size: calc(12px + (32 - 22) * ((100vw - 300px) / (1600 - 300)))
               text-align: center
 
@@ -303,7 +304,7 @@ main
           color: var(--console-40-blue)
 
           font-size: 3rem
-          font-weight: 700
+          font-weight: 400
 
         .item-values
           display: flex
@@ -428,6 +429,8 @@ main
             transform: scale(1)
             transition: background-color .15s ease-in, color .15s ease-in, transform .15s ease-in
 
+            text-transform: uppercase
+
 
             &:hover,
             &:focus
@@ -441,6 +444,10 @@ main
 
           h5
             letter-spacing: 0
+            font-weight: 500
+
+          p
+            margin: .5rem 0
 
           .flex-grow-flexulations
             padding: 1rem 0 .5rem 0
@@ -649,6 +656,9 @@ main
         border-style: solid
         border-width: 12.5px 0 12.5px 10px
         border-color: transparent transparent transparent var(--console-30-gray)
+
+      b
+        padding: 2rem 0 0 0
 
       a
         margin: 0 0 0 1.5rem
