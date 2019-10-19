@@ -4,7 +4,7 @@
 - [Designing the Flexbox Inspector](https://hacks.mozilla.org/2019/01/designing-the-flexbox-inspector/)
 
 
-# Rachel Andrews Series on Flexbox
+# Rachel Andrew Series on Flexbox
 - [What Happens When You Create A Flexbox Flex Container?](https://www.smashingmagazine.com/2018/08/flexbox-display-flex-container/)
 - [Everything You Need To Know About Alignment In Flexbox](https://www.smashingmagazine.com/2018/08/flexbox-alignment/)
 - [Flexbox: How Big Is That Flexible Box?](https://www.smashingmagazine.com/2018/09/flexbox-sizing-flexible-box/)
