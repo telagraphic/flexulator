@@ -60,14 +60,7 @@ main .flexulator-title h1 {
   font-weight: 700;
 }
 
-main .flexulator-title a {
-  position: absolute;
-  padding: 0 1rem;
-  right: 0;
-  top: 1rem;
-}
-
-main .flexulator-title iframe {
+main .flexulator-title .github-counter {
   position: absolute;
   padding: 0 1rem;
   right: 0;
@@ -75,7 +68,7 @@ main .flexulator-title iframe {
 }
 
 @media (max-width: 600px) {
-  main .flexulator-title iframe {
+  main .flexulator-title .github-counter {
     position: relative;
   }
 }
