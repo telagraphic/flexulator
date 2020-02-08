@@ -21,7 +21,6 @@ https://trello.com/c/UoSWXBEt
 
 
 body {
-  font-family: 'Inconsolata', sans-serif;
   font-family: forma-djr-micro, sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -30,8 +29,9 @@ body {
 }
 
 h1 {
+  font-family: 'Inconsolata', sans-serif;
   font-size: calc(55px + (85 - 55) * ((100vw - 300px) / (1600 - 300)));
-  font-family: forma-djr-micro, sans-serif;
+
   font-weight: 700;
   font-style: normal;
 }
@@ -55,7 +55,8 @@ h4 {
 
 
 p span {
-  font-family: forma-djr-micro, sans-serif;
+  /* font-family: forma-djr-micro, sans-serif; */
+  font-family: 'Inconsolata', sans-serif;
   font-weight: 300;
   font-style: normal;
   letter-spacing: .15rem
