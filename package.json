@@ -1,0 +1,27 @@
+{
+  "name": "flexulator",
+  "version": "1.0.0",
+  "description": "A visual flexbox space distribution calculator",
+  "main": "index.js",
+  "scripts": {
+    "dev:scss": "node-sass --output-style nested -o css scss/styles.scss",
+    "dev:watch": "onchange 'scss' -- npm run dev:scss",
+    "dev:serve": "browser-sync start --server --ss --files 'scss/*.scss, ./*.html, js/*.js'",
+    "server": "run-p dev:watch dev:serve"
+  },
+  "repository": {
+    "url": "https://github.com/telagraphic/flexulator"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://www.flexulator.com/",
+  "devDependencies": {
+    "autoprefixer": "^9.8.0",
+    "browser-sync": "^2.26.7",
+    "node-sass": "^4.14.1",
+    "npm-run-all": "^4.1.5",
+    "onchange": "^7.0.2",
+    "postcss-cli": "^7.1.1"
+  }
+}

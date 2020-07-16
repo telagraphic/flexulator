@@ -1,4 +1,6 @@
-*, *:after, *:before {
+*,
+*:after,
+*:before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -43,7 +45,8 @@ img {
   margin: 0;
 }
 
-figure, figure.highlight {
+figure,
+figure.highlight {
   display: block;
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
@@ -59,14 +62,20 @@ figure, figure.highlight {
   padding: 0;
 }
 
-pre, code {
+pre,
+code {
     font-family: monospace;
     white-space: pre;
     margin: 0;
     font-family: 'Roboto Condensed', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   -webkit-margin-before: 0em;
   -webkit-margin-after: 0em;
   -webkit-margin-start: 0px;
@@ -83,8 +92,11 @@ input {
   box-shadow: none;
 }
 
-button, input, optgroup, select, textarea {
-  /* font-family: sans-serif; */
+button,
+input,
+optgroup,
+select,
+textarea {
   font-size: 100%;
   line-height: 1.15;
   margin: 0;

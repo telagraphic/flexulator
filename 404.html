@@ -1,0 +1,560 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+  <title>Flexulator</title>
+  <meta name="description" content="A visual flexbox space distribution calculator">
+  <link rel="icon" type="image/x-icon" href="https://example.com/favicon.ico">
+  <link rel="apple-touch-icon" href="/custom-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.typekit.net/vfn7aoq.css">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="manifest" href="favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</head>
+
+<body>
+  <!--[if lte IE 9]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
+  <main>
+    <article id="flexulator" class="flexulator-container">
+      <section class="flex-calculator">
+        <header class="flexulator-title">
+          <h1>Flexulator</h1>
+          <section class="github-counter">
+            <a class="github-button" href="https://github.com/telagraphic/flexulator" data-size="large" data-show-count="true" aria-label="Star telagraphic/flexulator on GitHub">Star</a>
+          </section>
+        </header>
+        <section class="flex-form">
+          <form class="form" action="">
+            <label for="flex-grow">
+              <h4>grow:</h4>
+              <input name="flex-grow" type="number" id="flex-grow" min="0" value="1">
+            </label>
+
+            <label for="flex-shrink">
+              <h4>shrink:</h4>
+              <input name="flex-shrink" type="number" id="flex-shrink" min="0" value="1">
+            </label>
+
+            <label for="flex-basis">
+              <h4>basis:</h4>
+              <input name="flex-basis" type="number" id="flex-basis" min="0" value="100">
+            </label>
+
+            <label for="">
+              <button id="add-flex-item-button">
+                <h5>Add</h5>
+              </button>
+            </label>
+
+          </form>
+        </section>
+
+        <section class="flex-values">
+          <section class="flex-values-formula">
+            <section class="flex-operand">
+              <span id="container-width" class="container-width">0</span>
+              <span>Container</span>
+            </section>
+            <section class="flex-operand">
+              <span> - </span>
+            </section>
+            <section class="flex-operand">
+              <span id="total-flex-basis">0</span>
+              <span>Total Flex Basis</span>
+            </section>
+            <section class="flex-operand">
+              <span> = </span>
+            </section>
+            <section class="flex-operand">
+              <span class="flex-remaining-space">0</span>
+              <span>Remaining Space</span>
+            </section>
+          </section>
+        </section>
+
+        <section id="flex-container" class="flex-container">
+          <section id="flex-item-1" class="flex-item" style="flex: 1 1 100px;">
+            <h4 class="item-width"></h4>
+            <section class="item-values">
+              <section>
+                <button class="increment-grow-value"></button>
+                <input type="number" min="0" class="item-grow" value="1"></input>
+                <button class="decrement-grow-value"></button>
+              </section>
+              <section>
+                <button class="increment-shrink-value"></button>
+                <input type="number" min="0" class="item-shrink" value="1"></input>
+                <button class="decrement-shrink-value"></button>
+              </section>
+              <section>
+                <button class="increment-grow-value"></button>
+                <input type="number" min="0" class="item-basis" value="100"></input>
+                <button class="decrement-shrink-value"></button>
+              </section>
+            </section>
+
+            <section class="item-flexulations">
+              <section class="flex-grow-flexulations">
+                <h5>GROW</h5>
+                <p>
+                  <span class="grow-item-value"></span>
+                  <span>/</span>
+                  <span class="grow-total"></span>
+                  <span> * </span>
+                  <span class="flex-remaining-space"></span>
+                  <span> = </span>
+                  <span class="grow-item-space"></span>
+                </p>
+              </section>
+              <section class="flex-shrink-flexulations">
+                <h5>SHRINK</h5>
+                <p>
+                  <span>(</span>
+                  <span class="shrink-item-value"></span>
+                  <span> * </span>
+                  <span class="shrink-item-basis"></span>
+                  <span>) </span>
+                  <span> / </span>
+                  <span class="total-flex-basis"></span>
+                  <span> = </span>
+                  <span class="shrink-value"></span>
+                  <span> * </span>
+                  <span class="flex-remaining-space"></span>
+                  <span> = </span>
+                  <span class="shrink-flex-value"></span>
+                </p>
+              </section>
+            </section>
+            <button class="remove-item-button">Remove</button>
+          </section>
+          <section id="flex-item-2" class="flex-item" style="flex: 1 1 100px;">
+            <h4 class="item-width"></h4>
+            <section class="item-values">
+              <section>
+                <button class="increment-grow-value"></button>
+                <input type="number" class="item-grow" value="1"></input>
+                <button class="decrement-grow-value"></button>
+              </section>
+              <section>
+                <button class="increment-shrink-value"></button>
+                <input type="number" class="item-shrink" value="1"></input>
+                <button class="decrement-shrink-value"></button>
+              </section>
+              <section>
+                <button class="increment-grow-value"></button>
+                <input type="number" min="0" class="item-basis" value="100"></input>
+                <button class="decrement-shrink-value"></button>
+              </section>
+            </section>
+
+            <section class="item-flexulations">
+              <section class="flex-grow-flexulations">
+                <h5>GROW</h5>
+                <p>
+                  <span class="grow-item-value"></span>
+                  <span>/</span>
+                  <span class="grow-total"></span>
+                  <span> * </span>
+                  <span class="flex-remaining-space"></span>
+                  <span> = </span>
+                  <span class="grow-item-space"></span>
+                </p>
+              </section>
+              <section class="flex-shrink-flexulations">
+                <h5>SHRINK</h5>
+                <p>
+                  <span>(</span>
+                  <span class="shrink-item-value"></span>
+                  <span> * </span>
+                  <span class="shrink-item-basis"></span>
+                  <span>) </span>
+                  <span> / </span>
+                  <span class="total-flex-basis"></span>
+                  <span> = </span>
+                  <span class="shrink-value"></span>
+                  <span> * </span>
+                  <span class="flex-remaining-space"></span>
+                  <span> = </span>
+                  <span class="shrink-flex-value"></span>
+                </p>
+              </section>
+            </section>
+            <button class="remove-item-button">Remove</button>
+          </section>
+          <section id="flex-item-3" class="flex-item" style="flex: 1 1 100px;">
+            <h4 class="item-width"></h4>
+            <section class="item-values">
+              <section>
+                <button class="increment-grow-value"></button>
+                <input type="number" class="item-grow" value="1"></input>
+                <button class="decrement-grow-value"></button>
+              </section>
+              <section>
+                <button class="increment-shrink-value"></button>
+                <input type="number" class="item-shrink" value="1"></input>
+                <button class="decrement-shrink-value"></button>
+              </section>
+              <section>
+                <button class="increment-grow-value"></button>
+                <input type="number" min="0" class="item-basis" value="100"></input>
+                <button class="decrement-shrink-value"></button>
+              </section>
+            </section>
+
+            <section class="item-flexulations">
+              <section class="flex-grow-flexulations">
+                <h5>GROW</h5>
+                <p>
+                  <span class="grow-item-value"></span>
+                  <span>/</span>
+                  <span class="grow-total"></span>
+                  <span> * </span>
+                  <span class="flex-remaining-space"></span>
+                  <span> = </span>
+                  <span class="grow-item-space"></span>
+                </p>
+              </section>
+              <section class="flex-shrink-flexulations">
+                <h5>SHRINK</h5>
+                <p>
+                  <span>(</span>
+                  <span class="shrink-item-value"></span>
+                  <span> * </span>
+                  <span class="shrink-item-basis"></span>
+                  <span>) </span>
+                  <span> / </span>
+                  <span class="total-flex-basis"></span>
+                  <span> = </span>
+                  <span class="shrink-value"></span>
+                  <span> * </span>
+                  <span class="flex-remaining-space"></span>
+                  <span> = </span>
+                  <span class="shrink-flex-value"></span>
+                </p>
+              </section>
+            </section>
+            <button class="remove-item-button">Remove</button>
+          </section>
+        </section>
+        <section class="flex-pattern">
+
+        </section>
+      </section>
+    </article>
+    <!-- <article id="formula" class="formula-container tab-content"> -->
+    <article id="formula" class="formula-container">
+      <header class="formula-title">
+        <h1>Flexbox Formula</h1>
+      </header>
+      <section class="flex-calculations">
+        <section class="flex-grow-math">
+          <h2>Grow</h2>
+          <section>
+            <p>Each Flex Item has Flex: 1 1 100px</p>
+            <section class="grow-formula-text">
+              <h4>Step 1</h4>
+              <p>
+                Container - Total Flex Basis
+              </p>
+              <p>
+                = Remaining Space
+              </p>
+              <p>
+                2000px - 300px = 1700px
+              </p>
+            </section>
+            <section class="grow-formula-text">
+              <h4>Step 2</h4>
+              <p>
+                [Element Grow / Total Grow]
+              </p>
+              <p>
+                * Remaining Space
+              </p>
+              <p>
+                = Element Flex Space
+              </p>
+              <p>
+                [ 1 / 3 ] * 1700px = 561px
+              </p>
+            </section>
+            <section class="grow-formula-text">
+              <h4>Step 3</h4>
+              <p>
+                Element Flex Space + Element Flex Basis
+              </p>
+              <p>
+                = Final Size
+              </p>
+              <p>
+                561px + 100px = 661px Final Size
+              </p>
+            </section>
+          </section>
+        </section>
+        <section class="flex-shrink-math">
+          <h2>Shrink</h2>
+          <section>
+            <p>Each Flex Item has Flex: 1 1 1000px</p>
+            <section class="grow-formula-text">
+              <h4>Step 1</h4>
+              <p>
+                Container - Total Flex Basis
+              </p>
+              <p>
+                = Remaining Space
+              </p>
+              <p>
+                2000px - 3000px = -1000px
+              </p>
+            </section>
+            <section class="grow-formula-text">
+              <h4>Step 2</h4>
+              <p>
+                [Item Shrink * Item Basis]
+              </p>
+              <p>
+                / [Total Flex Basis]
+              </p>
+              <p>
+                = [Value] * Remaining Space = Shrink Amount
+              </p>
+              <p>
+                [ 1 * 1000 ] / (3000) = .333 * 1000 = 333.33px
+              </p>
+            </section>
+            <section class="grow-formula-text">
+              <h4>Step 3</h4>
+              <p>
+                Element Flex Basis - Shrink Amount
+              </p>
+              <p>
+                = Final Size
+              </p>
+              <p>
+                1000px - 333.33px = 667px
+              </p>
+            </section>
+          </section>
+        </section>
+      </section>
+    </article>
+    <article class="learn-more">
+      <header class="read-more-title">
+        <h1>Links</h1>
+      </header>
+
+      <ul>
+        <li>
+          <b>Inspired By</b>
+        </li>
+
+        <li>
+          <span class="triangle"></span>
+          <a href="https://www.madebymike.com.au/writing/understanding-flexbox/">Understanding Flexbox by Mike Riethmuller</a>
+        </li>
+        <li>
+          <span class="triangle"></span>
+          <a href="https://chriswrightdesign.com/experiments/flexbox-adventures/">
+            Flexbox Adventures by Chris Wright
+          </a>
+        </li>
+        <li>
+          <span class="triangle"></span>
+          <a href="https://hacks.mozilla.org/2019/01/designing-the-flexbox-inspector/">
+            Designing the Flexbox Inspector
+          </a>
+        </li>
+
+        <li>
+          <b>Rachel Andrew Explains Flexbox</b>
+        </li>
+        <li>
+          <span class="triangle"></span>
+          <a href="https://www.smashingmagazine.com/2018/08/flexbox-display-flex-container/">
+            Part 1
+          </a>,
+          <a href="https://www.smashingmagazine.com/2018/08/flexbox-alignment/">
+            2
+          </a>,
+          <a href="https://www.smashingmagazine.com/2018/09/flexbox-sizing-flexible-box/">
+            3
+          </a>,
+          <a href="https://www.smashingmagazine.com/2018/10/flexbox-use-cases/">
+            4
+          </a>
+        </li>
+
+        <!-- <li>
+          <span class="triangle"></span>
+          <a href="https://www.smashingmagazine.com/2018/08/flexbox-display-flex-container/">
+            What Happens When You Create A Flexbox Flex Container?
+          </a>
+        </li>
+        <li>
+          <span class="triangle"></span>
+          <a href="https://www.smashingmagazine.com/2018/08/flexbox-alignment/">
+            Everything You Need To Know About Alignment In Flexbox
+          </a>
+        </li>
+        <li>
+          <span class="triangle"></span>
+          <a href="https://www.smashingmagazine.com/2018/09/flexbox-sizing-flexible-box/">
+            Flexbox: How Big Is That Flexible Box?
+          </a>
+        </li>
+        <li>
+          <span class="triangle"></span>
+          <a href="https://www.smashingmagazine.com/2018/10/flexbox-use-cases/">
+            Use Cases For Flexbox
+          </a>
+        </li> -->
+
+        <li>
+          <b>Learn</b>
+        </li>
+
+        <li>
+          <span class="triangle"></span>
+          <a href="http://www.flexboxdefense.com/">Flexbox Defense</a>
+        </li>
+        <li>
+          <span class="triangle"></span>
+          <a href="https://flexboxfroggy.com/">
+            Flexbox Froggie
+          </a>
+        </li>
+        <li>
+          <span class="triangle"></span>
+          <a href="http://learnlayout.com/flexbox.html">Learn Flexbox Layout</a>
+        </li>
+        <li>
+          <span class="triangle"></span>
+          <a href="https://cvan.io/flexboxin5/">Flexbox in 5 Minutes</a>
+        </li>
+        <li>
+          <span class="triangle"></span>
+          <a href="https://www.flexbox.io">Wes Bos: What The Flexbox Course</a>
+        </li>
+
+        <li>
+          <b>Tools</b>
+        </li>
+
+        <li>
+          <span class="triangle"></span>
+          <a href="https://www.madebymike.com.au/demos/flexbox-tester/">Made By Mike Flexbox Tester</a>
+        </li>
+        <li>
+          <span class="triangle"></span>
+          <a href="http://the-echoplex.net/flexyboxes/">
+            Flexbox Playground and Code Generator
+          </a>
+        </li>
+        <li>
+          <span class="triangle"></span>
+          <a href="https://loading.io/flexbox/">
+            Flexbox Generator
+          </a>
+        </li>
+        <li>
+          <span class="triangle"></span>
+          <a href="https://demos.scotch.io/visual-guide-to-css3-flexbox-flexbox-playground/demos/">
+            Flexbox Playground
+          </a>
+        </li>
+
+        <li>
+          <b>Specs</b>
+        </li>
+
+        <li>
+          <span class="triangle"></span>
+          <a href="https://www.w3.org/TR/css-display-3/">
+            W3C Display Module
+          </a>
+        </li>
+        <li>
+          <span class="triangle"></span>
+          <a href="https://www.w3.org/TR/css-align-3/">
+            Box Alignment
+          </a>
+        </li>
+        <li>
+          <span class="triangle"></span>
+          <a href="https://drafts.csswg.org/css-flexbox/#layout-algorithm">
+            Flexbox Layout Algorithm
+          </a>
+        </li>
+
+        <li>
+          <b>Guides</b>
+        </li>
+
+        <li>
+          <span class="triangle"></span>
+          <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">
+            CSS-Tricks Flexbox Guide
+          </a>
+        </li>
+        <li>
+          <span class="triangle"></span>
+          <a href="https://tympanus.net/codrops/css_reference/flexbox/">
+            Codrops Guide
+          </a>
+        </li>
+        <li>
+          <span class="triangle"></span>
+          <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox">
+            Mozilla Guide
+          </a>
+        </li>
+        <li>
+          <span class="triangle"></span>
+          <a href="https://scrimba.com/g/gflexbox">
+            Scrimba Course
+          </a>
+        </li>
+        <li>
+          <span class="triangle"></span>
+          <a href="https://medium.com/@js_tut/the-complete-css-flex-box-tutorial-d17971950bdc">
+            The Complete CSS Flexbox Tutorial
+          </a>
+        </li>
+
+      </ul>
+    </article>
+
+  </main>
+  <script src="js/scripts.js" async defer></script>
+  <script src="https://cdn.usefathom.com/script.js" site="UOWJELBH" defer></script>
+</body>
+
+</html>
