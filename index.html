@@ -97,6 +97,62 @@
         </section>
 
         <section id="flex-container" class="flex-container">
+
+          <article class="flex-item-container item" style="flex: 1 1 100px;">
+            <h4 class="item__width"></h4>
+            <section class="item__form">
+              <section class="item__form-container">
+                <button class="item__grow-increment"></button>
+                <input type="number" class="item__grow-value" value="1">
+                <button class="item__grow-decrement"></button>
+              </section>
+              <section class="item__form-container">
+                <button class="item__shrink-increment"></button>
+                <input type="number" class="item__shrink-value" value="1">
+                <button class="item__shrink-decrement"></button>
+              </section>
+              <section class="item__form-container">
+                <button class="item__basis-increment"></button>
+                <input type="number" class="item__basis-value" value="100">
+                <button class="item__basis-decrement"></button>
+              </section>
+            </section>
+
+            <section class="item__flexulations-grow-container">
+              <h5 class="item__flexulations-header">GROW</h5>
+              <section class="item__flexulations-formula">
+                <span class="item__flexulations-grow-value"></span>
+                <span>/</span>
+                <span class="item__flexulations-grow-total"></span>
+                <span>*</span>
+                <span class="item__flexulations-space"></span>
+                <span class="item__flexulations-remaining-space"></span>
+                <span>=</span>
+                <span class="item__flexulations-grow-width"></span>
+              </section>
+            </section>
+
+            <section class="item__flexulations-shrink-container">
+              <h5 class="item__flexulations-header">SHRINK</h5>
+              <section class="item__flexulations-formula">
+                <span>(</span>
+                <span class="item__flexulations-shrink-value"></span>
+                <span> * </span>
+                <span class="item__flexulations-shrink-item-basis"></span>
+                <span>) </span>
+                <span> / </span>
+                <span class="item__flexulations-shrink-total-basis"></span>
+                <span> = </span>
+                <span class="item__flexulations-shrink-quotient"></span>
+                <span> * </span>
+                <span class="item__flexulations-remaining-space"></span>
+                <span> = </span>
+                <span class="item__flexulations-shrink-width"></span>
+              </section>
+            </section>
+          </article>
+
+
           <section id="flex-item-1" class="flex-item" style="flex: 1 1 100px;">
             <h4 class="item-width"></h4>
             <section class="item-values">
@@ -408,31 +464,6 @@
             4
           </a>
         </li>
-
-        <!-- <li>
-          <span class="triangle"></span>
-          <a href="https://www.smashingmagazine.com/2018/08/flexbox-display-flex-container/">
-            What Happens When You Create A Flexbox Flex Container?
-          </a>
-        </li>
-        <li>
-          <span class="triangle"></span>
-          <a href="https://www.smashingmagazine.com/2018/08/flexbox-alignment/">
-            Everything You Need To Know About Alignment In Flexbox
-          </a>
-        </li>
-        <li>
-          <span class="triangle"></span>
-          <a href="https://www.smashingmagazine.com/2018/09/flexbox-sizing-flexible-box/">
-            Flexbox: How Big Is That Flexible Box?
-          </a>
-        </li>
-        <li>
-          <span class="triangle"></span>
-          <a href="https://www.smashingmagazine.com/2018/10/flexbox-use-cases/">
-            Use Cases For Flexbox
-          </a>
-        </li> -->
 
         <li>
           <b>Learn</b>
