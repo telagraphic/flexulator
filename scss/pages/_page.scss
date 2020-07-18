@@ -530,101 +530,101 @@
 // .formula-container .flex-calculations .flex-shrink-math p {
 //   padding: 1.5rem 0;
 // }
-
-@keyframes widthAdjust {
-  0% {
-    max-width: 100%;
-    max-height: 100%;
-    flex: auto;
-    opacity: 1;
-  }
-  100% {
-    max-width: -100%;
-    max-height: -100%;
-    flex: 0;
-    visibility: hidden;
-    opacity: 0;
-  }
-}
-
-.removing-item {
-  animation: widthAdjust .5s ease-out;
-}
-
-.learn-more {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-}
-
-.learn-more .read-more-title {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  width: 100vw;
-  padding: 2rem 0;
-  background-color: var(--console-06-gray);
-  border-top: 3px solid var(--console-10-gray);
-  border-bottom: 3px solid var(--console-10-gray);
-  color: var(--console-60-black);
-}
-
-.learn-more .read-more-title h1 {
-  flex: 1;
-  text-align: center;
-  text-transform: capitalize;
-  letter-spacing: -.1rem;
-  font-size: calc(55px + (85 - 55) * ((100vw - 300px) / (1600 - 300)));
-  font-weight: 700;
-}
-
-.learn-more h3 {
-  padding: 2rem 0 .5rem 0;
-}
-
-.learn-more ul {
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-}
-
-.learn-more ul:first-of-type {
-  padding: 4rem 0;
-}
-
-.learn-more ul li {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  padding: 1rem 0;
-}
-
-.learn-more ul li:last-child {
-  padding: 1rem 0 3rem 0;
-}
-
-.learn-more ul li .triangle {
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 12.5px 0 12.5px 10px;
-  border-color: transparent transparent transparent var(--console-30-gray);
-}
-
-.learn-more ul li b {
-  padding: 2rem 0 0 0;
-}
-
-.learn-more ul li a {
-  margin: 0 0 0 1.5rem;
-  color: var(--console-40-blue);
-  text-decoration: none;
-  border-bottom: 2px dashed transparent;
-}
-
-.learn-more ul li a:hover, .learn-more ul li a:focus {
-  border-bottom: 2px dashed var(--console-10-gray);
-}
+// 
+// @keyframes widthAdjust {
+//   0% {
+//     max-width: 100%;
+//     max-height: 100%;
+//     flex: auto;
+//     opacity: 1;
+//   }
+//   100% {
+//     max-width: -100%;
+//     max-height: -100%;
+//     flex: 0;
+//     visibility: hidden;
+//     opacity: 0;
+//   }
+// }
+//
+// .removing-item {
+//   animation: widthAdjust .5s ease-out;
+// }
+//
+// .learn-more {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   width: 100vw;
+// }
+//
+// .learn-more .read-more-title {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-around;
+//   align-items: center;
+//   width: 100vw;
+//   padding: 2rem 0;
+//   background-color: var(--console-06-gray);
+//   border-top: 3px solid var(--console-10-gray);
+//   border-bottom: 3px solid var(--console-10-gray);
+//   color: var(--console-60-black);
+// }
+//
+// .learn-more .read-more-title h1 {
+//   flex: 1;
+//   text-align: center;
+//   text-transform: capitalize;
+//   letter-spacing: -.1rem;
+//   font-size: calc(55px + (85 - 55) * ((100vw - 300px) / (1600 - 300)));
+//   font-weight: 700;
+// }
+//
+// .learn-more h3 {
+//   padding: 2rem 0 .5rem 0;
+// }
+//
+// .learn-more ul {
+//   display: flex;
+//   flex-direction: column;
+//   list-style: none;
+// }
+//
+// .learn-more ul:first-of-type {
+//   padding: 4rem 0;
+// }
+//
+// .learn-more ul li {
+//   display: flex;
+//   align-items: center;
+//   flex-direction: row;
+//   padding: 1rem 0;
+// }
+//
+// .learn-more ul li:last-child {
+//   padding: 1rem 0 3rem 0;
+// }
+//
+// .learn-more ul li .triangle {
+//   width: 0;
+//   height: 0;
+//   border-style: solid;
+//   border-width: 12.5px 0 12.5px 10px;
+//   border-color: transparent transparent transparent var(--console-30-gray);
+// }
+//
+// .learn-more ul li b {
+//   padding: 2rem 0 0 0;
+// }
+//
+// .learn-more ul li a {
+//   margin: 0 0 0 1.5rem;
+//   color: var(--console-40-blue);
+//   text-decoration: none;
+//   border-bottom: 2px dashed transparent;
+// }
+//
+// .learn-more ul li a:hover, .learn-more ul li a:focus {
+//   border-bottom: 2px dashed var(--console-10-gray);
+// }

@@ -7,7 +7,17 @@
     "dev:scss": "node-sass --output-style nested -o css scss/styles.scss",
     "dev:watch": "onchange 'scss' -- npm run dev:scss",
     "dev:serve": "browser-sync start --server --ss --files 'scss/**/*.scss, ./*.html, js/*.js'",
-    "server": "run-p dev:watch dev:serve"
+    "build:clean": "rm -rf dist",
+    "server": "run-p dev:watch dev:serve",
+    "build:dist": "mkdir -p dist/{css,js,img,fonts}",
+    "build:html": "html-minifier index.html -o dist/index.html --collapse-whitespace",
+    "build:css-comment-remove": "postcss -u postcss-discard-comments -o css/styles.css css/styles.css",
+    "build:css-autoprefix": "postcss -u autoprefixer -o dist/css/styles.css css/*.css",
+    "build:css-compress": "node-sass --output-style compressed -o dist/css dist/css/*.css",
+    "build:js-lint": "eslint js",
+    "build:js-uglify": "mkdir -p dist/js && uglifyjs js/*.js -m -o dist/js/scripts.js && uglifyjs js/*.js -m -c -o dist/js/scripts.min.js",
+    "build:img": "imagemin img --out-dir dist/img -p",
+    "build": "run-s build:*"
   },
   "repository": {
     "url": "https://github.com/telagraphic/flexulator"
@@ -19,9 +29,13 @@
   "devDependencies": {
     "autoprefixer": "^9.8.0",
     "browser-sync": "^2.26.7",
+    "eslint": "^7.5.0",
+    "imagemin-cli": "^6.0.0",
     "node-sass": "^4.14.1",
     "npm-run-all": "^4.1.5",
     "onchange": "^7.0.2",
-    "postcss-cli": "^7.1.1"
+    "postcss-cli": "^7.1.1",
+    "postcss-discard-comments": "^4.0.2",
+    "uglify-js": "^3.10.0"
   }
 }
