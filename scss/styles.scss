@@ -1,4 +1,19 @@
-@import "normalize";
-@import "defaults";
-@import "page";
-@import "typography";
+@import 'base/normalize';
+@import 'base/typography';
+@import 'base/defaults';
+
+@import 'config/mixins';
+@import 'config/variables';
+
+@import 'components/header';
+@import 'components/flexulator';
+@import 'components/flexulator-form';
+@import 'components/flexulator-dashboard';
+@import 'components/flexulator-items';
+@import 'components/formula';
+@import 'components/footer';
+
+@import 'globals/global';
+@import 'pages/page';
+@import 'objects/object';
+@import 'utilities/utility';

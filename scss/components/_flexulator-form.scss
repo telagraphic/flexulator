@@ -1,0 +1,100 @@
+@import '../config/mixins';
+@import '../config/variables';
+
+.flexulator__form {
+  align-self: center;
+  padding: 1rem;
+
+  &-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-label {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    color: $blue-4;
+    background-color: $white;
+    border: 1px solid $purple-3;
+    padding: .5rem 2rem;
+
+    &:nth-of-type(2),
+    &:nth-of-type(3) {
+      border-top: 1px solid transparent;
+    }
+
+    &:nth-of-type(3) input {
+      width: 8rem;
+    }
+
+    &:last-of-type {
+      border-top: 0px solid transparent;
+      padding: 0;
+    }
+  }
+
+  &-header {
+    flex: 1 0 auto;
+    font-weight: 700;
+    font-size: calc(22px + (46 - 22) * ((100vw - 300px) / (1600 - 300)));
+    text-transform: lowercase;
+    font-weight: 400;
+  }
+
+  &-input {
+    padding: .5rem;
+    margin: 0 1rem;
+    width: 8rem;
+    background-color: transparent;
+    border-bottom: 2px dashed transparent;
+    outline: 0;
+    color: $pink-3;
+    font-size: 2.5rem;
+    text-align: center;
+    transition: border-bottom .1s ease-in, background-color .15s ease-in;
+
+    &::selection,
+    &::-moz-selection {
+      background: transparent;
+    }
+
+    &:focus,
+    &:hover {
+      border-bottom: 1px solid $gray-4;
+      background-color: $blue-1;
+      border-bottom: 2px dashed $blue-3;
+    }
+
+  }
+
+  &-input[type="number"] {
+    -moz-appearance: textfield;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  &-label-button {
+    padding: 1.5rem 2rem;
+    width: 100%;
+    height: 100%;
+    color: $black-5;
+    text-transform: uppercase;
+    text-transform: lowercase;
+    transition: background-color .15s ease-in, border .15s ease-in, color .15s ease-in;
+
+    &:focus,
+    &:hover {
+      background-color: $blue-4;
+      color: $white;
+    }
+  }
+
+  &-label-button-text {
+    font-weight: 400;
+    font-size: calc(22px + (32 - 22) * ((100vw - 300px) / (1600 - 300)));
+  }
+}

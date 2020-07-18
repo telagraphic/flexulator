@@ -1,0 +1,19 @@
+@import '../config/mixins';
+@import '../config/variables';
+
+
+.flexulator {
+
+  &__container {
+    min-height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
+    padding: 0;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat;
+  }
+
+  &__form {}
+  &__dashboard {}
+  &__items {}
+}

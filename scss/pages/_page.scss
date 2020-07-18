@@ -1,3 +1,6 @@
+@import '../config/mixins';
+@import '../config/variables';
+
 
 body {
   --console-60-black: #0c0c0d;
@@ -28,250 +31,205 @@ body {
   --console-10-pink: #fbdef4;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-}
 
-main .flexulator-title {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  padding: 2rem 0;
-  background-color: var(--console-06-gray);
-  border-top: 3px solid var(--console-10-gray);
-  border-bottom: 3px solid var(--console-10-gray);
-  color: var(--console-60-black);
-}
+.page {
 
-@media (max-width: 600px) {
-  main .flexulator-title {
+  &__header {}
+  &__main {
+    display: flex;
     flex-direction: column;
   }
+  &__footer {}
 }
 
-main .flexulator-title h1 {
-  flex: 1;
-  text-align: center;
-  text-transform: capitalize;
-  letter-spacing: -.1rem;
-  font-size: calc(55px + (85 - 55) * ((100vw - 300px) / (1600 - 300)));
-  font-weight: 700;
-}
+// main .flex-calculator .flex-values {
+//   align-self: center;
+//   padding: 6rem 0 1rem 0;
+//   font-weight: 700;
+//   width: 100vw;
+// }
+//
+// main .flex-calculator .flex-values .flex-values-formula {
+//   display: flex;
+//   flex-flow: row nowrap;
+//   justify-content: center;
+// }
+//
+// main .flex-calculator .flex-values .flex-values-formula span {
+//   font-size: calc(22px + (55 - 22) * ((100vw - 300px) / (1600 - 300)));
+// }
+//
+// main .flex-calculator .flex-values .flex-values-formula .flex-operand {
+//   display: flex;
+//   flex-flow: column nowrap;
+//   align-items: center;
+//   padding: 0 .5rem;
+//   padding: 0 1rem;
+//   color: var(--console-50-black);
+//   font-weight: 500;
+//   background-color: white;
+//   border: 1px solid #a300ff;
+// }
+//
+// main .flex-calculator .flex-values .flex-values-formula .flex-operand span {
+//   flex: 1 1 auto;
+//   font-size: calc(22px + (55 - 22) * ((100vw - 300px) / (1600 - 300)));
+// }
+//
+// main .flex-calculator .flex-values .flex-values-formula .flex-operand span:nth-child(2) {
+//   font-weight: 200;
+//   font-size: calc(12px + (32 - 22) * ((100vw - 300px) / (1600 - 300)));
+//   text-align: center;
+// }
 
-main .flexulator-title .github-counter {
-  position: absolute;
-  padding: 0 1rem;
-  right: 0;
-  top: 1rem;
-}
+//
+// main .flex-calculator .flex-form {
+//   align-self: center;
+//   padding: 1rem;
+// }
+//
+// main .flex-calculator .flex-form form {
+//   display: flex;
+//   flex-direction: column;
+// }
+//
+// main .flex-calculator .flex-form form label {
+//   display: flex;
+//   flex-flow: row nowrap;
+//   align-items: center;
+//   color: var(--console-40-blue);
+//   background-color: white;
+//   border: 1px solid #a300ff;
+//   padding: .5rem 2rem;
+// }
+//
+// main .flex-calculator .flex-form form label:nth-of-type(2) {
+//   border-top: 1px solid transparent;
+// }
+//
+// main .flex-calculator .flex-form form label:nth-of-type(3) {
+//   border-top: 1px solid transparent;
+// }
+//
+// main .flex-calculator .flex-form form label:nth-of-type(3) input {
+//   width: 8rem;
+// }
+//
+// main .flex-calculator .flex-form form label:last-of-type {
+//   border-top: 0px solid transparent;
+//   padding: 0;
+// }
+//
+// main .flex-calculator .flex-form form label h4 {
+//   flex: 1 0 auto;
+//   font-weight: 700;
+//   font-size: calc(22px + (46 - 22) * ((100vw - 300px) / (1600 - 300)));
+//   text-transform: lowercase;
+//   font-weight: 400;
+// }
+//
+// main .flex-calculator .flex-form form label input {
+//   padding: .5rem;
+//   margin: 0 1rem;
+//   width: 8rem;
+//   background-color: transparent;
+//   border-bottom: 2px dashed transparent;
+//   outline: 0;
+//   color: var(--console-30-pink);
+//   font-size: 2.5rem;
+//   text-align: center;
+//   transition: border-bottom .1s ease-in, background-color .15s ease-in;
+// }
+//
+// main .flex-calculator .flex-form form label input::selection, main .flex-calculator .flex-form form label input::-moz-selection {
+//   background: transparent;
+// }
+//
+// main .flex-calculator .flex-form form label input:focus, main .flex-calculator .flex-form form label input:hover {
+//   border-bottom: 1px solid #444444;
+//   background-color: var(--console-10-blue);
+//   border-bottom: 2px dashed var(--console-30-blue);
+// }
+//
+// main .flex-calculator .flex-form form label input[type="number"]::-webkit-outer-spin-button, main .flex-calculator .flex-form form label input[type="number"]::-webkit-inner-spin-button {
+//   -webkit-appearance: none;
+//   margin: 0;
+// }
+//
+// main .flex-calculator .flex-form form label input[type="number"] {
+//   -moz-appearance: textfield;
+// }
+//
+// main .flex-calculator .flex-form form button {
+//   padding: 1.5rem 2rem;
+//   width: 100%;
+//   height: 100%;
+//   color: var(--console-50-black);
+//   text-transform: uppercase;
+//   text-transform: lowercase;
+//   transition: background-color .15s ease-in, border .15s ease-in, color .15s ease-in;
+// }
+//
+// main .flex-calculator .flex-form form button:hover, main .flex-calculator .flex-form form button:focus {
+//   background-color: var(--console-40-blue);
+//   color: white;
+// }
+//
+// main .flex-calculator .flex-form form button h5 {
+//   font-weight: 400;
+//   font-size: calc(22px + (32 - 22) * ((100vw - 300px) / (1600 - 300)));
+// }
 
-@media (max-width: 600px) {
-  main .flexulator-title .github-counter {
-    position: relative;
-  }
-}
 
-main .flexulator-container {
-  min-height: 100vh;
-}
+// main .flex-calculator .flex-container {
+//   display: flex;
+//   flex-flow: row nowrap;
+//   height: 100%;
+//   animation: fadeItems .3s ease-in;
+//   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFUlEQVQImWNgQAKLGf6nkcphYGAAABQDCCEc2tDBAAAAAElFTkSuQmCC) repeat;
+// }
+//
+// @media (max-width: 600px) {
+//   main .flex-calculator .flex-container {
+//     flex-flow: column nowrap;
+//   }
+// }
+//
+// @keyframes fadeItems {
+//   0% {
+//     opacity: 0;
+//     transform: translateY(2.5rem);
+//   }
+//   100% {
+//     opacity: 1;
+//     transform: translateY(0rem);
+//   }
+// }
 
-main .flex-calculator {
-  display: flex;
-  flex-flow: column nowrap;
-  height: 100%;
-  padding: 0;
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat;
-}
-
-main .flex-calculator .flex-values {
-  align-self: center;
-  padding: 6rem 0 1rem 0;
-  font-weight: 700;
-  width: 100vw;
-}
-
-main .flex-calculator .flex-values .flex-values-formula {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-}
-
-main .flex-calculator .flex-values .flex-values-formula span {
-  font-size: calc(22px + (55 - 22) * ((100vw - 300px) / (1600 - 300)));
-}
-
-main .flex-calculator .flex-values .flex-values-formula .flex-operand {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  padding: 0 .5rem;
-  padding: 0 1rem;
-  color: var(--console-50-black);
-  font-weight: 500;
-  background-color: white;
-  border: 1px solid #a300ff;
-}
-
-main .flex-calculator .flex-values .flex-values-formula .flex-operand span {
-  flex: 1 1 auto;
-  font-size: calc(22px + (55 - 22) * ((100vw - 300px) / (1600 - 300)));
-}
-
-main .flex-calculator .flex-values .flex-values-formula .flex-operand span:nth-child(2) {
-  font-weight: 200;
-  font-size: calc(12px + (32 - 22) * ((100vw - 300px) / (1600 - 300)));
-  text-align: center;
-}
-
-main .flex-calculator .flex-form {
-  align-self: center;
-  padding: 1rem;
-}
-
-main .flex-calculator .flex-form form {
-  display: flex;
-  flex-direction: column;
-}
-
-main .flex-calculator .flex-form form label {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  color: var(--console-40-blue);
-  background-color: white;
-  border: 1px solid #a300ff;
-  padding: .5rem 2rem;
-}
-
-main .flex-calculator .flex-form form label:nth-of-type(2) {
-  border-top: 1px solid transparent;
-}
-
-main .flex-calculator .flex-form form label:nth-of-type(3) {
-  border-top: 1px solid transparent;
-}
-
-main .flex-calculator .flex-form form label:nth-of-type(3) input {
-  width: 8rem;
-}
-
-main .flex-calculator .flex-form form label:last-of-type {
-  border-top: 0px solid transparent;
-  padding: 0;
-}
-
-main .flex-calculator .flex-form form label h4 {
-  flex: 1 0 auto;
-  font-weight: 700;
-  font-size: calc(22px + (46 - 22) * ((100vw - 300px) / (1600 - 300)));
-  text-transform: lowercase;
-  font-weight: 400;
-}
-
-main .flex-calculator .flex-form form label input {
-  padding: .5rem;
-  margin: 0 1rem;
-  width: 8rem;
-  background-color: transparent;
-  border-bottom: 2px dashed transparent;
-  outline: 0;
-  color: var(--console-30-pink);
-  font-size: 2.5rem;
-  text-align: center;
-  transition: border-bottom .1s ease-in, background-color .15s ease-in;
-}
-
-main .flex-calculator .flex-form form label input::selection, main .flex-calculator .flex-form form label input::-moz-selection {
-  background: transparent;
-}
-
-main .flex-calculator .flex-form form label input:focus, main .flex-calculator .flex-form form label input:hover {
-  border-bottom: 1px solid #444444;
-  background-color: var(--console-10-blue);
-  border-bottom: 2px dashed var(--console-30-blue);
-}
-
-main .flex-calculator .flex-form form label input[type="number"]::-webkit-outer-spin-button, main .flex-calculator .flex-form form label input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-main .flex-calculator .flex-form form label input[type="number"] {
-  -moz-appearance: textfield;
-}
-
-main .flex-calculator .flex-form form button {
-  padding: 1.5rem 2rem;
-  width: 100%;
-  height: 100%;
-  color: var(--console-50-black);
-  text-transform: uppercase;
-  text-transform: lowercase;
-  transition: background-color .15s ease-in, border .15s ease-in, color .15s ease-in;
-}
-
-main .flex-calculator .flex-form form button:hover, main .flex-calculator .flex-form form button:focus {
-  background-color: var(--console-40-blue);
-  color: white;
-}
-
-main .flex-calculator .flex-form form button h5 {
-  font-weight: 400;
-  font-size: calc(22px + (32 - 22) * ((100vw - 300px) / (1600 - 300)));
-}
-
-main .flex-calculator .flex-container {
-  display: flex;
-  flex-flow: row nowrap;
-  height: 100%;
-  animation: fadeItems .3s ease-in;
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFUlEQVQImWNgQAKLGf6nkcphYGAAABQDCCEc2tDBAAAAAElFTkSuQmCC) repeat;
-}
-
-@media (max-width: 600px) {
-  main .flex-calculator .flex-container {
-    flex-flow: column nowrap;
-  }
-}
-
-@keyframes fadeItems {
-  0% {
-    opacity: 0;
-    transform: translateY(2.5rem);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0rem);
-  }
-}
-
-main .flex-calculator .flex-container .flex-item {
-  flex-flow: column nowrap;
-  text-align: center;
-  background-color: var(--console-10-blue);
-  background-clip: padding-box;
-  color: var(--console-dark-black);
-  padding: 0;
-  width: auto;
-  opacity: 1;
-  transition: width .5s ease-in, flex .5s ease-in, opacity .1s ease-out;
-  position: relative;
-  z-index: 100;
-}
-
-main .flex-calculator .flex-container .flex-item::before {
-  position: absolute;
-  content: '';
-  border: 5px dotted var(--console-20-blue);
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: -10;
-}
+// main .flex-calculator .flex-container .flex-item {
+//   flex-flow: column nowrap;
+//   text-align: center;
+//   background-color: var(--console-10-blue);
+//   background-clip: padding-box;
+//   color: var(--console-dark-black);
+//   padding: 0;
+//   width: auto;
+//   opacity: 1;
+//   transition: width .5s ease-in, flex .5s ease-in, opacity .1s ease-out;
+//   position: relative;
+//   z-index: 100;
+// }
+//
+// main .flex-calculator .flex-container .flex-item::before {
+//   position: absolute;
+//   content: '';
+//   border: 5px dotted var(--console-20-blue);
+//   top: 0;
+//   left: 0;
+//   bottom: 0;
+//   right: 0;
+//   z-index: -10;
+// }
 
 main .flex-calculator .flex-container .flex-item > * {
   opacity: 1;
@@ -377,7 +335,8 @@ main .flex-calculator .flex-container .flex-item .item-values .item-basis {
   width: 7rem;
 }
 
-main .flex-calculator .flex-container .flex-item .item-values input[type="number"]::-webkit-outer-spin-button, main .flex-calculator .flex-container .flex-item .item-values input[type="number"]::-webkit-inner-spin-button {
+main .flex-calculator .flex-container .flex-item .item-values input[type="number"]::-webkit-outer-spin-button,
+main .flex-calculator .flex-container .flex-item .item-values input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -398,7 +357,8 @@ main .flex-calculator .flex-container .flex-item .item-values button:hover .incr
   animation: slideInRight .2s ease-in forwards;
 }
 
-main .flex-calculator .flex-container .flex-item .item-values .increment-grow-value::after, main .flex-calculator .flex-container .flex-item .item-values .increment-shrink-value::after {
+main .flex-calculator .flex-container .flex-item .item-values .increment-grow-value::after,
+main .flex-calculator .flex-container .flex-item .item-values .increment-shrink-value::after {
   content: "+";
   position: relative;
   left: 0;
@@ -406,7 +366,8 @@ main .flex-calculator .flex-container .flex-item .item-values .increment-grow-va
   color: var(--console-50-black);
 }
 
-main .flex-calculator .flex-container .flex-item .item-values .decrement-grow-value::after, main .flex-calculator .flex-container .flex-item .item-values .decrement-shrink-value::after {
+main .flex-calculator .flex-container .flex-item .item-values .decrement-grow-value::after,
+main .flex-calculator .flex-container .flex-item .item-values .decrement-shrink-value::after {
   content: "-";
   position: relative;
   left: 0;
@@ -427,7 +388,8 @@ main .flex-calculator .flex-container .flex-item .remove-item-button {
   text-transform: uppercase;
 }
 
-main .flex-calculator .flex-container .flex-item .remove-item-button:hover, main .flex-calculator .flex-container .flex-item .remove-item-button:focus {
+main .flex-calculator .flex-container .flex-item .remove-item-button:hover,
+main .flex-calculator .flex-container .flex-item .remove-item-button:focus {
   background-color: var(--console-30-pink);
   color: white;
 }

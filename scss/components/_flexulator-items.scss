@@ -1,0 +1,180 @@
+@import '../config/mixins';
+@import '../config/variables';
+
+.flexulator__items {
+
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+  animation: fadeItems .3s ease-in;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFUlEQVQImWNgQAKLGf6nkcphYGAAABQDCCEc2tDBAAAAAElFTkSuQmCC) repeat;
+
+  @include viewport-min(37.5rem) {
+    flex-flow: row nowrap;
+  }
+}
+
+@keyframes fadeItems {
+  0% {
+    opacity: 0;
+    transform: translateY(2.5rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0rem);
+  }
+}
+
+
+.flex-item {
+  flex-flow: column nowrap;
+  text-align: center;
+  background-color: var(--console-10-blue);
+  background-clip: padding-box;
+  color: var(--console-dark-black);
+  padding: 0;
+  width: auto;
+  opacity: 1;
+  transition: width .5s ease-in, flex .5s ease-in, opacity .1s ease-out;
+  position: relative;
+  z-index: 100;
+
+  &::before {
+    position: absolute;
+    content: '';
+    border: 5px dotted var(--console-20-blue);
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -10;
+  }
+
+  &__width {
+    padding: 1rem 0;
+    color: var(--console-40-blue);
+    font-size: 3rem;
+    font-weight: 400;
+  }
+}
+
+
+.flex-item {
+  &__form {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    z-index: -100;
+  }
+  &__form-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: .25rem 0;
+  }
+
+  &__grow-increment {
+    @include flex-item-button();
+    @include flex-item-increment-icon();
+  }
+  &__grow-value {
+    @include flex-item-input();
+    @include input-number();
+  }
+  &__grow-decrement {
+    @include flex-item-button();
+  }
+
+  &__shrink-increment {
+    @include flex-item-button();
+    @include flex-item-increment-icon();
+  }
+  &__shrink-value {
+    @include flex-item-input();
+    @include input-number();
+  }
+  &__shrink-decrement {
+    @include flex-item-button();
+  }
+
+  &__basis-increment {
+    @include flex-item-button();
+  }
+  &__basis-value {
+    @include flex-item-input();
+    @include input-number();
+    width: 7rem;
+  }
+  &__basis-decrement {
+    @include flex-item-button();
+  }
+
+  &__remove-button {
+    padding: 1rem;
+    margin: 1.5rem 0;
+    background-color: var(--console-10-pink);
+    background-clip: padding-box;
+    border: 2px dotted $pink-3;
+    color: $black-1;
+    font-weight: 400;
+    transform: scale(1);
+    transition: background-color .15s ease-in, color .15s ease-in, transform .15s ease-in;
+    text-transform: uppercase;
+
+    &:focus,
+    &:hover {
+      background-color: $pink-3;
+      color: $white;
+    }
+  }
+
+}
+
+.flex-item__flexulations {
+
+  &-operator {}
+  &-space {}
+  &-remaining-space {}
+}
+
+.flex-item__flexulations-grow {
+
+  &-container {
+    @include flex-item-flexulations-container();
+    padding: 1rem 0 .5rem 0;
+  }
+  &-header {
+    letter-spacing: 0;
+    font-weight: 500;
+  }
+  &-formula {
+    margin: .5rem 0;
+  }
+  &-value {}
+  &-total {}
+  &-space {}
+  &-remaining-space {}
+  &-width {}
+}
+
+.flex-item__flexulations-shrink {
+
+  &-container {
+    @include flex-item-flexulations-container();
+    padding: .5rem 0;
+  }
+  &-header {
+    letter-spacing: 0;
+    font-weight: 500;
+  }
+  &-formula {
+    margin: .5rem 0;
+  }
+  &-value {}
+  &-item-basis {}
+  &-total-basis {}
+  &-quotient {}
+  &-remaining-space {}
+  &-width {}
+}

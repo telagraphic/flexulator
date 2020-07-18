@@ -1,0 +1,42 @@
+@import '../config/mixins';
+@import '../config/variables';
+
+
+
+.header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2rem 0;
+  background-color: var(--console-06-gray);
+  border-top: 3px solid var(--console-10-gray);
+  border-bottom: 3px solid var(--console-10-gray);
+  color: var(--console-60-black);
+
+  @include viewport-min($mobile) {
+    flex-direction: row;
+  }
+
+  &__title {
+    flex: 1;
+    text-align: center;
+    text-transform: capitalize;
+    letter-spacing: -.1rem;
+    font-size: calc(25px + (35 - 25) * ((100vw - 300px) / (1600 - 300)));
+    font-weight: 700;
+
+  }
+
+  &__github-counter {
+    position: relative;
+
+    @include viewport-min($mobile) {
+      position: absolute;
+      padding: 0 1rem;
+      right: 0;
+      top: 1rem;
+    }
+  }
+}
