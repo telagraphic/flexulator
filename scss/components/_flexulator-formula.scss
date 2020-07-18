@@ -1,0 +1,150 @@
+@import '../config/mixins';
+@import '../config/variables';
+
+.formula {
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2rem 0;
+    background-color: $black-6;
+    border-top: 3px solid $gray-5;
+    border-bottom: 3px solid $gray-5;
+    color: $white;
+
+
+    &-title {
+      font-size: calc(55px + (85 - 55) * ((100vw - 300px) / (1600 - 300)));
+      text-align: center;
+    }
+  }
+
+  &__formula-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 5.5rem 0;
+
+    background-color: $black-5;
+
+    @include viewport-min($desktop) {
+      flex-direction: row;
+    }
+  }
+
+  &__formula-section {
+    display: flex;
+    flex: 1 1 50%;
+    flex-direction: column;
+
+    padding: 3rem 0;
+
+    font-size: inherit;
+    text-align: center;
+
+    @include viewport-min($mobile) {
+      padding: 0 4.5rem;
+    }
+
+  }
+
+  &__formula-section-grow-header {
+    padding: 1.5rem 0;
+    width: 50%;
+    align-self: center;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: .15rem;
+
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat;
+    border: 1px solid $purple-3;
+
+    color: $blue-5;
+
+  }
+
+  &__formula-section-grow {
+    display: flex;
+    flex-direction: column;
+
+    padding: 3rem 0;
+
+    text-align: center;
+    color: $blue-5;
+
+    p {
+      padding: 1.5rem 0;
+      border: 1px solid $purple-3
+    }
+
+    p + p {
+      border-top: none;
+    }
+  }
+
+  &__formula-section-grow-text {
+    padding: 1.5rem 0;
+
+    h4 {
+      padding: 2rem 0 1.25rem 0;
+    }
+
+    p {
+      padding: 1.5rem 0;
+      border: 1px solid $purple-3
+    }
+  }
+
+
+
+  &__formula-section-shrink-header {
+    padding: 1.5rem 0;
+    width: 50%;
+    align-self: center;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: .15rem;
+
+    color: $pink-2;
+
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAKxx35uZsAGqChBOwAAnx8LPVdV3HMAAAAASUVORK5CYII=) repeat;
+    border: 1px solid $blue-5;
+
+  }
+
+  &__formula-section-shrink {
+    display: flex;
+    flex-direction: column;
+
+    padding: 3rem 0;
+
+    text-align: center;
+    color: $pink-2;
+
+    p {
+      padding: 1.5rem 0;
+      border: 1px solid $blue-5;
+    }
+
+    p + p {
+      border-top: none;
+    }
+  }
+
+  &__formula-section-shrink-text {
+    padding: 1.5rem 0;
+
+    h4 {
+      padding: 2rem 0 1.25rem 0;
+    }
+
+    p {
+      padding: 1.5rem 0;
+      border: 1px solid $purple-3
+    }
+  }
+}

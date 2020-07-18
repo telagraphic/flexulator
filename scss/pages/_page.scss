@@ -1,37 +1,6 @@
 @import '../config/mixins';
 @import '../config/variables';
 
-
-body {
-  --console-60-black: #0c0c0d;
-  --console-50-black: #1b1b1d;
-  --console-45-gray: #404041;
-  --console-40-gray: #4a4a4f;
-  --console-30-gray: #939395;
-  --console-27-gray: #929294;
-  --console-25-gray: #808080;
-  --console-20-gray: #b1b1b3;
-  --console-15-gray: #cacad2;
-  --console-10-gray: #e0e0e2;
-  --console-06-gray: #f9f8fb;
-  --console-05-gray: #ededf0;
-  --console-04-gray: #edecf0;
-  --console-30-purple: #a300ff;
-  --console-60-blue: #163b61;
-  --console-40-blue: #1780ea;
-  --console-35-blue: #5dc6fa;
-  --console-33-blue: #0089d2;
-  --console-30-blue: #0c74dd;
-  --console-20-blue: #0ba2ff;
-  --console-15-blue: #75bfff;
-  --console-10-blue: #cbe8ff;
-  --console-60-pink: #541a4d;
-  --console-30-pink: #dd00a9;
-  --console-20-pink: #fe75f9;
-  --console-10-pink: #fbdef4;
-}
-
-
 .page {
 
   &__header {}
@@ -231,330 +200,336 @@ body {
 //   z-index: -10;
 // }
 
-main .flex-calculator .flex-container .flex-item > * {
-  opacity: 1;
-  transition: opacity .1s ease-out;
-}
+// main .flex-calculator .flex-container .flex-item > * {
+//   opacity: 1;
+//   transition: opacity .1s ease-out;
+// }
+//
+// @keyframes addItem {
+//   0% {
+//     visibility: hidden;
+//     opacity: 0;
+//     flex: 0;
+//   }
+//   100% {
+//     visibility: visible;
+//     opacity: 1;
+//     flex: auto;
+//   }
+// }
+//
+// main .flex-calculator .flex-container .flex-item h4 {
+//   padding: 1rem 0;
+//   color: var(--console-40-blue);
+//   font-size: 3rem;
+//   font-weight: 400;
+// }
+//
+// main .flex-calculator .flex-container .flex-item .item-values {
+//   display: flex;
+//   flex-flow: column nowrap;
+//   align-items: center;
+//   z-index: -100;
+// }
+//
+// main .flex-calculator .flex-container .flex-item .item-values section {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: 100%;
+//   padding: .25rem 0;
+// }
+//
+// main .flex-calculator .flex-container .flex-item .item-values section:hover button:first-child {
+//   opacity: 1;
+//   animation: slideInRight .15s ease-in forwards;
+// }
+//
+// main .flex-calculator .flex-container .flex-item .item-values section:hover button:last-child {
+//   animation: slideInLeft .15s ease-in forwards;
+// }
+//
+// main .flex-calculator .flex-container .flex-item .item-values section:hover input {
+//   border-bottom: 2px dashed var(--console-25-gray);
+//   opacity: 1;
+// }
+//
+// @keyframes slideInRight {
+//   0% {
+//     transform: translateX(-0.15rem);
+//     opacity: 0;
+//   }
+//   100% {
+//     transform: none;
+//     opacity: 1;
+//   }
+// }
+//
+// @keyframes slideInLeft {
+//   0% {
+//     transform: translateX(0.15rem);
+//     opacity: 0;
+//   }
+//   100% {
+//     transform: none;
+//     opacity: 1;
+//   }
+// }
+//
+// main .flex-calculator .flex-container .flex-item .item-values section:nth-of-type(3) button {
+//   opacity: 0;
+//   visibility: hidden;
+//   display: none;
+// }
+//
+// main .flex-calculator .flex-container .flex-item .item-values input {
+//   width: 5rem;
+//   padding: .5rem;
+//   margin: 0 1rem;
+//   border-bottom: 2px dashed transparent;
+//   background-color: transparent;
+//   outline: 0;
+//   color: var(--console-30-pink);
+//   text-align: center;
+//   font-size: 2.5rem;
+//   font-weight: 400;
+//   transition: border-bottom .15s ease-in, opacity .15s ease-in;
+// }
+//
+// main .flex-calculator .flex-container .flex-item .item-values input:hover {
+//   border-bottom: 2px dashed var(--console-25-gray);
+// }
+//
+// main .flex-calculator .flex-container .flex-item .item-values .item-basis {
+//   width: 7rem;
+// }
+//
+// main .flex-calculator .flex-container .flex-item .item-values input[type="number"]::-webkit-outer-spin-button,
+// main .flex-calculator .flex-container .flex-item .item-values input[type="number"]::-webkit-inner-spin-button {
+//   -webkit-appearance: none;
+//   margin: 0;
+// }
+//
+// main .flex-calculator .flex-container .flex-item .item-values input[type="number"] {
+//   -moz-appearance: textfield;
+// }
+//
+// main .flex-calculator .flex-container .flex-item .item-values button {
+//   align-items: center;
+//   height: 25px;
+//   width: 25px;
+//   opacity: 0;
+//   transition: opacity .1s ease-in;
+// }
+//
+// main .flex-calculator .flex-container .flex-item .item-values button:hover .increment-grow-value::after {
+//   animation: slideInRight .2s ease-in forwards;
+// }
+//
+// main .flex-calculator .flex-container .flex-item .item-values .increment-grow-value::after,
+// main .flex-calculator .flex-container .flex-item .item-values .increment-shrink-value::after {
+//   content: "+";
+//   position: relative;
+//   left: 0;
+//   bottom: 3px;
+//   color: var(--console-50-black);
+// }
+//
+// main .flex-calculator .flex-container .flex-item .item-values .decrement-grow-value::after,
+// main .flex-calculator .flex-container .flex-item .item-values .decrement-shrink-value::after {
+//   content: "-";
+//   position: relative;
+//   left: 0;
+//   bottom: 6px;
+//   color: var(--console-50-black);
+// }
+//
+// main .flex-calculator .flex-container .flex-item .remove-item-button {
+//   padding: 1rem;
+//   margin: 1.5rem 0;
+//   background-color: var(--console-10-pink);
+//   background-clip: padding-box;
+//   border: 2px dotted var(--console-30-pink);
+//   color: black;
+//   font-weight: 400;
+//   transform: scale(1);
+//   transition: background-color .15s ease-in, color .15s ease-in, transform .15s ease-in;
+//   text-transform: uppercase;
+// }
+//
+// main .flex-calculator .flex-container .flex-item .remove-item-button:hover,
+// main .flex-calculator .flex-container .flex-item .remove-item-button:focus {
+//   background-color: var(--console-30-pink);
+//   color: white;
+// }
+//
+// main .flex-calculator .flex-container .flex-item .item-flexulations {
+//   font-size: 1rem;
+//   font-weight: 400;
+//   letter-spacing: -.09rem;
+// }
+//
+// main .flex-calculator .flex-container .flex-item .item-flexulations h5 {
+//   letter-spacing: 0;
+//   font-weight: 500;
+// }
+//
+// main .flex-calculator .flex-container .flex-item .item-flexulations p {
+//   margin: .5rem 0;
+// }
+//
+// main .flex-calculator .flex-container .flex-item .item-flexulations .flex-grow-flexulations {
+//   padding: 1rem 0 .5rem 0;
+// }
+//
+// main .flex-calculator .flex-container .flex-item .item-flexulations .flex-shrink-flexulations {
+//   padding: .5rem 0;
+// }
 
-@keyframes addItem {
-  0% {
-    visibility: hidden;
-    opacity: 0;
-    flex: 0;
-  }
-  100% {
-    visibility: visible;
-    opacity: 1;
-    flex: auto;
-  }
-}
-
-main .flex-calculator .flex-container .flex-item h4 {
-  padding: 1rem 0;
-  color: var(--console-40-blue);
-  font-size: 3rem;
-  font-weight: 400;
-}
-
-main .flex-calculator .flex-container .flex-item .item-values {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  z-index: -100;
-}
-
-main .flex-calculator .flex-container .flex-item .item-values section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: .25rem 0;
-}
-
-main .flex-calculator .flex-container .flex-item .item-values section:hover button:first-child {
-  opacity: 1;
-  animation: slideInRight .15s ease-in forwards;
-}
-
-main .flex-calculator .flex-container .flex-item .item-values section:hover button:last-child {
-  animation: slideInLeft .15s ease-in forwards;
-}
-
-main .flex-calculator .flex-container .flex-item .item-values section:hover input {
-  border-bottom: 2px dashed var(--console-25-gray);
-  opacity: 1;
-}
-
-@keyframes slideInRight {
-  0% {
-    transform: translateX(-0.15rem);
-    opacity: 0;
-  }
-  100% {
-    transform: none;
-    opacity: 1;
-  }
-}
-
-@keyframes slideInLeft {
-  0% {
-    transform: translateX(0.15rem);
-    opacity: 0;
-  }
-  100% {
-    transform: none;
-    opacity: 1;
-  }
-}
-
-main .flex-calculator .flex-container .flex-item .item-values section:nth-of-type(3) button {
-  opacity: 0;
-  visibility: hidden;
-  display: none;
-}
-
-main .flex-calculator .flex-container .flex-item .item-values input {
-  width: 5rem;
-  padding: .5rem;
-  margin: 0 1rem;
-  border-bottom: 2px dashed transparent;
-  background-color: transparent;
-  outline: 0;
-  color: var(--console-30-pink);
-  text-align: center;
-  font-size: 2.5rem;
-  font-weight: 400;
-  transition: border-bottom .15s ease-in, opacity .15s ease-in;
-}
-
-main .flex-calculator .flex-container .flex-item .item-values input:hover {
-  border-bottom: 2px dashed var(--console-25-gray);
-}
-
-main .flex-calculator .flex-container .flex-item .item-values .item-basis {
-  width: 7rem;
-}
-
-main .flex-calculator .flex-container .flex-item .item-values input[type="number"]::-webkit-outer-spin-button,
-main .flex-calculator .flex-container .flex-item .item-values input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-main .flex-calculator .flex-container .flex-item .item-values input[type="number"] {
-  -moz-appearance: textfield;
-}
-
-main .flex-calculator .flex-container .flex-item .item-values button {
-  align-items: center;
-  height: 25px;
-  width: 25px;
-  opacity: 0;
-  transition: opacity .1s ease-in;
-}
-
-main .flex-calculator .flex-container .flex-item .item-values button:hover .increment-grow-value::after {
-  animation: slideInRight .2s ease-in forwards;
-}
-
-main .flex-calculator .flex-container .flex-item .item-values .increment-grow-value::after,
-main .flex-calculator .flex-container .flex-item .item-values .increment-shrink-value::after {
-  content: "+";
-  position: relative;
-  left: 0;
-  bottom: 3px;
-  color: var(--console-50-black);
-}
-
-main .flex-calculator .flex-container .flex-item .item-values .decrement-grow-value::after,
-main .flex-calculator .flex-container .flex-item .item-values .decrement-shrink-value::after {
-  content: "-";
-  position: relative;
-  left: 0;
-  bottom: 6px;
-  color: var(--console-50-black);
-}
-
-main .flex-calculator .flex-container .flex-item .remove-item-button {
-  padding: 1rem;
-  margin: 1.5rem 0;
-  background-color: var(--console-10-pink);
-  background-clip: padding-box;
-  border: 2px dotted var(--console-30-pink);
-  color: black;
-  font-weight: 400;
-  transform: scale(1);
-  transition: background-color .15s ease-in, color .15s ease-in, transform .15s ease-in;
-  text-transform: uppercase;
-}
-
-main .flex-calculator .flex-container .flex-item .remove-item-button:hover,
-main .flex-calculator .flex-container .flex-item .remove-item-button:focus {
-  background-color: var(--console-30-pink);
-  color: white;
-}
-
-main .flex-calculator .flex-container .flex-item .item-flexulations {
-  font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: -.09rem;
-}
-
-main .flex-calculator .flex-container .flex-item .item-flexulations h5 {
-  letter-spacing: 0;
-  font-weight: 500;
-}
-
-main .flex-calculator .flex-container .flex-item .item-flexulations p {
-  margin: .5rem 0;
-}
-
-main .flex-calculator .flex-container .flex-item .item-flexulations .flex-grow-flexulations {
-  padding: 1rem 0 .5rem 0;
-}
-
-main .flex-calculator .flex-container .flex-item .item-flexulations .flex-shrink-flexulations {
-  padding: .5rem 0;
-}
-
-.formula-container {
-  background-color: var(--console-50-black);
-}
-
-.formula-container .formula-title {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  padding: 2rem 0;
-  background-color: var(--console-60-black);
-  border-top: 3px solid var(--console-45-gray);
-  border-bottom: 3px solid var(--console-45-gray);
-  color: white;
-}
-
-.formula-container .formula-title h1 {
-  font-size: calc(55px + (85 - 55) * ((100vw - 300px) / (1600 - 300)));
-  text-align: center;
-}
-
-.formula-container .flex-calculations {
-  display: flex;
-  flex-direction: row;
-  min-height: 100vh;
-  padding: 5.5rem 0;
-}
-
-@media (max-width: 1200px) {
-  .formula-container .flex-calculations {
-    flex-direction: column;
-  }
-}
-
-.formula-container .flex-calculations section {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-
-.formula-container .flex-calculations section h2 {
-  padding: 1.5rem 0;
-  width: 50%;
-  align-self: center;
-  font-size: 2.5rem;
-  text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: .15rem;
-}
-
-@media (max-width: 600px) {
-  .formula-container .flex-calculations section h2 {
-    width: 100%;
-  }
-}
-
-.formula-container .flex-calculations .flex-grow-math {
-  color: var(--console-35-blue);
-}
-
-.formula-container .flex-calculations .flex-grow-math h2 {
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat;
-  border: 1px solid var(--console-30-purple);
-}
-
-@media (max-width: 600px) {
-  .formula-container .flex-calculations .flex-grow-math h2 {
-    border-left: none;
-    border-right: none;
-  }
-}
-
-.formula-container .flex-calculations .flex-grow-math p {
-  border: 1px solid var(--console-30-purple);
-}
-
-.formula-container .flex-calculations .flex-grow-math p + p {
-  border-top: none;
-}
-
-.formula-container .flex-calculations .flex-shrink-math {
-  color: var(--console-20-pink);
-}
-
-.formula-container .flex-calculations .flex-shrink-math h2 {
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAKxx35uZsAGqChBOwAAnx8LPVdV3HMAAAAASUVORK5CYII=) repeat;
-  border: 1px solid var(--console-35-blue);
-}
-
-@media (max-width: 600px) {
-  .formula-container .flex-calculations .flex-shrink-math h2 {
-    border-left: none;
-    border-right: none;
-  }
-}
-
-.formula-container .flex-calculations .flex-shrink-math p {
-  border: 1px solid var(--console-35-blue);
-}
-
-@media (max-width: 600px) {
-  .formula-container .flex-calculations .flex-shrink-math p {
-    border-left: none;
-    border-right: none;
-  }
-}
-
-.formula-container .flex-calculations .flex-shrink-math p + p {
-  border-top: none;
-}
-
-.formula-container .flex-calculations .flex-grow-math, .formula-container .flex-calculations .flex-shrink-math {
-  flex: 1 1 50%;
-  padding: 0 4.5rem;
-  font-size: inherit;
-}
-
-@media (max-width: 600px) {
-  .formula-container .flex-calculations .flex-grow-math, .formula-container .flex-calculations .flex-shrink-math {
-    padding: 0;
-  }
-}
-
-.formula-container .flex-calculations .flex-grow-math section, .formula-container .flex-calculations .flex-shrink-math section {
-  padding: 3rem 0;
-}
-
-.formula-container .flex-calculations .flex-grow-math .grow-formula-text, .formula-container .flex-calculations .flex-shrink-math .grow-formula-text {
-  padding: 1.5rem 0;
-}
-
-.formula-container .flex-calculations .flex-grow-math .grow-formula-text h4, .formula-container .flex-calculations .flex-shrink-math .grow-formula-text h4 {
-  padding: 2rem 0 1.25rem 0;
-}
-
-.formula-container .flex-calculations .flex-grow-math p, .formula-container .flex-calculations .flex-shrink-math p {
-  padding: 1.5rem 0;
-}
+// .formula-container {
+//   background-color: var(--console-50-black);
+// }
+//
+// .formula-container .formula-title {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-around;
+//   align-items: center;
+//   padding: 2rem 0;
+//   background-color: var(--console-60-black);
+//   border-top: 3px solid var(--console-45-gray);
+//   border-bottom: 3px solid var(--console-45-gray);
+//   color: white;
+// }
+//
+// .formula-container .formula-title h1 {
+//   font-size: calc(55px + (85 - 55) * ((100vw - 300px) / (1600 - 300)));
+//   text-align: center;
+// }
+//
+// .formula-container .flex-calculations {
+//   display: flex;
+//   flex-direction: row;
+//   min-height: 100vh;
+//   padding: 5.5rem 0;
+// }
+//
+// @media (max-width: 1200px) {
+//   .formula-container .flex-calculations {
+//     flex-direction: column;
+//   }
+// }
+//
+// .formula-container .flex-calculations section {
+//   display: flex;
+//   flex-direction: column;
+//   text-align: center;
+// }
+//
+// .formula-container .flex-calculations section h2 {
+//   padding: 1.5rem 0;
+//   width: 50%;
+//   align-self: center;
+//   font-size: 2.5rem;
+//   text-transform: uppercase;
+//   font-weight: 700;
+//   letter-spacing: .15rem;
+// }
+//
+// @media (max-width: 600px) {
+//   .formula-container .flex-calculations section h2 {
+//     width: 100%;
+//   }
+// }
+//
+// .formula-container .flex-calculations .flex-grow-math {
+//   color: var(--console-35-blue);
+// }
+//
+// .formula-container .flex-calculations .flex-grow-math h2 {
+//   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat;
+//   border: 1px solid var(--console-30-purple);
+// }
+//
+// @media (max-width: 600px) {
+//   .formula-container .flex-calculations .flex-grow-math h2 {
+//     border-left: none;
+//     border-right: none;
+//   }
+// }
+//
+// .formula-container .flex-calculations .flex-grow-math p {
+//   border: 1px solid var(--console-30-purple);
+// }
+//
+// .formula-container .flex-calculations .flex-grow-math p + p {
+//   border-top: none;
+// }
+//
+// .formula-container .flex-calculations .flex-shrink-math {
+//   color: $pink-2;
+// }
+//
+// .formula-container .flex-calculations .flex-shrink-math h2 {
+//   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAKxx35uZsAGqChBOwAAnx8LPVdV3HMAAAAASUVORK5CYII=) repeat;
+//   border: 1px solid var(--console-35-blue);
+// }
+//
+// @media (max-width: 600px) {
+//   .formula-container .flex-calculations .flex-shrink-math h2 {
+//     border-left: none;
+//     border-right: none;
+//   }
+// }
+//
+// .formula-container .flex-calculations .flex-shrink-math p {
+//   border: 1px solid var(--console-35-blue);
+// }
+//
+// @media (max-width: 600px) {
+//   .formula-container .flex-calculations .flex-shrink-math p {
+//     border-left: none;
+//     border-right: none;
+//   }
+// }
+//
+// .formula-container .flex-calculations .flex-shrink-math p + p {
+//   border-top: none;
+// }
+//
+// .formula-container .flex-calculations .flex-grow-math,
+// .formula-container .flex-calculations .flex-shrink-math {
+//   flex: 1 1 50%;
+//   padding: 0 4.5rem;
+//   font-size: inherit;
+// }
+//
+// @media (max-width: 600px) {
+//   .formula-container .flex-calculations .flex-grow-math,
+//   .formula-container .flex-calculations .flex-shrink-math {
+//     padding: 0;
+//   }
+// }
+//
+// .formula-container .flex-calculations .flex-grow-math section,
+// .formula-container .flex-calculations .flex-shrink-math section {
+//   padding: 3rem 0;
+// }
+//
+// .formula-container .flex-calculations .flex-grow-math .grow-formula-text,
+// .formula-container .flex-calculations .flex-shrink-math .grow-formula-text {
+//   padding: 1.5rem 0;
+// }
+//
+// .formula-container .flex-calculations .flex-grow-math .grow-formula-text h4,
+// .formula-container .flex-calculations .flex-shrink-math .grow-formula-text h4 {
+//   padding: 2rem 0 1.25rem 0;
+// }
+//
+// .formula-container .flex-calculations .flex-grow-math p,
+// .formula-container .flex-calculations .flex-shrink-math p {
+//   padding: 1.5rem 0;
+// }
 
 @keyframes widthAdjust {
   0% {

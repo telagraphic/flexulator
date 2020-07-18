@@ -2,7 +2,6 @@
 @import '../config/variables';
 
 .flexulator__items {
-
   display: flex;
   flex-flow: column nowrap;
   height: 100%;
@@ -25,13 +24,12 @@
   }
 }
 
-
 .flex-item {
   flex-flow: column nowrap;
   text-align: center;
-  background-color: var(--console-10-blue);
+  background-color: $blue-1;
   background-clip: padding-box;
-  color: var(--console-dark-black);
+  color: $black-1;
   padding: 0;
   width: auto;
   opacity: 1;
@@ -42,7 +40,7 @@
   &::before {
     position: absolute;
     content: '';
-    border: 5px dotted var(--console-20-blue);
+    border: 5px dotted $blue-2;
     top: 0;
     left: 0;
     bottom: 0;
@@ -52,7 +50,7 @@
 
   &__width {
     padding: 1rem 0;
-    color: var(--console-40-blue);
+    color: $blue-4;
     font-size: 3rem;
     font-weight: 400;
   }
@@ -113,7 +111,7 @@
   &__remove-button {
     padding: 1rem;
     margin: 1.5rem 0;
-    background-color: var(--console-10-pink);
+    background-color: $pink-1;
     background-clip: padding-box;
     border: 2px dotted $pink-3;
     color: $black-1;
