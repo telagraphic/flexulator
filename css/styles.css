@@ -480,7 +480,6 @@ button {
         top: 1rem; } }
 
 .flexulator__container {
-  min-height: 100vh;
   display: flex;
   flex-flow: column nowrap;
   height: 100%;
@@ -821,7 +820,7 @@ button {
   flex-direction: column;
   min-height: 100vh;
   padding: 5.5rem 0;
-  background-color: #1b1b1d; }
+  background-color: #0c0c0d; }
   @media (min-width: 75rem) {
     .formula__formula-container {
       flex-direction: row; } }
