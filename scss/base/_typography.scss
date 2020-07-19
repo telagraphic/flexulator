@@ -1,5 +1,5 @@
 body {
-  font-family: forma-djr-micro, sans-serif;
+  font-family: "Consolas", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 100%;
@@ -7,7 +7,7 @@ body {
 }
 
 h1 {
-  font-family: 'Inconsolata', sans-serif;
+  font-family: 'Consolas', sans-serif;
   font-size: calc(55px + (85 - 55) * ((100vw - 300px) / (1600 - 300)));
 
   font-weight: 700;
@@ -26,14 +26,8 @@ h4 {
   font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
 }
 
-
-.flex-operand span:nth-of-type(2) {
-
-}
-
-
 p span {
-  font-family: 'Inconsolata', sans-serif;
+  font-family: 'Consolas', sans-serif;
   font-weight: 300;
   font-style: normal;
   letter-spacing: .15rem

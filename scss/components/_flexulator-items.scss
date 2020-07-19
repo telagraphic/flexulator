@@ -109,11 +109,12 @@
   }
 
   &__remove-button {
+    position: relative;
     padding: 1rem;
     margin: 1.5rem 0;
     background-color: $pink-1;
     background-clip: padding-box;
-    border: 2px dotted $pink-3;
+    border: 4px dotted $pink-3;
     color: $black-1;
     font-weight: 400;
     transform: scale(1);
@@ -124,6 +125,17 @@
     &:hover {
       background-color: $pink-3;
       color: $white;
+    }
+
+    &:after {
+      content: " ";
+      position: absolute;
+      z-index: -1;
+      top: -7px;
+      left: -7px;
+      right: -7px;
+      bottom: -7px;
+      border: 3px solid $black-5;
     }
   }
 
@@ -145,6 +157,7 @@
   &-header {
     letter-spacing: 0;
     font-weight: 500;
+    text-transform: lowercase;
   }
   &-formula {
     margin: .5rem 0;
@@ -165,6 +178,7 @@
   &-header {
     letter-spacing: 0;
     font-weight: 500;
+    text-transform: lowercase;
   }
   &-formula {
     margin: .5rem 0;

@@ -1,23 +1,27 @@
 @import '../config/mixins';
 @import '../config/variables';
 
-
-
 .header {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  padding: 2rem 0;
-  background-color: var(--console-06-gray);
-  border-top: 3px solid var(--console-10-gray);
-  border-bottom: 3px solid var(--console-10-gray);
-  color: var(--console-60-black);
+  // padding: 2rem 0;
+  // background-color: $gray-5;
+  // border-top: 3px solid $gray-1;
+  // border-bottom: 3px solid $gray-1;
+  color: $black-6;
 
   @include viewport-min($mobile) {
     flex-direction: row;
   }
+
+  // display: flex;
+  // flex-flow: column nowrap;
+  // height: 100%;
+  // padding: 0;
+  // background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat;
 
   &__title {
     flex: 1;
@@ -27,6 +31,20 @@
     font-size: calc(25px + (35 - 25) * ((100vw - 300px) / (1600 - 300)));
     font-weight: 700;
 
+  }
+
+  &__title-logo {
+    max-width: 15%;
+    width: 100%;
+    height: 0;
+    padding-top: 6%;
+    position: relative;
+
+    svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
   }
 
   &__github-counter {
