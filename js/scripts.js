@@ -47,12 +47,6 @@ function totalRemainingSpace() {
   });
 }
 
-function updateItemWidth() {
-  getFlexItems().forEach(function(item) {
-    item.firstElementChild.textContent = parseInt(item.offsetWidth);
-  });
-}
-
 function updateRemainingSpace() {
   flexContainerWidth.textContent = flexContainer.clientWidth;
   var displayRemainingSpace = Array.prototype.slice.call(document.getElementsByClassName('flex-remaining-space'));
@@ -66,6 +60,11 @@ function updateRemainingSpace() {
   });
 }
 
+function updateItemWidth() {
+  getFlexItems().forEach(function(item) {
+    item.firstElementChild.textContent = parseInt(item.offsetWidth);
+  });
+}
 
 function addFlexItem() {
   var flexItemCount = Array.prototype.slice.call(flexContainer.childNodes);
@@ -375,7 +374,6 @@ function updateTotalFlexBasis() {
   totalRemainingSpace();
 }
 
-
 function updateTotalFlexGrow() {
   var totalFlexGrow = 0;
   var flexGrowElements = Array.prototype.slice.call(document.getElementsByClassName('grow-total'));
@@ -418,8 +416,8 @@ function updateGrowItemSpace() {
     growFraction = parseFloat(itemGrow) / parseFloat(growTotal);
     item.children[2].firstElementChild.lastElementChild.lastElementChild.textContent = parseInt(growFraction * parseInt(remainingSpace), 10); // - parseInt(10)
   });
-
 }
+
 
 function setFlexItemShrink() {
   var totalBasis = document.getElementById('total-flex-basis');
@@ -438,5 +436,10 @@ function setFlexItemShrink() {
     element.children[2].lastElementChild.lastElementChild.children[12].textContent = parseInt(shrinkFactor * remainingSpace, 10); // - parseInt(10)
   });
 }
+
+
+
+
+
 
 setFlexItemShrink();

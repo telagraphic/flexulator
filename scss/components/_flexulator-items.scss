@@ -1,7 +1,7 @@
 @import '../config/mixins';
 @import '../config/variables';
 
-.flexulator__items {
+.flexulator__items-container {
   display: flex;
   flex-flow: column nowrap;
   height: 100%;

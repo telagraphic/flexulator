@@ -449,6 +449,7 @@ button {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  background-color: #ffffff;
   color: #0c0c0d; }
   @media (min-width: 37.5rem) {
     .header {
@@ -580,14 +581,14 @@ button {
     flex: 1 1 auto;
     font-size: calc(22px + (55 - 22) * ((100vw - 300px) / (1600 - 300))); }
 
-.flexulator__items {
+.flexulator__items-container {
   display: flex;
   flex-flow: column nowrap;
   height: 100%;
   animation: fadeItems .3s ease-in;
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFUlEQVQImWNgQAKLGf6nkcphYGAAABQDCCEc2tDBAAAAAElFTkSuQmCC) repeat; }
   @media (min-width: 37.5rem) {
-    .flexulator__items {
+    .flexulator__items-container {
       flex-flow: row nowrap; } }
 
 @keyframes fadeItems {
