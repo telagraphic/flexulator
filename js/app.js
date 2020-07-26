@@ -1,57 +1,18 @@
 let select = e => document.querySelector(e);
 let selectAll = e => document.querySelectorAll(e);
-let selectClassName = e => document.getElementsByClassName();
-
-const flexContainer = {
-  container:0,
-  totalFlexBasis:0,
-  remainingSpace:0
-}
-
-const flexulations = {
-  totalFlexBasis:0,
-  remainingSpace:0,
-  growFactor:0,
-  shrinkFactor: 0,
-}
-
-const flexItem = {
-  properties: {
-    width: 500,
-    grow: 1,
-    shrink: 1,
-    basis: 100
-  },
-  formula: {
-    grow: {
-      itemValue:0,
-      total:0,
-      remainingFlexSpace:0,
-      itemSpace:0
-    },
-    shrink: {
-      itemValue:0,
-      basis:0,
-      totalFlexBasis:0,
-      value:0,
-      remainingFlexSpace:0,
-      itemSpace:0
-    }
-  }
-}
-
+let selectClassName = e => document.getElementsByClassName(e);
 
 const flexulator = {
   flexContainer: select('.flexulator__items-container'),
-  flexContainerItems: [...selectAll('.flexulator__items-container .flex-item')],
+  flexContainerItems: [...selectClassName('flex-item')],
   addFlexItemButton: select('.flexulator__form-label-button-add-flex-item'),
   flexContainerWidthField: select('.dashboard__container-width'),
   remainingSpace: select('.dashboard__flex-remaining-space'),
   flexTotalBasis: select('.dashboard__total-flex-basis'),
-  flexTotalBasisFields: [...selectAll('.dashboard__total-flex-basis, .flex-item__flexulations-shrink-total-basis')],
-  flexTotalRemainingSpaceFields: [...selectAll('.dashboard__flex-remaining-space, .flex-item__flexulations-remaining-space')],
-  flexItemTotalFlexGrowFields: [...selectAll('.flex-item__flexulations-grow-total')],
-  flexItemGrowValueFields: [...selectAll('.flex-item__flexulations-grow-value')],
+  flexTotalBasisFields: [...selectClassName('flexulator__total-flex-basis')],
+  flexTotalRemainingSpaceFields: [...selectClassName('flexulator__flex-remaining-space')],
+  flexItemTotalFlexGrowFields: [...selectClassName('flex-item__flexulations-grow-total')],
+  flexItemGrowValueFields: [...selectClassName('flex-item__flexulations-grow-value')],
 
   updateFlexContainerWidth: function() {
     this.flexContainerWidthField.textContent = this.flexContainer.clientWidth;
@@ -74,8 +35,26 @@ const flexulator = {
     });
   },
 
-  updateFlexItemWidth: function() {
+  updateItemFlexBasis: function() {
+    this.flexContainerItems.forEach(flexItem => {
+      let flexItemBasis = flexItem.querySelector('.flex-item__flexulations-grow-item-basis');
+      flexItemBasis.textContent = flexItem.querySelector('.flex-item__basis-value').value;
+    })
+  },
 
+  updateItemComputedWidth: function() {
+    this.flexContainerItems.forEach(flexItem => {
+      let computedWidth = flexItem.querySelector('.flex-item__flexulations-grow-item-computed-width');
+
+      setTimeout(function() {
+        let flexItemWidth = flexItem.querySelector('.flex-item__width');
+        computedWidth.textContent = flexItemWidth.textContent;
+      }, 500)
+    })
+
+  },
+
+  updateFlexItemWidth: function() {
     this.flexContainerItems.forEach(function(item) {
       let flexItemWidthField = item.querySelector('.flex-item__width');
       flexItemWidthField.textContent = parseInt(item.offsetWidth);
@@ -117,10 +96,14 @@ const flexulator = {
     this.flexContainerItems.forEach(item => {
       let flexItemGrow = item.querySelector('.flex-item__flexulations-grow-value').textContent;
       let flexGrowTotal = item.querySelector('.flex-item__flexulations-grow-total').textContent;
-      let flexTotalRemainingSpace = item.querySelector('.flex-item__flexulations-remaining-space').textContent;
+      let flexTotalRemainingSpace = item.querySelector('.flexulator__flex-remaining-space').textContent;
       let flexItemGrowFraction = parseFloat(flexItemGrow) / parseFloat(flexGrowTotal);
-      let flexItemWidth = item.querySelector('.flex-item__flexulations-grow-width');
-      flexItemWidth.textContent = parseInt(flexItemGrowFraction * parseInt(flexTotalRemainingSpace), 10);
+      let flexItemWidth = [...item.querySelectorAll('.flex-item__flexulations-grow-width')];
+
+      flexItemWidth.forEach(item => {
+        item.textContent = parseInt(flexItemGrowFraction * parseInt(flexTotalRemainingSpace), 10);
+      });
+
     });
   },
 
@@ -134,7 +117,11 @@ const flexulator = {
 
       flexItem.querySelector('.flex-item__flexulations-shrink-value').textContent = flexItem.style.flexShrink;
       flexItem.querySelector('.flex-item__flexulations-shrink-item-basis').textContent = parseInt(flexItemBasis);
-      flexItem.querySelector('.flex-item__flexulations-shrink-quotient').textContent = shrinkFactor.toPrecision(2);
+      let shrinkQuotient = [...flexItem.querySelectorAll('.flex-item__flexulations-shrink-quotient')];
+      shrinkQuotient.forEach(item => {
+        item.textContent = shrinkFactor.toPrecision(2);
+      })
+      // flexItem.querySelector('.flex-item__flexulations-shrink-quotient').textContent = shrinkFactor.toPrecision(2);
       flexItem.querySelector('.flex-item__flexulations-shrink-width').textContent = parseInt(shrinkFactor * flexulator.remainingSpace.textContent);
     })
   },
@@ -177,9 +164,13 @@ const flexulator = {
           <span class="flex-item__flexulations-grow-total"></span>
           <span class="flex-item__flexulations_operator">*</span>
           <span class="flex-item__flexulations-grow-space flex-item__flexulations-space"></span>
-          <span class="flex-item__flexulations-grow-remaining-space flex-item__flexulations-remaining-space"></span>
+          <span class="flex-item__flexulations-grow-remaining-space flexulator__flex-remaining-space"></span>
           <span class="flex-item__flexulations_operator">=</span>
           <span class="flex-item__flexulations-grow-width"></span>
+          <span class="flex-item__flexulations_operator">+</span>
+          <span class="flex-item__flexulations-grow-item-basis"></span>
+          <span class="flex-item__flexulations_operator">=</span>
+          <span class="flex-item__flexulations-grow-item-computed-width"></span>
         </section>
       </section>
 
@@ -192,11 +183,11 @@ const flexulator = {
           <span class="flex-item__flexulations-shrink-item-basis"></span>
           <span class="flex-item__flexulations_operator">) </span>
           <span class="flex-item__flexulations_operator"> / </span>
-          <span class="flex-item__flexulations-shrink-total-basis"></span>
+          <span class="flex-item__flexulations-shrink-total-basis flexulator__total-flex-basis"></span>
           <span class="flex-item__flexulations_operator"> = </span>
           <span class="flex-item__flexulations-shrink-quotient"></span>
           <span class="flex-item__flexulations_operator"> * </span>
-          <span class="flex-item__flexulations-shrink-remaining-space flex-item__flexulations-remaining-space"></span>
+          <span class="flex-item__flexulations-shrink-remaining-space flexulator__flex-remaining-space"></span>
           <span class="flex-item__flexulations_operator"> = </span>
           <span class="flex-item__flexulations-shrink-width"></span>
         </section>
@@ -208,21 +199,38 @@ const flexulator = {
     // flexItem.style.animation = 'addItem .25s ease-in';
     this.flexContainer.insertAdjacentHTML('beforeend', flexItem);
 
-    // setTimeout(function() {
-    //   flexulator.updateFlexContainerWidth();
-    //   flexulator.updateFlexBasis();
-    //   flexulator.updateTotalRemainingSpace();
-    //   flexulator.updateFlexItemWidth();
-    //   flexulator.updateTotalFlexGrow();
-    //   flexulator.updateGrowValue();
-    //   flexulator.updateFlexItemGrowSpace();
-    //   flexulator.updateFlexItemShrinkSpace();
-    // }, 500)
+    setTimeout(function() {
+      flexulator.updateChanges();
+    }, 500);
 
   },
 
-  removeFlexItem: function(flexItem) {
-    //remove the flex item and animate
+  removeFlexItem: function() {
+
+    this.flexContainerItems.forEach(flexItem => {
+        flexItem.addEventListener('click', function(event) {
+          if (event.target.matches('.flex-item__remove-button')) {
+            event.currentTarget.remove();
+            setTimeout(function() {
+              flexulator.updateChanges();
+            }, 500);
+          }
+        });
+    });
+  },
+
+  updateChanges: function() {
+    flexulator.updateFlexContainerWidth();
+    flexulator.updateFlexBasis();
+    flexulator.updateTotalRemainingSpace();
+    flexulator.updateFlexItemWidth();
+    flexulator.updateTotalFlexGrow();
+    flexulator.updateGrowValue();
+    flexulator.updateFlexItemGrowSpace();
+    flexulator.updateFlexItemShrinkSpace();
+    flexulator.updateItemComputedWidth();
+    flexulator.updateItemFlexBasis();
+    flexulator.removeFlexItem();
   },
 
   setup: function() {
@@ -233,24 +241,10 @@ const flexulator = {
     });
 
     window.addEventListener('resize', function(event) {
-      flexulator.updateFlexContainerWidth();
-      flexulator.updateFlexBasis();
-      flexulator.updateTotalRemainingSpace();
-      flexulator.updateFlexItemWidth();
-      flexulator.updateTotalFlexGrow();
-      flexulator.updateGrowValue();
-      flexulator.updateFlexItemGrowSpace();
-      flexulator.updateFlexItemShrinkSpace();
+      flexulator.updateChanges();
     });
 
-    flexulator.updateFlexContainerWidth();
-    flexulator.updateFlexBasis();
-    flexulator.updateTotalRemainingSpace();
-    flexulator.updateFlexItemWidth();
-    flexulator.updateTotalFlexGrow();
-    flexulator.updateGrowValue();
-    flexulator.updateFlexItemGrowSpace();
-    flexulator.updateFlexItemShrinkSpace();
+    flexulator.updateChanges();
   },
 }
 

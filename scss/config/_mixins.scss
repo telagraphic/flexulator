@@ -9,7 +9,7 @@
 
 @mixin flex-item-input() {
   width: 5rem;
-  padding: .5rem;
+  padding: .5rem .5rem 0 .5rem;
   margin: 0 1rem;
   border-bottom: 2px dashed transparent;
   background-color: transparent;
