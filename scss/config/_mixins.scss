@@ -9,8 +9,8 @@
 
 @mixin flex-item-input() {
   width: 5rem;
-  padding: .5rem .5rem 0 .5rem;
-  margin: 0 1rem;
+  // padding: .5rem .5rem 0 .5rem;
+  // margin: 0 1rem;
   border-bottom: 2px dashed transparent;
   background-color: transparent;
   outline: 0;
@@ -20,12 +20,13 @@
   font-size: 2.5rem;
   font-weight: 400;
 
-  &:hover,
-  &:focus {
-    border-bottom: 2px dashed var(--console-25-gray);
-  }
+  // &:hover,
+  // &:focus {
+  //   border-bottom: 2px dashed var(--console-25-gray);
+  // }
 
-  transition: border-bottom .15s ease-in, opacity .15s ease-in;
+  // transition: border-bottom .15s ease-in, opacity .15s ease-in;
+  // transition: opacity .15s ease-in;
 }
 
 @mixin input-number() {
