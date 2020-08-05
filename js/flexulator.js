@@ -28,6 +28,8 @@ const flexulator = {
     flexulator.createFlexItems();
     flexulator.updateFlexItemsValues();
     flexulator.updateResize();
+    flexulator.updateFlexGrowTotal();
+    flexulator.updateShrinkBasisTotal();
   },
   updateWidth: function () {
     flexulator.flexValues.width = flexulator.elements.container.clientWidth;
@@ -61,10 +63,11 @@ const flexulator = {
       newFlexItem.initialize(item);
       newFlexItem.updateItemStyles(flexStyles);
       newFlexItem.updateItemForm(item.clientWidth, flexStyles);
+      newFlexItem.updateShrinkBasisTotal();
       flexulator.flexItems.push(newFlexItem);
-    })
+    });
 
-    console.log(flexulator.flexItems);
+    flexulator.updateFlexGrowTotal();
   },
   newFlexItem: function () {
     return newFlexItemObject();
@@ -84,6 +87,25 @@ const flexulator = {
       item.writeItemFlexulations();
     });
   },
+  updateFlexGrowTotal: function() {
+    let flexGrowTotal = flexulator.flexItems.reduce((growSum, flexItem) => {
+      return growSum + parseInt(flexItem.style.grow);
+    }, 0);
+
+    flexulator.flexItems.forEach(item => {
+      item.updateFlexGrowTotal(flexGrowTotal);
+    })
+  },
+  updateShrinkBasisTotal: function() {
+
+    let shrinkBasisTotal = flexulator.flexItems.reduce((shrinkSum, flexItem) => {
+      return shrinkSum + flexItem.returnItemShrinkBasis();
+    }, 0);
+
+    flexulator.flexItems.forEach(item => {
+      item.updateShrinkBasisTotal(shrinkBasisTotal);
+    })
+  },
   updateResize: function() {
     window.addEventListener('resize', function(event) {
       flexulator.updateWidth();
@@ -97,3 +119,4 @@ const flexulator = {
 
 flexulator.initialize('.flexulator__items-container');
 console.log(flexulator);
+console.log(flexulator.flexItems[0]);
