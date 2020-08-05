@@ -215,7 +215,6 @@ export default function newFlexItemObject() {
       this.elements.flexulations.shrink.computedWidth.textContent = shrinkComputedWidth.toFixed(0);
     },
     updateForm: function(property) {
-
       if (property === "grow") {
         let newGrowValue = this.elements.form.grow.value;
         this.form.grow = newGrowValue;
