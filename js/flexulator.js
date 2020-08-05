@@ -102,18 +102,11 @@ const flexulator = {
   },
   updateShrinkBasisTotal: function() {
 
-    // let shrinkBasisTotal = flexulator.flexItems.reduce((shrinkSum, flexItem) => {
-    //   console.log("shrinkSum: ", shrinkSum, flexItem.returnItemShrinkBasis());
-    //   return shrinkSum + flexItem.returnItemShrinkBasis();
-    // }, 0);
+    let shrinkBasisTotal = flexulator.flexItems.reduce((shrinkSum, flexItem) => {
+      console.log("shrinkSum: ", shrinkSum, flexItem.returnItemShrinkBasis());
+      return shrinkSum + flexItem.returnItemShrinkBasis();
+    }, 0);
 
-    let shrinkBasisTotal = 0;
-    flexulator.flexItems.forEach(flexItem => {
-      console.log("shrinkBasisTotal: ", flexItem);
-      shrinkBasisTotal += flexItem.returnItemShrinkBasis();
-    });
-
-    // console.log("shrinkBasisTotal: ", shrinkBasisTotal);
     flexulator.flexItems.forEach(item => {
       item.updateShrinkBasisTotal(shrinkBasisTotal);
     })
