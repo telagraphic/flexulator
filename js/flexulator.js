@@ -30,6 +30,7 @@ const flexulator = {
     flexulator.updateResize();
     flexulator.updateFlexGrowTotal();
     flexulator.updateShrinkBasisTotal();
+    flexulator.updateForm();
   },
   updateWidth: function () {
     flexulator.flexValues.width = flexulator.elements.container.clientWidth;
@@ -57,6 +58,7 @@ const flexulator = {
     remainingSpace.textContent = flexulator.flexValues.remainingSpace;
   },
   createFlexItems: function() {
+    let id = 0;
     flexulator.elements.flexItems.forEach(item => {
       let [...flexStyles] = [item.style.flexGrow, item.style.flexShrink, item.style.flexBasis.replace('px', '')];
       let newFlexItem = flexulator.newFlexItem();
@@ -64,7 +66,9 @@ const flexulator = {
       newFlexItem.updateItemStyles(flexStyles);
       newFlexItem.updateItemForm(item.clientWidth, flexStyles);
       newFlexItem.updateShrinkBasisTotal();
+      newFlexItem.id = id;
       flexulator.flexItems.push(newFlexItem);
+      id++;
     });
 
     flexulator.updateFlexGrowTotal();
@@ -99,12 +103,47 @@ const flexulator = {
   updateShrinkBasisTotal: function() {
 
     let shrinkBasisTotal = flexulator.flexItems.reduce((shrinkSum, flexItem) => {
+      console.log("shrinkSum: ", shrinkSum, flexItem.returnItemShrinkBasis());
       return shrinkSum + flexItem.returnItemShrinkBasis();
     }, 0);
 
+    console.log("shrinkBasisTotal: ", shrinkBasisTotal);
     flexulator.flexItems.forEach(item => {
       item.updateShrinkBasisTotal(shrinkBasisTotal);
     })
+  },
+  updateForm: function() {
+
+    flexulator.elements.flexItems.forEach(item => {
+      item.addEventListener('input', function(event) {
+        if (event.target.matches('.flex-item__grow-value')) {
+          flexulator.updateFormValue(event.currentTarget.dataset.id, 'grow');
+        } else if (event.target.matches('.flex-item__shrink-value')) {
+          flexulator.updateFormValue(event.currentTarget.dataset.id, 'shrink');
+        } else if (event.target.matches('.flex-item__basis-value')) {
+          flexulator.updateFormValue(event.currentTarget.dataset.id, 'basis')
+        }
+      })
+    });
+  },
+  updateFormValue: function (itemId, property) {
+    let itemToUpdate = flexulator.flexItems.find(function(item) {
+      return item.id === parseInt(itemId);
+    });
+
+    itemToUpdate.updateForm(property);
+
+    flexulator.updateWidth();
+    flexulator.updateFlexItems();
+    flexulator.updateFlexTotalBasis();
+    flexulator.updateRemainingSpace();
+    flexulator.updateContainer();
+    flexulator.createFlexItems();
+    flexulator.updateFlexItemsValues();
+    flexulator.updateResize();
+    flexulator.updateFlexGrowTotal();
+    flexulator.updateShrinkBasisTotal();
+
   },
   updateResize: function() {
     window.addEventListener('resize', function(event) {

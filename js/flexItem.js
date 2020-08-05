@@ -163,7 +163,6 @@ export default function newFlexItemObject() {
       this.updateItemWidth();
       this.updateShrinkValue();
       this.updateShrinkComputedWidth();
-      // this.updateShrinkFactor();
     },
     writeItemFlexulations: function () {
       this.elements.flexulations.container.width.forEach(width => width.textContent = this.flexulations.container.width);
@@ -214,7 +213,33 @@ export default function newFlexItemObject() {
     updateShrinkComputedWidth: function() {
       let shrinkComputedWidth = this.flexulations.shrink.factor.toFixed(2) * this.flexulations.container.remainingSpace;
       this.elements.flexulations.shrink.computedWidth.textContent = shrinkComputedWidth.toFixed(0);
-    }
+    },
+    updateForm: function(property) {
 
+      if (property === "grow") {
+        let newGrowValue = this.elements.form.grow.value;
+        this.form.grow = newGrowValue;
+        this.style.grow = newGrowValue;
+        this.flexulations.form.grow = newGrowValue;
+        this.flexulations.grow.value = newGrowValue;
+        this.elements.self.style.flexGrow = newGrowValue;
+      } else if (property === "shrink") {
+        let newShrinkValue = this.elements.form.shrink.value;
+        this.form.shrink = newShrinkValue;
+        this.style.shrink = newShrinkValue;
+        this.flexulations.form.shrink = newShrinkValue;
+        this.flexulations.shrink.value = newShrinkValue;
+        this.elements.self.style.flexShrink = newShrinkValue;
+      } else if (property === "basis") {
+        let newBasisValue = this.elements.form.flexBasis.value;
+        this.form.flexBasis = newBasisValue;
+        this.style.flexBasis = newBasisValue;
+        this.flexulations.form.flexBasis = newBasisValue;
+        this.flexulations.grow.itemBasis = newBasisValue;
+        this.flexulations.shrink.itemBasis = newBasisValue;
+        this.elements.self.style.flexBasis = `${newBasisValue}px`;
+      }
+
+    }
   }
 }
