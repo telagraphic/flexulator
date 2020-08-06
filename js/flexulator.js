@@ -31,6 +31,9 @@ const flexulator = {
     flexulator.updateFlexGrowTotal();
     flexulator.updateShrinkBasisTotal();
     flexulator.updateForm();
+    flexulator.setupRemoveButton();
+
+    flexulator.setupFlexItemButton();
   },
   updateWidth: function () {
     flexulator.flexValues.width = flexulator.elements.container.clientWidth;
@@ -44,6 +47,10 @@ const flexulator = {
     }, 0);
 
     flexulator.flexValues.flexBasisTotal = flexBasisTotal;
+
+    flexulator.flexItems.forEach(item => {
+      item.flexulations.container.flexBasisTotal = flexBasisTotal;
+    });
   },
   updateRemainingSpace: function() {
     flexulator.flexValues.remainingSpace = flexulator.flexValues.width - flexulator.flexValues.flexBasisTotal;
@@ -76,6 +83,18 @@ const flexulator = {
   newFlexItem: function () {
     return newFlexItemObject();
   },
+  addNewFlexItem: function() {
+    let item = flexulator.elements.flexItems[flexulator.elements.flexItems.length -1];
+    let [...flexStyles] = [item.style.flexGrow, item.style.flexShrink, item.style.flexBasis.replace('px', '')];
+    let id = item.dataset.id;
+    let newFlexItem = flexulator.newFlexItem();
+    newFlexItem.initialize(item);
+    newFlexItem.updateItemStyles(flexStyles);
+    newFlexItem.updateItemForm(item.clientWidth, flexStyles);
+    newFlexItem.updateShrinkBasisTotal();
+    newFlexItem.id = parseInt(item.dataset.id);
+    flexulator.flexItems.push(newFlexItem);
+  },
   updateFlexItemsValues: function () {
     flexulator.flexItems.forEach(item => {
       item.updateItemFlexulations({
@@ -96,14 +115,16 @@ const flexulator = {
       return growSum + parseInt(flexItem.style.grow);
     }, 0);
 
+    console.log(flexGrowTotal);
+
     flexulator.flexItems.forEach(item => {
       item.updateFlexGrowTotal(flexGrowTotal);
-    })
+      // item.updateElements();
+    });
+
   },
   updateShrinkBasisTotal: function() {
-
     let shrinkBasisTotal = flexulator.flexItems.reduce((shrinkSum, flexItem) => {
-      console.log("shrinkSum: ", shrinkSum, flexItem.returnItemShrinkBasis());
       return shrinkSum + flexItem.returnItemShrinkBasis();
     }, 0);
 
@@ -112,7 +133,6 @@ const flexulator = {
     })
   },
   updateForm: function() {
-
     flexulator.elements.flexItems.forEach(item => {
       item.addEventListener('input', function(event) {
         if (event.target.matches('.flex-item__grow-value')) {
@@ -139,8 +159,190 @@ const flexulator = {
     flexulator.updateRemainingSpace()
     flexulator.updateShrinkBasisTotal();
     flexulator.updateFlexItemsValues();
+  },
+  setupFlexItemButton: function() {
+    let addButton = select('.flexulator__form-label-button-add-flex-item');
 
+    addButton.addEventListener('click', function(event) {
+      event.preventDefault();
+      flexulator.addFlexItem();
 
+      flexulator.updateFlexItems();
+      flexulator.addNewFlexItem();
+      flexulator.updateWidth();
+      flexulator.updateFlexTotalBasis();
+      flexulator.updateRemainingSpace();
+      flexulator.updateContainer();
+      flexulator.updateFlexGrowTotal();
+      flexulator.updateShrinkBasisTotal();
+      flexulator.updateForm();
+      flexulator.updateFlexItemsValues();
+
+    })
+  },
+  addFlexItem: function () {
+    let length = this.elements.flexItems.length;
+
+    let flexGrow = select('input[name="flex-grow"]').value;
+    let flexShrink = select('input[name="flex-shrink"]').value;
+    let flexBasis = select('input[name="flex-basis"]').value;
+
+    let flexItem = `
+    <article class="flex-item" style="flex: ${flexGrow} ${flexShrink} ${flexBasis}px;" data-id="${length}">
+      <section class="flex-item__width-container">
+        <h4 class="flex-item__width"></h4>
+        <h5 class="flex-item__width-header">width</h5>
+      </section>
+
+      <section class="flex-item__form">
+        <section class="flex-item__form-label">
+          <section class="flex-item__form-label-container">
+            <button class="flex-item__grow-increment"></button>
+            <input type="number" class="flex-item__grow-value" value="${flexGrow}">
+            <button class="flex-item__grow-decrement"></button>
+          </section>
+          <h5 class="flex-item__form-label-name">grow</h5>
+        </section>
+        <section class="flex-item__form-label">
+          <section class="flex-item__form-label-container">
+            <button class="flex-item__shrink-increment"></button>
+            <input type="number" class="flex-item__shrink-value" value="${flexShrink}">
+            <button class="flex-item__shrink-decrement"></button>
+          </section>
+          <h5 class="flex-item__form-label-name">shrink</h5>
+        </section>
+        <section class="flex-item__form-label">
+          <section class="flex-item__form-label-container">
+            <button class="flex-item__basis-increment"></button>
+            <input type="number" class="flex-item__basis-value" value="${flexBasis}">
+            <button class="flex-item__basis-decrement"></button>
+          </section>
+          <h5 class="flex-item__form-label-name">flex-basis</h5>
+        </section>
+      </section>
+
+      <section class="flex-item__flexulations-grow-container">
+        <h5 class="flex-item__flexulations-grow-header">GROW</h5>
+        <section class="flex-item__flexulations-grow-formula">
+          <section class="flex-item__flexulations-section">
+            <h5 class="flex-item__flexuations-section-header">
+              remaining space
+            </h5>
+            <span class="flex-item__flexulations-container-width"></span>
+            <span class="flex-item__flexulations_operator">-</span>
+            <span class="flex-item__flexulations-total-flex-basis"></span>
+            <span class="flex-item__flexulations_operator">=</span>
+            <span class="flex-item__flexulations-remaining-space flex-item__flexulations-container-width"></span>
+          </section>
+
+          <section class="flex-item__flexulations-section">
+            <h5 class="flex-item__flexuations-section-header">
+              allocated space
+            </h5>
+            <span class="flex-item__flexulations-grow-value"></span>
+            <span class="flex-item__flexulations_operator">/</span>
+            <span class="flex-item__flexulations-grow-total"></span>
+            <span class="flex-item__flexulations_operator">*</span>
+            <span class="flex-item__flexulations-grow-space flex-item__flexulations-space"></span>
+            <span class="flex-item__flexulations-remaining-space flex-item__flexulations-container-width"></span>
+            <span class="flex-item__flexulations_operator">=</span>
+            <span class="flex-item__flexulations-grow-width"></span>
+          </section>
+
+          <section class="flex-item__flexulations-section">
+            <h5 class="flex-item__flexuations-section-header">
+              final width
+            </h5>
+            <span class="flex-item__flexulations-grow-width"></span>
+            <span class="flex-item__flexulations_operator">+</span>
+            <span class="flex-item__flexulations-grow-item-basis"></span>
+            <span class="flex-item__flexulations_operator">=</span>
+            <span class="flex-item__flexulations-grow-item-computed-width"></span>
+          </section>
+        </section>
+      </section>
+
+      <section class="flex-item__flexulations-shrink-container">
+        <h5 class="flex-item__flexulations-shrink-header">SHRINK</h5>
+        <section class="flex-item__flexulations-shrink-formula">
+
+          <section class="flex-item__flexulations-section">
+            <h5 class="flex-item__flexuations-section-header">
+              remaining space
+            </h5>
+            <span class="flex-item__flexulations-container-width"></span>
+            <span class="flex-item__flexulations_operator">-</span>
+            <span class="flex-item__flexulations-total-flex-basis"></span>
+            <span class="flex-item__flexulations_operator">=</span>
+            <span class="flex-item__flexulations-remaining-space flex-item__flexulations-container-width"></span>
+          </section>
+
+          <section class="flex-item__flexulations-section">
+            <h5 class="flex-item__flexuations-section-header">
+              shrink factor
+            </h5>
+            <span class="flex-item__flexulations_operator">(</span>
+            <span class="flex-item__flexulations-shrink-value"></span>
+            <span class="flex-item__flexulations_operator"> * </span>
+            <span class="flex-item__flexulations-shrink-item-basis"></span>
+            <span class="flex-item__flexulations_operator">) </span>
+            <span class="flex-item__flexulations_operator"> / </span>
+            <span class="flex-item__flexulations-shrink-total-basis flexulator__total-flex-basis"></span>
+            <span class="flex-item__flexulations_operator"> = </span>
+            <span class="flex-item__flexulations-shrink-quotient"></span>
+          </section>
+
+          <section class="flex-item__flexulations-section">
+            <h5 class="flex-item__flexuations-section-header">
+              final width
+            </h5>
+            <span class="flex-item__flexulations-shrink-quotient"></span>
+            <span class="flex-item__flexulations_operator"> * </span>
+            <span class="flex-item__flexulations-remaining-space"></span>
+            <span class="flex-item__flexulations_operator"> = </span>
+            <span class="flex-item__flexulations-shrink-width"></span>
+          </section>
+        </section>
+      </section>
+      <button class="flex-item__remove-button">Remove</button>
+    </article>
+    `;
+
+    this.elements.container.insertAdjacentHTML('beforeend', flexItem);
+
+    setTimeout(function() {
+      flexulator.setupRemoveButton();
+    }, 500);
+
+  },
+  setupRemoveButton: function() {
+    flexulator.elements.flexItems.forEach(element => {
+      element.addEventListener('click', function(event) {
+        if (event.target.matches('.flex-item__remove-button')) {
+
+          if (flexulator.flexItems.length === 1) {
+            return;
+          } else {
+            event.currentTarget.remove();
+            flexulator.removeFlexItem(event.currentTarget);
+
+            setTimeout(function() {
+              flexulator.updateFlexItems();
+              flexulator.updateWidth();
+              flexulator.updateFlexTotalBasis();
+              flexulator.updateRemainingSpace();
+              flexulator.updateContainer();
+              flexulator.updateFlexGrowTotal();
+              flexulator.updateShrinkBasisTotal();
+              flexulator.updateFlexItemsValues();
+            }, 500)
+          }
+        }
+      });
+    })
+  },
+  removeFlexItem: function(item) {
+    flexulator.flexItems.splice(item.dataset.id, 1);
   },
   updateResize: function() {
     window.addEventListener('resize', function(event) {

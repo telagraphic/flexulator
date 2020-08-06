@@ -174,7 +174,6 @@ export default function newFlexItemObject() {
       this.elements.flexulations.grow.value.textContent = this.flexulations.grow.value;
       this.elements.flexulations.grow.total.textContent = this.flexulations.grow.total;
 
-
       this.elements.flexulations.grow.width.forEach(width => width.textContent = this.flexulations.grow.growWidth);
       this.elements.flexulations.grow.basis.textContent = this.flexulations.grow.itemBasis;
       this.elements.flexulations.grow.computedWidth.textContent = this.flexulations.itemWidth;
@@ -184,6 +183,8 @@ export default function newFlexItemObject() {
     },
     updateFlexGrowTotal: function(totalGrow) {
       this.flexulations.grow.total = totalGrow;
+      // console.log(this.flexulations.grow.total);
+      // this.elements.flexulations.grow.total.textContent = this.flexulations.grow.total;
     },
     updatedGrowWidth: function() {
       let growWidth = parseFloat((this.flexulations.grow.value / this.flexulations.grow.total), 10) * parseFloat(this.flexulations.container.remainingSpace, 10);
@@ -238,6 +239,9 @@ export default function newFlexItemObject() {
         this.flexulations.shrink.itemBasis = newBasisValue;
         this.elements.self.style.flexBasis = `${newBasisValue}px`;
       }
+    },
+    updateElements: function() {
+      this.elements.flexulations.grow.total = this.flexulations.grow.total;
 
     }
   }
