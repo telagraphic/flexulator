@@ -26,13 +26,12 @@ const flexulator = {
     flexulator.updateRemainingSpace();
     flexulator.updateContainer();
     flexulator.createFlexItems();
-    flexulator.updateFlexItemsValues();
+    flexulator.updateFlexItemsContainerValues();
     flexulator.updateResize();
     flexulator.updateFlexGrowTotal();
     flexulator.updateShrinkBasisTotal();
     flexulator.updateForm();
     flexulator.setupRemoveButton();
-
     flexulator.setupFlexItemButton();
   },
   updateWidth: function () {
@@ -52,10 +51,10 @@ const flexulator = {
       item.flexulations.container.flexBasisTotal = flexBasisTotal;
     });
   },
-  updateRemainingSpace: function() {
+  updateRemainingSpace: function() { // remove
     flexulator.flexValues.remainingSpace = flexulator.flexValues.width - flexulator.flexValues.flexBasisTotal;
   },
-  updateContainer: function() {
+  updateContainer: function() { // remove
     let width = flexulator.elements.dashboard.querySelector('.dashboard__container-width');
     let flexBasisTotal = flexulator.elements.dashboard.querySelector('.dashboard__total-flex-basis');
     let remainingSpace = flexulator.elements.dashboard.querySelector('.dashboard__flex-remaining-space');
@@ -67,12 +66,8 @@ const flexulator = {
   createFlexItems: function() {
     let id = 0;
     flexulator.elements.flexItems.forEach(item => {
-      let [...flexStyles] = [item.style.flexGrow, item.style.flexShrink, item.style.flexBasis.replace('px', '')];
       let newFlexItem = flexulator.newFlexItem();
       newFlexItem.initialize(item);
-      newFlexItem.updateItemStyles(flexStyles);
-      newFlexItem.updateItemForm(item.clientWidth, flexStyles);
-      newFlexItem.updateShrinkBasisTotal();
       newFlexItem.id = id;
       flexulator.flexItems.push(newFlexItem);
       id++;
@@ -95,15 +90,13 @@ const flexulator = {
     newFlexItem.id = parseInt(item.dataset.id);
     flexulator.flexItems.push(newFlexItem);
   },
-  updateFlexItemsValues: function () {
+  updateFlexItemsContainerValues: function () {
     flexulator.flexItems.forEach(item => {
-      item.updateItemFlexulations({
+      item.updateItemContainerFlexulations({
         width: flexulator.flexValues.width,
         flexBasisTotal: flexulator.flexValues.flexBasisTotal,
         remainingSpace: flexulator.flexValues.remainingSpace
-      },
-      {}
-      );
+      });
     });
 
     flexulator.flexItems.forEach(item => {
@@ -115,11 +108,8 @@ const flexulator = {
       return growSum + parseInt(flexItem.style.grow);
     }, 0);
 
-    console.log(flexGrowTotal);
-
     flexulator.flexItems.forEach(item => {
       item.updateFlexGrowTotal(flexGrowTotal);
-      // item.updateElements();
     });
 
   },
@@ -158,7 +148,7 @@ const flexulator = {
     flexulator.updateFlexGrowTotal();
     flexulator.updateRemainingSpace()
     flexulator.updateShrinkBasisTotal();
-    flexulator.updateFlexItemsValues();
+    flexulator.updateFlexItemsContainerValues();
   },
   setupFlexItemButton: function() {
     let addButton = select('.flexulator__form-label-button-add-flex-item');
@@ -176,7 +166,7 @@ const flexulator = {
       flexulator.updateFlexGrowTotal();
       flexulator.updateShrinkBasisTotal();
       flexulator.updateForm();
-      flexulator.updateFlexItemsValues();
+      flexulator.updateFlexItemsContainerValues();
 
     })
   },
@@ -334,7 +324,7 @@ const flexulator = {
               flexulator.updateContainer();
               flexulator.updateFlexGrowTotal();
               flexulator.updateShrinkBasisTotal();
-              flexulator.updateFlexItemsValues();
+              flexulator.updateFlexItemsContainerValues();
             }, 500)
           }
         }
@@ -349,7 +339,7 @@ const flexulator = {
       flexulator.updateWidth();
       flexulator.updateRemainingSpace();
       flexulator.updateContainer();
-      flexulator.updateFlexItemsValues();
+      flexulator.updateFlexItemsContainerValues();
     })
   }
 }
