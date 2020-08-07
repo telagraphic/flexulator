@@ -79,13 +79,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: auto;
     padding: .25rem 0 0 0;
   }
 
   &__form-label-name {
 
   }
+
+  &__form-button {
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+
+  &__form-button--show {
+    opacity: 1;
+  }
+
 
   &__grow-increment {
     @include flex-item-button();

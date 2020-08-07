@@ -647,15 +647,20 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: auto;
   padding: .25rem 0 0 0; }
+
+.flex-item__form-button {
+  opacity: 0;
+  transition: opacity 1s ease; }
+
+.flex-item__form-button--show {
+  opacity: 1; }
 
 .flex-item__grow-increment {
   align-items: center;
   height: 25px;
   width: 25px;
-  opacity: 0;
-  transition: opacity .1s ease-in;
   content: "-";
   position: relative;
   left: 0;
@@ -679,16 +684,12 @@ button {
 .flex-item__grow-decrement {
   align-items: center;
   height: 25px;
-  width: 25px;
-  opacity: 0;
-  transition: opacity .1s ease-in; }
+  width: 25px; }
 
 .flex-item__shrink-increment {
   align-items: center;
   height: 25px;
   width: 25px;
-  opacity: 0;
-  transition: opacity .1s ease-in;
   content: "-";
   position: relative;
   left: 0;
@@ -712,16 +713,12 @@ button {
 .flex-item__shrink-decrement {
   align-items: center;
   height: 25px;
-  width: 25px;
-  opacity: 0;
-  transition: opacity .1s ease-in; }
+  width: 25px; }
 
 .flex-item__basis-increment {
   align-items: center;
   height: 25px;
-  width: 25px;
-  opacity: 0;
-  transition: opacity .1s ease-in; }
+  width: 25px; }
 
 .flex-item__basis-value {
   width: 5rem;
@@ -741,9 +738,7 @@ button {
 .flex-item__basis-decrement {
   align-items: center;
   height: 25px;
-  width: 25px;
-  opacity: 0;
-  transition: opacity .1s ease-in; }
+  width: 25px; }
 
 .flex-item__remove-button {
   position: relative;

@@ -33,6 +33,8 @@ const flexulator = {
     flexulator.updateForm();
     flexulator.setupRemoveButton();
     flexulator.setupFlexItemButton();
+    flexulator.setupFlexButtons();
+    flexulator.updateFlexFormButtons();
   },
   updateWidth: function () {
     flexulator.flexValues.width = flexulator.elements.container.clientWidth;
@@ -165,10 +167,36 @@ const flexulator = {
       flexulator.updateContainer();
       flexulator.updateFlexGrowTotal();
       flexulator.updateShrinkBasisTotal();
+      flexulator.updateFlexFormButtons();
+      flexulator.setupFlexButtons();
       flexulator.updateForm();
       flexulator.updateFlexItemsContainerValues();
 
     })
+  },
+  updateFlexFormButtons: function() {
+    let buttonLabels = [...selectAll('.flex-item__form-label-container')];
+    buttonLabels.forEach(element => {
+      element.addEventListener('mouseenter', event => {
+        let buttons = event.currentTarget.querySelectorAll('.flex-item__form-button');
+        buttons.forEach(button => { button.classList.add('flex-item__form-button--show')})
+      });
+
+      element.addEventListener('mouseleave', event => {
+        let buttons = event.currentTarget.querySelectorAll('.flex-item__form-button');
+        buttons.forEach(button => { button.classList.remove('flex-item__form-button--show')})
+      });
+    })
+  },
+  setupFlexButtons: function() {
+    let buttonLabels = [...selectAll('.flex-item__form-label-container')];
+
+    buttonLabels.forEach(button => {
+      button.addEventListener('click', function(event) {
+        console.log(event.target, event.currentTarget);
+      })
+    });
+
   },
   addFlexItem: function () {
     let length = this.elements.flexItems.length;
