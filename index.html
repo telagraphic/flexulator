@@ -9,26 +9,9 @@
   <title>Flexulator</title>
 
   <meta name="description" content="A visual flexbox space distribution calculator">
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="apple-touch-icon" sizes="57x57" href="img/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="img/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="img/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="img/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="img/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="img/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="img/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="img/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-  <link rel="manifest" href="img/manifest.json">
-  <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-TileImage" content="img/ms-icon-144x144.png">
-  <meta name="theme-color" content="#ffffff">
   <script async defer src="https://buttons.github.io/buttons.js"></script>
 
+  <link rel="stylesheet" href="css/styles.css">
   <link rel="preload" href="fonts/web/Consolas.woff" as="font" type="font/woff" crossorigin>
   <link rel="preload" href="fonts/web/Consolas-Italic.woff" as="font" type="font/woff" crossorigin>
   <link rel="preload" href="fonts/web/Consolas-Bold.woff" as="font" type="font/woff" crossorigin>
@@ -131,7 +114,7 @@
 
         </form>
       </section>
-      <section class="flexulator__dashboard">
+      <!-- <section class="flexulator__dashboard">
         <section class="dashboard">
           <section class="dashboard__operand">
             <span class="dashboard__operand-value dashboard__container-width"></span>
@@ -152,7 +135,7 @@
             <span class="dashboard__operand-title">Remaining Space</span>
           </section>
         </section>
-      </section>
+      </section> -->
       <section class="flexulator__items-container">
         <article class="flex-item" style="flex: 1 1 100px;" data-id="0">
           <section class="flex-item__width-container">
@@ -252,6 +235,7 @@
                 <span class="flex-item__flexulations_operator"> * </span>
                 <span class="flex-item__flexulations-shrink-item-basis"></span>
                 <span class="flex-item__flexulations_operator">) </span>
+                <span class="flex-item__flexulations-shrink-value-basis-total"></span>
                 <span class="flex-item__flexulations_operator"> / </span>
                 <span class="flex-item__flexulations-shrink-total-basis flexulator__total-flex-basis"></span>
                 <span class="flex-item__flexulations_operator"> = </span>
@@ -369,6 +353,7 @@
                 <span class="flex-item__flexulations_operator"> * </span>
                 <span class="flex-item__flexulations-shrink-item-basis"></span>
                 <span class="flex-item__flexulations_operator">) </span>
+                <span class="flex-item__flexulations-shrink-value-basis-total"></span>
                 <span class="flex-item__flexulations_operator"> / </span>
                 <span class="flex-item__flexulations-shrink-total-basis flexulator__total-flex-basis"></span>
                 <span class="flex-item__flexulations_operator"> = </span>
@@ -487,6 +472,7 @@
                 <span class="flex-item__flexulations_operator"> * </span>
                 <span class="flex-item__flexulations-shrink-item-basis"></span>
                 <span class="flex-item__flexulations_operator">) </span>
+                <span class="flex-item__flexulations-shrink-value-basis-total"></span>
                 <span class="flex-item__flexulations_operator"> / </span>
                 <span class="flex-item__flexulations-shrink-total-basis flexulator__total-flex-basis"></span>
                 <span class="flex-item__flexulations_operator"> = </span>

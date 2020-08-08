@@ -24,7 +24,7 @@ const flexulator = {
     flexulator.updateFlexItems();
     flexulator.updateFlexTotalBasis();
     flexulator.updateRemainingSpace();
-    flexulator.updateContainer();
+    // flexulator.updateContainer();
     flexulator.createFlexItems();
     flexulator.updateFlexItemsContainerValues();
     flexulator.updateResize();
@@ -56,15 +56,15 @@ const flexulator = {
   updateRemainingSpace: function() { // remove
     flexulator.flexValues.remainingSpace = flexulator.flexValues.width - flexulator.flexValues.flexBasisTotal;
   },
-  updateContainer: function() { // remove
-    let width = flexulator.elements.dashboard.querySelector('.dashboard__container-width');
-    let flexBasisTotal = flexulator.elements.dashboard.querySelector('.dashboard__total-flex-basis');
-    let remainingSpace = flexulator.elements.dashboard.querySelector('.dashboard__flex-remaining-space');
-
-    width.textContent = flexulator.flexValues.width;
-    flexBasisTotal.textContent = flexulator.flexValues.flexBasisTotal;
-    remainingSpace.textContent = flexulator.flexValues.remainingSpace;
-  },
+  // updateContainer: function() { // remove
+  //   let width = flexulator.elements.dashboard.querySelector('.dashboard__container-width');
+  //   let flexBasisTotal = flexulator.elements.dashboard.querySelector('.dashboard__total-flex-basis');
+  //   let remainingSpace = flexulator.elements.dashboard.querySelector('.dashboard__flex-remaining-space');
+  //
+  //   width.textContent = flexulator.flexValues.width;
+  //   flexBasisTotal.textContent = flexulator.flexValues.flexBasisTotal;
+  //   remainingSpace.textContent = flexulator.flexValues.remainingSpace;
+  // },
   createFlexItems: function() {
     let id = 0;
     flexulator.elements.flexItems.forEach(item => {
@@ -106,8 +106,8 @@ const flexulator = {
     });
   },
   updateFlexGrowTotal: function() {
-    let flexGrowTotal = flexulator.flexItems.reduce((growSum, flexItem) => {
-      return growSum + parseInt(flexItem.style.grow);
+    let flexGrowTotal = flexulator.elements.flexItems.reduce((growSum, flexItem) => {
+      return growSum + parseInt(flexItem.style.flexGrow);
     }, 0);
 
     flexulator.flexItems.forEach(item => {
@@ -115,6 +115,21 @@ const flexulator = {
     });
 
   },
+  // updateShrinkValues: function() {
+  //   let shrinkValues = [];
+  //   flexulator.elements.flexItems.forEach(item => {
+  //     shrinkValues.push(item.style.flexShrink);
+  //   });
+  //
+  //   flexulator.flexItems.forEach((item, index) => {
+  //     item.style.shrink = shrinkValues[index];
+  //     item.flexulations.shrink.value = shrinkValues[index];
+  //
+  //   });
+  //
+  //   flexulator.updateShrinkBasisTotal();
+  //
+  // },
   updateShrinkBasisTotal: function() {
     let shrinkBasisTotal = flexulator.flexItems.reduce((shrinkSum, flexItem) => {
       return shrinkSum + flexItem.returnItemShrinkBasis();
@@ -164,7 +179,7 @@ const flexulator = {
       flexulator.updateWidth();
       flexulator.updateFlexTotalBasis();
       flexulator.updateRemainingSpace();
-      flexulator.updateContainer();
+      // flexulator.updateContainer();
       flexulator.updateFlexGrowTotal();
       flexulator.updateShrinkBasisTotal();
       flexulator.updateFlexFormButtons();
@@ -189,14 +204,56 @@ const flexulator = {
     })
   },
   setupFlexButtons: function() {
-    let buttonLabels = [...selectAll('.flex-item__form-label-container')];
+    flexulator.elements.flexItems.forEach(item => {
+      item.addEventListener('click', event => {
 
-    buttonLabels.forEach(button => {
-      button.addEventListener('click', function(event) {
-        console.log(event.target, event.currentTarget);
-      })
+        // TODO: Identify grow doubling bug
+        if (event.target.matches('.flex-item__grow-increment')) {
+          event.target.parentElement.querySelector('.flex-item__grow-value').value++;
+          event.currentTarget.style.flexGrow++
+          flexulator.updateFlexGrowTotal();
+          // flexulator.updateFormValue(event.currentTarget.dataset.id, 'grow');
+        } else if (event.target.matches('.flex-item__grow-decrement')) {
+          event.target.parentElement.querySelector('.flex-item__grow-value').value--;
+          event.currentTarget.style.flexGrow--;
+          flexulator.updateFlexGrowTotal();
+          // flexulator.updateFormValue(event.currentTarget.dataset.id, 'grow');
+        } else if (event.target.matches('.flex-item__shrink-increment')) {
+          event.target.parentElement.querySelector('.flex-item__shrink-value').value++;
+          event.currentTarget.style.flexShrink++;
+          // flexulator.updateShrinkValues();
+          flexulator.updateFormValue(event.currentTarget.dataset.id, 'shrink');
+        } else if (event.target.matches('.flex-item__shrink-decrement')) {
+          event.target.parentElement.querySelector('.flex-item__shrink-value').value--;
+          event.currentTarget.style.flexShrink--;
+          // flexulator.updateShrinkValues();
+          flexulator.updateFormValue(event.currentTarget.dataset.id, 'shrink');
+        } else if (event.target.matches('.flex-item__basis-increment')) {
+          let newBasis = parseInt(event.currentTarget.style.flexBasis.replace('px', ''));
+          newBasis = newBasis + 50;
+          event.target.parentElement.querySelector('.flex-item__basis-value').value = newBasis;
+          event.currentTarget.style.flexBasis = `${newBasis}px`;
+          // flexulator.updateFlexTotalBasis();
+          flexulator.updateFormValue(event.currentTarget.dataset.id, 'basis');
+        } else if (event.target.matches('.flex-item__basis-decrement')) {
+          let newBasis = parseInt(event.currentTarget.style.flexBasis.replace('px', ''));
+          newBasis = newBasis - 50;
+          event.target.parentElement.querySelector('.flex-item__basis-value').value = newBasis;
+          event.currentTarget.style.flexBasis = `${newBasis}px`;
+          // flexulator.updateFlexTotalBasis();
+          flexulator.updateFormValue(event.currentTarget.dataset.id, 'basis');
+        }
+      });
     });
-
+  },
+  updateFlexulations: function() {
+    flexulator.updateFlexItems();
+    flexulator.updateWidth();
+    flexulator.updateFlexTotalBasis();
+    flexulator.updateRemainingSpace();
+    // flexulator.updateContainer();
+    flexulator.updateFlexGrowTotal();
+    flexulator.updateShrinkBasisTotal();
   },
   addFlexItem: function () {
     let length = this.elements.flexItems.length;
@@ -304,6 +361,7 @@ const flexulator = {
             <span class="flex-item__flexulations_operator"> * </span>
             <span class="flex-item__flexulations-shrink-item-basis"></span>
             <span class="flex-item__flexulations_operator">) </span>
+            <span class="flex-item__flexulations-shrink-value-basis-total"></span>
             <span class="flex-item__flexulations_operator"> / </span>
             <span class="flex-item__flexulations-shrink-total-basis flexulator__total-flex-basis"></span>
             <span class="flex-item__flexulations_operator"> = </span>
@@ -349,7 +407,7 @@ const flexulator = {
               flexulator.updateWidth();
               flexulator.updateFlexTotalBasis();
               flexulator.updateRemainingSpace();
-              flexulator.updateContainer();
+              // flexulator.updateContainer();
               flexulator.updateFlexGrowTotal();
               flexulator.updateShrinkBasisTotal();
               flexulator.updateFlexItemsContainerValues();
@@ -366,7 +424,7 @@ const flexulator = {
     window.addEventListener('resize', function(event) {
       flexulator.updateWidth();
       flexulator.updateRemainingSpace();
-      flexulator.updateContainer();
+      // flexulator.updateContainer();
       flexulator.updateFlexItemsContainerValues();
     })
   }

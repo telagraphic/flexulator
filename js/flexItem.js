@@ -37,6 +37,7 @@ export default function newFlexItemObject() {
           value: null,
           basis: null,
           basisTotal: null,
+          valueBasisProduct: null,
           factor: null,
           computedWidth: null
         }
@@ -66,6 +67,7 @@ export default function newFlexItemObject() {
           value: '.flex-item__flexulations-shrink-value',
           basis: '.flex-item__flexulations-shrink-item-basis',
           basisTotal: '.flex-item__flexulations-shrink-total-basis',
+          valueBasisTotal: '.flex-item__flexulations-shrink-value-basis-total',
           factor: '.flex-item__flexulations-shrink-quotient',
           computedWidth: '.flex-item__flexulations-shrink-width'
         }
@@ -146,6 +148,7 @@ export default function newFlexItemObject() {
       this.elements.flexulations.shrink.value = this.elements.self.querySelector(this.selectors.flexulations.shrink.value);
       this.elements.flexulations.shrink.basis = this.elements.self.querySelector(this.selectors.flexulations.shrink.basis);
       this.elements.flexulations.shrink.basisTotal = this.elements.self.querySelector(this.selectors.flexulations.shrink.basisTotal);
+      this.elements.flexulations.shrink.valueBasisTotal = this.elements.self.querySelector(this.selectors.flexulations.shrink.valueBasisTotal);
       this.elements.flexulations.shrink.factor = [...this.elements.self.querySelectorAll(this.selectors.flexulations.shrink.factor)];
       this.elements.flexulations.shrink.computedWidth = this.elements.self.querySelector(this.selectors.flexulations.shrink.computedWidth);
     },
@@ -176,15 +179,16 @@ export default function newFlexItemObject() {
       this.elements.flexulations.shrink.value.textContent = this.flexulations.shrink.value;
       this.elements.flexulations.shrink.basis.textContent = this.flexulations.shrink.itemBasis;
       this.elements.flexulations.shrink.basisTotal.textContent = this.flexulations.shrink.basisTotal;
+      this.elements.flexulations.shrink.valueBasisTotal.textContent = this.flexulations.shrink.valueBasisTotal;
       this.elements.flexulations.shrink.factor.forEach(factor => factor.textContent = this.flexulations.shrink.factor.toFixed(2));
       this.elements.flexulations.shrink.computedWidth.textContent = this.flexulations.shrink.computedWidth;
-
     },
     updateFlexItemGrow: function () {
       this.flexulations.grow.value = this.style.grow;
     },
     updateFlexGrowTotal: function(totalGrow) {
       this.flexulations.grow.total = totalGrow;
+      this.writeItemFlexulations();
     },
     updatedGrowWidth: function() {
       let growWidth = parseFloat((this.flexulations.grow.value / this.flexulations.grow.total), 10) * parseFloat(this.flexulations.container.remainingSpace, 10);
@@ -214,6 +218,7 @@ export default function newFlexItemObject() {
     },
     updateShrinkComputedWidth: function() {
       let shrinkComputedWidth = this.flexulations.shrink.factor.toFixed(2) * this.flexulations.container.remainingSpace;
+      this.flexulations.shrink.computedWidth = shrinkComputedWidth.toFixed(0);
       this.elements.flexulations.shrink.computedWidth.textContent = shrinkComputedWidth.toFixed(0);
     },
     updateForm: function(property) {
@@ -243,7 +248,6 @@ export default function newFlexItemObject() {
     },
     updateElements: function() {
       this.elements.flexulations.grow.total = this.flexulations.grow.total;
-
     }
   }
 }

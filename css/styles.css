@@ -902,14 +902,14 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100vw; }
+  width: 100%; }
 
 .resources__header {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  width: 100vw;
+  width: 100%;
   padding: 2rem 0;
   background-color: #f9f8fb;
   border-top: 3px solid #e0e0e2;
