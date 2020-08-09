@@ -32,7 +32,7 @@ const flexulator = {
     flexulator.updateShrinkBasisTotal();
     flexulator.updateForm();
     flexulator.setupRemoveButton();
-    flexulator.setupFlexItemButton();
+    flexulator.setupFlexItemAddButton();
     flexulator.setupFlexButtons();
     flexulator.updateFlexFormButtons();
   },
@@ -167,7 +167,7 @@ const flexulator = {
     flexulator.updateShrinkBasisTotal();
     flexulator.updateFlexItemsContainerValues();
   },
-  setupFlexItemButton: function() {
+  setupFlexItemAddButton: function() {
     let addButton = select('.flexulator__form-label-button-add-flex-item');
 
     addButton.addEventListener('click', function(event) {
@@ -179,11 +179,9 @@ const flexulator = {
       flexulator.updateWidth();
       flexulator.updateFlexTotalBasis();
       flexulator.updateRemainingSpace();
-      // flexulator.updateContainer();
       flexulator.updateFlexGrowTotal();
       flexulator.updateShrinkBasisTotal();
       flexulator.updateFlexFormButtons();
-      flexulator.setupFlexButtons();
       flexulator.updateForm();
       flexulator.updateFlexItemsContainerValues();
 
@@ -205,45 +203,56 @@ const flexulator = {
   },
   setupFlexButtons: function() {
     flexulator.elements.flexItems.forEach(item => {
-      item.addEventListener('click', event => {
+      flexulator.updateFlexItemFormButtons(item);
+    });
+  },
+  addFlexItemButtons: function() {
+    flexulator.elements.flexItems.forEach(item => {
+      if (!item.hasAttribute('data-button-click')) {
+        console.log(item);
+        item.dataset.buttonClick = true;
+        flexulator.updateFlexItemFormButtons(item);
+      }
+    });
+  },
+  updateFlexItemFormButtons: function(item) {
+    item.addEventListener('click', event => {
 
-        // TODO: Identify grow doubling bug
-        if (event.target.matches('.flex-item__grow-increment')) {
-          event.target.parentElement.querySelector('.flex-item__grow-value').value++;
-          event.currentTarget.style.flexGrow++
-          flexulator.updateFlexGrowTotal();
-          // flexulator.updateFormValue(event.currentTarget.dataset.id, 'grow');
-        } else if (event.target.matches('.flex-item__grow-decrement')) {
-          event.target.parentElement.querySelector('.flex-item__grow-value').value--;
-          event.currentTarget.style.flexGrow--;
-          flexulator.updateFlexGrowTotal();
-          // flexulator.updateFormValue(event.currentTarget.dataset.id, 'grow');
-        } else if (event.target.matches('.flex-item__shrink-increment')) {
-          event.target.parentElement.querySelector('.flex-item__shrink-value').value++;
-          event.currentTarget.style.flexShrink++;
-          // flexulator.updateShrinkValues();
-          flexulator.updateFormValue(event.currentTarget.dataset.id, 'shrink');
-        } else if (event.target.matches('.flex-item__shrink-decrement')) {
-          event.target.parentElement.querySelector('.flex-item__shrink-value').value--;
-          event.currentTarget.style.flexShrink--;
-          // flexulator.updateShrinkValues();
-          flexulator.updateFormValue(event.currentTarget.dataset.id, 'shrink');
-        } else if (event.target.matches('.flex-item__basis-increment')) {
-          let newBasis = parseInt(event.currentTarget.style.flexBasis.replace('px', ''));
-          newBasis = newBasis + 50;
-          event.target.parentElement.querySelector('.flex-item__basis-value').value = newBasis;
-          event.currentTarget.style.flexBasis = `${newBasis}px`;
-          // flexulator.updateFlexTotalBasis();
-          flexulator.updateFormValue(event.currentTarget.dataset.id, 'basis');
-        } else if (event.target.matches('.flex-item__basis-decrement')) {
-          let newBasis = parseInt(event.currentTarget.style.flexBasis.replace('px', ''));
-          newBasis = newBasis - 50;
-          event.target.parentElement.querySelector('.flex-item__basis-value').value = newBasis;
-          event.currentTarget.style.flexBasis = `${newBasis}px`;
-          // flexulator.updateFlexTotalBasis();
-          flexulator.updateFormValue(event.currentTarget.dataset.id, 'basis');
-        }
-      });
+      if (event.target.matches('.flex-item__grow-increment')) {
+        event.target.parentElement.querySelector('.flex-item__grow-value').value++;
+        event.currentTarget.style.flexGrow++
+        flexulator.updateFlexGrowTotal();
+        // flexulator.updateFormValue(event.currentTarget.dataset.id, 'grow');
+      } else if (event.target.matches('.flex-item__grow-decrement')) {
+        event.target.parentElement.querySelector('.flex-item__grow-value').value--;
+        event.currentTarget.style.flexGrow--;
+        flexulator.updateFlexGrowTotal();
+        // flexulator.updateFormValue(event.currentTarget.dataset.id, 'grow');
+      } else if (event.target.matches('.flex-item__shrink-increment')) {
+        event.target.parentElement.querySelector('.flex-item__shrink-value').value++;
+        event.currentTarget.style.flexShrink++;
+        // flexulator.updateShrinkValues();
+        flexulator.updateFormValue(event.currentTarget.dataset.id, 'shrink');
+      } else if (event.target.matches('.flex-item__shrink-decrement')) {
+        event.target.parentElement.querySelector('.flex-item__shrink-value').value--;
+        event.currentTarget.style.flexShrink--;
+        // flexulator.updateShrinkValues();
+        flexulator.updateFormValue(event.currentTarget.dataset.id, 'shrink');
+      } else if (event.target.matches('.flex-item__basis-increment')) {
+        let newBasis = parseInt(event.currentTarget.style.flexBasis.replace('px', ''));
+        newBasis = newBasis + 50;
+        event.target.parentElement.querySelector('.flex-item__basis-value').value = newBasis;
+        event.currentTarget.style.flexBasis = `${newBasis}px`;
+        // flexulator.updateFlexTotalBasis();
+        flexulator.updateFormValue(event.currentTarget.dataset.id, 'basis');
+      } else if (event.target.matches('.flex-item__basis-decrement')) {
+        let newBasis = parseInt(event.currentTarget.style.flexBasis.replace('px', ''));
+        newBasis = newBasis - 50;
+        event.target.parentElement.querySelector('.flex-item__basis-value').value = newBasis;
+        event.currentTarget.style.flexBasis = `${newBasis}px`;
+        // flexulator.updateFlexTotalBasis();
+        flexulator.updateFormValue(event.currentTarget.dataset.id, 'basis');
+      }
     });
   },
   updateFlexulations: function() {
@@ -388,6 +397,7 @@ const flexulator = {
 
     setTimeout(function() {
       flexulator.setupRemoveButton();
+      flexulator.addFlexItemButtons();
     }, 500);
 
   },
