@@ -229,6 +229,8 @@ export default function newFlexItemObject() {
         this.flexulations.form.grow = newGrowValue;
         this.flexulations.grow.value = newGrowValue;
         this.elements.self.style.flexGrow = newGrowValue;
+        // this.elements.form.width.textContent = this.elements.form.width.clientWidth;
+        this.writeItemFlexulations();
       } else if (property === "shrink") {
         let newShrinkValue = this.elements.form.shrink.value;
         this.form.shrink = newShrinkValue;

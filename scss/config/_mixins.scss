@@ -40,27 +40,24 @@
 
 @mixin flex-item-button() {
   align-items: center;
-  height: 25px;
-  width: 25px;
-  // opacity: 0;
-  // transition: opacity .1s ease-in;
+  width: 1rem;
+  height: 1rem;
+  position: relative;
+  left: 0;
+  top: 0;
 }
 
 
-@mixin flex-item-increment-icon() {
-  content: "+";
-  position: relative;
-  left: 0;
-  bottom: 3px;
-  color: $black-5;
+@mixin flex-item-increment() {
+  background-image: url('../img/increment-button.svg');
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-@mixin flex-item-increment-icon() {
-  content: "-";
-  position: relative;
-  left: 0;
-  bottom: 6px;
-  color: $black-5;
+@mixin flex-item-decrement() {
+  background-image: url('../img/decrement-button.svg');
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 @mixin flex-item-flexulations-container() {

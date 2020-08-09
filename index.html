@@ -114,28 +114,6 @@
 
         </form>
       </section>
-      <!-- <section class="flexulator__dashboard">
-        <section class="dashboard">
-          <section class="dashboard__operand">
-            <span class="dashboard__operand-value dashboard__container-width"></span>
-            <span class="dashboard__operand-title">Container</span>
-          </section>
-          <section class="dashboard__operator">
-            <span class="dashboard__operator-symbol"> - </span>
-          </section>
-          <section class="dashboard__operand">
-            <span class="dashboard__operand-value dashboard__total-flex-basis flexulator__total-flex-basis">0</span>
-            <span class="dashboard__operand-title">Total Flex Basis</span>
-          </section>
-          <section class="dashboard__operator">
-            <span class="dashboard__operator-symbol"> = </span>
-          </section>
-          <section class="dashboard__operand">
-            <span class="dashboard__operand-value dashboard__flex-remaining-space flex-item__flexulations-container-width">0</span>
-            <span class="dashboard__operand-title">Remaining Space</span>
-          </section>
-        </section>
-      </section> -->
       <section class="flexulator__items-container">
         <article class="flex-item" style="flex: 1 1 100px;" data-id="0" data-button-click=true>
           <section class="flex-item__width-container">
@@ -146,25 +124,31 @@
           <section class="flex-item__form">
             <section class="flex-item__form-label">
               <section class="flex-item__form-label-container">
-                <button class="flex-item__grow-increment flex-item__form-button">++</button>
+                <button class="flex-item__grow-increment flex-item__form-button">
+                </button>
                 <input type="number" class="flex-item__grow-value" value="1">
-                <button class="flex-item__grow-decrement flex-item__form-button">--</button>
+                <button class="flex-item__grow-decrement flex-item__form-button">
+                </button>
               </section>
               <h5 class="flex-item__form-label-name">grow</h5>
             </section>
             <section class="flex-item__form-label">
               <section class="flex-item__form-label-container">
-                <button class="flex-item__shrink-increment flex-item__form-button"></button>
+                <button class="flex-item__shrink-increment flex-item__form-button">
+                </button>
                 <input type="number" class="flex-item__shrink-value" value="1">
-                <button class="flex-item__shrink-decrement flex-item__form-button"></button>
+                <button class="flex-item__shrink-decrement flex-item__form-button">
+                </button>
               </section>
               <h5 class="flex-item__form-label-name">shrink</h5>
             </section>
             <section class="flex-item__form-label">
               <section class="flex-item__form-label-container">
-                <button class="flex-item__basis-increment flex-item__form-button"></button>
+                <button class="flex-item__basis-increment flex-item__form-button">
+                </button>
                 <input type="number" class="flex-item__basis-value" value="100">
-                <button class="flex-item__basis-decrement flex-item__form-button"></button>
+                <button class="flex-item__basis-decrement flex-item__form-button">
+                </button>
               </section>
               <h5 class="flex-item__form-label-name">flex-basis</h5>
             </section>
@@ -256,7 +240,7 @@
           </section>
           <button class="flex-item__remove-button">Remove</button>
         </article>
-        <article class="flex-item" style="flex: 2 2 200px;" data-id="1" data-button-click=true>
+        <article class="flex-item" style="flex: 1 1 100px;" data-id="1" data-button-click=true>
           <section class="flex-item__width-container">
             <h4 class="flex-item__width"></h4>
             <h5 class="flex-item__width-header">width</h5>
@@ -265,143 +249,31 @@
           <section class="flex-item__form">
             <section class="flex-item__form-label">
               <section class="flex-item__form-label-container">
-                <button class="flex-item__grow-increment"></button>
-                <input type="number" class="flex-item__grow-value" value="2">
-                <button class="flex-item__grow-decrement"></button>
+                <button class="flex-item__grow-increment flex-item__form-button">
+                </button>
+                <input type="number" class="flex-item__grow-value" value="1">
+                <button class="flex-item__grow-decrement flex-item__form-button">
+                </button>
               </section>
               <h5 class="flex-item__form-label-name">grow</h5>
             </section>
             <section class="flex-item__form-label">
               <section class="flex-item__form-label-container">
-                <button class="flex-item__shrink-increment"></button>
-                <input type="number" class="flex-item__shrink-value" value="2">
-                <button class="flex-item__shrink-decrement"></button>
+                <button class="flex-item__shrink-increment flex-item__form-button">
+                </button>
+                <input type="number" class="flex-item__shrink-value" value="1">
+                <button class="flex-item__shrink-decrement flex-item__form-button">
+                </button>
               </section>
               <h5 class="flex-item__form-label-name">shrink</h5>
             </section>
             <section class="flex-item__form-label">
               <section class="flex-item__form-label-container">
-                <button class="flex-item__basis-increment"></button>
-                <input type="number" class="flex-item__basis-value" value="200">
-                <button class="flex-item__basis-decrement"></button>
-              </section>
-              <h5 class="flex-item__form-label-name">flex-basis</h5>
-            </section>
-          </section>
-
-          <section class="flex-item__flexulations-grow-container">
-            <h5 class="flex-item__flexulations-grow-header">GROW</h5>
-            <section class="flex-item__flexulations-grow-formula">
-              <section class="flex-item__flexulations-section">
-                <h5 class="flex-item__flexuations-section-header">
-                  remaining space
-                </h5>
-                <span class="flex-item__flexulations-container-width"></span>
-                <span class="flex-item__flexulations_operator">-</span>
-                <span class="flex-item__flexulations-total-flex-basis"></span>
-                <span class="flex-item__flexulations_operator">=</span>
-                <span class="flex-item__flexulations-remaining-space flex-item__flexulations-container-width"></span>
-              </section>
-
-              <section class="flex-item__flexulations-section">
-                <h5 class="flex-item__flexuations-section-header">
-                  allocated space
-                </h5>
-                <span class="flex-item__flexulations-grow-value"></span>
-                <span class="flex-item__flexulations_operator">/</span>
-                <span class="flex-item__flexulations-grow-total"></span>
-                <span class="flex-item__flexulations_operator">*</span>
-                <span class="flex-item__flexulations-remaining-space flex-item__flexulations-container-width"></span>
-                <span class="flex-item__flexulations_operator">=</span>
-                <span class="flex-item__flexulations-grow-width"></span>
-              </section>
-
-              <section class="flex-item__flexulations-section">
-                <h5 class="flex-item__flexuations-section-header">
-                  final width
-                </h5>
-                <span class="flex-item__flexulations-grow-width"></span>
-                <span class="flex-item__flexulations_operator">+</span>
-                <span class="flex-item__flexulations-grow-item-basis"></span>
-                <span class="flex-item__flexulations_operator">=</span>
-                <span class="flex-item__flexulations-grow-item-computed-width"></span>
-              </section>
-            </section>
-          </section>
-
-          <section class="flex-item__flexulations-shrink-container">
-            <h5 class="flex-item__flexulations-shrink-header">SHRINK</h5>
-            <section class="flex-item__flexulations-shrink-formula">
-
-              <section class="flex-item__flexulations-section">
-                <h5 class="flex-item__flexuations-section-header">
-                  remaining space
-                </h5>
-                <span class="flex-item__flexulations-container-width"></span>
-                <span class="flex-item__flexulations_operator">-</span>
-                <span class="flex-item__flexulations-total-flex-basis"></span>
-                <span class="flex-item__flexulations_operator">=</span>
-                <span class="flex-item__flexulations-remaining-space flex-item__flexulations-container-width"></span>
-              </section>
-
-              <section class="flex-item__flexulations-section">
-                <h5 class="flex-item__flexuations-section-header">
-                  shrink factor
-                </h5>
-                <span class="flex-item__flexulations_operator">(</span>
-                <span class="flex-item__flexulations-shrink-value"></span>
-                <span class="flex-item__flexulations_operator"> * </span>
-                <span class="flex-item__flexulations-shrink-item-basis"></span>
-                <span class="flex-item__flexulations_operator">) </span>
-                <span class="flex-item__flexulations-shrink-value-basis-total"></span>
-                <span class="flex-item__flexulations_operator"> / </span>
-                <span class="flex-item__flexulations-shrink-total-basis flexulator__total-flex-basis"></span>
-                <span class="flex-item__flexulations_operator"> = </span>
-                <span class="flex-item__flexulations-shrink-quotient"></span>
-              </section>
-
-              <section class="flex-item__flexulations-section">
-                <h5 class="flex-item__flexuations-section-header">
-                  final width
-                </h5>
-                <span class="flex-item__flexulations-shrink-quotient"></span>
-                <span class="flex-item__flexulations_operator"> * </span>
-                <span class="flex-item__flexulations-remaining-space flex-item__flexulations-container-width"></span>
-                <span class="flex-item__flexulations_operator"> = </span>
-                <span class="flex-item__flexulations-shrink-width"></span>
-              </section>
-            </section>
-          </section>
-          <button class="flex-item__remove-button">Remove</button>
-        </article>
-        <article class="flex-item" style="flex: 3 3 300px;" data-id="2" data-button-click=true>
-          <section class="flex-item__width-container">
-            <h4 class="flex-item__width"></h4>
-            <h5 class="flex-item__width-header">width</h5>
-          </section>
-
-          <section class="flex-item__form">
-            <section class="flex-item__form-label">
-              <section class="flex-item__form-label-container">
-                <button class="flex-item__grow-increment"></button>
-                <input type="number" class="flex-item__grow-value" value="3">
-                <button class="flex-item__grow-decrement"></button>
-              </section>
-              <h5 class="flex-item__form-label-name">grow</h5>
-            </section>
-            <section class="flex-item__form-label">
-              <section class="flex-item__form-label-container">
-                <button class="flex-item__shrink-increment"></button>
-                <input type="number" class="flex-item__shrink-value" value="3">
-                <button class="flex-item__shrink-decrement"></button>
-              </section>
-              <h5 class="flex-item__form-label-name">shrink</h5>
-            </section>
-            <section class="flex-item__form-label">
-              <section class="flex-item__form-label-container">
-                <button class="flex-item__basis-increment"></button>
-                <input type="number" class="flex-item__basis-value" value="300">
-                <button class="flex-item__basis-decrement"></button>
+                <button class="flex-item__basis-increment flex-item__form-button">
+                </button>
+                <input type="number" class="flex-item__basis-value" value="100">
+                <button class="flex-item__basis-decrement flex-item__form-button">
+                </button>
               </section>
               <h5 class="flex-item__form-label-name">flex-basis</h5>
             </section>
@@ -485,7 +357,132 @@
                 </h5>
                 <span class="flex-item__flexulations-shrink-quotient"></span>
                 <span class="flex-item__flexulations_operator"> * </span>
+                <span class="flex-item__flexulations-remaining-space"></span>
+                <span class="flex-item__flexulations_operator"> = </span>
+                <span class="flex-item__flexulations-shrink-width"></span>
+              </section>
+            </section>
+          </section>
+          <button class="flex-item__remove-button">Remove</button>
+        </article>
+        <article class="flex-item" style="flex: 1 1 100px;" data-id="2" data-button-click=true>
+          <section class="flex-item__width-container">
+            <h4 class="flex-item__width"></h4>
+            <h5 class="flex-item__width-header">width</h5>
+          </section>
+
+          <section class="flex-item__form">
+            <section class="flex-item__form-label">
+              <section class="flex-item__form-label-container">
+                <button class="flex-item__grow-increment flex-item__form-button">
+                </button>
+                <input type="number" class="flex-item__grow-value" value="1">
+                <button class="flex-item__grow-decrement flex-item__form-button">
+                </button>
+              </section>
+              <h5 class="flex-item__form-label-name">grow</h5>
+            </section>
+            <section class="flex-item__form-label">
+              <section class="flex-item__form-label-container">
+                <button class="flex-item__shrink-increment flex-item__form-button">
+                </button>
+                <input type="number" class="flex-item__shrink-value" value="1">
+                <button class="flex-item__shrink-decrement flex-item__form-button">
+                </button>
+              </section>
+              <h5 class="flex-item__form-label-name">shrink</h5>
+            </section>
+            <section class="flex-item__form-label">
+              <section class="flex-item__form-label-container">
+                <button class="flex-item__basis-increment flex-item__form-button">
+                </button>
+                <input type="number" class="flex-item__basis-value" value="100">
+                <button class="flex-item__basis-decrement flex-item__form-button">
+                </button>
+              </section>
+              <h5 class="flex-item__form-label-name">flex-basis</h5>
+            </section>
+          </section>
+
+          <section class="flex-item__flexulations-grow-container">
+            <h5 class="flex-item__flexulations-grow-header">GROW</h5>
+            <section class="flex-item__flexulations-grow-formula">
+              <section class="flex-item__flexulations-section">
+                <h5 class="flex-item__flexuations-section-header">
+                  remaining space
+                </h5>
+                <span class="flex-item__flexulations-container-width"></span>
+                <span class="flex-item__flexulations_operator">-</span>
+                <span class="flex-item__flexulations-total-flex-basis"></span>
+                <span class="flex-item__flexulations_operator">=</span>
                 <span class="flex-item__flexulations-remaining-space flex-item__flexulations-container-width"></span>
+              </section>
+
+              <section class="flex-item__flexulations-section">
+                <h5 class="flex-item__flexuations-section-header">
+                  allocated space
+                </h5>
+                <span class="flex-item__flexulations-grow-value"></span>
+                <span class="flex-item__flexulations_operator">/</span>
+                <span class="flex-item__flexulations-grow-total"></span>
+                <span class="flex-item__flexulations_operator">*</span>
+                <span class="flex-item__flexulations-grow-space flex-item__flexulations-space"></span>
+                <span class="flex-item__flexulations-remaining-space flex-item__flexulations-container-width"></span>
+                <span class="flex-item__flexulations_operator">=</span>
+                <span class="flex-item__flexulations-grow-width"></span>
+              </section>
+
+              <section class="flex-item__flexulations-section">
+                <h5 class="flex-item__flexuations-section-header">
+                  final width
+                </h5>
+                <span class="flex-item__flexulations-grow-width"></span>
+                <span class="flex-item__flexulations_operator">+</span>
+                <span class="flex-item__flexulations-grow-item-basis"></span>
+                <span class="flex-item__flexulations_operator">=</span>
+                <span class="flex-item__flexulations-grow-item-computed-width"></span>
+              </section>
+            </section>
+          </section>
+
+          <section class="flex-item__flexulations-shrink-container">
+            <h5 class="flex-item__flexulations-shrink-header">SHRINK</h5>
+            <section class="flex-item__flexulations-shrink-formula">
+
+              <section class="flex-item__flexulations-section">
+                <h5 class="flex-item__flexuations-section-header">
+                  remaining space
+                </h5>
+                <span class="flex-item__flexulations-container-width"></span>
+                <span class="flex-item__flexulations_operator">-</span>
+                <span class="flex-item__flexulations-total-flex-basis"></span>
+                <span class="flex-item__flexulations_operator">=</span>
+                <span class="flex-item__flexulations-remaining-space flex-item__flexulations-container-width"></span>
+              </section>
+
+              <section class="flex-item__flexulations-section">
+                <h5 class="flex-item__flexuations-section-header">
+                  shrink factor
+                </h5>
+                <span class="flex-item__flexulations_operator">(</span>
+                <span class="flex-item__flexulations-shrink-value"></span>
+                <span class="flex-item__flexulations_operator"> * </span>
+                <span class="flex-item__flexulations-shrink-item-basis"></span>
+                <span class="flex-item__flexulations_operator">) </span>
+                <span class="flex-item__flexulations-shrink-value-basis-total"></span>
+                <span class="flex-item__flexulations_operator"> / </span>
+                <span class="flex-item__flexulations-shrink-total-basis flexulator__total-flex-basis"></span>
+                <span class="flex-item__flexulations_operator"> = </span>
+                <span class="flex-item__flexulations-shrink-quotient"></span>
+              </section>
+
+              <section class="flex-item__flexulations-section">
+                <h5 class="flex-item__flexuations-section-header">
+                  final width
+                </h5>
+                <span class="flex-item__flexulations-shrink-quotient"></span>
+                <span class="flex-item__flexulations_operator"> * </span>
+                <span class="flex-item__flexulations-remaining-space"></span>
                 <span class="flex-item__flexulations_operator"> = </span>
                 <span class="flex-item__flexulations-shrink-width"></span>
               </section>
@@ -753,6 +750,28 @@
         </li>
       </ul>
     </article>
+
+    <svg xmlns="http://www.w3.org/2000/svg">
+
+      <symbol id="minus-sign" viewBox="0 0 18 18">
+        <g id="X_Cross" data-name="X Cross">
+          <rect x="0.5" y="8.5" width="17" height="1" fill="#fff" />
+          <polygon points="18 8 0 8 0 10 18 10 18 8 18 8" />
+        </g>
+      </symbol>
+
+      <symbol id="plus-sign" viewBox="0 0 18 18">
+        <g id="X_Cross" data-name="X Cross">
+          <rect x="0.5" y="8.5" width="17" height="1" fill="#fff" />
+          <polygon points="18 8 0 8 0 10 18 10 18 8 18 8" />
+        </g>
+        <g id="Y_Cross" data-name="Y Cross">
+          <rect x="8.5" y="0.5" width="1" height="17" fill="#fff" />
+          <path d="M9,1V1m1-1H8V18h2V0Z" />
+        </g>
+      </symbol>
+
+    </svg>
 
   </main>
   <script src="js/flexItem.js" type="module"></script>

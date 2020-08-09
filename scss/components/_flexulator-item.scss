@@ -90,39 +90,56 @@
   &__form-button {
     opacity: 0;
     transition: opacity 1s ease;
+
+    z-index: 100;
   }
 
   &__form-button--show {
     opacity: 1;
   }
 
+  &__form-button-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    height: 100%;
+
+    z-index: -100;
+  }
+
 
   &__grow-increment {
     @include flex-item-button();
-    @include flex-item-increment-icon();
+    @include flex-item-increment();
   }
+
   &__grow-value {
     @include flex-item-input();
     @include input-number();
   }
   &__grow-decrement {
     @include flex-item-button();
+    @include flex-item-decrement();
   }
 
   &__shrink-increment {
     @include flex-item-button();
-    @include flex-item-increment-icon();
+    @include flex-item-increment();
   }
+
   &__shrink-value {
     @include flex-item-input();
     @include input-number();
   }
   &__shrink-decrement {
     @include flex-item-button();
+    @include flex-item-decrement();
   }
 
   &__basis-increment {
     @include flex-item-button();
+    @include flex-item-increment();
   }
   &__basis-value {
     @include flex-item-input();
@@ -131,6 +148,7 @@
   }
   &__basis-decrement {
     @include flex-item-button();
+    @include flex-item-decrement();
   }
 
   &__remove-button {

@@ -24,7 +24,6 @@ const flexulator = {
     flexulator.updateFlexItems();
     flexulator.updateFlexTotalBasis();
     flexulator.updateRemainingSpace();
-    // flexulator.updateContainer();
     flexulator.createFlexItems();
     flexulator.updateFlexItemsContainerValues();
     flexulator.updateResize();
@@ -140,6 +139,8 @@ const flexulator = {
     })
   },
   updateForm: function() {
+
+    //TODO: input increment/decrement is 1 step behind
     flexulator.elements.flexItems.forEach(item => {
       item.addEventListener('input', function(event) {
         if (event.target.matches('.flex-item__grow-value')) {
@@ -218,16 +219,19 @@ const flexulator = {
   updateFlexItemFormButtons: function(item) {
     item.addEventListener('click', event => {
 
+      //TODO: item.clientWidth is not being updated on first click/input
+
+      console.log(event.target);
       if (event.target.matches('.flex-item__grow-increment')) {
         event.target.parentElement.querySelector('.flex-item__grow-value').value++;
         event.currentTarget.style.flexGrow++
-        flexulator.updateFlexGrowTotal();
-        // flexulator.updateFormValue(event.currentTarget.dataset.id, 'grow');
+        // flexulator.updateFlexGrowTotal();
+        flexulator.updateFormValue(event.currentTarget.dataset.id, 'grow');
       } else if (event.target.matches('.flex-item__grow-decrement')) {
         event.target.parentElement.querySelector('.flex-item__grow-value').value--;
         event.currentTarget.style.flexGrow--;
-        flexulator.updateFlexGrowTotal();
-        // flexulator.updateFormValue(event.currentTarget.dataset.id, 'grow');
+        // flexulator.updateFlexGrowTotal();
+        flexulator.updateFormValue(event.currentTarget.dataset.id, 'grow');
       } else if (event.target.matches('.flex-item__shrink-increment')) {
         event.target.parentElement.querySelector('.flex-item__shrink-value').value++;
         event.currentTarget.style.flexShrink++;
