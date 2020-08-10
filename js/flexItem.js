@@ -221,25 +221,26 @@ export default function newFlexItemObject() {
       this.flexulations.shrink.computedWidth = shrinkComputedWidth.toFixed(0);
       this.elements.flexulations.shrink.computedWidth.textContent = shrinkComputedWidth.toFixed(0);
     },
+    updateClientWidth: function() {
+      this.elements.self.clientWidth;
+    },
     updateForm: function(property) {
       if (property === "grow") {
-        let newGrowValue = this.elements.form.grow.value;
+        let newGrowValue = parseFloat(this.elements.form.grow.value);
         this.form.grow = newGrowValue;
         this.style.grow = newGrowValue;
         this.flexulations.form.grow = newGrowValue;
         this.flexulations.grow.value = newGrowValue;
         this.elements.self.style.flexGrow = newGrowValue;
-        // this.elements.form.width.textContent = this.elements.form.width.clientWidth;
-        this.writeItemFlexulations();
       } else if (property === "shrink") {
-        let newShrinkValue = this.elements.form.shrink.value;
+        let newShrinkValue = parseFloat(this.elements.form.shrink.value);
         this.form.shrink = newShrinkValue;
         this.style.shrink = newShrinkValue;
         this.flexulations.form.shrink = newShrinkValue;
         this.flexulations.shrink.value = newShrinkValue;
         this.elements.self.style.flexShrink = newShrinkValue;
       } else if (property === "basis") {
-        let newBasisValue = this.elements.form.flexBasis.value;
+        let newBasisValue = parseFloat(this.elements.form.flexBasis.value);
         this.form.flexBasis = newBasisValue;
         this.style.flexBasis = newBasisValue;
         this.flexulations.form.flexBasis = newBasisValue;

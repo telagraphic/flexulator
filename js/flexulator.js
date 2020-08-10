@@ -38,6 +38,17 @@ const flexulator = {
   updateWidth: function () {
     flexulator.flexValues.width = flexulator.elements.container.clientWidth;
   },
+  updateFlexItemWidths: function() {
+    let [...newItemWidths] = flexulator.elements.flexItems.map(item => item.clientWidth);
+
+    flexulator.flexItems.forEach((item, index) => {
+      item.flexulations.itemWidth = newItemWidths[index];
+      item.flexulations.form.width = newItemWidths[index];
+      item.writeItemFlexulations();
+    });
+
+    console.log(flexulator.flexItems[0]);
+  },
   updateFlexItems: function () {
     flexulator.elements.flexItems = [...flexulator.elements.container.querySelectorAll('.flex-item')];
   },
@@ -55,15 +66,6 @@ const flexulator = {
   updateRemainingSpace: function() { // remove
     flexulator.flexValues.remainingSpace = flexulator.flexValues.width - flexulator.flexValues.flexBasisTotal;
   },
-  // updateContainer: function() { // remove
-  //   let width = flexulator.elements.dashboard.querySelector('.dashboard__container-width');
-  //   let flexBasisTotal = flexulator.elements.dashboard.querySelector('.dashboard__total-flex-basis');
-  //   let remainingSpace = flexulator.elements.dashboard.querySelector('.dashboard__flex-remaining-space');
-  //
-  //   width.textContent = flexulator.flexValues.width;
-  //   flexBasisTotal.textContent = flexulator.flexValues.flexBasisTotal;
-  //   remainingSpace.textContent = flexulator.flexValues.remainingSpace;
-  // },
   createFlexItems: function() {
     let id = 0;
     flexulator.elements.flexItems.forEach(item => {
@@ -158,7 +160,14 @@ const flexulator = {
       return item.id === parseInt(itemId);
     });
 
+    console.log(itemToUpdate);
+
     itemToUpdate.updateForm(property);
+
+    setTimeout(() => {
+      flexulator.updateFlexItemWidths();
+    }, 1000);
+
 
     flexulator.updateWidth();
     flexulator.updateFlexItems();
@@ -167,6 +176,8 @@ const flexulator = {
     flexulator.updateRemainingSpace()
     flexulator.updateShrinkBasisTotal();
     flexulator.updateFlexItemsContainerValues();
+
+    console.log(itemToUpdate);
   },
   setupFlexItemAddButton: function() {
     let addButton = select('.flexulator__form-label-button-add-flex-item');
@@ -210,7 +221,6 @@ const flexulator = {
   addFlexItemButtons: function() {
     flexulator.elements.flexItems.forEach(item => {
       if (!item.hasAttribute('data-button-click')) {
-        console.log(item);
         item.dataset.buttonClick = true;
         flexulator.updateFlexItemFormButtons(item);
       }
@@ -221,16 +231,13 @@ const flexulator = {
 
       //TODO: item.clientWidth is not being updated on first click/input
 
-      console.log(event.target);
       if (event.target.matches('.flex-item__grow-increment')) {
         event.target.parentElement.querySelector('.flex-item__grow-value').value++;
         event.currentTarget.style.flexGrow++
-        // flexulator.updateFlexGrowTotal();
         flexulator.updateFormValue(event.currentTarget.dataset.id, 'grow');
       } else if (event.target.matches('.flex-item__grow-decrement')) {
         event.target.parentElement.querySelector('.flex-item__grow-value').value--;
         event.currentTarget.style.flexGrow--;
-        // flexulator.updateFlexGrowTotal();
         flexulator.updateFormValue(event.currentTarget.dataset.id, 'grow');
       } else if (event.target.matches('.flex-item__shrink-increment')) {
         event.target.parentElement.querySelector('.flex-item__shrink-value').value++;
@@ -285,25 +292,31 @@ const flexulator = {
       <section class="flex-item__form">
         <section class="flex-item__form-label">
           <section class="flex-item__form-label-container">
-            <button class="flex-item__grow-increment"></button>
+            <button class="flex-item__grow-increment flex-item__form-button">
+            </button>
             <input type="number" class="flex-item__grow-value" value="${flexGrow}">
-            <button class="flex-item__grow-decrement"></button>
+            <button class="flex-item__grow-decrement flex-item__form-button">
+            </button>
           </section>
           <h5 class="flex-item__form-label-name">grow</h5>
         </section>
         <section class="flex-item__form-label">
           <section class="flex-item__form-label-container">
-            <button class="flex-item__shrink-increment"></button>
+            <button class="flex-item__shrink-increment flex-item__form-button">
+            </button>
             <input type="number" class="flex-item__shrink-value" value="${flexShrink}">
-            <button class="flex-item__shrink-decrement"></button>
+            <button class="flex-item__shrink-decrement flex-item__form-button">
+            </button>
           </section>
           <h5 class="flex-item__form-label-name">shrink</h5>
         </section>
         <section class="flex-item__form-label">
           <section class="flex-item__form-label-container">
-            <button class="flex-item__basis-increment"></button>
+            <button class="flex-item__basis-increment flex-item__form-button">
+            </button>
             <input type="number" class="flex-item__basis-value" value="${flexBasis}">
-            <button class="flex-item__basis-decrement"></button>
+            <button class="flex-item__basis-decrement flex-item__form-button">
+            </button>
           </section>
           <h5 class="flex-item__form-label-name">flex-basis</h5>
         </section>

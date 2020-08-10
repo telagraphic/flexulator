@@ -6,7 +6,7 @@
   "scripts": {
     "dev:scss": "node-sass --output-style nested -o css scss/styles.scss",
     "dev:watch": "onchange 'scss' -- npm run dev:scss",
-    "dev:serve": "browser-sync start --server --ss --files 'scss/**/*.scss, ./*.html, js/*.js'",
+    "dev:serve": "browser-sync start --server --ss './' --files 'scss/**/*.scss, ./*.html, js/*.js'",
     "build:clean": "rm -rf dist",
     "server": "run-p dev:watch dev:serve",
     "build:dist": "mkdir -p dist/{css,js,img,fonts}",
