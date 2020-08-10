@@ -452,7 +452,7 @@ button {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  background-color: #ffffff;
+  background-color: #fbdef4;
   color: #0c0c0d; }
   @media (min-width: 37.5rem) {
     .header {
@@ -465,15 +465,27 @@ button {
     font-size: calc(25px + (35 - 25) * ((100vw - 300px) / (1600 - 300)));
     font-weight: 700; }
   .header__title-logo {
-    max-width: 15%;
+    max-width: 45%;
     width: 100%;
     height: 0;
-    padding-top: 6%;
+    padding-top: 12.5%;
     position: relative; }
+    @media (min-width: 37.5rem) {
+      .header__title-logo {
+        max-width: 32%;
+        padding-top: 11%; } }
+    @media (min-width: 75rem) {
+      .header__title-logo {
+        max-width: 15%;
+        padding-top: 5%; } }
     .header__title-logo svg {
       position: absolute;
       top: 0;
-      left: 0; }
+      left: 0;
+      padding: 3% 0; }
+      @media (min-width: 37.5rem) {
+        .header__title-logo svg {
+          padding: 5% 0; } }
   .header__github-counter {
     position: relative; }
     @media (min-width: 37.5rem) {
@@ -635,6 +647,9 @@ button {
   align-items: center;
   z-index: -100; }
 
+.flex-item__width-header {
+  text-transform: uppercase; }
+
 .flex-item__form-label {
   display: flex;
   flex-direction: column;
@@ -649,6 +664,9 @@ button {
   align-items: center;
   width: auto;
   padding: .25rem 0 0 0; }
+
+.flex-item__form-label-name {
+  text-transform: uppercase; }
 
 .flex-item__form-button {
   opacity: 0;
@@ -800,10 +818,17 @@ button {
     bottom: -7px;
     border: 3px solid #1b1b1d; }
 
+.flex-item__formulas {
+  display: flex;
+  flex-direction: row; }
+
 .flex-item__flexulations-section {
   padding: .5rem 0; }
+  .flex-item__flexulations-section h5 {
+    text-transform: uppercase; }
 
 .flex-item__flexulations-grow-container {
+  flex: 1;
   font-size: 1rem;
   font-weight: 400;
   letter-spacing: -.09rem;
@@ -819,6 +844,7 @@ button {
   margin: .5rem 0; }
 
 .flex-item__flexulations-shrink-container {
+  flex: 1;
   font-size: 1rem;
   font-weight: 400;
   letter-spacing: -.09rem;

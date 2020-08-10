@@ -65,6 +65,17 @@
     z-index: -100;
   }
 
+  &__width-container {
+
+  }
+
+  &__width {
+
+  }
+
+  &__width-header {
+    text-transform: uppercase;
+  }
 
   &__form-label {
     display: flex;
@@ -84,7 +95,7 @@
   }
 
   &__form-label-name {
-
+    text-transform: uppercase;
   }
 
   &__form-button {
@@ -184,13 +195,24 @@
 
 }
 
+.flex-item__formulas {
+  display: flex;
+  flex-direction: row;
+}
+
 .flex-item__flexulations {
 
 
   &-section {
     padding: .5rem 0;
+
+    h5 {
+      text-transform: uppercase;
+    }
   }
-  &-section-header {}
+  &-section-header {
+
+  }
   &-operator {}
   &-space {}
   &-remaining-space {}
@@ -199,6 +221,7 @@
 .flex-item__flexulations-grow {
 
   &-container {
+    flex: 1;
     @include flex-item-flexulations-container();
     padding: 1rem 0 .5rem 0;
   }
@@ -223,6 +246,7 @@
 .flex-item__flexulations-shrink {
 
   &-container {
+    flex: 1;
     @include flex-item-flexulations-container();
     padding: .5rem 0;
   }
