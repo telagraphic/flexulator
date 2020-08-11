@@ -89,6 +89,7 @@ const flexulator = {
     newFlexItem.updateShrinkBasisTotal();
     newFlexItem.id = parseInt(item.dataset.id);
     flexulator.flexItems.push(newFlexItem);
+    flexulator.flexItems.map(item => console.log(item.id));
   },
   updateFlexItemsContainerValues: function () {
     flexulator.flexItems.forEach(item => {
@@ -136,7 +137,9 @@ const flexulator = {
     });
   },
   updateFormValue: function (itemId, property) {
+    console.log("ITEM TO UPDATE:", itemId);
     let itemToUpdate = flexulator.flexItems.find(function(item) {
+      console.log(item);
       return item.id === parseInt(itemId);
     });
 
@@ -377,19 +380,33 @@ const flexulator = {
     this.elements.container.insertAdjacentHTML('beforeend', flexItem);
 
     setTimeout(function() {
-      flexulator.setupRemoveButton();
       flexulator.addFlexItemButtons();
+      flexulator.addRemoveButton();
+
     }, 500);
 
+  },
+  addRemoveButton: function() {
+    flexulator.elements.flexItems.forEach(item => {
+      if (!item.hasAttribute('data-remove-button')) {
+        item.dataset.removeButton = true;
+        flexulator.setupRemoveButton();
+      }
+      console.log(item);
+    });
   },
   setupRemoveButton: function() {
     flexulator.elements.flexItems.forEach(element => {
       element.addEventListener('click', function(event) {
         if (event.target.matches('.flex-item__remove-button')) {
 
+          //TODO: refactor into separate function
+
           if (flexulator.flexItems.length === 1) {
             return;
           } else {
+
+
             event.currentTarget.remove();
             flexulator.removeFlexItem(event.currentTarget);
 
