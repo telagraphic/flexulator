@@ -3,25 +3,58 @@
 
 .formula {
 
-  &__header {
+  &__tabs-container {}
+
+  &__tabs-navigation {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    align-items: center;
-    padding: 2rem 0;
-    background-color: $black-6;
-    border-top: 3px solid $gray-5;
-    border-bottom: 3px solid $gray-5;
-    color: $white;
 
+    border-top: 5px solid $gray-1;
+    border-bottom: 5px solid $gray-1;
+  }
 
-    &-title {
-      font-size: calc(55px + (85 - 55) * ((100vw - 300px) / (1600 - 300)));
-      text-align: center;
+  &__tabs-button {
+    flex: 1;
+    height: 8rem;
+    background-color: $gray-2;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+
+    &:after {
+      display: block;
+      content: '';
+      border-top: solid 10px $gray-6;
+      transform: scaleX(0);
+      transition: transform .1s ease-in-out;
+    }
+
+    &:hover {
+      background-color: $gray-3;
+    }
+
+    &:hover:after {
+      transform: scaleX(1);
     }
   }
 
-  &__formula-container {
+  &__tabs-button-link {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+    width: 100%;
+  }
+
+  &__tabs-button-link-text {
+    font-size: 5rem;
+  }
+
+
+  &__tabs-content-container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -31,6 +64,15 @@
 
     @include viewport-min($desktop) {
       flex-direction: row;
+    }
+  }
+
+
+  &__tab-content {
+    display: none;
+
+    &.is-active {
+      display: block;
     }
   }
 

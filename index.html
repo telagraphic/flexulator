@@ -470,12 +470,25 @@
       <section class="flexulator__footer">
       </section>
     </article>
-    <article class="formula__container">
-      <header class="formula__header">
-        <h1 class="formula__header-title">Flexbox Formula</h1>
-      </header>
-      <section class="formula__formula-container">
-        <section class="formula__formula-section">
+    <article class="formula__tabs-container">
+      <section class="formula__tabs-navigation">
+        <section class="formula__tabs-button" data-id="grow">
+          <section class="formula__tabs-button-link">
+            <h3 class="formula__tabs-button-link-text">
+              GROW
+            </h3>
+          </section>
+        </section>
+        <section class="formula__tabs-button" data-id="shrink">
+          <section class="formula__tabs-button-link">
+            <h3 class="formula__tabs-button-link-text">
+              SHRINK
+            </h3>
+          </section>
+        </section>
+      </section>
+      <section class="formula__tabs-content-container">
+        <section class="formula__formula-section formula__tab-content" id="grow">
           <h2 class="formula__formula-section-grow-header">Grow</h2>
           <section class="formula__formula-section-grow">
             <p>Each Flex Item has Flex: 1 1 100px</p>
@@ -520,7 +533,7 @@
             </section>
           </section>
         </section>
-        <section class="formula__formula-section">
+        <section class="formula__formula-section formula__tab-content" id="shrink">
           <h2 class="formula__formula-section-shrink-header">Shrink</h2>
           <section class="formula__formula-section-shrink">
             <p>Each Flex Item has Flex: 1 1 1000px</p>
@@ -752,6 +765,37 @@
   </main>
   <script src="js/flexItem.js" type="module"></script>
   <script src="js/flexulator.js" type="module"></script>
+  <script>
+    const tabs = document.querySelectorAll(".formula__tabs-button");
+    const sections = document.querySelectorAll(".formula__tab-content");
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", e => {
+        e.preventDefault();
+        removeActiveTab();
+        addActiveTab(tab);
+      });
+    })
+
+    const removeActiveTab = () => {
+      tabs.forEach(tab => {
+        tab.classList.remove("is-active");
+      });
+      sections.forEach(section => {
+        section.classList.remove("is-active");
+      });
+    }
+
+    const addActiveTab = tab => {
+      tab.classList.add("is-active");
+      const id = tab.getAttribute("data-id");
+      console.log(id);
+      const matchingSection = document.querySelector(id);
+      matchingSection.classList.add("is-active");
+    }
+
+
+  </script>
   <!-- <script src="https://cdn.usefathom.com/script.js" site="UOWJELBH" defer></script> -->
 </body>
 

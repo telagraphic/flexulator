@@ -406,13 +406,9 @@ const flexulator = {
       if (flexulator.flexItems.length === 1) {
         return;
       } else {
-
-        console.log("CURRENT TARGET ID: ", element.currentTarget.dataset.id);
         let indexToDelete = flexulator.elements.flexItems.findIndex(function(item) {
           return item.dataset.id == element.currentTarget.dataset.id;
         });
-
-        console.log("ELEMENT TO DELETE: ", indexToDelete)
 
         element.currentTarget.remove();
         flexulator.flexItems.splice(indexToDelete, 1);
@@ -429,10 +425,7 @@ const flexulator = {
           flexulator.updateFlexGrowTotal();
           flexulator.updateShrinkBasisTotal();
           flexulator.updateFlexItemsContainerValues();
-        }, 500)
-
-
-
+        }, 500);
       }
     }
   },

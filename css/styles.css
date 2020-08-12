@@ -859,29 +859,56 @@ button {
 .flex-item__flexulations-shrink-formula {
   margin: .5rem 0; }
 
-.formula__header {
+.formula__tabs-navigation {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  align-items: center;
-  padding: 2rem 0;
-  background-color: #0c0c0d;
-  border-top: 3px solid #404041;
-  border-bottom: 3px solid #404041;
-  color: #ffffff; }
-  .formula__header-title {
-    font-size: calc(55px + (85 - 55) * ((100vw - 300px) / (1600 - 300)));
-    text-align: center; }
+  border-top: 5px solid #e0e0e2;
+  border-bottom: 5px solid #e0e0e2; }
 
-.formula__formula-container {
+.formula__tabs-button {
+  flex: 1;
+  height: 8rem;
+  background-color: #f9f8fb;
+  text-align: center;
+  display: inline-block;
+  position: relative; }
+  .formula__tabs-button:after {
+    display: block;
+    content: '';
+    border-top: solid 10px #bebec0;
+    transform: scaleX(0);
+    transition: transform .1s ease-in-out; }
+  .formula__tabs-button:hover {
+    background-color: #ededf0; }
+  .formula__tabs-button:hover:after {
+    transform: scaleX(1); }
+
+.formula__tabs-button-link {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%; }
+
+.formula__tabs-button-link-text {
+  font-size: 5rem; }
+
+.formula__tabs-content-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   padding: 5.5rem 0;
   background-color: #0c0c0d; }
   @media (min-width: 75rem) {
-    .formula__formula-container {
+    .formula__tabs-content-container {
       flex-direction: row; } }
+
+.formula__tab-content {
+  display: none; }
+  .formula__tab-content.is-active {
+    display: block; }
 
 .formula__formula-section {
   display: flex;
