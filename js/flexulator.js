@@ -390,9 +390,10 @@ const flexulator = {
     flexulator.elements.flexItems.forEach(item => {
       if (!item.hasAttribute('data-remove-button')) {
         item.dataset.removeButton = true;
+        // this re-adds the listener to existing elements
         flexulator.setupRemoveButton();
+        console.log(item);
       }
-      console.log(item);
     });
   },
   setupRemoveButton: function() {
@@ -400,13 +401,11 @@ const flexulator = {
       element.addEventListener('click', function(event) {
         if (event.target.matches('.flex-item__remove-button')) {
 
-          //TODO: refactor into separate function
+          //TODO: remove listener is being added multiple times and then removing many flexulator.flexItems thus not updated the DOM
 
           if (flexulator.flexItems.length === 1) {
             return;
           } else {
-
-
             event.currentTarget.remove();
             flexulator.removeFlexItem(event.currentTarget);
 
