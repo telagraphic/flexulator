@@ -89,7 +89,6 @@ const flexulator = {
     newFlexItem.updateShrinkBasisTotal();
     newFlexItem.id = parseInt(item.dataset.id);
     flexulator.flexItems.push(newFlexItem);
-    flexulator.flexItems.map(item => console.log(item.id));
   },
   updateFlexItemsContainerValues: function () {
     flexulator.flexItems.forEach(item => {
@@ -137,9 +136,7 @@ const flexulator = {
     });
   },
   updateFormValue: function (itemId, property) {
-    console.log("ITEM TO UPDATE:", itemId);
     let itemToUpdate = flexulator.flexItems.find(function(item) {
-      console.log(item);
       return item.id === parseInt(itemId);
     });
 
@@ -390,41 +387,54 @@ const flexulator = {
     flexulator.elements.flexItems.forEach(item => {
       if (!item.hasAttribute('data-remove-button')) {
         item.dataset.removeButton = true;
-        // this re-adds the listener to existing elements
-        flexulator.setupRemoveButton();
-        console.log(item);
-      }
+        item.addEventListener('click', function(event) {
+          flexulator.removeFlexItem(event);
+        });
+      };
     });
   },
   setupRemoveButton: function() {
     flexulator.elements.flexItems.forEach(element => {
       element.addEventListener('click', function(event) {
-        if (event.target.matches('.flex-item__remove-button')) {
-
-          //TODO: remove listener is being added multiple times and then removing many flexulator.flexItems thus not updated the DOM
-
-          if (flexulator.flexItems.length === 1) {
-            return;
-          } else {
-            event.currentTarget.remove();
-            flexulator.removeFlexItem(event.currentTarget);
-
-            setTimeout(function() {
-              flexulator.updateFlexItems();
-              flexulator.updateWidth();
-              flexulator.updateFlexTotalBasis();
-              flexulator.updateRemainingSpace();
-              flexulator.updateFlexGrowTotal();
-              flexulator.updateShrinkBasisTotal();
-              flexulator.updateFlexItemsContainerValues();
-            }, 500)
-          }
-        }
+        flexulator.removeFlexItem(event);
       });
     })
   },
-  removeFlexItem: function(item) {
-    flexulator.flexItems.splice(item.dataset.id, 1);
+  removeFlexItem: function(element) {
+    if (element.target.matches('.flex-item__remove-button')) {
+
+      if (flexulator.flexItems.length === 1) {
+        return;
+      } else {
+
+        console.log("CURRENT TARGET ID: ", element.currentTarget.dataset.id);
+        let indexToDelete = flexulator.elements.flexItems.findIndex(function(item) {
+          return item.dataset.id == element.currentTarget.dataset.id;
+        });
+
+        console.log("ELEMENT TO DELETE: ", indexToDelete)
+
+        element.currentTarget.remove();
+        flexulator.flexItems.splice(indexToDelete, 1);
+        flexulator.elements.flexItems.splice(indexToDelete, 1);
+
+        flexulator.flexItems.map(item => console.log(item.id));
+        flexulator.elements.flexItems.map(item => console.log(item));
+
+        setTimeout(function() {
+          flexulator.updateFlexItems();
+          flexulator.updateWidth();
+          flexulator.updateFlexTotalBasis();
+          flexulator.updateRemainingSpace();
+          flexulator.updateFlexGrowTotal();
+          flexulator.updateShrinkBasisTotal();
+          flexulator.updateFlexItemsContainerValues();
+        }, 500)
+
+
+
+      }
+    }
   },
   updateResize: function() {
     window.addEventListener('resize', function(event) {
