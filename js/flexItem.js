@@ -39,7 +39,8 @@ export default function newFlexItemObject() {
           basisTotal: null,
           valueBasisProduct: null,
           factor: null,
-          computedWidth: null
+          computedWidth: null,
+          computedPositiveWidth: null
         }
       }
     },
@@ -69,7 +70,9 @@ export default function newFlexItemObject() {
           basisTotal: '.flex-item__flexulations-shrink-total-basis',
           valueBasisTotal: '.flex-item__flexulations-shrink-value-basis-total',
           factor: '.flex-item__flexulations-shrink-quotient',
-          computedWidth: '.flex-item__flexulations-shrink-width'
+          computedWidth: '.flex-item__flexulations-shrink-width',
+          computedPositiveWidth: '.flex-item__flexulations-shrink-width-postive',
+          finalWidth: '.flex-item__flexulations-shrink-final-width'
         }
       }
     },
@@ -128,25 +131,33 @@ export default function newFlexItemObject() {
       this.form.shrink = parseFloat(formValues[1]);
       this.form.flexBasis = parseFloat(formValues[2]);
     },
+    select: function(selector) {
+      return this.elements.self.querySelector(selector);
+    },
+    selectAll: function(selector) {
+      return [...this.elements.self.querySelectorAll(selector)];
+    },
     getChildrenElements: function () {
-      this.elements.flexulations.container.width = [...this.elements.self.querySelectorAll(this.selectors.flexulations.container.width)];
-      this.elements.flexulations.container.flexBasisTotal = [...this.elements.self.querySelectorAll(this.selectors.flexulations.container.flexBasisTotal)];
-      this.elements.flexulations.container.remainingSpace = [...this.elements.self.querySelectorAll(this.selectors.flexulations.container.remainingSpace)];
-      this.elements.form.width = this.elements.self.querySelector(this.selectors.form.width);
-      this.elements.form.grow = this.elements.self.querySelector(this.selectors.form.grow);
-      this.elements.form.shrink = this.elements.self.querySelector(this.selectors.form.shrink);
-      this.elements.form.flexBasis = this.elements.self.querySelector(this.selectors.form.flexBasis);
-      this.elements.flexulations.grow.value = this.elements.self.querySelector(this.selectors.flexulations.grow.value);
-      this.elements.flexulations.grow.total = this.elements.self.querySelector(this.selectors.flexulations.grow.total);
-      this.elements.flexulations.grow.width = [...this.elements.self.querySelectorAll(this.selectors.flexulations.grow.width)];
-      this.elements.flexulations.grow.basis = this.elements.self.querySelector(this.selectors.flexulations.grow.basis);
-      this.elements.flexulations.grow.computedWidth = this.elements.self.querySelector(this.selectors.flexulations.grow.computedWidth);
-      this.elements.flexulations.shrink.value = this.elements.self.querySelector(this.selectors.flexulations.shrink.value);
-      this.elements.flexulations.shrink.basis = this.elements.self.querySelector(this.selectors.flexulations.shrink.basis);
-      this.elements.flexulations.shrink.basisTotal = this.elements.self.querySelector(this.selectors.flexulations.shrink.basisTotal);
-      this.elements.flexulations.shrink.valueBasisTotal = this.elements.self.querySelector(this.selectors.flexulations.shrink.valueBasisTotal);
-      this.elements.flexulations.shrink.factor = [...this.elements.self.querySelectorAll(this.selectors.flexulations.shrink.factor)];
-      this.elements.flexulations.shrink.computedWidth = this.elements.self.querySelector(this.selectors.flexulations.shrink.computedWidth);
+      this.elements.flexulations.container.width = this.selectAll(this.selectors.flexulations.container.width);
+      this.elements.flexulations.container.flexBasisTotal = this.selectAll(this.selectors.flexulations.container.flexBasisTotal);
+      this.elements.flexulations.container.remainingSpace = this.selectAll(this.selectors.flexulations.container.remainingSpace);
+      this.elements.form.width = this.select(this.selectors.form.width);
+      this.elements.form.grow = this.select(this.selectors.form.grow);
+      this.elements.form.shrink = this.select(this.selectors.form.shrink);
+      this.elements.form.flexBasis = this.select(this.selectors.form.flexBasis);
+      this.elements.flexulations.grow.value = this.select(this.selectors.flexulations.grow.value);
+      this.elements.flexulations.grow.total = this.select(this.selectors.flexulations.grow.total);
+      this.elements.flexulations.grow.width = this.selectAll(this.selectors.flexulations.grow.width);
+      this.elements.flexulations.grow.basis = this.select(this.selectors.flexulations.grow.basis);
+      this.elements.flexulations.grow.computedWidth = this.select(this.selectors.flexulations.grow.computedWidth);
+      this.elements.flexulations.shrink.value = this.select(this.selectors.flexulations.shrink.value);
+      this.elements.flexulations.shrink.basis = this.select(this.selectors.flexulations.shrink.basis);
+      this.elements.flexulations.shrink.basisTotal = this.select(this.selectors.flexulations.shrink.basisTotal);
+      this.elements.flexulations.shrink.valueBasisTotal = this.selectAll(this.selectors.flexulations.shrink.valueBasisTotal);
+      this.elements.flexulations.shrink.factor = this.selectAll(this.selectors.flexulations.shrink.factor);
+      this.elements.flexulations.shrink.computedWidth = this.selectAll(this.selectors.flexulations.shrink.computedWidth);
+      this.elements.flexulations.shrink.computedPositiveWidth = this.select(this.selectors.flexulations.shrink.computedPositiveWidth);
+      this.elements.flexulations.shrink.finalWidth = this.select(this.selectors.flexulations.shrink.finalWidth);
     },
     updateItemContainerFlexulations: function (containerValues) {
       this.flexulations.container.width = containerValues.width;
@@ -171,9 +182,11 @@ export default function newFlexItemObject() {
       this.elements.flexulations.shrink.value.textContent = this.flexulations.shrink.value;
       this.elements.flexulations.shrink.basis.textContent = this.flexulations.shrink.itemBasis;
       this.elements.flexulations.shrink.basisTotal.textContent = this.flexulations.shrink.basisTotal;
-      this.elements.flexulations.shrink.valueBasisTotal.textContent = this.flexulations.shrink.valueBasisTotal;
-      this.elements.flexulations.shrink.factor.forEach(element => element.textContent = this.flexulations.shrink.factor.toFixed(2));
+      this.elements.flexulations.shrink.valueBasisTotal.forEach(element => element.textContent = this.flexulations.shrink.valueBasisTotal);
+      this.elements.flexulations.shrink.factor.forEach(element => element.textContent = this.flexulations.shrink.factor.toFixed(6));
       this.elements.flexulations.shrink.computedWidth.textContent = this.flexulations.shrink.computedWidth;
+      this.elements.flexulations.shrink.computedPositiveWidth.textContent = this.flexulations.shrink.computedWidth.replace('-', '');
+      this.elements.flexulations.shrink.finalWidth.textContent = this.elements.form.width.clientWidth;
     },
     updateFlexItemGrow: function () {
       this.flexulations.grow.value = this.style.grow;
@@ -207,7 +220,7 @@ export default function newFlexItemObject() {
       this.flexulations.shrink.factor = parseFloat(shrinkQuotient) / parseFloat(this.flexulations.shrink.basisTotal);
     },
     updateShrinkComputedWidth: function() {
-      let shrinkComputedWidth = this.flexulations.shrink.factor.toFixed(2) * this.flexulations.container.remainingSpace;
+      let shrinkComputedWidth = this.flexulations.shrink.factor.toFixed(6) * this.flexulations.container.remainingSpace;
       this.flexulations.shrink.computedWidth = shrinkComputedWidth.toFixed(0);
     },
     updateClientWidth: function() {

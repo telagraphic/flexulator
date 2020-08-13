@@ -883,6 +883,11 @@ button {
     background-color: #ededf0; }
   .formula__tabs-button:hover:after {
     transform: scaleX(1); }
+  .formula__tabs-button.is-active {
+    color: #1780ea; }
+  .formula__tabs-button.is-active:after {
+    border-top: solid 10px #1780ea;
+    transform: scaleX(1) !important; }
 
 .formula__tabs-button-link {
   position: absolute;
@@ -896,14 +901,9 @@ button {
   font-size: 5rem; }
 
 .formula__tabs-content-container {
-  display: flex;
-  flex-direction: column;
   min-height: 100vh;
   padding: 5.5rem 0;
   background-color: #0c0c0d; }
-  @media (min-width: 75rem) {
-    .formula__tabs-content-container {
-      flex-direction: row; } }
 
 .formula__tab-content {
   display: none; }
@@ -911,9 +911,6 @@ button {
     display: block; }
 
 .formula__formula-section {
-  display: flex;
-  flex: 1 1 50%;
-  flex-direction: column;
   padding: 3rem 0;
   font-size: inherit;
   text-align: center; }

@@ -203,13 +203,24 @@
 
               <section class="flex-item__flexulations-section">
                 <h5 class="flex-item__flexuations-section-header">
-                  final width
+                  shrink amount
                 </h5>
                 <span class="flex-item__flexulations-shrink-quotient"></span>
                 <span class="flex-item__flexulations_operator"> * </span>
                 <span class="flex-item__flexulations-remaining-space"></span>
                 <span class="flex-item__flexulations_operator"> = </span>
                 <span class="flex-item__flexulations-shrink-width"></span>
+              </section>
+
+              <section class="flex-item__flexulations-section">
+                <h5 class="flex-item__flexuations-section-header">
+                  final width
+                </h5>
+                <span class="flex-item__flexulations-shrink-value-basis-total"></span>
+                <span class="flex-item__flexulations_operator"> - </span>
+                <span class="flex-item__flexulations-shrink-width-postive"></span>
+                <span class="flex-item__flexulations_operator"> = </span>
+                <span class="flex-item__flexulations-shrink-final-width"></span>
               </section>
             </section>
           </section>
@@ -327,13 +338,24 @@
 
               <section class="flex-item__flexulations-section">
                 <h5 class="flex-item__flexuations-section-header">
-                  final width
+                  shrink amount
                 </h5>
                 <span class="flex-item__flexulations-shrink-quotient"></span>
                 <span class="flex-item__flexulations_operator"> * </span>
                 <span class="flex-item__flexulations-remaining-space"></span>
                 <span class="flex-item__flexulations_operator"> = </span>
                 <span class="flex-item__flexulations-shrink-width"></span>
+              </section>
+
+              <section class="flex-item__flexulations-section">
+                <h5 class="flex-item__flexuations-section-header">
+                  final width
+                </h5>
+                <span class="flex-item__flexulations-shrink-value-basis-total"></span>
+                <span class="flex-item__flexulations_operator"> - </span>
+                <span class="flex-item__flexulations-shrink-width-postive"></span>
+                <span class="flex-item__flexulations_operator"> = </span>
+                <span class="flex-item__flexulations-shrink-final-width"></span>
               </section>
             </section>
           </section>
@@ -454,13 +476,24 @@
 
               <section class="flex-item__flexulations-section">
                 <h5 class="flex-item__flexuations-section-header">
-                  final width
+                  shrink amount
                 </h5>
                 <span class="flex-item__flexulations-shrink-quotient"></span>
                 <span class="flex-item__flexulations_operator"> * </span>
                 <span class="flex-item__flexulations-remaining-space"></span>
                 <span class="flex-item__flexulations_operator"> = </span>
                 <span class="flex-item__flexulations-shrink-width"></span>
+              </section>
+
+              <section class="flex-item__flexulations-section">
+                <h5 class="flex-item__flexuations-section-header">
+                  final width
+                </h5>
+                <span class="flex-item__flexulations-shrink-value-basis-total"></span>
+                <span class="flex-item__flexulations_operator"> - </span>
+                <span class="flex-item__flexulations-shrink-width-postive"></span>
+                <span class="flex-item__flexulations_operator"> = </span>
+                <span class="flex-item__flexulations-shrink-final-width"></span>
               </section>
             </section>
           </section>
@@ -472,7 +505,7 @@
     </article>
     <article class="formula__tabs-container">
       <section class="formula__tabs-navigation">
-        <section class="formula__tabs-button" data-id="grow">
+        <section class="formula__tabs-button is-active" data-id="grow">
           <section class="formula__tabs-button-link">
             <h3 class="formula__tabs-button-link-text">
               GROW
@@ -488,93 +521,97 @@
         </section>
       </section>
       <section class="formula__tabs-content-container">
-        <section class="formula__formula-section formula__tab-content" id="grow">
-          <h2 class="formula__formula-section-grow-header">Grow</h2>
-          <section class="formula__formula-section-grow">
-            <p>Each Flex Item has Flex: 1 1 100px</p>
-            <section class="formula__formula-section-grow-text">
-              <h4>Step 1</h4>
-              <p>
-                Container - Total Flex Basis
-              </p>
-              <p>
-                = Remaining Space
-              </p>
-              <p>
-                2000px - 300px = 1700px
-              </p>
-            </section>
-            <section class="formula__formula-section-grow-text">
-              <h4>Step 2</h4>
-              <p>
-                [Element Grow / Total Grow]
-              </p>
-              <p>
-                * Remaining Space
-              </p>
-              <p>
-                = Element Flex Space
-              </p>
-              <p>
-                [ 1 / 3 ] * 1700px = 561px
-              </p>
-            </section>
-            <section class="formula__formula-section-grow-text">
-              <h4>Step 3</h4>
-              <p>
-                Element Flex Space + Element Flex Basis
-              </p>
-              <p>
-                = Final Size
-              </p>
-              <p>
-                561px + 100px = 661px Final Size
-              </p>
+        <section class="formula__formula-section formula__tab-content is-active" id="grow">
+          <section class="formula__grow-container">
+            <h2 class="formula__formula-section-grow-header">Grow</h2>
+            <section class="formula__formula-section-grow">
+              <p>Each Flex Item has Flex: 1 1 100px</p>
+              <section class="formula__formula-section-grow-text">
+                <h4>Step 1</h4>
+                <p>
+                  Container - Total Flex Basis
+                </p>
+                <p>
+                  = Remaining Space
+                </p>
+                <p>
+                  2000px - 300px = 1700px
+                </p>
+              </section>
+              <section class="formula__formula-section-grow-text">
+                <h4>Step 2</h4>
+                <p>
+                  [Element Grow / Total Grow]
+                </p>
+                <p>
+                  * Remaining Space
+                </p>
+                <p>
+                  = Element Flex Space
+                </p>
+                <p>
+                  [ 1 / 3 ] * 1700px = 561px
+                </p>
+              </section>
+              <section class="formula__formula-section-grow-text">
+                <h4>Step 3</h4>
+                <p>
+                  Element Flex Space + Element Flex Basis
+                </p>
+                <p>
+                  = Final Size
+                </p>
+                <p>
+                  561px + 100px = 661px Final Size
+                </p>
+              </section>
             </section>
           </section>
         </section>
         <section class="formula__formula-section formula__tab-content" id="shrink">
-          <h2 class="formula__formula-section-shrink-header">Shrink</h2>
-          <section class="formula__formula-section-shrink">
-            <p>Each Flex Item has Flex: 1 1 1000px</p>
-            <section class="formula__formula-section-shrink-text">
-              <h4>Step 1</h4>
-              <p>
-                Container - Total Flex Basis
-              </p>
-              <p>
-                = Remaining Space
-              </p>
-              <p>
-                2000px - 3000px = -1000px
-              </p>
-            </section>
-            <section class="formula__formula-section-shrink-text">
-              <h4>Step 2</h4>
-              <p>
-                [Item Shrink * Item Basis]
-              </p>
-              <p>
-                / [Total Flex Basis]
-              </p>
-              <p>
-                = [Value] * Remaining Space = Shrink Amount
-              </p>
-              <p>
-                [ 1 * 1000 ] / (3000) = .333 * 1000 = 333.33px
-              </p>
-            </section>
-            <section class="formula__formula-section-shrink-text">
-              <h4>Step 3</h4>
-              <p>
-                Element Flex Basis - Shrink Amount
-              </p>
-              <p>
-                = Final Size
-              </p>
-              <p>
-                1000px - 333.33px = 667px
-              </p>
+          <section class="formula__shrink-container">
+            <h2 class="formula__formula-section-shrink-header">Shrink</h2>
+            <section class="formula__formula-section-shrink">
+              <p>Each Flex Item has Flex: 1 1 1000px</p>
+              <section class="formula__formula-section-shrink-text">
+                <h4>Step 1</h4>
+                <p>
+                  Container - Total Flex Basis
+                </p>
+                <p>
+                  = Remaining Space
+                </p>
+                <p>
+                  2000px - 3000px = -1000px
+                </p>
+              </section>
+              <section class="formula__formula-section-shrink-text">
+                <h4>Step 2</h4>
+                <p>
+                  [Item Shrink * Item Basis]
+                </p>
+                <p>
+                  / [Total Flex Basis]
+                </p>
+                <p>
+                  = [Value] * Remaining Space = Shrink Amount
+                </p>
+                <p>
+                  [ 1 * 1000 ] / (3000) = .333 * 1000 = 333.33px
+                </p>
+              </section>
+              <section class="formula__formula-section-shrink-text">
+                <h4>Step 3</h4>
+                <p>
+                  Element Flex Basis - Shrink Amount
+                </p>
+                <p>
+                  = Final Size
+                </p>
+                <p>
+                  1000px - 333.33px = 667px
+                </p>
+              </section>
             </section>
           </section>
         </section>
@@ -788,9 +825,10 @@
 
     const addActiveTab = tab => {
       tab.classList.add("is-active");
-      const id = tab.getAttribute("data-id");
-      console.log(id);
+      let id = tab.getAttribute("data-id");
+      id = `#${id}`;
       const matchingSection = document.querySelector(id);
+      console.log(matchingSection);
       matchingSection.classList.add("is-active");
     }
 
