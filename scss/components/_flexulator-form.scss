@@ -2,12 +2,74 @@
 @import '../config/variables';
 
 .flexulator__form {
+  display: flex;
+  flex-direction: row;
   align-self: center;
-  padding: 1rem;
+  justify-content: center;
+  width: 100%;
+  // padding: 1rem;
+
+
+  &-wrapper {
+    display: grid;
+    grid-template-areas: "artwork" "form" "buttons";
+    width: 50%;
+
+    margin: 1rem 0;
+
+    @include viewport-min(2000px) {
+      // max-width: 25%;
+    }
+  }
+
+  &-artwork {
+    grid-area: artwork;
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    max-width: 100%;
+    width: 100%;
+    height: 0;
+    padding-top: 0;
+    position: relative;
+    justify-self: center;
+
+    @include viewport-min(1200px) {
+      max-width: 63%;
+    }
+
+    @include viewport-min(1500px) {
+      max-width: 60%;
+    }
+
+    @include viewport-min(2000px) {
+      max-width: 55%;
+    }
+  }
+
 
   &-container {
-    display: flex;
-    flex-direction: column;
+    grid-area: form;
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    z-index: 10;
+    width: 65%;
+    justify-self: center;
+    padding: 8% 0;
+
+    @include viewport-min(1000px) {
+      padding: 8% 0;
+      width: 40%;
+    }
+
+    @include viewport-min(1500px) {
+      padding: 8% 0;
+      width: 35%;
+    }
+
+    @include viewport-min(2000px) {
+      padding: 8% 0;
+      width: 30%;
+    }
   }
 
   &-label {
@@ -15,9 +77,6 @@
     flex-flow: row nowrap;
     align-items: center;
     color: $blue-4;
-    background-color: $white;
-    border: 1px solid $purple-3;
-    padding: .5rem 2rem;
 
     &:nth-of-type(2),
     &:nth-of-type(3) {
@@ -25,7 +84,7 @@
     }
 
     &:nth-of-type(3) input {
-      width: 8rem;
+      width: 6rem;
     }
 
     &:last-of-type {
@@ -37,20 +96,20 @@
   &-header {
     flex: 1 0 auto;
     font-weight: 700;
-    font-size: calc(22px + (46 - 22) * ((100vw - 300px) / (1600 - 300)));
+    font-size: calc(22px + (34 - 22) * ((100vw - 300px) / (1600 - 300)));
     text-transform: lowercase;
     font-weight: 400;
   }
 
   &-input {
-    padding: .5rem;
+    padding: .1rem;
     margin: 0 1rem;
-    width: 8rem;
+    width: 6rem;
     background-color: transparent;
     border-bottom: 2px dashed transparent;
     outline: 0;
     color: $pink-3;
-    font-size: 2.5rem;
+    font-size: calc(22px + (34 - 22) * ((100vw - 300px) / (1600 - 300)));
     text-align: center;
     transition: border-bottom .1s ease-in, background-color .15s ease-in;
 
@@ -78,7 +137,7 @@
   }
 
   &-label-button {
-    padding: 1.5rem 2rem;
+    padding: .5rem 0rem;
     width: 100%;
     height: 100%;
     color: $black-5;
@@ -86,15 +145,59 @@
     text-transform: lowercase;
     transition: background-color .15s ease-in, border .15s ease-in, color .15s ease-in;
 
-    &:focus,
-    &:hover {
-      background-color: $blue-1;
-      color: $gray-5;
+    border-radius: .67rem;
+    background-color: $gray-3;
+    border: 2px solid $gray-7;
+
+    color: $black-6;
+    text-transform: lowercase;
+
+    transition: background-color .25s ease;
+
+    &:hover,
+    &:focus {
+      background-color: $gray-8;
     }
   }
 
   &-label-button-text {
     font-weight: 400;
     font-size: calc(22px + (32 - 22) * ((100vw - 300px) / (1600 - 300)));
+  }
+}
+
+
+.flexulator__items-container-buttons {
+  grid-area: buttons;
+  justify-self: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  padding: 2% 0;
+
+  width: 60%;
+
+  z-index: 10;
+}
+
+.flexulator__items-container-grow-button,
+.flexulator__items-container-shrink-button {
+  padding: 0 4%;
+  margin: 0 4%;
+
+
+  border-radius: .67rem;
+  background-color: $gray-3;
+  border: 2px solid $gray-7;
+
+  color: $black-6;
+  text-transform: lowercase;
+
+  transition: background-color .25s ease;
+
+  &:hover,
+  &:focus {
+    background-color: $gray-8;
   }
 }

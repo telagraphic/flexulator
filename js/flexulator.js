@@ -33,6 +33,8 @@ const flexulator = {
     flexulator.setupFlexItemAddButton();
     flexulator.setupFlexButtons();
     flexulator.updateFlexFormButtons();
+    flexulator.updateShrinkExample();
+    flexulator.updateGrowExample();
   },
   updateWidth: function () {
     flexulator.flexValues.width = flexulator.elements.container.clientWidth;
@@ -286,87 +288,99 @@ const flexulator = {
         </section>
       </section>
 
-      <section class="flex-item__flexulations-grow-container">
-        <h5 class="flex-item__flexulations-grow-header">GROW</h5>
-        <section class="flex-item__flexulations-grow-formula">
-          <section class="flex-item__flexulations-section">
-            <h5 class="flex-item__flexuations-section-header">
-              remaining space
-            </h5>
-            <span class="flex-item__flexulations-container-width"></span>
-            <span class="flex-item__flexulations_operator">-</span>
-            <span class="flex-item__flexulations-total-flex-basis"></span>
-            <span class="flex-item__flexulations_operator">=</span>
-            <span class="flex-item__flexulations-remaining-space flex-item__flexulations-container-width"></span>
-          </section>
+      <section class="flex-item__flexulations-container">
+        <section class="flex-item__flexulations-grow-container">
+          <h5 class="flex-item__flexulations-grow-header">GROW</h5>
+          <section class="flex-item__flexulations-grow-formula">
+            <section class="flex-item__flexulations-section">
+              <h5 class="flex-item__flexuations-section-header">
+                remaining space
+              </h5>
+              <span class="flex-item__flexulations-container-width"></span>
+              <span class="flex-item__flexulations_operator">-</span>
+              <span class="flex-item__flexulations-total-flex-basis"></span>
+              <span class="flex-item__flexulations_operator">=</span>
+              <span class="flex-item__flexulations-remaining-space flex-item__flexulations-container-width"></span>
+            </section>
 
-          <section class="flex-item__flexulations-section">
-            <h5 class="flex-item__flexuations-section-header">
-              allocated space
-            </h5>
-            <span class="flex-item__flexulations-grow-value"></span>
-            <span class="flex-item__flexulations_operator">/</span>
-            <span class="flex-item__flexulations-grow-total"></span>
-            <span class="flex-item__flexulations_operator">*</span>
-            <span class="flex-item__flexulations-grow-space flex-item__flexulations-space"></span>
-            <span class="flex-item__flexulations-remaining-space flex-item__flexulations-container-width"></span>
-            <span class="flex-item__flexulations_operator">=</span>
-            <span class="flex-item__flexulations-grow-width"></span>
-          </section>
+            <section class="flex-item__flexulations-section">
+              <h5 class="flex-item__flexuations-section-header">
+                allocated space
+              </h5>
+              <span class="flex-item__flexulations-grow-value"></span>
+              <span class="flex-item__flexulations_operator">/</span>
+              <span class="flex-item__flexulations-grow-total"></span>
+              <span class="flex-item__flexulations_operator">*</span>
+              <span class="flex-item__flexulations-grow-space flex-item__flexulations-space"></span>
+              <span class="flex-item__flexulations-remaining-space flex-item__flexulations-container-width"></span>
+              <span class="flex-item__flexulations_operator">=</span>
+              <span class="flex-item__flexulations-grow-width"></span>
+            </section>
 
-          <section class="flex-item__flexulations-section">
-            <h5 class="flex-item__flexuations-section-header">
-              final width
-            </h5>
-            <span class="flex-item__flexulations-grow-width"></span>
-            <span class="flex-item__flexulations_operator">+</span>
-            <span class="flex-item__flexulations-grow-item-basis"></span>
-            <span class="flex-item__flexulations_operator">=</span>
-            <span class="flex-item__flexulations-grow-item-computed-width"></span>
+            <section class="flex-item__flexulations-section">
+              <h5 class="flex-item__flexuations-section-header">
+                final width
+              </h5>
+              <span class="flex-item__flexulations-grow-width"></span>
+              <span class="flex-item__flexulations_operator">+</span>
+              <span class="flex-item__flexulations-grow-item-basis"></span>
+              <span class="flex-item__flexulations_operator">=</span>
+              <span class="flex-item__flexulations-grow-item-computed-width"></span>
+            </section>
           </section>
         </section>
-      </section>
+        <section class="flex-item__flexulations-shrink-container">
+          <h5 class="flex-item__flexulations-shrink-header">SHRINK</h5>
+          <section class="flex-item__flexulations-shrink-formula">
 
-      <section class="flex-item__flexulations-shrink-container">
-        <h5 class="flex-item__flexulations-shrink-header">SHRINK</h5>
-        <section class="flex-item__flexulations-shrink-formula">
+            <section class="flex-item__flexulations-section">
+              <h5 class="flex-item__flexuations-section-header">
+                remaining space
+              </h5>
+              <span class="flex-item__flexulations-container-width"></span>
+              <span class="flex-item__flexulations_operator">-</span>
+              <span class="flex-item__flexulations-total-flex-basis"></span>
+              <span class="flex-item__flexulations_operator">=</span>
+              <span class="flex-item__flexulations-remaining-space flex-item__flexulations-container-width"></span>
+            </section>
 
-          <section class="flex-item__flexulations-section">
-            <h5 class="flex-item__flexuations-section-header">
-              remaining space
-            </h5>
-            <span class="flex-item__flexulations-container-width"></span>
-            <span class="flex-item__flexulations_operator">-</span>
-            <span class="flex-item__flexulations-total-flex-basis"></span>
-            <span class="flex-item__flexulations_operator">=</span>
-            <span class="flex-item__flexulations-remaining-space flex-item__flexulations-container-width"></span>
-          </section>
+            <section class="flex-item__flexulations-section">
+              <h5 class="flex-item__flexuations-section-header">
+                shrink factor
+              </h5>
+              <span class="flex-item__flexulations_operator">(</span>
+              <span class="flex-item__flexulations-shrink-value"></span>
+              <span class="flex-item__flexulations_operator"> * </span>
+              <span class="flex-item__flexulations-shrink-item-basis"></span>
+              <span class="flex-item__flexulations_operator">) </span>
+              <span class="flex-item__flexulations-shrink-value-basis-total"></span>
+              <span class="flex-item__flexulations_operator"> / </span>
+              <span class="flex-item__flexulations-shrink-total-basis flexulator__total-flex-basis"></span>
+              <span class="flex-item__flexulations_operator"> = </span>
+              <span class="flex-item__flexulations-shrink-quotient"></span>
+            </section>
 
-          <section class="flex-item__flexulations-section">
-            <h5 class="flex-item__flexuations-section-header">
-              shrink factor
-            </h5>
-            <span class="flex-item__flexulations_operator">(</span>
-            <span class="flex-item__flexulations-shrink-value"></span>
-            <span class="flex-item__flexulations_operator"> * </span>
-            <span class="flex-item__flexulations-shrink-item-basis"></span>
-            <span class="flex-item__flexulations_operator">) </span>
-            <span class="flex-item__flexulations-shrink-value-basis-total"></span>
-            <span class="flex-item__flexulations_operator"> / </span>
-            <span class="flex-item__flexulations-shrink-total-basis flexulator__total-flex-basis"></span>
-            <span class="flex-item__flexulations_operator"> = </span>
-            <span class="flex-item__flexulations-shrink-quotient"></span>
-          </section>
+            <section class="flex-item__flexulations-section">
+              <h5 class="flex-item__flexuations-section-header">
+                shrink amount
+              </h5>
+              <span class="flex-item__flexulations-shrink-quotient"></span>
+              <span class="flex-item__flexulations_operator"> * </span>
+              <span class="flex-item__flexulations-remaining-space"></span>
+              <span class="flex-item__flexulations_operator"> = </span>
+              <span class="flex-item__flexulations-shrink-width"></span>
+            </section>
 
-          <section class="flex-item__flexulations-section">
-            <h5 class="flex-item__flexuations-section-header">
-              final width
-            </h5>
-            <span class="flex-item__flexulations-shrink-quotient"></span>
-            <span class="flex-item__flexulations_operator"> * </span>
-            <span class="flex-item__flexulations-remaining-space"></span>
-            <span class="flex-item__flexulations_operator"> = </span>
-            <span class="flex-item__flexulations-shrink-width"></span>
+            <section class="flex-item__flexulations-section">
+              <h5 class="flex-item__flexuations-section-header">
+                final width
+              </h5>
+              <span class="flex-item__flexulations-shrink-value-basis-total"></span>
+              <span class="flex-item__flexulations_operator"> - </span>
+              <span class="flex-item__flexulations-shrink-width-postive"></span>
+              <span class="flex-item__flexulations_operator"> = </span>
+              <span class="flex-item__flexulations-shrink-final-width"></span>
+            </section>
           </section>
         </section>
       </section>
@@ -428,6 +442,44 @@ const flexulator = {
         }, 500);
       }
     }
+  },
+  updateShrinkExample: function(item) {
+    let shrinkButton = select('.flexulator__items-container-shrink-button');
+    shrinkButton.addEventListener('click', function(event) {
+      event.preventDefault();
+      let containerRemainder = ((flexulator.flexValues.width / flexulator.flexItems.length) + 100).toFixed(0);
+      flexulator.flexItems.forEach(item => {
+        console.log(item);
+        item.elements.form.flexBasis.value = containerRemainder;
+        item.updateForm("basis");
+        item.updateItemShrinkBasis();
+        item.writeItemFlexulations();
+      });
+
+      flexulator.updateFlexTotalBasis();
+      flexulator.updateRemainingSpace();
+      flexulator.updateFlexGrowTotal();
+      flexulator.updateShrinkBasisTotal();
+      flexulator.updateFlexItemsContainerValues();
+    });
+  },
+  updateGrowExample: function() {
+    let growButton = select('.flexulator__items-container-grow-button');
+    growButton.addEventListener('click', function(event) {
+      event.preventDefault();
+      flexulator.flexItems.forEach(item => {
+        item.elements.form.flexBasis.value = 100;
+        item.updateForm("basis");
+        item.updateItemShrinkBasis();
+        item.writeItemFlexulations();
+      });
+
+      flexulator.updateFlexTotalBasis();
+      flexulator.updateRemainingSpace();
+      flexulator.updateFlexGrowTotal();
+      flexulator.updateShrinkBasisTotal();
+      flexulator.updateFlexItemsContainerValues();
+    });
   },
   updateResize: function() {
     window.addEventListener('resize', function(event) {
