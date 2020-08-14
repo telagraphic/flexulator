@@ -8,7 +8,6 @@
 @import 'components/header';
 @import 'components/flexulator';
 @import 'components/flexulator-form';
-@import 'components/flexulator-dashboard';
 @import 'components/flexulator-item';
 @import 'components/flexulator-formula';
 @import 'components/flexulator-links';
@@ -16,6 +15,6 @@
 @import 'components/footer';
 
 @import 'globals/global';
-// @import 'pages/page';
+@import 'pages/page';
 @import 'objects/object';
 @import 'utilities/utility';

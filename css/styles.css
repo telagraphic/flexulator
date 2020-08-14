@@ -648,36 +648,6 @@ button {
   .flexulator__items-container-shrink-button:focus {
     background-color: #dfdfe8; }
 
-.flexulator__dashboard {
-  align-self: center;
-  padding: 1rem 0 1rem 0;
-  font-weight: 700;
-  width: 100vw; }
-
-.dashboard {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center; }
-  .dashboard__operand, .dashboard__operator {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    padding: 0 1rem;
-    background-color: #ffffff;
-    border: 1px solid #a300ff;
-    color: #1b1b1d;
-    font-weight: 500; }
-  .dashboard__operand-value {
-    flex: 1 1 auto;
-    font-size: calc(22px + (55 - 22) * ((100vw - 300px) / (1600 - 300))); }
-  .dashboard__operand-title {
-    font-weight: 200;
-    font-size: calc(12px + (32 - 22) * ((100vw - 300px) / (1600 - 300)));
-    text-align: center; }
-  .dashboard__operator-symbol {
-    flex: 1 1 auto;
-    font-size: calc(22px + (55 - 22) * ((100vw - 300px) / (1600 - 300))); }
-
 .flexulator__items-container {
   display: none; }
   @media (min-width: 62.5rem) {
@@ -1126,3 +1096,7 @@ button {
   border-style: solid;
   border-width: 12.5px 0 12.5px 10px;
   border-color: transparent transparent transparent #e0e0e2; }
+
+.page__main {
+  display: flex;
+  flex-direction: column; }
