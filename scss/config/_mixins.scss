@@ -9,7 +9,7 @@
 
 @mixin flex-item-input() {
   width: 5rem;
-  
+
   border-bottom: 2px dashed transparent;
   background-color: transparent;
   outline: 0;
@@ -17,6 +17,7 @@
   color: $pink-3;
   text-align: center;
   font-size: 2.5rem;
+  font-size: calc(12px + (34 - 12) * ((100vw - 300px) / (1600 - 300)));
   font-weight: 400;
 
 }

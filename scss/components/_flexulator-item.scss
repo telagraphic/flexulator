@@ -2,14 +2,14 @@
 @import '../config/variables';
 
 .flexulator__items-container {
-  display: flex;
-  flex-flow: column nowrap;
-  height: 100%;
-  animation: fadeItems .3s ease-in;
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFUlEQVQImWNgQAKLGf6nkcphYGAAABQDCCEc2tDBAAAAAElFTkSuQmCC) repeat;
+  display: none;
 
-  @include viewport-min(37.5rem) {
+  @include viewport-min(62.5rem) {
+    display: flex;
     flex-flow: row nowrap;
+    height: 100%;
+    animation: fadeItems .3s ease-in;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFUlEQVQImWNgQAKLGf6nkcphYGAAABQDCCEc2tDBAAAAAElFTkSuQmCC) repeat;
   }
 }
 

@@ -503,11 +503,14 @@ button {
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat; }
 
 .flexulator__form {
-  display: flex;
-  flex-direction: row;
-  align-self: center;
-  justify-content: center;
-  width: 100%; }
+  display: none; }
+  @media (min-width: 1000px) {
+    .flexulator__form {
+      display: flex;
+      flex-direction: row;
+      align-self: center;
+      justify-content: center;
+      width: 100%; } }
   .flexulator__form-wrapper {
     display: grid;
     grid-template-areas: "artwork" "form" "buttons";
@@ -517,7 +520,7 @@ button {
     grid-area: artwork;
     grid-row: 1 / 2;
     grid-column: 1 / 2;
-    max-width: 100%;
+    max-width: 65%;
     width: 100%;
     height: 0;
     padding-top: 0;
@@ -567,18 +570,18 @@ button {
   .flexulator__form-header {
     flex: 1 0 auto;
     font-weight: 700;
-    font-size: calc(22px + (34 - 22) * ((100vw - 300px) / (1600 - 300)));
+    font-size: calc(12px + (34 - 12) * ((100vw - 300px) / (1600 - 300)));
     text-transform: lowercase;
     font-weight: 400; }
   .flexulator__form-input {
     padding: .1rem;
     margin: 0 1rem;
-    width: 6rem;
+    width: 4.5rem;
     background-color: transparent;
     border-bottom: 2px dashed transparent;
     outline: 0;
     color: #dd00a9;
-    font-size: calc(22px + (34 - 22) * ((100vw - 300px) / (1600 - 300)));
+    font-size: calc(12px + (34 - 12) * ((100vw - 300px) / (1600 - 300)));
     text-align: center;
     transition: border-bottom .1s ease-in, background-color .15s ease-in; }
     .flexulator__form-input::selection, .flexulator__form-input::-moz-selection {
@@ -587,14 +590,18 @@ button {
       border-bottom: 1px solid #444444;
       background-color: #cbe8ff;
       border-bottom: 2px dashed #0c74dd; }
+    @media (min-width: 1200px) {
+      .flexulator__form-input {
+        width: 6rem; } }
   .flexulator__form-input[type="number"] {
     -moz-appearance: textfield; }
     .flexulator__form-input[type="number"]::-webkit-outer-spin-button, .flexulator__form-input[type="number"]::-webkit-inner-spin-button {
       -webkit-appearance: none;
       margin: 0; }
   .flexulator__form-label-button {
-    padding: .5rem 0rem;
-    width: 100%;
+    padding: .15rem 0rem;
+    width: 89%;
+    margin: 0 auto;
     height: 100%;
     color: #1b1b1d;
     text-transform: uppercase;
@@ -608,9 +615,13 @@ button {
     transition: background-color .25s ease; }
     .flexulator__form-label-button:hover, .flexulator__form-label-button:focus {
       background-color: #dfdfe8; }
+    @media (min-width: 1300px) {
+      .flexulator__form-label-button {
+        width: 100%;
+        padding: .5rem 0rem; } }
   .flexulator__form-label-button-text {
     font-weight: 400;
-    font-size: calc(22px + (32 - 22) * ((100vw - 300px) / (1600 - 300))); }
+    font-size: calc(18px + (32 - 18) * ((100vw - 300px) / (1600 - 300))); }
 
 .flexulator__items-container-buttons {
   grid-area: buttons;
@@ -668,14 +679,14 @@ button {
     font-size: calc(22px + (55 - 22) * ((100vw - 300px) / (1600 - 300))); }
 
 .flexulator__items-container {
-  display: flex;
-  flex-flow: column nowrap;
-  height: 100%;
-  animation: fadeItems .3s ease-in;
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFUlEQVQImWNgQAKLGf6nkcphYGAAABQDCCEc2tDBAAAAAElFTkSuQmCC) repeat; }
-  @media (min-width: 37.5rem) {
+  display: none; }
+  @media (min-width: 62.5rem) {
     .flexulator__items-container {
-      flex-flow: row nowrap; } }
+      display: flex;
+      flex-flow: row nowrap;
+      height: 100%;
+      animation: fadeItems .3s ease-in;
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFUlEQVQImWNgQAKLGf6nkcphYGAAABQDCCEc2tDBAAAAAElFTkSuQmCC) repeat; } }
 
 @keyframes fadeItems {
   0% {
@@ -774,6 +785,7 @@ button {
   color: #dd00a9;
   text-align: center;
   font-size: 2.5rem;
+  font-size: calc(12px + (34 - 12) * ((100vw - 300px) / (1600 - 300)));
   font-weight: 400;
   -moz-appearance: textfield; }
   .flex-item__grow-value::-webkit-outer-spin-button, .flex-item__grow-value::-webkit-inner-spin-button {
@@ -810,6 +822,7 @@ button {
   color: #dd00a9;
   text-align: center;
   font-size: 2.5rem;
+  font-size: calc(12px + (34 - 12) * ((100vw - 300px) / (1600 - 300)));
   font-weight: 400;
   -moz-appearance: textfield; }
   .flex-item__shrink-value::-webkit-outer-spin-button, .flex-item__shrink-value::-webkit-inner-spin-button {
@@ -846,6 +859,7 @@ button {
   color: #dd00a9;
   text-align: center;
   font-size: 2.5rem;
+  font-size: calc(12px + (34 - 12) * ((100vw - 300px) / (1600 - 300)));
   font-weight: 400;
   -moz-appearance: textfield;
   width: 7rem; }
@@ -967,7 +981,9 @@ button {
   width: 100%; }
 
 .formula__tabs-button-link-text {
-  font-size: 5rem; }
+  font-size: 5rem;
+  font-family: 'Roboto';
+  font-weight: 100; }
 
 .formula__tabs-content-container {
   min-height: 100vh;

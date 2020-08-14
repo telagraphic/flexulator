@@ -2,13 +2,16 @@
 @import '../config/variables';
 
 .flexulator__form {
-  display: flex;
-  flex-direction: row;
-  align-self: center;
-  justify-content: center;
-  width: 100%;
-  // padding: 1rem;
+  display: none;
 
+
+  @include viewport-min(1000px) {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    justify-content: center;
+    width: 100%;
+  }
 
   &-wrapper {
     display: grid;
@@ -18,7 +21,7 @@
     margin: 1rem 0;
 
     @include viewport-min(2000px) {
-      // max-width: 25%;
+
     }
   }
 
@@ -26,7 +29,7 @@
     grid-area: artwork;
     grid-row: 1 / 2;
     grid-column: 1 / 2;
-    max-width: 100%;
+    max-width: 65%;
     width: 100%;
     height: 0;
     padding-top: 0;
@@ -96,7 +99,7 @@
   &-header {
     flex: 1 0 auto;
     font-weight: 700;
-    font-size: calc(22px + (34 - 22) * ((100vw - 300px) / (1600 - 300)));
+    font-size: calc(12px + (34 - 12) * ((100vw - 300px) / (1600 - 300)));
     text-transform: lowercase;
     font-weight: 400;
   }
@@ -104,12 +107,12 @@
   &-input {
     padding: .1rem;
     margin: 0 1rem;
-    width: 6rem;
+    width: 4.5rem;
     background-color: transparent;
     border-bottom: 2px dashed transparent;
     outline: 0;
     color: $pink-3;
-    font-size: calc(22px + (34 - 22) * ((100vw - 300px) / (1600 - 300)));
+    font-size: calc(12px + (34 - 12) * ((100vw - 300px) / (1600 - 300)));
     text-align: center;
     transition: border-bottom .1s ease-in, background-color .15s ease-in;
 
@@ -125,6 +128,10 @@
       border-bottom: 2px dashed $blue-3;
     }
 
+    @include viewport-min(1200px) {
+      width: 6rem;
+    }
+
   }
 
   &-input[type="number"] {
@@ -137,8 +144,9 @@
   }
 
   &-label-button {
-    padding: .5rem 0rem;
-    width: 100%;
+    padding: .15rem 0rem;
+    width: 89%;
+    margin: 0 auto;
     height: 100%;
     color: $black-5;
     text-transform: uppercase;
@@ -158,11 +166,16 @@
     &:focus {
       background-color: $gray-8;
     }
+
+    @include viewport-min(1300px) {
+      width: 100%;
+      padding: .5rem 0rem;
+    }
   }
 
   &-label-button-text {
     font-weight: 400;
-    font-size: calc(22px + (32 - 22) * ((100vw - 300px) / (1600 - 300)));
+    font-size: calc(18px + (32 - 18) * ((100vw - 300px) / (1600 - 300)));
   }
 }
 
@@ -175,7 +188,6 @@
   justify-content: center;
 
   padding: 2% 0;
-
   width: 60%;
 
   z-index: 10;
