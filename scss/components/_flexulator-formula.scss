@@ -69,8 +69,6 @@
     min-height: 100vh;
     padding: 5.5rem 0;
 
-    background-color: $black-6;
-
     @include viewport-min($desktop) {
 
     }
@@ -97,101 +95,45 @@
 
   }
 
-  &__formula-section-grow-header {
-    padding: 1.5rem 0;
-    width: 50%;
-    align-self: center;
-    font-size: 2.5rem;
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: .15rem;
 
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat;
-    border: 1px solid $purple-3;
-
-    color: $blue-5;
+  &__grow-container {
 
   }
+}
 
-  &__formula-section-grow {
+.grow-formula {
+
+  &__section {
+
+  }
+  &__section-header {
+    color: $pink-3;
+  }
+  &__section-formula-statement {
+    display: flex;
+    align-content: center;
+  }
+  &__section-formula-operand {
     display: flex;
     flex-direction: column;
+    flex: 1;
 
-    padding: 3rem 0;
-
-    text-align: center;
-    color: $blue-5;
-
-    p {
-      padding: 1.5rem 0;
-      border: 1px solid $purple-3
-    }
-
-    p + p {
-      border-top: none;
-    }
-  }
-
-  &__formula-section-grow-text {
-    padding: 1.5rem 0;
-
-    h4 {
-      padding: 2rem 0 1.25rem 0;
-    }
-
-    p {
-      padding: 1.5rem 0;
-      border: 1px solid $purple-3
-    }
-  }
-
-
-
-  &__formula-section-shrink-header {
-    padding: 1.5rem 0;
-    width: 50%;
-    align-self: center;
-    font-size: 2.5rem;
+    font-weight: 800;
     text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: .15rem;
+    font-size: calc(16px + (28 - 16) * ((100vw - 300px) / (1600 - 300)));
+  }
+  &__section-formula-operator {
+    flex: .125 0 auto;
 
-    color: $pink-2;
-
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAKxx35uZsAGqChBOwAAnx8LPVdV3HMAAAAASUVORK5CYII=) repeat;
-    border: 1px solid $blue-5;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: calc(26px + (48 - 26) * ((100vw - 300px) / (1600 - 300)));
+  }
+  &__section-formula-property {
 
   }
+  &__section-formula-value {
 
-  &__formula-section-shrink {
-    display: flex;
-    flex-direction: column;
-
-    padding: 3rem 0;
-
-    text-align: center;
-    color: $pink-2;
-
-    p {
-      padding: 1.5rem 0;
-      border: 1px solid $blue-5;
-    }
-
-    p + p {
-      border-top: none;
-    }
-  }
-
-  &__formula-section-shrink-text {
-    padding: 1.5rem 0;
-
-    h4 {
-      padding: 2rem 0 1.25rem 0;
-    }
-
-    p {
-      padding: 1.5rem 0;
-      border: 1px solid $purple-3
-    }
+    font-weight: 400;
   }
 }
