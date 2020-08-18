@@ -106,28 +106,44 @@
   &__section {
 
   }
-  &__section-header {
-    color: $pink-3;
+
+  &__description-container {
+    width: 69%;
+    margin: 0 auto;
   }
+  &__description {
+    font-family: 'Consolas';
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  &__section-header {
+
+    display: flex;
+    justify-content: flex-start;
+    color: $pink-3;
+
+
+  }
+
   &__section-formula-statement {
     display: flex;
+    justify-content: flex-start;
+
     align-content: center;
   }
   &__section-formula-operand {
     display: flex;
     flex-direction: column;
-    flex: 1;
 
-    font-weight: 800;
+    // font-weight: 800;
     text-transform: uppercase;
-    font-size: calc(16px + (28 - 16) * ((100vw - 300px) / (1600 - 300)));
+    font-size: calc(16px + (22 - 16) * ((100vw - 300px) / (1600 - 300)));
   }
   &__section-formula-operator {
-    flex: .125 0 auto;
-
-    font-weight: 800;
+    padding: 0 3%;
     text-transform: uppercase;
-    font-size: calc(26px + (48 - 26) * ((100vw - 300px) / (1600 - 300)));
+    font-size: calc(26px + (38 - 26) * ((100vw - 300px) / (1600 - 300)));
   }
   &__section-formula-property {
 
@@ -135,5 +151,54 @@
   &__section-formula-value {
 
     font-weight: 400;
+  }
+}
+
+
+.grow-animation {
+
+  width: 69%;
+  margin: 0 auto;
+
+  &__container {
+    display: flex;
+
+    background-color: $pink-1;
+    border: 2px solid black;
+
+    z-index: 1000;
+
+  }
+  &__item {
+    position: relative;
+
+    height: 5rem;
+    width: 8%;
+
+    background-color: $blue-1;
+    border: 5px dotted $blue-2;
+
+
+    z-index: 100;
+
+    &-border {
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      height: 5rem;
+      width: 100%;
+      border: 5px solid rgba(255, 255, 255, 0.95);
+      z-index: 1;
+    }
+
+    &:before {
+      content: " ";
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      z-index: 10;
+    }
   }
 }

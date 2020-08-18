@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="css/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
   <link rel="preload" href="fonts/web/Consolas.woff2" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="fonts/web/Consolas-Italic.woff2" as="font" type="font/woff" crossorigin>
   <link rel="preload" href="fonts/web/Consolas-Bold.woff2" as="font" type="font/woff" crossorigin>
   <link rel="preload" href="fonts/web/Roboto-Thin.woff2" as="font" type="font/woff" crossorigin>
 
@@ -22,6 +23,14 @@
       font-family: "Consolas";
       src: url('fonts/web/Consolas.woff') format('woff'), url('fonts/web/Consolas.woff2') format('woff2');
       font-display: swap;
+      font-weight: 400;
+    }
+
+    @font-face {
+      font-family: "Consolas";
+      src: url('fonts/web/Consolas-Italic.woff') format('woff'), url('fonts/web/Consolas-Italic.woff2') format('woff2');
+      font-display: swap;
+      font-style: italic;
       font-weight: 400;
     }
 
@@ -532,6 +541,26 @@
         <section class="formula__formula-section formula__tab-content is-active" id="grow">
           <section class="formula__grow-container grow-formula">
             <section>
+
+              <section class="grow-formula__animation grow-animation">
+                <section class="grow-animation__container">
+                  <section class="grow-animation__item">
+                    <section class="grow-animation__item-border">
+
+                    </section>
+                  </section>
+                  <section class="grow-animation__item"></section>
+                  <section class="grow-animation__item"></section>
+                </section>
+              </section>
+
+              <section class="grow-formula__description-container">
+                <p class="grow-formula__description">
+                  When the combined size of all the flex items is less than their container, the remaining space is distributed amongst all the items.
+                  The flex-grow attribute is used to determine how the remaining space should be allocated.
+                </p>
+              </section>
+
               <section class="grow-formula__section">
                 <header class="grow-formula__section-header">
                   <b>1.</b> Flex Container Remaining Space</header>
@@ -563,7 +592,7 @@
                       Remaining Space
                     </span>
                     <span class="grow-formula__section-formula-value">
-                      800
+                      600
                     </span>
                   </section>
                 </section>
@@ -588,7 +617,7 @@
                       Remaining Space
                     </span>
                     <span class="grow-formula__section-formula-value">
-                      800
+                      600
                     </span>
                   </section>
                   <section class="grow-formula__section-formula-operator">
