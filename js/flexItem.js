@@ -226,6 +226,7 @@ export default function newFlexItemObject() {
     },
     updateClientWidth: function() {
       this.elements.self.clientWidth;
+      this.flexulations.grow.computedWidth = this.elements.self.clientWidth;
     },
     updateForm: function(property) {
       if (property === "grow") {

@@ -12,7 +12,6 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
 
   <link rel="stylesheet" href="css/styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
   <link rel="preload" href="fonts/web/Consolas.woff2" as="font" type="font/woff" crossorigin>
   <link rel="preload" href="fonts/web/Consolas-Italic.woff2" as="font" type="font/woff" crossorigin>
   <link rel="preload" href="fonts/web/Consolas-Bold.woff2" as="font" type="font/woff" crossorigin>
@@ -46,6 +45,13 @@
       src: url('fonts/web/Roboto-Thin.woff') format('woff'), url('fonts/web/Roboto-Thin.woff2') format('woff2');
       font-display: swap;
       font-weight: 100;
+    }
+
+    @font-face {
+      font-family: "Roboto";
+      src: url('fonts/web/Roboto-Regular.woff') format('woff'), url('fonts/web/Roboto-Regular.woff2') format('woff2');
+      font-display: swap;
+      font-weight: 400;
     }
 
   </style>
@@ -545,12 +551,14 @@
               <section class="grow-formula__animation grow-animation">
                 <section class="grow-animation__container">
                   <section class="grow-animation__item">
-                    <section class="grow-animation__item-border">
-
-                    </section>
+                    <section class="grow-animation__item-box"></section>
                   </section>
-                  <section class="grow-animation__item"></section>
-                  <section class="grow-animation__item"></section>
+                  <section class="grow-animation__item">
+                    <section class="grow-animation__item-box"></section>
+                  </section>
+                  <section class="grow-animation__item">
+                    <section class="grow-animation__item-box"></section>
+                  </section>
                 </section>
               </section>
 
@@ -561,130 +569,133 @@
                 </p>
               </section>
 
-              <section class="grow-formula__section">
-                <header class="grow-formula__section-header">
-                  <b>1.</b> Flex Container Remaining Space</header>
-                <section class="grow-formula__section-formula-statement">
-                  <section class="grow-formula__section-formula-operand">
-                    <span class="grow-formula__section-formula-property">
-                      Container Width
-                    </span>
-                    <span class="grow-formula__section-formula-value">
-                      1200
-                    </span>
+              <section class="grow-formula__formula-container">
+                <section class="grow-formula__section">
+                  <p class="grow-formula__section-note">
+                    Pixel values reflect first flex item from above
+                  </p>
+                  <header class="grow-formula__section-header">
+                    <section class="grow-formula__section-header-container">
+                      <section class="grow-formula__section-header-ordinal">
+                        <header>
+                          <b>1.</b> Flex Container Remaining Space
+                        </header>
+                      </section>
+                    </section>
+                  </header>
+                  <section class="grow-formula__section-formula-statement">
+                    <section class="grow-formula__section-formula-operand">
+                      <span class="grow-formula__section-formula-property">
+                        Container Width
+                      </span>
+                      <span class="grow-formula__section-formula-value grow-example__container">
+                      </span>
+                    </section>
+                    <section class="grow-formula__section-formula-operator">
+                      -
+                    </section>
+                    <section class="grow-formula__section-formula-operand">
+                      <span class="grow-formula__section-formula-property">
+                        Total Flex Basis
+                      </span>
+                      <span class="grow-formula__section-formula-value grow-example__total-flex-basis">
+                      </span>
+                    </section>
+                    <section class="grow-formula__section-formula-operator">
+                      =
+                    </section>
+                    <section class="grow-formula__section-formula-operand">
+                      <span class="grow-formula__section-formula-property">
+                        Remaining Space
+                      </span>
+                      <span class="grow-formula__section-formula-value grow-example__remaining-space">
+                      </span>
+                    </section>
                   </section>
-                  <section class="grow-formula__section-formula-operator">
-                    -
+                </section>
+                <section class="grow-formula__section">
+                  <header class="grow-formula__section-header">
+                    <section class="grow-formula__section-header-container">
+                      <section class="grow-formula__section-header-ordinal">
+                        <header>
+                          <b>2.</b> Calculate Flex Grow Space
+                        </header>
+                      </section>
+                    </section>
+                  </header>
+                  <section class="grow-formula__section-formula-statement">
+                    <section class="grow-formula__section-formula-operand">
+                      <span class="grow-formula__section-formula-property">
+                        (Item Grow / Total Grow)
+                      </span>
+                      <span class="grow-formula__section-formula-value">
+                        (<span class="grow-example__item-grow"></span>/<span class="grow-example__total-grow"></span> = <span class="grow-example__total-grow-quotient"></span>)
+                      </span>
+                    </section>
+                    <section class="grow-formula__section-formula-operator">
+                      *
+                    </section>
+                    <section class="grow-formula__section-formula-operand">
+                      <span class="grow-formula__section-formula-property">
+                        Remaining Space
+                      </span>
+                      <span class="grow-formula__section-formula-value grow-example__remaining-space">
+                      </span>
+                    </section>
+                    <section class="grow-formula__section-formula-operator">
+                      =
+                    </section>
+                    <section class="grow-formula__section-formula-operand">
+                      <span class="grow-formula__section-formula-property">
+                        Allocated Space
+                      </span>
+                      <span class="grow-formula__section-formula-value grow-example__allocated-space">
+                      </span>
+                    </section>
                   </section>
-                  <section class="grow-formula__section-formula-operand">
-                    <span class="grow-formula__section-formula-property">
-                      Total Flex Basis
-                    </span>
-                    <span class="grow-formula__section-formula-value">
-                      800
-                    </span>
-                  </section>
-                  <section class="grow-formula__section-formula-operator">
-                    =
-                  </section>
-                  <section class="grow-formula__section-formula-operand">
-                    <span class="grow-formula__section-formula-property">
-                      Remaining Space
-                    </span>
-                    <span class="grow-formula__section-formula-value">
-                      600
-                    </span>
+                </section>
+                <section class="grow-formula__section">
+                  <header class="grow-formula__section-header">
+                    <section class="grow-formula__section-header-container">
+                      <section class="grow-formula__section-header-ordinal">
+                        <header>
+                          <b>3.</b> Compute Final Width
+                        </header>
+                      </section>
+                    </section>
+                  </header>
+                  <section class="grow-formula__section-formula-statement">
+                    <section class="grow-formula__section-formula-operand">
+                      <span class="grow-formula__section-formula-property">
+                        Allocated Space
+                      </span>
+                      <span class="grow-formula__section-formula-value grow-example__allocated-space">
+                      </span>
+                    </section>
+                    <section class="grow-formula__section-formula-operator">
+                      +
+                    </section>
+                    <section class="grow-formula__section-formula-operand">
+                      <span class="grow-formula__section-formula-property">
+                        Item Flex Basis
+                      </span>
+                      <span class="grow-formula__section-formula-value grow-example__item-flex-basis">
+                      </span>
+                    </section>
+                    <section class="grow-formula__section-formula-operator">
+                      =
+                    </section>
+                    <section class="grow-formula__section-formula-operand">
+                      <span class="grow-formula__section-formula-property">
+                        Final Width
+                      </span>
+                      <span class="grow-formula__section-formula-value grow-example__final-width">
+                      </span>
+                    </section>
                   </section>
                 </section>
               </section>
-
-              <section class="grow-formula__section">
-                <header class="grow-formula__section-header"> <b>2.</b> Calculate Flex Grow Space</header>
-                <section class="grow-formula__section-formula-statement">
-                  <section class="grow-formula__section-formula-operand">
-                    <span class="grow-formula__section-formula-property">
-                      (Item Grow Value / Total Grow Value)
-                    </span>
-                    <span class="grow-formula__section-formula-value">
-                      1 / 3
-                    </span>
-                  </section>
-                  <section class="grow-formula__section-formula-operator">
-                    *
-                  </section>
-                  <section class="grow-formula__section-formula-operand">
-                    <span class="grow-formula__section-formula-property">
-                      Remaining Space
-                    </span>
-                    <span class="grow-formula__section-formula-value">
-                      600
-                    </span>
-                  </section>
-                  <section class="grow-formula__section-formula-operator">
-                    =
-                  </section>
-                  <section class="grow-formula__section-formula-operand">
-                    <span class="grow-formula__section-formula-property">
-                      Allocated Flex Space
-                    </span>
-                    <span class="grow-formula__section-formula-value">
-                      456
-                    </span>
-                  </section>
-                </section>
-              </section>
-
-              <section class="grow-formula__section">
-                <header class="grow-formula__section-header"> <b>3.</b>Compute Final Width</header>
-                <section class="grow-formula__section-formula-statement">
-                  <section class="grow-formula__section-formula-operand">
-                    <span class="grow-formula__section-formula-property">
-                      Allocated Flex Space
-                    </span>
-                    <span class="grow-formula__section-formula-value">
-                      456
-                    </span>
-                  </section>
-                  <section class="grow-formula__section-formula-operator">
-                    +
-                  </section>
-                  <section class="grow-formula__section-formula-operand">
-                    <span class="grow-formula__section-formula-property">
-                      Flex Basis
-                    </span>
-                    <span class="grow-formula__section-formula-value">
-                      100
-                    </span>
-                  </section>
-                  <section class="grow-formula__section-formula-operator">
-                    =
-                  </section>
-                  <section class="grow-formula__section-formula-operand">
-                    <span class="grow-formula__section-formula-property">
-                      Final Width
-                    </span>
-                    <span class="grow-formula__section-formula-value">
-                      556
-                    </span>
-                  </section>
-                </section>
-              </section>
-<!--
-              <section>
-                <header>Calculate Flex Grow Space</header>
-                <section>
-                  (Item Grow Value / Total Grow Value) * Remaining Space = Allocated Flex Space
-                </section>
-              </section>
-
-              <section>
-                <header>Compute Final Width</header>
-                <section>
-                  Allocated Flex Space + Flex Basis = Computed Final Width
-                </section>
-              </section> -->
             </section>
-
           </section>
         </section>
         <section class="formula__formula-section formula__tab-content" id="shrink">

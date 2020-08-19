@@ -971,38 +971,71 @@ button {
     .formula__formula-section {
       padding: 0 4.5rem; } }
 
+.grow-formula__section {
+  font-family: 'Roboto';
+  font-weight: 400; }
+
+.grow-formula__section-note {
+  color: #38383d; }
+
 .grow-formula__description-container {
-  width: 69%;
-  margin: 0 auto; }
+  width: 49%;
+  margin: 5% auto; }
 
 .grow-formula__description {
-  font-family: 'Consolas';
-  font-weight: 400;
-  font-style: italic; }
+  font-family: 'Roboto';
+  font-weight: 400; }
+
+.grow-formula__formula-container {
+  width: 89%;
+  margin: 5% auto; }
 
 .grow-formula__section-header {
-  display: flex;
-  justify-content: flex-start;
-  color: #dd00a9; }
+  width: 64%;
+  padding: 1.5% 0;
+  margin: 0 auto; }
+
+.grow-formula__section-header-container {
+  color: #dd00a9;
+  background-color: #fbdef4;
+  border: 2px solid black;
+  padding: 1.5% 0%; }
+
+.grow-formula__section-header-ordinal {
+  text-align: left;
+  padding: 0 0 0 2%; }
 
 .grow-formula__section-formula-statement {
   display: flex;
-  justify-content: flex-start;
-  align-content: center; }
+  justify-content: center;
+  align-content: center;
+  width: 64%;
+  padding: 1.5% 0;
+  margin: 0 auto;
+  color: #38383d; }
 
 .grow-formula__section-formula-operand {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  padding: 1.5%;
+  border: 2px solid black;
+  background-color: #cbe8ff;
   text-transform: uppercase;
   font-size: calc(16px + (22 - 16) * ((100vw - 300px) / (1600 - 300))); }
 
 .grow-formula__section-formula-operator {
-  padding: 0 3%;
+  padding: 2.5% 3%;
   text-transform: uppercase;
   font-size: calc(26px + (38 - 26) * ((100vw - 300px) / (1600 - 300))); }
 
+.grow-formula__section-formula-property {
+  font-weight: 800; }
+
 .grow-formula__section-formula-value {
-  font-weight: 400; }
+  font-weight: 400;
+  padding: 1.75% 0; }
 
 .grow-animation {
   width: 69%;
@@ -1013,28 +1046,13 @@ button {
     border: 2px solid black;
     z-index: 1000; }
   .grow-animation__item {
-    position: relative;
-    height: 5rem;
-    width: 8%;
+    width: 7rem;
+    height: 7rem; }
+  .grow-animation__item-box {
+    height: 100%;
     background-color: #cbe8ff;
     border: 5px dotted #0ba2ff;
     z-index: 100; }
-    .grow-animation__item-border {
-      position: absolute;
-      top: -5px;
-      left: -5px;
-      height: 5rem;
-      width: 100%;
-      border: 5px solid rgba(255, 255, 255, 0.95);
-      z-index: 1; }
-    .grow-animation__item:before {
-      content: " ";
-      position: absolute;
-      top: -5px;
-      left: -5px;
-      right: -5px;
-      bottom: -5px;
-      z-index: 10; }
 
 .resources__container {
   display: flex;

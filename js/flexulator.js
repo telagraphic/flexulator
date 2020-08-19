@@ -35,6 +35,7 @@ const flexulator = {
     flexulator.updateFlexFormButtons();
     flexulator.updateShrinkExample();
     flexulator.updateGrowExample();
+    flexulator.updateFlexItemFormulaExample();
   },
   updateWidth: function () {
     flexulator.flexValues.width = flexulator.elements.container.clientWidth;
@@ -486,7 +487,37 @@ const flexulator = {
       flexulator.updateWidth();
       flexulator.updateRemainingSpace();
       flexulator.updateFlexItemsContainerValues();
+      flexulator.updateFlexItemFormulaExample();
     })
+  },
+  updateFlexItemFormulaExample: function() {
+    let flexItem = flexulator.flexItems[0];
+
+    let flexGrowExample = select('.grow-formula__formula-container');
+    let container = select('.grow-example__container');
+    let totalFlexBasis = select('.grow-example__total-flex-basis');
+    let remainingSpace = selectAll('.grow-example__remaining-space');
+    let itemGrow = select('.grow-example__item-grow');
+    let totalGrow = select('.grow-example__total-grow');
+    let growQoutient = select('.grow-example__total-grow-quotient');
+    let allocatedSpace = selectAll('.grow-example__allocated-space');
+    let itemFlexBasis = select('.grow-example__item-flex-basis');
+    let finalWidth = select('.grow-example__final-width');
+
+    container.textContent = flexItem.flexulations.container.width;
+    totalFlexBasis.textContent = flexItem.flexulations.container.flexBasisTotal;
+    remainingSpace.forEach(element => element.textContent = flexItem.flexulations.container.remainingSpace);
+    itemGrow.textContent = flexItem.flexulations.grow.value;
+    totalGrow.textContent = flexItem.flexulations.grow.total;
+    growQoutient.textContent = (flexItem.flexulations.grow.value / flexItem.flexulations.grow.total).toFixed(6);
+
+    allocatedSpace.forEach(element => element.textContent = flexItem.flexulations.grow.width);
+    itemFlexBasis.textContent = flexItem.flexulations.grow.itemBasis;
+    finalWidth.textContent = flexItem.flexulations.itemWidth;
+
+    console.log(flexItem);
+
+
   }
 }
 flexulator.initialize('.flexulator__items-container');

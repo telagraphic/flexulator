@@ -104,53 +104,86 @@
 .grow-formula {
 
   &__section {
+    font-family: 'Roboto';
+    font-weight: 400;
+  }
 
+  &__section-note {
+    color: $gray-9;
   }
 
   &__description-container {
-    width: 69%;
-    margin: 0 auto;
+    width: 49%;
+    margin: 5% auto;
   }
   &__description {
-    font-family: 'Consolas';
+    font-family: 'Roboto';
     font-weight: 400;
-    font-style: italic;
+  }
+
+  &__formula-container {
+    width: 89%;
+    margin: 5% auto;
   }
 
   &__section-header {
+    width: 64%;
+    padding: 1.5% 0;
+    margin: 0 auto;
+  }
 
-    display: flex;
-    justify-content: flex-start;
+  &__section-header-container {
     color: $pink-3;
+    background-color: $pink-1;
+    border: 2px solid black;
+    padding: 1.5% 0%;
+  }
 
-
+  &__section-header-ordinal {
+    text-align: left;
+    padding: 0 0 0 2%;
   }
 
   &__section-formula-statement {
     display: flex;
-    justify-content: flex-start;
-
+    justify-content: center;
     align-content: center;
+
+    width: 64%;
+    padding: 1.5% 0;
+    margin: 0 auto;
+
+    color: $gray-9;
   }
   &__section-formula-operand {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 
-    // font-weight: 800;
+    flex: 1;
+    padding: 1.5%;
+
+    border: 2px solid black;
+    background-color: $blue-1;
+
     text-transform: uppercase;
     font-size: calc(16px + (22 - 16) * ((100vw - 300px) / (1600 - 300)));
+
   }
+
   &__section-formula-operator {
-    padding: 0 3%;
+    padding: 2.5% 3%;
     text-transform: uppercase;
     font-size: calc(26px + (38 - 26) * ((100vw - 300px) / (1600 - 300)));
   }
-  &__section-formula-property {
 
+  &__section-formula-property {
+    font-weight: 800;
   }
   &__section-formula-value {
-
     font-weight: 400;
+
+    padding: 1.75% 0;
   }
 }
 
@@ -170,35 +203,16 @@
 
   }
   &__item {
-    position: relative;
+    width: 7rem;
+    height: 7rem;
+  }
 
-    height: 5rem;
-    width: 8%;
+  &__item-box {
+    height: 100%;
 
     background-color: $blue-1;
     border: 5px dotted $blue-2;
 
-
     z-index: 100;
-
-    &-border {
-      position: absolute;
-      top: -5px;
-      left: -5px;
-      height: 5rem;
-      width: 100%;
-      border: 5px solid rgba(255, 255, 255, 0.95);
-      z-index: 1;
-    }
-
-    &:before {
-      content: " ";
-      position: absolute;
-      top: -5px;
-      left: -5px;
-      right: -5px;
-      bottom: -5px;
-      z-index: 10;
-    }
   }
 }
