@@ -16,18 +16,26 @@
 
   &__tabs-button {
     flex: 1;
-    height: 8rem;
+    height: 4rem;
     background-color: $gray-2;
     text-align: center;
     display: inline-block;
     position: relative;
 
+    @include viewport-min(43rem) {
+      height: 8rem;
+    }
+
     &:after {
       display: block;
       content: '';
-      border-top: solid 10px $gray-6;
+      border-top: solid 5px $gray-6;
       transform: scaleX(0);
       transition: transform .1s ease-in-out;
+
+      @include viewport-min(43rem) {
+        border-top: solid 10px $gray-6;
+      }
     }
 
     &:hover {
@@ -43,8 +51,12 @@
     }
 
     &.is-active:after {
-      border-top: solid 10px $blue-4;
+      border-top: solid 5px $blue-4;
       transform: scaleX(1) !important;
+
+      @include viewport-min(43rem) {
+        border-top: solid 10px $blue-4;
+      }
     }
   }
 
@@ -59,15 +71,14 @@
   }
 
   &__tabs-button-link-text {
-    font-size: 5rem;
+    font-size: calc(26px + (60 - 26) * ((100vw - 300px) / (1600 - 300)));
     font-family: 'Roboto';
     font-weight: 100;
 
   }
 
   &__tabs-content-container {
-    min-height: 100vh;
-    padding: 5.5rem 0;
+    padding: 5% 0;
 
     @include viewport-min($desktop) {
 
@@ -84,13 +95,13 @@
   }
 
   &__formula-section {
-    padding: 3rem 0;
+    padding: 2% 0;
 
     font-size: inherit;
     text-align: center;
 
     @include viewport-min($mobile) {
-      padding: 0 4.5rem;
+
     }
 
   }
@@ -101,14 +112,105 @@
   }
 }
 
-.grow-formula {
+.example-formula {
 
-  &__section {
-    padding: 0 0 3% 0;
+  &__formula-container {
+    width: auto;
+    margin: 5% auto;
+  }
+
+  &__formula-section {
+    display: grid;
+    grid-template-areas: "header" "statement";
+    grid-template-rows: 1fr 1.25fr;
+
+    padding: 0 0 0 0;
+
+    margin: 0 auto 2% auto;
+    width: 100%;
+
+    border: 2px solid $black-1;
+    border-left: 0;
+    border-right: 0;
 
     font-family: 'Roboto';
     font-weight: 400;
 
+
+    @include viewport-min(45rem) {
+      width: 89%;
+      border: 2px solid $black-1;
+    }
+
+    @include viewport-min(75rem) {
+      width: 55%;
+    }
+  }
+
+  &__formula-header {
+    grid-area: header;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "number container" "number container";
+    width: 100%;
+
+    &-number {
+      grid-area: number;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat, $pink-1;
+      border: 2px solid $black-1;
+      border-top: 0;
+      border-left: 0;
+
+      color: $black-1;
+      font-size: calc(26px + (68 - 26) * ((100vw - 300px) / (1600 - 300)));
+    }
+
+    &-container {
+      grid-area: container;
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-title {
+      flex: .5;
+      padding: 1.5%;
+
+      background-color: $pink-1;
+      border-bottom: 2px solid $black-1;
+
+      color: $pink-3;
+      text-align: left;
+
+    }
+
+    &-details {
+      flex: 1;
+      padding: 1.5%;
+
+      border-bottom: 2px solid $black-1;
+
+      text-align: left;
+      font-family: 'Roboto';
+      font-weight: 400;
+    }
+  }
+
+  &__formula-statement {
+    grid-area: statement;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+    width: 100%;
+    padding: 1.5%;
+    margin: 0 auto;
+
+    color: $gray-9;
   }
 
   &__section-note {
@@ -117,24 +219,25 @@
   }
 
   &__description-container {
-    width: 49%;
+    width: 89%;
     margin: 5% auto;
+
+    text-align: left;
+
+    @include viewport-min(43rem) {
+      width: 55%;
+    }
   }
+
+
   &__description {
     font-family: 'Roboto';
     font-weight: 400;
+
+    font-size: calc(12px + (32 - 12) * ((100vw - 300px) / (1600 - 300)));
+    line-height: 125%;
   }
 
-  &__formula-container {
-    width: 89%;
-    margin: 5% auto;
-  }
-
-  &__section-header {
-    width: 64%;
-    padding: 0 0;
-    margin: 0 auto;
-  }
 
   &__section-header-container {
     color: $pink-3;
@@ -145,28 +248,15 @@
 
   &__section-header-ordinal {
     text-align: left;
-    padding: 0 0 0 2%;
   }
 
   &__section-header-description {
     text-align: left;
-    padding: 1% 0 1% 2%;
 
     border: 2px solid black;
     border-top: 0;
   }
 
-  &__section-formula-statement {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-
-    width: 64%;
-    padding: 1.5% 0;
-    margin: 0 auto;
-
-    color: $gray-9;
-  }
   &__section-formula-operand {
     display: flex;
     flex-direction: column;
@@ -179,11 +269,12 @@
     background-color: $blue-1;
 
     text-transform: uppercase;
-    font-size: calc(16px + (22 - 16) * ((100vw - 300px) / (1600 - 300)));
+    font-size: calc(12px + (22 - 12) * ((100vw - 300px) / (1600 - 300)));
 
   }
 
   &__section-formula-operator {
+    align-self: center;
     padding: 2.5% 3%;
     text-transform: uppercase;
     font-size: calc(26px + (38 - 26) * ((100vw - 300px) / (1600 - 300)));

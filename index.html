@@ -542,13 +542,20 @@
             </h3>
           </section>
         </section>
+        <section class="formula__tabs-button" data-id="links">
+          <section class="formula__tabs-button-link">
+            <h3 class="formula__tabs-button-link-text">
+              Links
+            </h3>
+          </section>
+        </section>
+
       </section>
       <section class="formula__tabs-content-container">
         <section class="formula__formula-section formula__tab-content is-active" id="grow">
-          <section class="formula__grow-container grow-formula">
+          <section class="formula__grow-container example-formula">
             <section>
-
-              <section class="grow-formula__animation grow-animation">
+              <section class="example-formula__animation grow-animation">
                 <section class="grow-animation__container">
                   <section class="grow-animation__item">
                     <section class="grow-animation__item-box"></section>
@@ -562,146 +569,132 @@
                 </section>
               </section>
 
-              <section class="grow-formula__description-container">
-                <p class="grow-formula__description">
-                  When the combined size of all the flex items is less than their container, the remaining space is distributed amongst all the items.
+              <section class="example-formula__description-container">
+                <p class="example-formula__description">
+                  When the combined size of all the flex items is <b>less</b> than their container, the <b>remaining space</b> is distributed amongst all the items.
                   The flex-grow attribute is used to determine how the remaining space should be allocated.
                 </p>
               </section>
 
-              <section class="grow-formula__formula-container">
-                <section class="grow-formula__section">
-                  <header class="grow-formula__section-header">
-                    <section class="grow-formula__section-header-container">
-                      <section class="grow-formula__section-header-ordinal">
-                        <header>
-                          <b>1.</b> Flex Container Remaining Space
-                        </header>
-                      </section>
+              <section class="example-formula__formula-container">
+
+                <section class="example-formula__formula-section">
+                  <header class="example-formula__formula-header">
+                    <section class="example-formula__formula-header-number">
+                      <h1>1</h1>
                     </section>
-                    <section class="grow-formula__section-header-description">
-                      <p>
-                        Add up each flex item's <b>flex basis</b> to get the <b>total flex basis</b>
-                      </p>
+                    <section class="example-formula__formula-header-container">
+                      <section class="example-formula__formula-header-title">Flex Container Remaining Space</section>
+                      <section class="example-formula__formula-header-details">Add up each flex item's <b>flex basis</b> to get the <b>total flex basis</b></section>
                     </section>
                   </header>
-                  <section class="grow-formula__section-formula-statement">
-                    <section class="grow-formula__section-formula-operand">
-                      <span class="grow-formula__section-formula-property">
+                  <section class="example-formula__formula-statement">
+                    <section class="example-formula__section-formula-operand">
+                      <span class="example-formula__section-formula-property">
                         Container Width
                       </span>
-                      <span class="grow-formula__section-formula-value grow-example__container">
+                      <span class="example-formula__section-formula-value grow-example__container">
                       </span>
                     </section>
-                    <section class="grow-formula__section-formula-operator">
+                    <section class="example-formula__section-formula-operator">
                       -
                     </section>
-                    <section class="grow-formula__section-formula-operand">
-                      <span class="grow-formula__section-formula-property">
+                    <section class="example-formula__section-formula-operand">
+                      <span class="example-formula__section-formula-property">
                         Total Flex Basis
                       </span>
-                      <span class="grow-formula__section-formula-value grow-example__total-flex-basis">
+                      <span class="example-formula__section-formula-value grow-example__total-flex-basis">
                       </span>
                     </section>
-                    <section class="grow-formula__section-formula-operator">
+                    <section class="example-formula__section-formula-operator">
                       =
                     </section>
-                    <section class="grow-formula__section-formula-operand">
-                      <span class="grow-formula__section-formula-property">
+                    <section class="example-formula__section-formula-operand">
+                      <span class="example-formula__section-formula-property">
                         Remaining Space
                       </span>
-                      <span class="grow-formula__section-formula-value grow-example__remaining-space">
+                      <span class="example-formula__section-formula-value grow-example__remaining-space">
                       </span>
                     </section>
                   </section>
                 </section>
-                <section class="grow-formula__section">
-                  <header class="grow-formula__section-header">
-                    <section class="grow-formula__section-header-container">
-                      <section class="grow-formula__section-header-ordinal">
-                        <header>
-                          <b>2.</b> Calculate Flex Grow Space
-                        </header>
-                      </section>
+                <section class="example-formula__formula-section">
+                  <header class="example-formula__formula-header">
+                    <section class="example-formula__formula-header-number">
+                      <h1>2</h1>
                     </section>
-                    <section class="grow-formula__section-header-description">
-                      <p>
-                        Add up each flex item flex grow value to get the <b>total grow</b>
-                      </p>
+                    <section class="example-formula__formula-header-container">
+                      <section class="example-formula__formula-header-title">Calculate Flex Grow Space</section>
+                      <section class="example-formula__formula-header-details">Add up each flex item flex grow value to get the <b>total grow</b></section>
                     </section>
                   </header>
-                  <section class="grow-formula__section-formula-statement">
-                    <section class="grow-formula__section-formula-operand">
-                      <span class="grow-formula__section-formula-property">
+                  <section class="example-formula__formula-statement">
+                    <section class="example-formula__section-formula-operand">
+                      <span class="example-formula__section-formula-property">
                         (Item Grow / Total Grow)
                       </span>
-                      <span class="grow-formula__section-formula-value">
+                      <span class="example-formula__section-formula-value">
                         (<span class="grow-example__item-grow"></span>/<span class="grow-example__total-grow"></span> = <span class="grow-example__total-grow-quotient"></span>)
                       </span>
                     </section>
-                    <section class="grow-formula__section-formula-operator">
+                    <section class="example-formula__section-formula-operator">
                       *
                     </section>
-                    <section class="grow-formula__section-formula-operand">
-                      <span class="grow-formula__section-formula-property">
+                    <section class="example-formula__section-formula-operand">
+                      <span class="example-formula__section-formula-property">
                         Remaining Space
                       </span>
-                      <span class="grow-formula__section-formula-value grow-example__remaining-space">
+                      <span class="example-formula__section-formula-value grow-example__remaining-space">
                       </span>
                     </section>
-                    <section class="grow-formula__section-formula-operator">
+                    <section class="example-formula__section-formula-operator">
                       =
                     </section>
-                    <section class="grow-formula__section-formula-operand">
-                      <span class="grow-formula__section-formula-property">
+                    <section class="example-formula__section-formula-operand">
+                      <span class="example-formula__section-formula-property">
                         Allocated Space
                       </span>
-                      <span class="grow-formula__section-formula-value grow-example__allocated-space">
+                      <span class="example-formula__section-formula-value grow-example__allocated-space">
                       </span>
                     </section>
                   </section>
                 </section>
-                <section class="grow-formula__section">
-                  <header class="grow-formula__section-header">
-                    <section class="grow-formula__section-header-container">
-                      <section class="grow-formula__section-header-ordinal">
-                        <header>
-                          <b>3.</b> Compute Final Width
-                        </header>
-                      </section>
+                <section class="example-formula__formula-section">
+                  <header class="example-formula__formula-header">
+                    <section class="example-formula__formula-header-number">
+                      <h1>3</h1>
                     </section>
-                    <section class="grow-formula__section-header-description">
-                      <p>
-                        Add the <b>allocated space</b> to the item's <b>flex basis</b> to get the final width
-                      </p>
+                    <section class="example-formula__formula-header-container">
+                      <section class="example-formula__formula-header-title">Compute Final Width</section>
+                      <section class="example-formula__formula-header-details">Add the <b>allocated space</b> to the item's <b>flex basis</b> to get the final width</section>
                     </section>
                   </header>
-                  <section class="grow-formula__section-formula-statement">
-                    <section class="grow-formula__section-formula-operand">
-                      <span class="grow-formula__section-formula-property">
+                  <section class="example-formula__formula-statement">
+                    <section class="example-formula__section-formula-operand">
+                      <span class="example-formula__section-formula-property">
                         Allocated Space
                       </span>
-                      <span class="grow-formula__section-formula-value grow-example__allocated-space">
+                      <span class="example-formula__section-formula-value grow-example__allocated-space">
                       </span>
                     </section>
-                    <section class="grow-formula__section-formula-operator">
+                    <section class="example-formula__section-formula-operator">
                       +
                     </section>
-                    <section class="grow-formula__section-formula-operand">
-                      <span class="grow-formula__section-formula-property">
+                    <section class="example-formula__section-formula-operand">
+                      <span class="example-formula__section-formula-property">
                         Item Flex Basis
                       </span>
-                      <span class="grow-formula__section-formula-value grow-example__item-flex-basis">
+                      <span class="example-formula__section-formula-value grow-example__item-flex-basis">
                       </span>
                     </section>
-                    <section class="grow-formula__section-formula-operator">
+                    <section class="example-formula__section-formula-operator">
                       =
                     </section>
-                    <section class="grow-formula__section-formula-operand">
-                      <span class="grow-formula__section-formula-property">
+                    <section class="example-formula__section-formula-operand">
+                      <span class="example-formula__section-formula-property">
                         Final Width
                       </span>
-                      <span class="grow-formula__section-formula-value grow-example__final-width">
+                      <span class="example-formula__section-formula-value grow-example__final-width">
                       </span>
                     </section>
                   </section>
@@ -711,215 +704,374 @@
           </section>
         </section>
         <section class="formula__formula-section formula__tab-content" id="shrink">
-          <section class="formula__shrink-container">
-            <h2 class="formula__formula-section-shrink-header">Shrink</h2>
-            <section class="formula__formula-section-shrink">
-              <p>Each Flex Item has Flex: 1 1 1000px</p>
-              <section class="formula__formula-section-shrink-text">
-                <h4>Step 1</h4>
-                <p>
-                  Container - Total Flex Basis
-                </p>
-                <p>
-                  = Remaining Space
-                </p>
-                <p>
-                  2000px - 3000px = -1000px
+          <section class="formula__grow-container example-formula">
+            <section>
+              <section class="example-formula__animation grow-animation">
+                <section class="grow-animation__container">
+                  <section class="grow-animation__item">
+                    <section class="grow-animation__item-box"></section>
+                  </section>
+                  <section class="grow-animation__item">
+                    <section class="grow-animation__item-box"></section>
+                  </section>
+                  <section class="grow-animation__item">
+                    <section class="grow-animation__item-box"></section>
+                  </section>
+                </section>
+              </section>
+
+              <section class="example-formula__description-container">
+                <p class="example-formula__description">
+                  If the space remaining is a <b>negative</b> this means that the flex container is
+                  smaller than the preferred width of all the flex items.
+                  They are going to have to <b>shrink</b>.
+                  By assigning a flex-shrink value we can control much space each flex item will surrender.
                 </p>
               </section>
-              <section class="formula__formula-section-shrink-text">
-                <h4>Step 2</h4>
-                <p>
-                  [Item Shrink * Item Basis]
-                </p>
-                <p>
-                  / [Total Flex Basis]
-                </p>
-                <p>
-                  = [Value] * Remaining Space = Shrink Amount
-                </p>
-                <p>
-                  [ 1 * 1000 ] / (3000) = .333 * 1000 = 333.33px
-                </p>
-              </section>
-              <section class="formula__formula-section-shrink-text">
-                <h4>Step 3</h4>
-                <p>
-                  Element Flex Basis - Shrink Amount
-                </p>
-                <p>
-                  = Final Size
-                </p>
-                <p>
-                  1000px - 333.33px = 667px
-                </p>
+
+              <section class="example-formula__formula-container">
+
+                <section class="example-formula__formula-section">
+                  <header class="example-formula__formula-header">
+                    <section class="example-formula__formula-header-number">
+                      <h1>1</h1>
+                    </section>
+                    <section class="example-formula__formula-header-container">
+                      <section class="example-formula__formula-header-title">Flex Container Remaining Space</section>
+                      <section class="example-formula__formula-header-details">Add up each flex item's <b>flex basis</b> to get the <b>total flex basis</b></section>
+                    </section>
+                  </header>
+                  <section class="example-formula__formula-statement">
+                    <section class="example-formula__section-formula-operand">
+                      <span class="example-formula__section-formula-property">
+                        Container Width
+                      </span>
+                      <span class="example-formula__section-formula-value shrink-example__container">
+                      </span>
+                    </section>
+                    <section class="example-formula__section-formula-operator">
+                      -
+                    </section>
+                    <section class="example-formula__section-formula-operand">
+                      <span class="example-formula__section-formula-property">
+                        Total Basis
+                      </span>
+                      <span class="example-formula__section-formula-value shrink-example__total-flex-basis">
+                      </span>
+                    </section>
+                    <section class="example-formula__section-formula-operator">
+                      =
+                    </section>
+                    <section class="example-formula__section-formula-operand">
+                      <span class="example-formula__section-formula-property">
+                        Remaining Space
+                      </span>
+                      <span class="example-formula__section-formula-value shrink-example__remaining-space">
+                      </span>
+                    </section>
+                  </section>
+                </section>
+                <section class="example-formula__formula-section">
+                  <header class="example-formula__formula-header">
+                    <section class="example-formula__formula-header-number">
+                      <h1>2</h1>
+                    </section>
+                    <section class="example-formula__formula-header-container">
+                      <section class="example-formula__formula-header-title">Calculate Shrink Factor</section>
+                      <section class="example-formula__formula-header-details">
+                        Multiple each items' shrink value by it's basis to get the <b>item shrink basis total</b>. Sum all <b>item shrink basis total</b> values to get the <b>shrink basis total</b>.
+                        Divide these two to get the <b>shrink factor</b>.
+                      </section>
+                    </section>
+                  </header>
+                  <section class="example-formula__formula-statement">
+                    <section class="example-formula__section-formula-operand">
+                      <span class="example-formula__section-formula-property">
+                        (Item Shrink * Item Basis) = Item Shrink Basis Total
+                      </span>
+                      <span class="example-formula__section-formula-value">
+                        (<span class="shrink-example__item-shrink"></span>/<span class="shrink-example__item-basis"></span>) <span class="shrink-example__item-shrink-sum"></span>
+                      </span>
+                    </section>
+                    <section class="example-formula__section-formula-operator">
+                      /
+                    </section>
+                    <section class="example-formula__section-formula-operand">
+                      <span class="example-formula__section-formula-property">
+                        Shrink Basis Total
+                      </span>
+                      <span class="example-formula__section-formula-value shrink-example__shrink-basis-total">
+                      </span>
+                    </section>
+                    <section class="example-formula__section-formula-operator">
+                      =
+                    </section>
+                    <section class="example-formula__section-formula-operand">
+                      <span class="example-formula__section-formula-property">
+                        Shrink Factor
+                      </span>
+                      <span class="example-formula__section-formula-value shrink-example__shrink-factor">
+                      </span>
+                    </section>
+                  </section>
+                </section>
+                <section class="example-formula__formula-section">
+                  <header class="example-formula__formula-header">
+                    <section class="example-formula__formula-header-number">
+                      <h1>3</h1>
+                    </section>
+                    <section class="example-formula__formula-header-container">
+                      <section class="example-formula__formula-header-title">Allocated Shrink Amount</section>
+                      <section class="example-formula__formula-header-details">
+                        Multiply the <b>shrink factor</b> against the <b>remaining space</b> to finally get the amount
+                        to reduce from the item.
+                      </section>
+                    </section>
+                  </header>
+                  <section class="example-formula__formula-statement">
+                    <section class="example-formula__section-formula-operand">
+                      <span class="example-formula__section-formula-property">
+                        Shrink Factor
+                      </span>
+                      <span class="example-formula__section-formula-value shrink-example__shrink-factor">
+                      </span>
+                    </section>
+                    <section class="example-formula__section-formula-operator">
+                      *
+                    </section>
+                    <section class="example-formula__section-formula-operand">
+                      <span class="example-formula__section-formula-property">
+                        Remaining Space
+                      </span>
+                      <span class="example-formula__section-formula-value shrink-example__remaining-space">
+                      </span>
+                    </section>
+                    <section class="example-formula__section-formula-operator">
+                      =
+                    </section>
+                    <section class="example-formula__section-formula-operand">
+                      <span class="example-formula__section-formula-property">
+                        Shrink Amount
+                      </span>
+                      <span class="example-formula__section-formula-value shrink-example__shrink-amount">
+                      </span>
+                    </section>
+                  </section>
+                </section>
+                <section class="example-formula__formula-section">
+                  <header class="example-formula__formula-header">
+                    <section class="example-formula__formula-header-number">
+                      <h1>4</h1>
+                    </section>
+                    <section class="example-formula__formula-header-container">
+                      <section class="example-formula__formula-header-title">Compute Final Width</section>
+                      <section class="example-formula__formula-header-details">
+                        Reduce the <b>item basis</b> by the <b>shrink amount</b> to get the element's final size
+                      </section>
+                    </section>
+                  </header>
+                  <section class="example-formula__formula-statement">
+                    <section class="example-formula__section-formula-operand">
+                      <span class="example-formula__section-formula-property">
+                        Item Basis
+                      </span>
+                      <span class="example-formula__section-formula-value shrink-example__item-basis">
+                      </span>
+                    </section>
+                    <section class="example-formula__section-formula-operator">
+                      -
+                    </section>
+                    <section class="example-formula__section-formula-operand">
+                      <span class="example-formula__section-formula-property">
+                        Shrink Amount
+                      </span>
+                      <span class="example-formula__section-formula-value shrink-example__shrink-amount">
+                      </span>
+                    </section>
+                    <section class="example-formula__section-formula-operator">
+                      =
+                    </section>
+                    <section class="example-formula__section-formula-operand">
+                      <span class="example-formula__section-formula-property">
+                        Final Width
+                      </span>
+                      <span class="example-formula__section-formula-value shrink-example__final-width">
+                      </span>
+                    </section>
+                  </section>
+                </section>
               </section>
             </section>
           </section>
         </section>
+        <section class="formula__formula-section formula__tab-content" id="links">
+          <article class="resources__container">
+            <ul class="resources__list">
+              <li class="resources__list-item">
+                <h3 class="resources__list-header">Inspired By</h3>
+              </li>
+
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="https://www.madebymike.com.au/writing/understanding-flexbox/">Understanding Flexbox by Mike Riethmuller</a>
+              </li>
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="https://chriswrightdesign.com/experiments/flexbox-adventures/">
+                  Flexbox Adventures by Chris Wright
+                </a>
+              </li>
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="https://hacks.mozilla.org/2019/01/designing-the-flexbox-inspector/">
+                  Designing the Flexbox Inspector
+                </a>
+              </li>
+
+              <li class="resources__list-item">
+                <h3 class="resources__list-header">Rachel Andrew Explains Flexbox</h3>
+              </li>
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="https://www.smashingmagazine.com/2018/08/flexbox-display-flex-container/">
+                  Part 1
+                </a>,
+                <a href="https://www.smashingmagazine.com/2018/08/flexbox-alignment/">
+                  2
+                </a>,
+                <a href="https://www.smashingmagazine.com/2018/09/flexbox-sizing-flexible-box/">
+                  3
+                </a>,
+                <a href="https://www.smashingmagazine.com/2018/10/flexbox-use-cases/">
+                  4
+                </a>
+              </li>
+
+              <li class="resources__list-item">
+                <h3 class="resources__list-header">Learn</h3>
+              </li>
+
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="http://www.flexboxdefense.com/">Flexbox Defense</a>
+              </li>
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="https://flexboxfroggy.com/">
+                  Flexbox Froggie
+                </a>
+              </li>
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="http://learnlayout.com/flexbox.html">Learn Flexbox Layout</a>
+              </li>
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="https://cvan.io/flexboxin5/">Flexbox in 5 Minutes</a>
+              </li>
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="https://www.flexbox.io">Wes Bos: What The Flexbox Course</a>
+              </li>
+
+              <li class="resources__list-item">
+                <h3 class="resources__list-header">Tools</h3>
+              </li>
+
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="https://www.madebymike.com.au/demos/flexbox-tester/">Made By Mike Flexbox Tester</a>
+              </li>
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="http://the-echoplex.net/flexyboxes/">
+                  Flexbox Playground and Code Generator
+                </a>
+              </li>
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="https://loading.io/flexbox/">
+                  Flexbox Generator
+                </a>
+              </li>
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="https://demos.scotch.io/visual-guide-to-css3-flexbox-flexbox-playground/demos/">
+                  Flexbox Playground
+                </a>
+              </li>
+
+              <li class="resources__list-item">
+                <h3 class="resources__list-header">Specs</h3>
+              </li>
+
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="https://www.w3.org/TR/css-display-3/">
+                  W3C Display Module
+                </a>
+              </li>
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="https://www.w3.org/TR/css-align-3/">
+                  Box Alignment
+                </a>
+              </li>
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="https://drafts.csswg.org/css-flexbox/#layout-algorithm">
+                  Flexbox Layout Algorithm
+                </a>
+              </li>
+
+              <li class="resources__list-item">
+                <h3 class="resources__list-header">Guides</h3>
+              </li>
+
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">
+                  CSS-Tricks Flexbox Guide
+                </a>
+              </li>
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="https://tympanus.net/codrops/css_reference/flexbox/">
+                  Codrops Guide
+                </a>
+              </li>
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox">
+                  Mozilla Guide
+                </a>
+              </li>
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="https://scrimba.com/g/gflexbox">
+                  Scrimba Course
+                </a>
+              </li>
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="https://medium.com/@js_tut/the-complete-css-flex-box-tutorial-d17971950bdc">
+                  The Complete CSS Flexbox Tutorial
+                </a>
+              </li>
+            </ul>
+          </article>
+        </section>
       </section>
     </article>
-    <article class="resources__container">
-      <header class="resources__header">
-        <h1 class="resources__header-title">Links</h1>
-      </header>
+  </main>
 
-      <ul class="resources__list">
-        <li class="resources__list-item">
-          <h3 class="resources__list-header">Inspired By</h3>
-        </li>
+  <footer class="page__footer">
+    <section class="page__footer-container">
 
-        <li class="resources__list-item">
-          <span class="resources__triangle"></span>
-          <a href="https://www.madebymike.com.au/writing/understanding-flexbox/">Understanding Flexbox by Mike Riethmuller</a>
-        </li>
-        <li class="resources__list-item">
-          <span class="resources__triangle"></span>
-          <a href="https://chriswrightdesign.com/experiments/flexbox-adventures/">
-            Flexbox Adventures by Chris Wright
-          </a>
-        </li>
-        <li class="resources__list-item">
-          <span class="resources__triangle"></span>
-          <a href="https://hacks.mozilla.org/2019/01/designing-the-flexbox-inspector/">
-            Designing the Flexbox Inspector
-          </a>
-        </li>
+    </section>
+  </footer>
 
-        <li class="resources__list-item">
-          <h3 class="resources__list-header">Rachel Andrew Explains Flexbox</h3>
-        </li>
-        <li class="resources__list-item">
-          <span class="resources__triangle"></span>
-          <a href="https://www.smashingmagazine.com/2018/08/flexbox-display-flex-container/">
-            Part 1
-          </a>,
-          <a href="https://www.smashingmagazine.com/2018/08/flexbox-alignment/">
-            2
-          </a>,
-          <a href="https://www.smashingmagazine.com/2018/09/flexbox-sizing-flexible-box/">
-            3
-          </a>,
-          <a href="https://www.smashingmagazine.com/2018/10/flexbox-use-cases/">
-            4
-          </a>
-        </li>
-
-        <li class="resources__list-item">
-          <h3 class="resources__list-header">Learn</h3>
-        </li>
-
-        <li class="resources__list-item">
-          <span class="resources__triangle"></span>
-          <a href="http://www.flexboxdefense.com/">Flexbox Defense</a>
-        </li>
-        <li class="resources__list-item">
-          <span class="resources__triangle"></span>
-          <a href="https://flexboxfroggy.com/">
-            Flexbox Froggie
-          </a>
-        </li>
-        <li class="resources__list-item">
-          <span class="resources__triangle"></span>
-          <a href="http://learnlayout.com/flexbox.html">Learn Flexbox Layout</a>
-        </li>
-        <li class="resources__list-item">
-          <span class="resources__triangle"></span>
-          <a href="https://cvan.io/flexboxin5/">Flexbox in 5 Minutes</a>
-        </li>
-        <li class="resources__list-item">
-          <span class="resources__triangle"></span>
-          <a href="https://www.flexbox.io">Wes Bos: What The Flexbox Course</a>
-        </li>
-
-        <li class="resources__list-item">
-          <h3 class="resources__list-header">Tools</h3>
-        </li>
-
-        <li class="resources__list-item">
-          <span class="resources__triangle"></span>
-          <a href="https://www.madebymike.com.au/demos/flexbox-tester/">Made By Mike Flexbox Tester</a>
-        </li>
-        <li class="resources__list-item">
-          <span class="resources__triangle"></span>
-          <a href="http://the-echoplex.net/flexyboxes/">
-            Flexbox Playground and Code Generator
-          </a>
-        </li>
-        <li class="resources__list-item">
-          <span class="resources__triangle"></span>
-          <a href="https://loading.io/flexbox/">
-            Flexbox Generator
-          </a>
-        </li>
-        <li class="resources__list-item">
-          <span class="resources__triangle"></span>
-          <a href="https://demos.scotch.io/visual-guide-to-css3-flexbox-flexbox-playground/demos/">
-            Flexbox Playground
-          </a>
-        </li>
-
-        <li class="resources__list-item">
-          <h3 class="resources__list-header">Specs</h3>
-        </li>
-
-        <li class="resources__list-item">
-          <span class="resources__triangle"></span>
-          <a href="https://www.w3.org/TR/css-display-3/">
-            W3C Display Module
-          </a>
-        </li>
-        <li class="resources__list-item">
-          <span class="resources__triangle"></span>
-          <a href="https://www.w3.org/TR/css-align-3/">
-            Box Alignment
-          </a>
-        </li>
-        <li class="resources__list-item">
-          <span class="resources__triangle"></span>
-          <a href="https://drafts.csswg.org/css-flexbox/#layout-algorithm">
-            Flexbox Layout Algorithm
-          </a>
-        </li>
-
-        <li class="resources__list-item">
-          <h3 class="resources__list-header">Guides</h3>
-        </li>
-
-        <li class="resources__list-item">
-          <span class="resources__triangle"></span>
-          <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">
-            CSS-Tricks Flexbox Guide
-          </a>
-        </li>
-        <li class="resources__list-item">
-          <span class="resources__triangle"></span>
-          <a href="https://tympanus.net/codrops/css_reference/flexbox/">
-            Codrops Guide
-          </a>
-        </li>
-        <li class="resources__list-item">
-          <span class="resources__triangle"></span>
-          <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox">
-            Mozilla Guide
-          </a>
-        </li>
-        <li class="resources__list-item">
-          <span class="resources__triangle"></span>
-          <a href="https://scrimba.com/g/gflexbox">
-            Scrimba Course
-          </a>
-        </li>
-        <li class="resources__list-item">
-          <span class="resources__triangle"></span>
-          <a href="https://medium.com/@js_tut/the-complete-css-flex-box-tutorial-d17971950bdc">
-            The Complete CSS Flexbox Tutorial
-          </a>
-        </li>
-      </ul>
-    </article>
-
-    <svg xmlns="http://www.w3.org/2000/svg">
+  <section style="display: none;"> <svg xmlns="http://www.w3.org/2000/svg">
 
       <symbol id="minus-sign" viewBox="0 0 18 18">
         <g id="X_Cross" data-name="X Cross">
@@ -939,8 +1091,8 @@
         </g>
       </symbol>
     </svg>
+  </section>
 
-  </main>
   <script src="js/flexItem.js" type="module"></script>
   <script src="js/flexulator.js" type="module"></script>
   <script>

@@ -514,10 +514,6 @@ const flexulator = {
     allocatedSpace.forEach(element => element.textContent = flexItem.flexulations.grow.width);
     itemFlexBasis.textContent = flexItem.flexulations.grow.itemBasis;
     finalWidth.textContent = flexItem.flexulations.itemWidth;
-
-    console.log(flexItem);
-
-
   }
 }
 flexulator.initialize('.flexulator__items-container');

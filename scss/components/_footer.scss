@@ -1,2 +1,11 @@
 @import '../config/mixins';
 @import '../config/variables';
+
+.page__footer {
+  background-color: $pink-1;
+
+
+  &-container {
+    padding: 5%;
+  }
+}
