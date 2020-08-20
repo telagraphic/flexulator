@@ -972,11 +972,13 @@ button {
       padding: 0 4.5rem; } }
 
 .grow-formula__section {
+  padding: 0 0 3% 0;
   font-family: 'Roboto';
   font-weight: 400; }
 
 .grow-formula__section-note {
-  color: #38383d; }
+  padding: 2% 0;
+  color: #000000; }
 
 .grow-formula__description-container {
   width: 49%;
@@ -992,7 +994,7 @@ button {
 
 .grow-formula__section-header {
   width: 64%;
-  padding: 1.5% 0;
+  padding: 0 0;
   margin: 0 auto; }
 
 .grow-formula__section-header-container {
@@ -1004,6 +1006,12 @@ button {
 .grow-formula__section-header-ordinal {
   text-align: left;
   padding: 0 0 0 2%; }
+
+.grow-formula__section-header-description {
+  text-align: left;
+  padding: 1% 0 1% 2%;
+  border: 2px solid black;
+  border-top: 0; }
 
 .grow-formula__section-formula-statement {
   display: flex;
@@ -1031,6 +1039,7 @@ button {
   font-size: calc(26px + (38 - 26) * ((100vw - 300px) / (1600 - 300))); }
 
 .grow-formula__section-formula-property {
+  color: #000000;
   font-weight: 800; }
 
 .grow-formula__section-formula-value {
