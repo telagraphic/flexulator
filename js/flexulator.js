@@ -35,7 +35,8 @@ const flexulator = {
     flexulator.updateFlexFormButtons();
     flexulator.updateShrinkExample();
     flexulator.updateGrowExample();
-    flexulator.updateFlexItemFormulaExample();
+    flexulator.updateFlexItemGrowFormulaExample();
+    flexulator.updateFlexItemShrinkFormulaExample();
   },
   updateWidth: function () {
     flexulator.flexValues.width = flexulator.elements.container.clientWidth;
@@ -462,6 +463,13 @@ const flexulator = {
       flexulator.updateFlexGrowTotal();
       flexulator.updateShrinkBasisTotal();
       flexulator.updateFlexItemsContainerValues();
+      flexulator.updateFlexItemShrinkFormulaExample();
+
+      let growFlexulations = selectAll('.flex-item__flexulations-grow-container');
+      growFlexulations.forEach(element => element.style.opacity = 0);
+
+      let shrinkFlexulations = selectAll('.flex-item__flexulations-shrink-container');
+      shrinkFlexulations.forEach(element => element.style.opacity = 1);
     });
   },
   updateGrowExample: function() {
@@ -480,6 +488,13 @@ const flexulator = {
       flexulator.updateFlexGrowTotal();
       flexulator.updateShrinkBasisTotal();
       flexulator.updateFlexItemsContainerValues();
+      flexulator.updateFlexItemGrowFormulaExample();
+
+      let growFlexulations = selectAll('.flex-item__flexulations-grow-container');
+      growFlexulations.forEach(element => element.style.opacity = 1);
+
+      let shrinkFlexulations = selectAll('.flex-item__flexulations-shrink-container');
+      shrinkFlexulations.forEach(element => element.style.opacity = 0);
     });
   },
   updateResize: function() {
@@ -487,10 +502,11 @@ const flexulator = {
       flexulator.updateWidth();
       flexulator.updateRemainingSpace();
       flexulator.updateFlexItemsContainerValues();
-      flexulator.updateFlexItemFormulaExample();
+      flexulator.updateFlexItemGrowFormulaExample();
+      flexulator.updateFlexItemShrinkFormulaExample();
     })
   },
-  updateFlexItemFormulaExample: function() {
+  updateFlexItemGrowFormulaExample: function() {
     let flexItem = flexulator.flexItems[0];
 
     let flexGrowExample = select('.grow-formula__formula-container');
@@ -514,6 +530,36 @@ const flexulator = {
     allocatedSpace.forEach(element => element.textContent = flexItem.flexulations.grow.width);
     itemFlexBasis.textContent = flexItem.flexulations.grow.itemBasis;
     finalWidth.textContent = flexItem.flexulations.itemWidth;
+  },
+  updateFlexItemShrinkFormulaExample: function () {
+    let flexItem = flexulator.flexItems[0];
+
+    let container = select('.shrink-example__container');
+    let totalFlexBasis = select('.shrink-example__total-flex-basis');
+    let remainingSpace = selectAll('.shrink-example__remaining-space');
+    let itemShrink = select('.shrink-example__item-shrink');
+    let itemBasis = selectAll('.shrink-example__item-basis');
+    let itemShrinkSum = select('.shrink-example__item-shrink-sum')
+    let shrinkBasisTotal = select('.shrink-example__shrink-basis-total');
+    let shrinkFactor = selectAll('.shrink-example__shrink-factor');
+    let shrinkAmount = selectAll('.shrink-example__shrink-amount');
+    let finalWidth = select('.shrink-example__final-width');
+
+    container.textContent = flexItem.flexulations.container.width;
+    totalFlexBasis.textContent = flexItem.flexulations.container.flexBasisTotal;
+    remainingSpace.forEach(element => element.textContent = flexItem.flexulations.container.remainingSpace);
+    itemShrink.textContent = flexItem.flexulations.shrink.value;
+    itemBasis.forEach(element => element.textContent = flexItem.flexulations.shrink.itemBasis);
+    itemShrinkSum.textContent = flexItem.flexulations.shrink.valueBasisTotal;
+    shrinkBasisTotal.textContent = flexItem.flexulations.shrink.basisTotal;
+    shrinkFactor.forEach(element => element.textContent = flexItem.flexulations.shrink.factor.toFixed(6));
+
+    let remainingAmountIntermediate = (flexItem.flexulations.shrink.factor.toFixed(6) * flexItem.flexulations.container.remainingSpace);
+    remainingAmountIntermediate = remainingAmountIntermediate.toFixed(2);
+    remainingAmountIntermediate = remainingAmountIntermediate.toString().replace("-", "");
+    shrinkAmount.forEach(element => element.textContent = parseFloat(remainingAmountIntermediate));
+    finalWidth.textContent = flexItem.elements.self.clientWidth;
+
   }
 }
 flexulator.initialize('.flexulator__items-container');

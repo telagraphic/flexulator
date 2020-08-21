@@ -849,31 +849,27 @@ button {
   background-position: center; }
 
 .flex-item__remove-button {
-  position: relative;
-  padding: 1rem;
-  margin: 1.5rem 0;
-  background-color: #fbdef4;
-  background-clip: padding-box;
-  border: 4px solid #000000;
-  color: #000000;
-  font-weight: 400;
-  transform: scale(1);
-  transition: background-color .25s ease-in, color .15s ease-in, transform .15s ease-in;
-  text-transform: uppercase; }
-  .flex-item__remove-button:focus, .flex-item__remove-button:hover {
-    background-color: #dd00a9;
-    color: #ffffff; }
+  padding: 0 4%;
+  margin: 4%;
+  border-radius: .67rem;
+  background-color: #ededf0;
+  border: 2px solid #cacad1;
+  color: #0c0c0d;
+  text-transform: lowercase;
+  transition: background-color .25s ease; }
+  .flex-item__remove-button:hover, .flex-item__remove-button:focus {
+    background-color: #dfdfe8; }
 
 .flex-item__formulas {
   display: flex;
   flex-direction: row; }
 
 .flex-item__flexulations-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
   width: 79%;
-  margin: 0 auto; }
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr; }
 
 .flex-item__flexulations-section {
   padding: .5rem 0; }
@@ -881,7 +877,8 @@ button {
     text-transform: uppercase; }
 
 .flex-item__flexulations-grow-container {
-  flex: 1;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
   font-size: 1rem;
   font-weight: 400;
   letter-spacing: -.09rem;
@@ -896,11 +893,13 @@ button {
   margin: .5rem 0; }
 
 .flex-item__flexulations-shrink-container {
-  flex: 1;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
   font-size: 1rem;
   font-weight: 400;
   letter-spacing: -.09rem;
-  padding: .5rem 0; }
+  padding: .5rem 0;
+  opacity: 0; }
 
 .flex-item__flexulations-shrink-header {
   letter-spacing: 0;
@@ -915,8 +914,12 @@ button {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  border-top: 5px solid #e0e0e2;
-  border-bottom: 5px solid #e0e0e2; }
+  border-top: 3px solid #e0e0e2;
+  border-bottom: 3px solid #e0e0e2; }
+  @media (min-width: 43rem) {
+    .formula__tabs-navigation {
+      border-top: 5px solid #e0e0e2;
+      border-bottom: 5px solid #e0e0e2; } }
 
 .formula__tabs-button {
   flex: 1;
@@ -931,12 +934,12 @@ button {
   .formula__tabs-button:after {
     display: block;
     content: '';
-    border-top: solid 5px #bebec0;
+    border-top: solid 3px #bebec0;
     transform: scaleX(0);
     transition: transform .1s ease-in-out; }
     @media (min-width: 43rem) {
       .formula__tabs-button:after {
-        border-top: solid 10px #bebec0; } }
+        border-top: solid 5px #bebec0; } }
   .formula__tabs-button:hover {
     background-color: #ededf0; }
   .formula__tabs-button:hover:after {
@@ -944,11 +947,11 @@ button {
   .formula__tabs-button.is-active {
     color: #1780ea; }
   .formula__tabs-button.is-active:after {
-    border-top: solid 5px #1780ea;
+    border-top: solid 3px #1780ea;
     transform: scaleX(1) !important; }
     @media (min-width: 43rem) {
       .formula__tabs-button.is-active:after {
-        border-top: solid 10px #1780ea; } }
+        border-top: solid 5px #1780ea; } }
 
 .formula__tabs-button-link {
   position: absolute;
@@ -1120,6 +1123,37 @@ button {
     background-color: #cbe8ff;
     border: 5px dotted #0ba2ff;
     z-index: 100; }
+
+.shrink-animation {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr; }
+  .shrink-animation__container {
+    display: flex;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    width: 69%;
+    margin: 0 auto;
+    background-color: #fbdef4;
+    border: 2px solid black;
+    height: 7rem;
+    z-index: 10; }
+  .shrink-animation__items {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    display: flex;
+    justify-content: center;
+    width: 75%;
+    margin: 0 auto;
+    z-index: 100;
+    opacity: .5; }
+  .shrink-animation__item {
+    width: 33.33%;
+    height: 7rem; }
+  .shrink-animation__item-box {
+    height: 100%;
+    background-color: #cbe8ff;
+    border: 5px dotted #0ba2ff; }
 
 .resources__container {
   display: flex;
