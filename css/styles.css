@@ -1116,13 +1116,20 @@ button {
     border: 2px solid black;
     z-index: 1000; }
   .grow-animation__item {
-    width: 7rem;
-    height: 7rem; }
+    width: 3rem;
+    height: 3rem; }
+    @media (min-width: 43rem) {
+      .grow-animation__item {
+        width: 7rem;
+        height: 7rem; } }
   .grow-animation__item-box {
     height: 100%;
     background-color: #cbe8ff;
-    border: 5px dotted #0ba2ff;
+    border: 3px dotted #0ba2ff;
     z-index: 100; }
+    @media (min-width: 43rem) {
+      .grow-animation__item-box {
+        border: 5px dotted #0ba2ff; } }
 
 .shrink-animation {
   display: grid;
@@ -1136,8 +1143,11 @@ button {
     margin: 0 auto;
     background-color: #fbdef4;
     border: 2px solid black;
-    height: 7rem;
+    height: 3rem;
     z-index: 10; }
+    @media (min-width: 43rem) {
+      .shrink-animation__container {
+        height: 7rem; } }
   .shrink-animation__items {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
@@ -1149,11 +1159,17 @@ button {
     opacity: .5; }
   .shrink-animation__item {
     width: 33.33%;
-    height: 7rem; }
+    height: 3rem; }
+    @media (min-width: 43rem) {
+      .shrink-animation__item {
+        height: 7rem; } }
   .shrink-animation__item-box {
     height: 100%;
     background-color: #cbe8ff;
-    border: 5px dotted #0ba2ff; }
+    border: 3px dotted #0ba2ff; }
+    @media (min-width: 43rem) {
+      .shrink-animation__item-box {
+        border: 5px dotted #0ba2ff; } }
 
 .resources__container {
   display: flex;

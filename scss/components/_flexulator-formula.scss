@@ -310,19 +310,30 @@
 
     z-index: 1000;
 
+
+
   }
   &__item {
-    width: 7rem;
-    height: 7rem;
+    width: 3rem;
+    height: 3rem;
+
+    @include viewport-min(43rem) {
+      width: 7rem;
+      height: 7rem;
+    }
   }
 
   &__item-box {
     height: 100%;
 
     background-color: $blue-1;
-    border: 5px dotted $blue-2;
+    border: 3px dotted $blue-2;
 
     z-index: 100;
+
+    @include viewport-min(43rem) {
+      border: 5px dotted $blue-2;
+    }
   }
 }
 
@@ -344,9 +355,13 @@
     background-color: $pink-1;
     border: 2px solid black;
 
-    height: 7rem;
+    height: 3rem;
 
     z-index: 10;
+
+    @include viewport-min(43rem) {
+      height: 7rem;
+    }
 
   }
 
@@ -365,13 +380,21 @@
 
   &__item {
     width: 33.33%;
-    height: 7rem;
+    height: 3rem;
+
+    @include viewport-min(43rem) {
+      height: 7rem;
+    }
   }
 
   &__item-box {
     height: 100%;
 
     background-color: $blue-1;
-    border: 5px dotted $blue-2;
+    border: 3px dotted $blue-2;
+
+    @include viewport-min(43rem) {
+      border: 5px dotted $blue-2;
+    }
   }
 }

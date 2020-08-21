@@ -550,7 +550,7 @@
 
       </section>
       <section class="formula__tabs-content-container">
-        <section class="formula__formula-section formula__tab-content" id="grow">
+        <section class="formula__formula-section formula__tab-content is-active" id="grow">
           <section class="formula__grow-container example-formula">
             <section>
               <section class="example-formula__animation grow-animation">
@@ -701,7 +701,7 @@
             </section>
           </section>
         </section>
-        <section class="formula__formula-section formula__tab-content is-active" id="shrink">
+        <section class="formula__formula-section formula__tab-content" id="shrink">
           <section class="formula__grow-container example-formula">
             <section>
               <section class="example-formula__animation shrink-animation">
@@ -1127,13 +1127,18 @@
       matchingSection.classList.add("is-active");
     }
 
-    gsap.timeline({repeat: -1, repeatDelay: 2})
-      .to('.grow-animation__item', {width: '33.33%', duration: 2, ease: 'slow'})
-      .to('.grow-animation__item', {width: '7rem', duration: 2, delay: 2, ease: 'slow'})
-      .to('.grow-animation__item', {width: '33.33%', duration: 2, delay: 2, ease: 'slow'});
+    if (window.innerWidth >= 688) {
+      gsap.timeline({repeat: -1, repeatDelay: 2})
+        .from('.grow-animation__item', {width: '7rem', duration: 2, delay: 2, ease: 'slow'})
+        .to('.grow-animation__item', {width: '33.33%', duration: 2, ease: 'slow'});
+    } else {
+      gsap.timeline({repeat: -1, repeatDelay: 2})
+        .from('.grow-animation__item', {width: '3rem', duration: 2, delay: 2, ease: 'slow'})
+        .to('.grow-animation__item', {width: '33.33%', duration: 2, ease: 'slow'});
+    }
 
     gsap.timeline({repeat: -1, repeatDelay: 2})
-      .to('.shrink-animation__item', {width: '35.33%', duration: 2, ease: 'slow'})
+      .to('.shrink-animation__item', {width: '37.33%', duration: 2, ease: 'slow'})
       .to('.shrink-animation__item', {width: '30.66%', duration: 2, delay: 2, ease: 'slow'});
 
   </script>
