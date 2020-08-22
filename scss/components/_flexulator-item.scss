@@ -210,18 +210,13 @@
 .flex-item__flexulations {
 
   &-container {
-    // display: flex;
-    // flex-direction: row;
-    // justify-content: center;
-
-    width: 79%;
-    margin: 0 auto;
-
-
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
 
+    width: 79%;
+    margin: 0 auto;
+    padding: 4% 0 0 0;
   }
 
   &-section {
@@ -232,7 +227,7 @@
     }
   }
   &-section-header {
-
+    color: $blue-3;
   }
   &-operator {}
   &-space {}
@@ -252,7 +247,8 @@
   &-header {
     font-weight: 800;
     text-transform: uppercase;
-    font-size: calc(12px + (18 - 12) * ((100vw - 300px) / (1600 - 300)));
+    font-size: calc(12px + (25 - 12) * ((100vw - 300px) / (1600 - 300)));
+    color: $blue-3;
   }
   &-formula {
     margin: .5rem 0;
@@ -281,7 +277,8 @@
     letter-spacing: 0;
     font-weight: 800;
     text-transform: uppercase;
-    font-size: calc(12px + (18 - 12) * ((100vw - 300px) / (1600 - 300)));
+    font-size: calc(12px + (25 - 12) * ((100vw - 300px) / (1600 - 300)));
+    color: $blue-3;
   }
   &-formula {
     margin: .5rem 0;

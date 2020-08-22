@@ -54,7 +54,7 @@
 }
 
 @mixin flex-item-flexulations-container() {
-  font-size: 1rem;
+  font-size: calc(12px + (22 - 12) * ((100vw - 300px) / (1600 - 300)));
   font-weight: 400;
   letter-spacing: -.09rem;
 }

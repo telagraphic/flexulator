@@ -39,7 +39,7 @@
     list-style: none;
 
     &:first-of-type {
-      padding: 4rem 0;
+
     }
   }
 
@@ -47,17 +47,24 @@
     display: flex;
     align-items: center;
     flex-direction: row;
-    padding: 1rem 0;
+    padding: 1% 0;
+
+    @include viewport-min(62.5rem) {
+      padding: 2% 0;
+    }
 
     &:last-child {
       padding: 1rem 0 3rem 0;
     }
 
     a {
-      margin: 0 0 0 1.5rem;
+      margin: 0 0 0 2%;
+
+      border-bottom: 2px dashed transparent;
+
       color: $blue-4;
       text-decoration: none;
-      border-bottom: 2px dashed transparent;
+      text-align: left;
 
       &:focus,
       &:hover {
@@ -68,6 +75,8 @@
 
   &__list-header {
     padding: 2rem 0 0 0;
+
+    font-size: calc(18px + (34 - 18) * ((100vw - 300px) / (1600 - 300)));
     font-weight: 800;
   }
 

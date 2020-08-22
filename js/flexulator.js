@@ -250,6 +250,14 @@ const flexulator = {
     let flexShrink = select('input[name="flex-shrink"]').value;
     let flexBasis = select('input[name="flex-basis"]').value;
 
+    // check if page is displaying grow or shrink
+
+    let growButton = select('.flexulator__items-container-grow-button');
+    let shrinkButton = select('.flexulator__items-container-shrink-button');
+
+    let growOpacity = growButton.dataset.active;
+    let shrinkOpacity = shrinkButton.dataset.active;
+
     let flexItem = `
     <article class="flex-item" style="flex: ${flexGrow} ${flexShrink} ${flexBasis}px;" data-id="${length}">
       <section class="flex-item__width-container">
@@ -291,7 +299,7 @@ const flexulator = {
       </section>
 
       <section class="flex-item__flexulations-container">
-        <section class="flex-item__flexulations-grow-container">
+        <section class="flex-item__flexulations-grow-container" data-active="1" style="opacity:${growOpacity};">
           <h5 class="flex-item__flexulations-grow-header">GROW</h5>
           <section class="flex-item__flexulations-grow-formula">
             <section class="flex-item__flexulations-section">
@@ -331,7 +339,7 @@ const flexulator = {
             </section>
           </section>
         </section>
-        <section class="flex-item__flexulations-shrink-container">
+        <section class="flex-item__flexulations-shrink-container" style="opacity:${shrinkOpacity};">
           <h5 class="flex-item__flexulations-shrink-header">SHRINK</h5>
           <section class="flex-item__flexulations-shrink-formula">
 
@@ -395,7 +403,6 @@ const flexulator = {
     setTimeout(function() {
       flexulator.addFlexItemButtons();
       flexulator.addRemoveButton();
-
     }, 500);
 
   },
@@ -430,9 +437,6 @@ const flexulator = {
         flexulator.flexItems.splice(indexToDelete, 1);
         flexulator.elements.flexItems.splice(indexToDelete, 1);
 
-        flexulator.flexItems.map(item => console.log(item.id));
-        flexulator.elements.flexItems.map(item => console.log(item));
-
         setTimeout(function() {
           flexulator.updateFlexItems();
           flexulator.updateWidth();
@@ -451,7 +455,6 @@ const flexulator = {
       event.preventDefault();
       let containerRemainder = ((flexulator.flexValues.width / flexulator.flexItems.length) + 100).toFixed(0);
       flexulator.flexItems.forEach(item => {
-        console.log(item);
         item.elements.form.flexBasis.value = containerRemainder;
         item.updateForm("basis");
         item.updateItemShrinkBasis();
@@ -470,6 +473,12 @@ const flexulator = {
 
       let shrinkFlexulations = selectAll('.flex-item__flexulations-shrink-container');
       shrinkFlexulations.forEach(element => element.style.opacity = 1);
+
+      let growButton = select('.flexulator__items-container-grow-button');
+
+      shrinkButton.dataset.active = 1;
+      growButton.dataset.active = 0;
+
     });
   },
   updateGrowExample: function() {
@@ -495,6 +504,11 @@ const flexulator = {
 
       let shrinkFlexulations = selectAll('.flex-item__flexulations-shrink-container');
       shrinkFlexulations.forEach(element => element.style.opacity = 0);
+
+      let shrinkButton = select('.flexulator__items-container-shrink-button');
+
+      shrinkButton.dataset.active = 0;
+      growButton.dataset.active = 1;
     });
   },
   updateResize: function() {
