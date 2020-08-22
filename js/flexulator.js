@@ -1,4 +1,4 @@
-import newFlexItemObject from './flexItem.js';
+// import newFlexItemObject from './flexItem.js';
 
 let select = e => document.querySelector(e);
 let selectAll = e => document.querySelectorAll(e);
