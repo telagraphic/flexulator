@@ -1,4 +1,5 @@
-export default function newFlexItemObject() {
+// export default function newFlexItemObject() {
+function newFlexItemObject() {
   return {
     style: {
       grow: 0,
