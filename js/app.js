@@ -1,5 +1,5 @@
-const tabs = document.querySelectorAll(".formula__tabs-button");
-const sections = document.querySelectorAll(".formula__tab-content");
+let tabs = document.querySelectorAll(".formula__tabs-button");
+let sections = document.querySelectorAll(".formula__tab-content");
 
 tabs.forEach(tab => {
   tab.addEventListener("click", e => {

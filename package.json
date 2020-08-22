@@ -15,8 +15,9 @@
     "build:css-autoprefix": "postcss -u autoprefixer -o dist/css/styles.css css/*.css",
     "build:css-compress": "node-sass --output-style compressed -o dist/css dist/css/*.css",
     "build:js-lint": "",
-    "build:js-uglify": "mkdir -p dist/js && uglifyjs js/*.js -m -o dist/js/scripts.js && uglifyjs js/*.js -m -c -o dist/js/scripts.min.js",
+    "build:minify-js": "mkdir -p dist/js && terser js/*.js -o dist/js/scripts.min.js -c -m",
     "build:img": "imagemin img --out-dir dist/img -p",
+    "build:fonts": "cp fonts/web/* dist/fonts",
     "build": "run-s build:*"
   },
   "repository": {
@@ -43,6 +44,6 @@
     "onchange": "^7.0.2",
     "postcss-cli": "^7.1.1",
     "postcss-discard-comments": "^4.0.2",
-    "uglify-js": "^3.10.0"
+    "terser": "^5.2.1"
   }
 }

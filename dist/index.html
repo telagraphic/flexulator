@@ -9,13 +9,933 @@
   <title>Flexulator</title>
 
   <meta name="description" content="A visual flexbox space distribution calculator">
-  <style>html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}h1{font-size:2em;margin:.67em 0}a{background-color:transparent}b{font-weight:bolder}button,input{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button{text-transform:none}button{-webkit-appearance:button}button::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring{outline:1px dotted ButtonText}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}body{font-family:Consolas,sans-serif;font-weight:400;font-style:normal;font-size:100%;font-size:calc(14px + (26 - 14) * ((100vw - 300px)/ (1600 - 300)))}h1{font-family:Consolas,sans-serif;font-size:calc(55px + (85 - 55) * ((100vw - 300px)/ (1600 - 300)));font-weight:700;font-style:normal}h3{font-size:calc(14px + (26 - 14) * ((100vw - 300px)/ (1600 - 300)))}h4{font-size:calc(14px + (26 - 14) * ((100vw - 300px)/ (1600 - 300)))}h5{font-size:calc(12px + (14 - 12) * ((100vw - 300px)/ (1600 - 300)))}*,:after,:before{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}html{min-height:100%}body{margin:0;padding:0;min-height:100%}p{display:block;-webkit-margin-before:0;-webkit-margin-after:0;-webkit-margin-start:0;-webkit-margin-end:0;word-break:keep-all}ul{-webkit-margin-before:0;-webkit-margin-after:0;-webkit-margin-start:0;-webkit-margin-end:0;-webkit-padding-start:0;-moz-padding-start:0;-moz-padding-start:0;background:0 0;margin:0;padding-left:0;list-style-position:inside}h1,h3,h4,h5{-webkit-margin-before:0;-webkit-margin-after:0;-webkit-margin-start:0;-webkit-margin-end:0;margin:0!important}input{outline:0;border:none;background-image:none;-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none}button,input{font-size:100%;line-height:1.15;margin:0}button{border:none;background-color:transparent;-webkit-appearance:none;-moz-appearance:none;outline:0}*{margin:0;-webkit-margin:0;-webkit-margin-before:0;-webkit-margin-after:0;-webkit-margin-start:0;-webkit-margin-end:0;-webkit-padding:0;-webkit-padding-start:0;-webkit-padding-end:0;-moz-margin:0;-moz-margin-before:0;-moz-margin-after:0;-moz-margin-start:0;-moz-margin-start:0;-moz-padding:0;-moz-padding-start:0;-moz-padding-end:0}.header{position:relative;display:flex;flex-direction:column;justify-content:space-around;align-items:center;background-color:#fbdef4;color:#0c0c0d}.header__title-logo{max-width:45%;width:100%;height:0;padding-top:12.5%;position:relative}.header__title-logo svg{position:absolute;top:0;left:0;padding:3% 0}.header__github-counter{position:relative}.flexulator__container{display:flex;flex-flow:column nowrap;height:100%;padding:0;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat}.flexulator__form{display:none}.flexulator__form-wrapper{display:grid;grid-template-areas:"artwork" "form" "buttons";width:50%;margin:1rem 0}.flexulator__form-artwork{grid-area:artwork;grid-row:1/2;grid-column:1/2;max-width:65%;width:100%;height:0;padding-top:0;position:relative;justify-self:center}.flexulator__form-container{grid-area:form;grid-row:1/2;grid-column:1/2;z-index:10;width:65%;justify-self:center;padding:8% 0}.flexulator__form-label{display:flex;flex-flow:row nowrap;align-items:center;color:#1780ea}.flexulator__form-label:nth-of-type(2),.flexulator__form-label:nth-of-type(3){border-top:1px solid transparent}.flexulator__form-label:nth-of-type(3) input{width:6rem}.flexulator__form-label:last-of-type{border-top:0 solid transparent;padding:0}.flexulator__form-header{flex:1 0 auto;font-weight:700;font-size:calc(12px + (34 - 12) * ((100vw - 300px)/ (1600 - 300)));text-transform:lowercase;font-weight:400}.flexulator__form-input{padding:.1rem;margin:0 1rem;width:4.5rem;background-color:transparent;border-bottom:2px dashed transparent;outline:0;color:#dd00a9;font-size:calc(12px + (34 - 12) * ((100vw - 300px)/ (1600 - 300)));text-align:center}.flexulator__form-input[type=number]{-moz-appearance:textfield}.flexulator__form-input[type=number]::-webkit-inner-spin-button,.flexulator__form-input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}.flexulator__form-label-button{padding:.15rem 0;width:89%;margin:0 auto;height:100%;color:#1b1b1d;text-transform:uppercase;text-transform:lowercase;border-radius:.67rem;background-color:#ededf0;border:2px solid #cacad1;color:#0c0c0d;text-transform:lowercase}.flexulator__form-label-button-text{font-weight:400;font-size:calc(18px + (32 - 18) * ((100vw - 300px)/ (1600 - 300)))}.flexulator__items-container-buttons{grid-area:buttons;justify-self:center;display:flex;flex-direction:row;justify-content:center;padding:2% 0;width:60%;z-index:10}.flexulator__items-container-grow-button,.flexulator__items-container-shrink-button{padding:0 4%;margin:0 4%;border-radius:.67rem;background-color:#ededf0;border:2px solid #cacad1;color:#0c0c0d;text-transform:lowercase}.flexulator__items-container{display:none}.flex-item{flex-flow:column nowrap;text-align:center;background-color:#cbe8ff;background-clip:padding-box;color:#000;padding:0;width:auto;opacity:1;position:relative;z-index:100}.flex-item::before{position:absolute;content:'';border:5px dotted #0ba2ff;top:0;left:0;bottom:0;right:0;z-index:-10}.flex-item__width{padding:1rem 0 0 0;color:#1780ea;font-size:3rem;font-weight:400}.flex-item__form{display:flex;flex-flow:column nowrap;align-items:center;z-index:-100}.flex-item__width-header{text-transform:uppercase}.flex-item__form-label{display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;padding:.25rem 0}.flex-item__form-label-container{display:flex;justify-content:center;align-items:center;width:auto;padding:.25rem 0 0 0}.flex-item__form-label-name{text-transform:uppercase}.flex-item__form-button{opacity:0;z-index:100}.flex-item__grow-increment{align-items:center;width:1rem;height:1rem;position:relative;left:0;top:0;background-image:url(img/increment-button.svg);background-repeat:no-repeat;background-position:center}.flex-item__grow-value{width:5rem;border-bottom:2px dashed transparent;background-color:transparent;outline:0;color:#dd00a9;text-align:center;font-size:2.5rem;font-size:calc(12px + (34 - 12) * ((100vw - 300px)/ (1600 - 300)));font-weight:400;-moz-appearance:textfield}.flex-item__grow-value::-webkit-inner-spin-button,.flex-item__grow-value::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}.flex-item__grow-decrement{align-items:center;width:1rem;height:1rem;position:relative;left:0;top:0;background-image:url(img/decrement-button.svg);background-repeat:no-repeat;background-position:center}.flex-item__shrink-increment{align-items:center;width:1rem;height:1rem;position:relative;left:0;top:0;background-image:url(img/increment-button.svg);background-repeat:no-repeat;background-position:center}.flex-item__shrink-value{width:5rem;border-bottom:2px dashed transparent;background-color:transparent;outline:0;color:#dd00a9;text-align:center;font-size:2.5rem;font-size:calc(12px + (34 - 12) * ((100vw - 300px)/ (1600 - 300)));font-weight:400;-moz-appearance:textfield}.flex-item__shrink-value::-webkit-inner-spin-button,.flex-item__shrink-value::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}.flex-item__shrink-decrement{align-items:center;width:1rem;height:1rem;position:relative;left:0;top:0;background-image:url(img/decrement-button.svg);background-repeat:no-repeat;background-position:center}.flex-item__basis-increment{align-items:center;width:1rem;height:1rem;position:relative;left:0;top:0;background-image:url(img/increment-button.svg);background-repeat:no-repeat;background-position:center}.flex-item__basis-value{width:5rem;border-bottom:2px dashed transparent;background-color:transparent;outline:0;color:#dd00a9;text-align:center;font-size:2.5rem;font-size:calc(12px + (34 - 12) * ((100vw - 300px)/ (1600 - 300)));font-weight:400;-moz-appearance:textfield;width:7rem}.flex-item__basis-value::-webkit-inner-spin-button,.flex-item__basis-value::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}.flex-item__basis-decrement{align-items:center;width:1rem;height:1rem;position:relative;left:0;top:0;background-image:url(img/decrement-button.svg);background-repeat:no-repeat;background-position:center}.flex-item__remove-button{padding:0 4%;margin:4%;border-radius:.67rem;background-color:#ededf0;border:2px solid #cacad1;color:#0c0c0d;text-transform:lowercase}.flex-item__flexulations-container{width:79%;margin:0 auto;display:grid;grid-template-columns:1fr;grid-template-rows:1fr}.flex-item__flexulations-section{padding:.5rem 0}.flex-item__flexulations-section h5{text-transform:uppercase}.flex-item__flexulations-grow-container{grid-column:1/2;grid-row:1/2;font-size:1rem;font-weight:400;letter-spacing:-.09rem;padding:1rem 0 .5rem 0}.flex-item__flexulations-grow-header{font-weight:800;text-transform:uppercase;font-size:calc(12px + (18 - 12) * ((100vw - 300px)/ (1600 - 300)))}.flex-item__flexulations-grow-formula{margin:.5rem 0}.flex-item__flexulations-shrink-container{grid-column:1/2;grid-row:1/2;font-size:1rem;font-weight:400;letter-spacing:-.09rem;padding:.5rem 0;opacity:0}.flex-item__flexulations-shrink-header{letter-spacing:0;font-weight:800;text-transform:uppercase;font-size:calc(12px + (18 - 12) * ((100vw - 300px)/ (1600 - 300)))}.flex-item__flexulations-shrink-formula{margin:.5rem 0}.formula__tabs-navigation{display:flex;flex-direction:row;justify-content:space-around;border-top:3px solid #e0e0e2;border-bottom:3px solid #e0e0e2}.formula__tabs-button{flex:1;height:4rem;background-color:#f9f8fb;text-align:center;display:inline-block;position:relative}.formula__tabs-button:after{display:block;content:'';border-top:solid 3px #bebec0;transform:scaleX(0)}.formula__tabs-button.is-active{color:#1780ea}.formula__tabs-button.is-active:after{border-top:solid 3px #1780ea;transform:scaleX(1)!important}.formula__tabs-button-link{position:absolute;display:flex;align-items:center;justify-content:center;height:100%;width:100%}.formula__tabs-button-link-text{font-size:calc(26px + (60 - 26) * ((100vw - 300px)/ (1600 - 300)));font-family:Roboto;font-weight:100}.formula__tabs-content-container{padding:5% 0}.formula__tab-content{display:none}.formula__tab-content.is-active{display:block}.formula__formula-section{padding:2% 0;font-size:inherit;text-align:center}.example-formula__formula-container{width:auto;margin:5% auto}.example-formula__formula-section{display:grid;grid-template-areas:"header" "statement";grid-template-rows:1fr 1.25fr;padding:0;margin:0 auto 2% auto;width:100%;border:2px solid #000;border-left:0;border-right:0;font-family:Roboto;font-weight:400}.example-formula__formula-header{grid-area:header;display:grid;grid-template-columns:1fr 4fr;grid-template-rows:1fr 1fr;grid-template-areas:"number container" "number container";width:100%}.example-formula__formula-header-number{grid-area:number;display:flex;justify-content:center;align-items:center;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat,#fbdef4;border:2px solid #000;border-top:0;border-left:0;color:#000;font-size:calc(26px + (68 - 26) * ((100vw - 300px)/ (1600 - 300)))}.example-formula__formula-header-container{grid-area:container;display:flex;flex-direction:column}.example-formula__formula-header-title{flex:.5;padding:1.5%;background-color:#fbdef4;border-bottom:2px solid #000;color:#dd00a9;text-align:left}.example-formula__formula-header-details{flex:1;padding:1.5%;border-bottom:2px solid #000;text-align:left;font-family:Roboto;font-weight:400}.example-formula__formula-statement{grid-area:statement;display:flex;justify-content:center;align-content:center;width:100%;padding:1.5%;margin:0 auto;color:#38383d}.example-formula__description-container{width:89%;margin:5% auto;text-align:left}.example-formula__description{font-family:Roboto;font-weight:400;font-size:calc(12px + (32 - 12) * ((100vw - 300px)/ (1600 - 300)));line-height:125%}.example-formula__section-formula-operand{display:flex;flex-direction:column;justify-content:center;flex:1;padding:1.5%;border:2px solid #000;background-color:#cbe8ff;text-transform:uppercase;font-size:calc(12px + (22 - 12) * ((100vw - 300px)/ (1600 - 300)))}.example-formula__section-formula-operator{align-self:center;padding:2.5% 3%;text-transform:uppercase;font-size:calc(26px + (38 - 26) * ((100vw - 300px)/ (1600 - 300)))}.example-formula__section-formula-property{color:#000;font-weight:800}.example-formula__section-formula-value{font-weight:400;padding:1.75% 0}.grow-animation{width:69%;margin:0 auto}.grow-animation__container{display:flex;background-color:#fbdef4;border:2px solid #000;z-index:1000}.grow-animation__item{width:3rem;height:3rem}.grow-animation__item-box{height:100%;background-color:#cbe8ff;border:3px dotted #0ba2ff;z-index:100}.shrink-animation{display:grid;grid-template-columns:1fr;grid-template-rows:1fr}.shrink-animation__container{display:flex;grid-column:1/2;grid-row:1/2;width:69%;margin:0 auto;background-color:#fbdef4;border:2px solid #000;height:3rem;z-index:10}.shrink-animation__items{grid-column:1/2;grid-row:1/2;display:flex;justify-content:center;width:75%;margin:0 auto;z-index:100;opacity:.5}.shrink-animation__item{width:33.33%;height:3rem}.shrink-animation__item-box{height:100%;background-color:#cbe8ff;border:3px dotted #0ba2ff}.resources__container{display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%}.resources__list{display:flex;flex-direction:column;list-style:none}.resources__list:first-of-type{padding:4rem 0}.resources__list-item{display:flex;align-items:center;flex-direction:row;padding:1rem 0}.resources__list-item:last-child{padding:1rem 0 3rem 0}.resources__list-item a{margin:0 0 0 1.5rem;color:#1780ea;text-decoration:none;border-bottom:2px dashed transparent}.resources__list-header{padding:2rem 0 0 0;font-weight:800}.resources__triangle{width:0;height:0;border-style:solid;border-width:12.5px 0 12.5px 10px;border-color:transparent transparent transparent #e0e0e2}.page__main{display:flex;flex-direction:column}
+  <style>
+    html {
+      line-height: 1.15;
+      -webkit-text-size-adjust: 100%
+    }
+
+    body {
+      margin: 0
+    }
+
+    h1 {
+      font-size: 2em;
+      margin: .67em 0
+    }
+
+    a {
+      background-color: transparent
+    }
+
+    b {
+      font-weight: bolder
+    }
+
+    button,
+    input {
+      font-family: inherit;
+      font-size: 100%;
+      line-height: 1.15;
+      margin: 0
+    }
+
+    button,
+    input {
+      overflow: visible
+    }
+
+    button {
+      text-transform: none
+    }
+
+    button {
+      -webkit-appearance: button
+    }
+
+    button::-moz-focus-inner {
+      border-style: none;
+      padding: 0
+    }
+
+    button:-moz-focusring {
+      outline: 1px dotted ButtonText
+    }
+
+    [type=number]::-webkit-inner-spin-button,
+    [type=number]::-webkit-outer-spin-button {
+      height: auto
+    }
+
+    ::-webkit-file-upload-button {
+      -webkit-appearance: button;
+      font: inherit
+    }
+
+    body {
+      font-family: Consolas, sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 100%;
+      font-size: calc(14px + (26 - 14) * ((100vw - 300px)/ (1600 - 300)))
+    }
+
+    h1 {
+      font-family: Consolas, sans-serif;
+      font-size: calc(55px + (85 - 55) * ((100vw - 300px)/ (1600 - 300)));
+      font-weight: 700;
+      font-style: normal
+    }
+
+    h3 {
+      font-size: calc(14px + (26 - 14) * ((100vw - 300px)/ (1600 - 300)))
+    }
+
+    h4 {
+      font-size: calc(14px + (26 - 14) * ((100vw - 300px)/ (1600 - 300)))
+    }
+
+    *,
+    :after,
+    :before {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box
+    }
+
+    html {
+      min-height: 100%
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%
+    }
+
+    p {
+      display: block;
+      -webkit-margin-before: 0;
+      -webkit-margin-after: 0;
+      -webkit-margin-start: 0;
+      -webkit-margin-end: 0;
+      word-break: keep-all
+    }
+
+    ul {
+      -webkit-margin-before: 0;
+      -webkit-margin-after: 0;
+      -webkit-margin-start: 0;
+      -webkit-margin-end: 0;
+      -webkit-padding-start: 0;
+      -moz-padding-start: 0;
+      -moz-padding-start: 0;
+      background: 0 0;
+      margin: 0;
+      padding-left: 0;
+      list-style-position: inside
+    }
+
+    h1,
+    h3,
+    h4,
+    h5 {
+      -webkit-margin-before: 0;
+      -webkit-margin-after: 0;
+      -webkit-margin-start: 0;
+      -webkit-margin-end: 0;
+      margin: 0 !important
+    }
+
+    input {
+      outline: 0;
+      border: none;
+      background-image: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none
+    }
+
+    button,
+    input {
+      font-size: 100%;
+      line-height: 1.15;
+      margin: 0
+    }
+
+    button {
+      border: none;
+      background-color: transparent;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      outline: 0
+    }
+
+    * {
+      margin: 0;
+      -webkit-margin: 0;
+      -webkit-margin-before: 0;
+      -webkit-margin-after: 0;
+      -webkit-margin-start: 0;
+      -webkit-margin-end: 0;
+      -webkit-padding: 0;
+      -webkit-padding-start: 0;
+      -webkit-padding-end: 0;
+      -moz-margin: 0;
+      -moz-margin-before: 0;
+      -moz-margin-after: 0;
+      -moz-margin-start: 0;
+      -moz-margin-start: 0;
+      -moz-padding: 0;
+      -moz-padding-start: 0;
+      -moz-padding-end: 0
+    }
+
+    .header {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      background-color: #fbdef4;
+      color: #0c0c0d
+    }
+
+    .header__title-logo {
+      max-width: 45%;
+      width: 100%;
+      height: 0;
+      padding-top: 12.5%;
+      position: relative
+    }
+
+    .header__title-logo svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 3% 0
+    }
+
+    .header__github-counter {
+      position: relative
+    }
+
+    .header__message {
+      display: flex;
+      justify-content: center;
+      padding: 2%;
+      text-align: center
+    }
+
+    .flexulator__container {
+      display: flex;
+      flex-flow: column nowrap;
+      height: 100%;
+      padding: 0;
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat
+    }
+
+    .flexulator__form {
+      display: none
+    }
+
+    .flexulator__form-wrapper {
+      display: grid;
+      grid-template-areas: "artwork""form""buttons";
+      width: 50%;
+      margin: 1rem 0
+    }
+
+    .flexulator__form-artwork {
+      grid-area: artwork;
+      grid-row: 1/2;
+      grid-column: 1/2;
+      max-width: 65%;
+      width: 100%;
+      height: 0;
+      padding-top: 0;
+      position: relative;
+      justify-self: center
+    }
+
+    .flexulator__form-container {
+      grid-area: form;
+      grid-row: 1/2;
+      grid-column: 1/2;
+      z-index: 10;
+      width: 65%;
+      justify-self: center;
+      padding: 8% 0
+    }
+
+    .flexulator__form-label {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      color: #1780ea
+    }
+
+    .flexulator__form-label:nth-of-type(2),
+    .flexulator__form-label:nth-of-type(3) {
+      border-top: 1px solid transparent
+    }
+
+    .flexulator__form-label:nth-of-type(3) input {
+      width: 6rem
+    }
+
+    .flexulator__form-label:last-of-type {
+      border-top: 0 solid transparent;
+      padding: 0
+    }
+
+    .flexulator__form-header {
+      flex: 1 0 auto;
+      font-weight: 700;
+      font-size: calc(12px + (34 - 12) * ((100vw - 300px)/ (1600 - 300)));
+      text-transform: lowercase;
+      font-weight: 400
+    }
+
+    .flexulator__form-input {
+      padding: .1rem;
+      margin: 0 1rem;
+      width: 4.5rem;
+      background-color: transparent;
+      border-bottom: 2px dashed transparent;
+      outline: 0;
+      color: #dd00a9;
+      font-size: calc(12px + (34 - 12) * ((100vw - 300px)/ (1600 - 300)));
+      text-align: center
+    }
+
+    .flexulator__form-input[type=number] {
+      -moz-appearance: textfield
+    }
+
+    .flexulator__form-input[type=number]::-webkit-inner-spin-button,
+    .flexulator__form-input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0
+    }
+
+    .flexulator__form-label-button {
+      padding: .15rem 0;
+      width: 89%;
+      margin: 0 auto;
+      height: 100%;
+      color: #1b1b1d;
+      text-transform: uppercase;
+      text-transform: lowercase;
+      border-radius: .67rem;
+      background-color: #ededf0;
+      border: 2px solid #cacad1;
+      color: #0c0c0d;
+      text-transform: lowercase
+    }
+
+    .flexulator__form-label-button-text {
+      font-weight: 400;
+      font-size: calc(18px + (32 - 18) * ((100vw - 300px)/ (1600 - 300)))
+    }
+
+    .flexulator__items-container-buttons {
+      grid-area: buttons;
+      justify-self: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      padding: 2% 0;
+      width: 60%;
+      z-index: 10
+    }
+
+    .flexulator__items-container-grow-button,
+    .flexulator__items-container-shrink-button {
+      padding: 0 4%;
+      margin: 0 4%;
+      border-radius: .67rem;
+      background-color: #ededf0;
+      border: 2px solid #cacad1;
+      color: #0c0c0d;
+      text-transform: lowercase
+    }
+
+    .flexulator__items-container {
+      display: none
+    }
+
+    .flex-item {
+      flex-flow: column nowrap;
+      text-align: center;
+      background-color: #cbe8ff;
+      background-clip: padding-box;
+      color: #000;
+      padding: 0;
+      width: auto;
+      opacity: 1;
+      position: relative;
+      z-index: 100
+    }
+
+    .flex-item::before {
+      position: absolute;
+      content: '';
+      border: 5px dotted #0ba2ff;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      z-index: -10
+    }
+
+    .flex-item__width {
+      padding: 1rem 0 0 0;
+      color: #1780ea;
+      font-size: 3rem;
+      font-weight: 400
+    }
+
+    .flex-item__form {
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      z-index: -100
+    }
+
+    .flex-item__width-header {
+      text-transform: uppercase
+    }
+
+    .flex-item__form-label {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: .25rem 0
+    }
+
+    .flex-item__form-label-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: auto;
+      padding: .25rem 0 0 0
+    }
+
+    .flex-item__form-label-name {
+      text-transform: uppercase
+    }
+
+    .flex-item__form-button {
+      opacity: 0;
+      z-index: 100
+    }
+
+    .flex-item__grow-increment {
+      align-items: center;
+      width: 1rem;
+      height: 1rem;
+      position: relative;
+      left: 0;
+      top: 0;
+      background-image: url(img/increment-button.svg);
+      background-repeat: no-repeat;
+      background-position: center
+    }
+
+    .flex-item__grow-value {
+      width: 5rem;
+      border-bottom: 2px dashed transparent;
+      background-color: transparent;
+      outline: 0;
+      color: #dd00a9;
+      text-align: center;
+      font-size: 2.5rem;
+      font-size: calc(12px + (34 - 12) * ((100vw - 300px)/ (1600 - 300)));
+      font-weight: 400;
+      -moz-appearance: textfield
+    }
+
+    .flex-item__grow-value::-webkit-inner-spin-button,
+    .flex-item__grow-value::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0
+    }
+
+    .flex-item__grow-decrement {
+      align-items: center;
+      width: 1rem;
+      height: 1rem;
+      position: relative;
+      left: 0;
+      top: 0;
+      background-image: url(img/decrement-button.svg);
+      background-repeat: no-repeat;
+      background-position: center
+    }
+
+    .flex-item__shrink-increment {
+      align-items: center;
+      width: 1rem;
+      height: 1rem;
+      position: relative;
+      left: 0;
+      top: 0;
+      background-image: url(img/increment-button.svg);
+      background-repeat: no-repeat;
+      background-position: center
+    }
+
+    .flex-item__shrink-value {
+      width: 5rem;
+      border-bottom: 2px dashed transparent;
+      background-color: transparent;
+      outline: 0;
+      color: #dd00a9;
+      text-align: center;
+      font-size: 2.5rem;
+      font-size: calc(12px + (34 - 12) * ((100vw - 300px)/ (1600 - 300)));
+      font-weight: 400;
+      -moz-appearance: textfield
+    }
+
+    .flex-item__shrink-value::-webkit-inner-spin-button,
+    .flex-item__shrink-value::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0
+    }
+
+    .flex-item__shrink-decrement {
+      align-items: center;
+      width: 1rem;
+      height: 1rem;
+      position: relative;
+      left: 0;
+      top: 0;
+      background-image: url(img/decrement-button.svg);
+      background-repeat: no-repeat;
+      background-position: center
+    }
+
+    .flex-item__basis-increment {
+      align-items: center;
+      width: 1rem;
+      height: 1rem;
+      position: relative;
+      left: 0;
+      top: 0;
+      background-image: url(img/increment-button.svg);
+      background-repeat: no-repeat;
+      background-position: center
+    }
+
+    .flex-item__basis-value {
+      width: 5rem;
+      border-bottom: 2px dashed transparent;
+      background-color: transparent;
+      outline: 0;
+      color: #dd00a9;
+      text-align: center;
+      font-size: 2.5rem;
+      font-size: calc(12px + (34 - 12) * ((100vw - 300px)/ (1600 - 300)));
+      font-weight: 400;
+      -moz-appearance: textfield;
+      width: 7rem
+    }
+
+    .flex-item__basis-value::-webkit-inner-spin-button,
+    .flex-item__basis-value::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0
+    }
+
+    .flex-item__basis-decrement {
+      align-items: center;
+      width: 1rem;
+      height: 1rem;
+      position: relative;
+      left: 0;
+      top: 0;
+      background-image: url(img/decrement-button.svg);
+      background-repeat: no-repeat;
+      background-position: center
+    }
+
+    .flex-item__remove-button {
+      padding: 0 4%;
+      margin: 4%;
+      border-radius: .67rem;
+      background-color: #ededf0;
+      border: 2px solid #cacad1;
+      color: #0c0c0d;
+      text-transform: lowercase
+    }
+
+    .flex-item__flexulations-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+      width: 79%;
+      margin: 0 auto;
+      padding: 4% 0 0 0
+    }
+
+    .flex-item__flexulations-section {
+      padding: .5rem 0
+    }
+
+    .flex-item__flexulations-section h5 {
+      text-transform: uppercase
+    }
+
+    .flex-item__flexulations-grow-container {
+      grid-column: 1/2;
+      grid-row: 1/2;
+      font-size: calc(12px + (22 - 12) * ((100vw - 300px)/ (1600 - 300)));
+      font-weight: 400;
+      letter-spacing: -.09rem;
+      padding: 1rem 0 .5rem 0
+    }
+
+    .flex-item__flexulations-grow-header {
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: calc(12px + (25 - 12) * ((100vw - 300px)/ (1600 - 300)));
+      color: #0c74dd
+    }
+
+    .flex-item__flexulations-grow-formula {
+      margin: .5rem 0
+    }
+
+    .flex-item__flexulations-shrink-container {
+      grid-column: 1/2;
+      grid-row: 1/2;
+      font-size: calc(12px + (22 - 12) * ((100vw - 300px)/ (1600 - 300)));
+      font-weight: 400;
+      letter-spacing: -.09rem;
+      padding: .5rem 0;
+      opacity: 0
+    }
+
+    .flex-item__flexulations-shrink-header {
+      letter-spacing: 0;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: calc(12px + (25 - 12) * ((100vw - 300px)/ (1600 - 300)));
+      color: #0c74dd
+    }
+
+    .flex-item__flexulations-shrink-formula {
+      margin: .5rem 0
+    }
+
+    .formula__tabs-navigation {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      border-top: 3px solid #e0e0e2;
+      border-bottom: 3px solid #e0e0e2
+    }
+
+    .formula__tabs-button {
+      flex: 1;
+      height: 4rem;
+      background-color: #f9f8fb;
+      text-align: center;
+      display: inline-block;
+      position: relative
+    }
+
+    .formula__tabs-button:after {
+      display: block;
+      content: '';
+      border-top: solid 3px #bebec0;
+      transform: scaleX(0)
+    }
+
+    .formula__tabs-button.is-active {
+      color: #1780ea
+    }
+
+    .formula__tabs-button.is-active:after {
+      border-top: solid 3px #1780ea;
+      transform: scaleX(1) !important
+    }
+
+    .formula__tabs-button-link {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%
+    }
+
+    .formula__tabs-button-link-text {
+      font-size: calc(26px + (60 - 26) * ((100vw - 300px)/ (1600 - 300)));
+      font-family: Roboto;
+      font-weight: 100
+    }
+
+    .formula__tabs-content-container {
+      padding: 5% 0
+    }
+
+    .formula__tab-content {
+      display: none
+    }
+
+    .formula__tab-content.is-active {
+      display: block
+    }
+
+    .formula__formula-section {
+      padding: 2% 0;
+      font-size: inherit;
+      text-align: center
+    }
+
+    .example-formula__formula-container {
+      width: auto;
+      margin: 5% auto
+    }
+
+    .example-formula__formula-section {
+      display: grid;
+      grid-template-areas: "header""statement";
+      grid-template-rows: 1fr 1.25fr;
+      padding: 0;
+      margin: 0 auto 2% auto;
+      width: 100%;
+      border: 2px solid #000;
+      border-left: 0;
+      border-right: 0;
+      font-family: Roboto;
+      font-weight: 400
+    }
+
+    .example-formula__formula-header {
+      grid-area: header;
+      display: grid;
+      grid-template-columns: 1fr 4fr;
+      grid-template-rows: 1fr 1fr;
+      grid-template-areas: "number container""number container";
+      width: 100%
+    }
+
+    .example-formula__formula-header-number {
+      grid-area: number;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat, #fbdef4;
+      border: 2px solid #000;
+      border-top: 0;
+      border-left: 0;
+      color: #000;
+      font-size: calc(26px + (68 - 26) * ((100vw - 300px)/ (1600 - 300)))
+    }
+
+    .example-formula__formula-header-container {
+      grid-area: container;
+      display: flex;
+      flex-direction: column
+    }
+
+    .example-formula__formula-header-title {
+      flex: .5;
+      padding: 1.5%;
+      background-color: #fbdef4;
+      border-bottom: 2px solid #000;
+      color: #dd00a9;
+      text-align: left
+    }
+
+    .example-formula__formula-header-details {
+      flex: 1;
+      padding: 1.5%;
+      border-bottom: 2px solid #000;
+      text-align: left;
+      font-family: Roboto;
+      font-weight: 400
+    }
+
+    .example-formula__formula-statement {
+      grid-area: statement;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      width: 100%;
+      padding: 1.5%;
+      margin: 0 auto;
+      color: #38383d
+    }
+
+    .example-formula__description-container {
+      width: 89%;
+      margin: 5% auto;
+      text-align: left
+    }
+
+    .example-formula__description {
+      font-family: Roboto;
+      font-weight: 400;
+      font-size: calc(12px + (32 - 12) * ((100vw - 300px)/ (1600 - 300)));
+      line-height: 125%
+    }
+
+    .example-formula__section-formula-operand {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1;
+      padding: 1.5%;
+      border: 2px solid #000;
+      background-color: #cbe8ff;
+      text-transform: uppercase;
+      font-size: calc(12px + (22 - 12) * ((100vw - 300px)/ (1600 - 300)))
+    }
+
+    .example-formula__section-formula-operator {
+      align-self: center;
+      padding: 2.5% 3%;
+      text-transform: uppercase;
+      font-size: calc(26px + (38 - 26) * ((100vw - 300px)/ (1600 - 300)))
+    }
+
+    .example-formula__section-formula-property {
+      color: #000;
+      font-weight: 800
+    }
+
+    .example-formula__section-formula-value {
+      font-weight: 400;
+      padding: 1.75% 0
+    }
+
+    .grow-animation {
+      width: 69%;
+      margin: 0 auto
+    }
+
+    .grow-animation__container {
+      display: flex;
+      background-color: #fbdef4;
+      border: 2px solid #000;
+      z-index: 1000
+    }
+
+    .grow-animation__item {
+      width: 3rem;
+      height: 3rem
+    }
+
+    .grow-animation__item-box {
+      height: 100%;
+      background-color: #cbe8ff;
+      border: 3px dotted #0ba2ff;
+      z-index: 100
+    }
+
+    .shrink-animation {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr
+    }
+
+    .shrink-animation__container {
+      display: flex;
+      grid-column: 1/2;
+      grid-row: 1/2;
+      width: 69%;
+      margin: 0 auto;
+      background-color: #fbdef4;
+      border: 2px solid #000;
+      height: 3rem;
+      z-index: 10
+    }
+
+    .shrink-animation__items {
+      grid-column: 1/2;
+      grid-row: 1/2;
+      display: flex;
+      justify-content: center;
+      width: 75%;
+      margin: 0 auto;
+      z-index: 100;
+      opacity: .5
+    }
+
+    .shrink-animation__item {
+      width: 33.33%;
+      height: 3rem
+    }
+
+    .shrink-animation__item-box {
+      height: 100%;
+      background-color: #cbe8ff;
+      border: 3px dotted #0ba2ff
+    }
+
+    .resources__container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%
+    }
+
+    .resources__list {
+      display: flex;
+      flex-direction: column;
+      list-style: none
+    }
+
+    .resources__list-item {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      padding: 1% 0
+    }
+
+    .resources__list-item:last-child {
+      padding: 1rem 0 3rem 0
+    }
+
+    .resources__list-item a {
+      margin: 0 0 0 2%;
+      border-bottom: 2px dashed transparent;
+      color: #1780ea;
+      text-decoration: none;
+      text-align: left
+    }
+
+    .resources__list-header {
+      padding: 2rem 0 0 0;
+      font-size: calc(18px + (34 - 18) * ((100vw - 300px)/ (1600 - 300)));
+      font-weight: 800
+    }
+
+    .resources__triangle {
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 12.5px 0 12.5px 10px;
+      border-color: transparent transparent transparent #e0e0e2
+    }
+
+    .page__main {
+      display: flex;
+      flex-direction: column
+    }
   </style>
   <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
 
   <link rel="stylesheet" href="css/styles.css" media="print" onload="this.media='all'">
   <link rel="preload" href="fonts/web/Consolas.woff2" as="font" type="font/woff" crossorigin="">
-  <link rel="preload" href="fonts/web/Consolas-Italic.woff2" as="font" type="font/woff" crossorigin="">
   <link rel="preload" href="fonts/web/Consolas-Bold.woff2" as="font" type="font/woff" crossorigin="">
   <link rel="preload" href="fonts/web/Roboto-Thin.woff2" as="font" type="font/woff" crossorigin="">
 
@@ -24,14 +944,6 @@
       font-family: "Consolas";
       src: url('fonts/web/Consolas.woff') format('woff'), url('fonts/web/Consolas.woff2') format('woff2');
       font-display: swap;
-      font-weight: 400;
-    }
-
-    @font-face {
-      font-family: "Consolas";
-      src: url('fonts/web/Consolas-Italic.woff') format('woff'), url('fonts/web/Consolas-Italic.woff2') format('woff2');
-      font-display: swap;
-      font-style: italic;
       font-weight: 400;
     }
 
@@ -55,7 +967,6 @@
       font-display: swap;
       font-weight: 400;
     }
-
   </style>
 
 </head>
@@ -66,11 +977,18 @@
       <header class="header">
         <section class="header__title-logo">
           <svg id="Logo" class="header__title-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 545 130">
-            <path d="M62,32.48V31.27H25.28V57.84H50V51.37L60.34,63.23,50,75v-6.7H25.28v39.47H31L19.12,118.08,7.37,107.74h6.05V20.55H62V14.37L72.34,26.23,62,38Zm41-10.14L91.23,12,79.37,22.34h6.31v86.72H96.41V22.34H103ZM155.32,88h10.55a22.41,22.41,0,0,1-2.77,7.84,28.28,28.28,0,0,1-5.25,7.06,24.84,24.84,0,0,1-12,6.43,36.47,36.47,0,0,1-8.69.95,26.63,26.63,0,0,1-20.07-8.67q-8.22-8.66-8.22-24.27,0-15.37,8.29-25t21.66-9.59A28.76,28.76,0,0,1,151.9,46a24.12,24.12,0,0,1,9.65,8.25,28.54,28.54,0,0,1,4.26,11.26,74,74,0,0,1,.95,14H120.35q.3,9.75,4.56,15.63t13.17,5.88q8.34,0,13.3-5.57A18.77,18.77,0,0,0,155.32,88Zm-34.73-17h35.15a28.15,28.15,0,0,0-3-11.14q-4.38-7.76-14.59-7.75a16.12,16.12,0,0,0-12.29,5.33A20.25,20.25,0,0,0,120.59,71.07Zm111,37h-13.7l-15.85-24-15.37,24H173.13l22.46-32.71L174.26,44.26h13.88L202.8,66.72l14.83-22.46,13.05.3L209.17,75.35ZM298.1,44.32,286.35,34,274.5,44.32H281V75.59q0,9.36-2.15,14.72-3.94,10-14.85,10-7.6,0-10.39-5.71a18.39,18.39,0,0,1-1.51-8V44.26h-11V87.63q0,8.16,2.63,13,4.86,9.12,18.24,9.12a22.07,22.07,0,0,0,14.61-5,21.62,21.62,0,0,0,5.09-6.13l-.12,9.41h10.13V44.32h6.42ZM321,107.66h-.83V20.55H309.49v87.11h-6.56L314.79,118l11.74-10.34Zm68.09,3.48v-1.81c-.78.07-1.73.1-2.85.1q-5.55,0-8-3.93a15.14,15.14,0,0,1-1.84-5.9,27.43,27.43,0,0,1-9.42,7.45,29.14,29.14,0,0,1-13.52,3.15q-8.88,0-14.5-5.38a17.85,17.85,0,0,1-5.63-13.48q0-8.86,5.54-13.74t14.53-6l17.1-2.14q3.69-.48,4.94-3.09a9.47,9.47,0,0,0,.72-4.13q0-5.5-3.9-8t-11.14-2.49q-8.39,0-11.89,4.55-2,2.52-2.56,7.49h-10Q337,52,344.3,47.34a31.26,31.26,0,0,1,17-4.63q11.25,0,18.27,4.29t7,13.34V97.1a4.67,4.67,0,0,0,.69,2.68,2.56,2.56,0,0,0,1.87.94V93l10.34,11.85-10.34,11.75ZM375.85,75.63a17.94,17.94,0,0,1-5.05,2.09,42.81,42.81,0,0,1-6.07,1.2l-6.48.83a25.15,25.15,0,0,0-8.76,2.44q-5,2.79-5,8.91a8.8,8.8,0,0,0,3.39,7.31,12.59,12.59,0,0,0,8,2.68,24.45,24.45,0,0,0,11-2.62q8.93-4.34,8.93-14.21ZM427.32,53V44.26H417.13V26.45H406.29V44.26h-8V37L388,48.77l10.34,11.86V53h8V95.25q0,6.14,2.68,10t10.19,3.84a36.27,36.27,0,0,0,4.32-.24,23.73,23.73,0,0,0,3.84-.77V99.54c-.8.11-1.49.17-2.09.2s-1.15,0-1.66,0a9.54,9.54,0,0,1-4.17-.66q-2.26-1.12-2.27-4.46V53Zm65.41,21.77q0,15.42-7.46,25.47t-23.12,10.06q-13.08,0-20.77-8.9t-7.69-23.89q0-16.08,8.11-25.59t21.77-9.53a28.58,28.58,0,0,1,20.7,8.22Q492.73,58.84,492.73,74.79Zm-11.2.3q0-8.93-2.83-14.52-4.47-8.8-15.43-8.81-9.72,0-14.14,7.5t-4.42,18.09q0,10.17,4.42,17t14,6.78q10.55,0,14.46-8.06A40.56,40.56,0,0,0,481.53,75.09Zm53.25-32.2c-.47,0-.81-.06-1-.06a15.91,15.91,0,0,0-11.26,4.62q-4.87,4.61-6.13,7.83v-11H506.19v63.4h-5.82L512.12,118,524,107.66h-7.06V71.36a18.21,18.21,0,0,1,4.35-12q4.35-5.2,12.45-5.21c.64,0,1.22,0,1.76.06a16,16,0,0,1,1.76.24V43.13Z" style="fill: #ca3694"/>
+            <path
+              d="M62,32.48V31.27H25.28V57.84H50V51.37L60.34,63.23,50,75v-6.7H25.28v39.47H31L19.12,118.08,7.37,107.74h6.05V20.55H62V14.37L72.34,26.23,62,38Zm41-10.14L91.23,12,79.37,22.34h6.31v86.72H96.41V22.34H103ZM155.32,88h10.55a22.41,22.41,0,0,1-2.77,7.84,28.28,28.28,0,0,1-5.25,7.06,24.84,24.84,0,0,1-12,6.43,36.47,36.47,0,0,1-8.69.95,26.63,26.63,0,0,1-20.07-8.67q-8.22-8.66-8.22-24.27,0-15.37,8.29-25t21.66-9.59A28.76,28.76,0,0,1,151.9,46a24.12,24.12,0,0,1,9.65,8.25,28.54,28.54,0,0,1,4.26,11.26,74,74,0,0,1,.95,14H120.35q.3,9.75,4.56,15.63t13.17,5.88q8.34,0,13.3-5.57A18.77,18.77,0,0,0,155.32,88Zm-34.73-17h35.15a28.15,28.15,0,0,0-3-11.14q-4.38-7.76-14.59-7.75a16.12,16.12,0,0,0-12.29,5.33A20.25,20.25,0,0,0,120.59,71.07Zm111,37h-13.7l-15.85-24-15.37,24H173.13l22.46-32.71L174.26,44.26h13.88L202.8,66.72l14.83-22.46,13.05.3L209.17,75.35ZM298.1,44.32,286.35,34,274.5,44.32H281V75.59q0,9.36-2.15,14.72-3.94,10-14.85,10-7.6,0-10.39-5.71a18.39,18.39,0,0,1-1.51-8V44.26h-11V87.63q0,8.16,2.63,13,4.86,9.12,18.24,9.12a22.07,22.07,0,0,0,14.61-5,21.62,21.62,0,0,0,5.09-6.13l-.12,9.41h10.13V44.32h6.42ZM321,107.66h-.83V20.55H309.49v87.11h-6.56L314.79,118l11.74-10.34Zm68.09,3.48v-1.81c-.78.07-1.73.1-2.85.1q-5.55,0-8-3.93a15.14,15.14,0,0,1-1.84-5.9,27.43,27.43,0,0,1-9.42,7.45,29.14,29.14,0,0,1-13.52,3.15q-8.88,0-14.5-5.38a17.85,17.85,0,0,1-5.63-13.48q0-8.86,5.54-13.74t14.53-6l17.1-2.14q3.69-.48,4.94-3.09a9.47,9.47,0,0,0,.72-4.13q0-5.5-3.9-8t-11.14-2.49q-8.39,0-11.89,4.55-2,2.52-2.56,7.49h-10Q337,52,344.3,47.34a31.26,31.26,0,0,1,17-4.63q11.25,0,18.27,4.29t7,13.34V97.1a4.67,4.67,0,0,0,.69,2.68,2.56,2.56,0,0,0,1.87.94V93l10.34,11.85-10.34,11.75ZM375.85,75.63a17.94,17.94,0,0,1-5.05,2.09,42.81,42.81,0,0,1-6.07,1.2l-6.48.83a25.15,25.15,0,0,0-8.76,2.44q-5,2.79-5,8.91a8.8,8.8,0,0,0,3.39,7.31,12.59,12.59,0,0,0,8,2.68,24.45,24.45,0,0,0,11-2.62q8.93-4.34,8.93-14.21ZM427.32,53V44.26H417.13V26.45H406.29V44.26h-8V37L388,48.77l10.34,11.86V53h8V95.25q0,6.14,2.68,10t10.19,3.84a36.27,36.27,0,0,0,4.32-.24,23.73,23.73,0,0,0,3.84-.77V99.54c-.8.11-1.49.17-2.09.2s-1.15,0-1.66,0a9.54,9.54,0,0,1-4.17-.66q-2.26-1.12-2.27-4.46V53Zm65.41,21.77q0,15.42-7.46,25.47t-23.12,10.06q-13.08,0-20.77-8.9t-7.69-23.89q0-16.08,8.11-25.59t21.77-9.53a28.58,28.58,0,0,1,20.7,8.22Q492.73,58.84,492.73,74.79Zm-11.2.3q0-8.93-2.83-14.52-4.47-8.8-15.43-8.81-9.72,0-14.14,7.5t-4.42,18.09q0,10.17,4.42,17t14,6.78q10.55,0,14.46-8.06A40.56,40.56,0,0,0,481.53,75.09Zm53.25-32.2c-.47,0-.81-.06-1-.06a15.91,15.91,0,0,0-11.26,4.62q-4.87,4.61-6.13,7.83v-11H506.19v63.4h-5.82L512.12,118,524,107.66h-7.06V71.36a18.21,18.21,0,0,1,4.35-12q4.35-5.2,12.45-5.21c.64,0,1.22,0,1.76.06a16,16,0,0,1,1.76.24V43.13Z"
+              style="fill: #ca3694" />
           </svg>
         </section>
         <section class="header__github-counter github-counter">
           <a class="github-button" href="https://github.com/telagraphic/flexulator" data-size="large" data-show-count="true" aria-label="Star telagraphic/flexulator on GitHub">Star</a>
+        </section>
+        <section class="header__message">
+          <p>
+            View on 🖥️💻 to use the visual flexulator!
+          </p>
         </section>
       </header>
       <section class="flexulator__form">
@@ -78,9 +996,15 @@
           <section class="flexulator__form-artwork">
             <svg class="flexulator__form-artwork-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 209 141">
               <g id="Form_Box" data-name="Form Box">
-                <path id="Background" data-name="Background" d="M193,60.47V76.59l-.36.31a8.81,8.81,0,0,0-2.46,4.27,24.17,24.17,0,0,0-.68,6.15v23.93a36.5,36.5,0,0,1-1.37,10.36A21.15,21.15,0,0,1,186.8,125h-165Q19,119.5,19,111.25V87.73a21.88,21.88,0,0,0-.75-6,9.83,9.83,0,0,0-2.64-4.44,12.18,12.18,0,0,0-5-2.77A21.46,21.46,0,0,0,6,73.71V64a27.16,27.16,0,0,0,4.94-.73,11.18,11.18,0,0,0,4.92-2.49,8.72,8.72,0,0,0,2.46-4.28A24.13,24.13,0,0,0,19,50.34V34.14a36.15,36.15,0,0,1,1.37-10.36A19.21,19.21,0,0,1,23.9,17H184.56q4.94,6.12,4.94,17.14V49.93a21.83,21.83,0,0,0,.75,6,9.8,9.8,0,0,0,2.63,4.45Z" style="fill: #fff"/>
-                <path id="Right_Brace" data-name="Right Brace" d="M208.71,62.08v9.5h-2.94a33.9,33.9,0,0,0-8.17.82,11.67,11.67,0,0,0-4.6,2.19l-.36.31a8.81,8.81,0,0,0-2.46,4.27,24.17,24.17,0,0,0-.68,6.15v23.93a36.5,36.5,0,0,1-1.37,10.36A21.15,21.15,0,0,1,186.8,123a18.17,18.17,0,0,1-3.11,4.47,20.12,20.12,0,0,1-8.07,5A36.67,36.67,0,0,1,164,134.19V141l-10.34-11.85,5.39-6.12,4.95-5.63v7.21a18.79,18.79,0,0,0,7.06-1.58q7.23-3.34,7.23-13.75V85.6q0-16.68,14.42-18.73-14.57-1.58-14.56-18.8V32.41q0-15.64-15.66-15.65h-4.1V7.19h5.06q13.2,0,19.62,6.19A19.06,19.06,0,0,1,184.56,15q4.94,6.12,4.94,17.14V47.93a21.83,21.83,0,0,0,.75,6,9.8,9.8,0,0,0,2.63,4.45l.12.11a12.21,12.21,0,0,0,4.9,2.65,27.4,27.4,0,0,0,7.87,1Z" style="fill: #ca3694"/>
-                <path id="Left_Brace" data-name="Left Brace" d="M46.31,24V16.76h-.23q-15.87,0-15.86,15.38V48.07q0,16.68-14.43,18.8Q30.36,68.29,30.36,85.6V109q0,10.6,7.22,14a19.7,19.7,0,0,0,8.5,1.63h4v9.57H45.05q-13.18,0-19.62-6.19a18.25,18.25,0,0,1-3.65-5Q19,117.5,19,109.25V85.73a21.88,21.88,0,0,0-.75-6,9.83,9.83,0,0,0-2.64-4.44,12.18,12.18,0,0,0-5-2.77A21.46,21.46,0,0,0,6,71.71c-1-.09-2.06-.13-3.19-.13H-.13v-9.5H2.81C4,62.08,5,62.05,6,62a27.16,27.16,0,0,0,4.94-.73,11.18,11.18,0,0,0,4.92-2.49,8.72,8.72,0,0,0,2.46-4.28A24.13,24.13,0,0,0,19,48.34V32.14a36.15,36.15,0,0,1,1.37-10.36A19.21,19.21,0,0,1,23.9,15c.3-.37.62-.73,1-1.08a20.29,20.29,0,0,1,8.07-5A36.87,36.87,0,0,1,45.05,7.19h1.26V.37L56.66,12.12,54.14,15Z" style="fill: #ca3894"/>
+                <path id="Background" data-name="Background"
+                  d="M193,60.47V76.59l-.36.31a8.81,8.81,0,0,0-2.46,4.27,24.17,24.17,0,0,0-.68,6.15v23.93a36.5,36.5,0,0,1-1.37,10.36A21.15,21.15,0,0,1,186.8,125h-165Q19,119.5,19,111.25V87.73a21.88,21.88,0,0,0-.75-6,9.83,9.83,0,0,0-2.64-4.44,12.18,12.18,0,0,0-5-2.77A21.46,21.46,0,0,0,6,73.71V64a27.16,27.16,0,0,0,4.94-.73,11.18,11.18,0,0,0,4.92-2.49,8.72,8.72,0,0,0,2.46-4.28A24.13,24.13,0,0,0,19,50.34V34.14a36.15,36.15,0,0,1,1.37-10.36A19.21,19.21,0,0,1,23.9,17H184.56q4.94,6.12,4.94,17.14V49.93a21.83,21.83,0,0,0,.75,6,9.8,9.8,0,0,0,2.63,4.45Z"
+                  style="fill: #fff" />
+                <path id="Right_Brace" data-name="Right Brace"
+                  d="M208.71,62.08v9.5h-2.94a33.9,33.9,0,0,0-8.17.82,11.67,11.67,0,0,0-4.6,2.19l-.36.31a8.81,8.81,0,0,0-2.46,4.27,24.17,24.17,0,0,0-.68,6.15v23.93a36.5,36.5,0,0,1-1.37,10.36A21.15,21.15,0,0,1,186.8,123a18.17,18.17,0,0,1-3.11,4.47,20.12,20.12,0,0,1-8.07,5A36.67,36.67,0,0,1,164,134.19V141l-10.34-11.85,5.39-6.12,4.95-5.63v7.21a18.79,18.79,0,0,0,7.06-1.58q7.23-3.34,7.23-13.75V85.6q0-16.68,14.42-18.73-14.57-1.58-14.56-18.8V32.41q0-15.64-15.66-15.65h-4.1V7.19h5.06q13.2,0,19.62,6.19A19.06,19.06,0,0,1,184.56,15q4.94,6.12,4.94,17.14V47.93a21.83,21.83,0,0,0,.75,6,9.8,9.8,0,0,0,2.63,4.45l.12.11a12.21,12.21,0,0,0,4.9,2.65,27.4,27.4,0,0,0,7.87,1Z"
+                  style="fill: #ca3694" />
+                <path id="Left_Brace" data-name="Left Brace"
+                  d="M46.31,24V16.76h-.23q-15.87,0-15.86,15.38V48.07q0,16.68-14.43,18.8Q30.36,68.29,30.36,85.6V109q0,10.6,7.22,14a19.7,19.7,0,0,0,8.5,1.63h4v9.57H45.05q-13.18,0-19.62-6.19a18.25,18.25,0,0,1-3.65-5Q19,117.5,19,109.25V85.73a21.88,21.88,0,0,0-.75-6,9.83,9.83,0,0,0-2.64-4.44,12.18,12.18,0,0,0-5-2.77A21.46,21.46,0,0,0,6,71.71c-1-.09-2.06-.13-3.19-.13H-.13v-9.5H2.81C4,62.08,5,62.05,6,62a27.16,27.16,0,0,0,4.94-.73,11.18,11.18,0,0,0,4.92-2.49,8.72,8.72,0,0,0,2.46-4.28A24.13,24.13,0,0,0,19,48.34V32.14a36.15,36.15,0,0,1,1.37-10.36A19.21,19.21,0,0,1,23.9,15c.3-.37.62-.73,1-1.08a20.29,20.29,0,0,1,8.07-5A36.87,36.87,0,0,1,45.05,7.19h1.26V.37L56.66,12.12,54.14,15Z"
+                  style="fill: #ca3894" />
               </g>
             </svg>
           </section>
@@ -104,8 +1028,8 @@
             </label>
           </form>
           <section class="flexulator__items-container-buttons">
-            <button class="flexulator__items-container-grow-button">GROW</button>
-            <button class="flexulator__items-container-shrink-button">SHRINK</button>
+            <button class="flexulator__items-container-grow-button" data-active="1">GROW</button>
+            <button class="flexulator__items-container-shrink-button" data-active="0">SHRINK</button>
           </section>
         </section>
       </section>
@@ -149,7 +1073,7 @@
           </section>
           <section class="flex-item__flexulations-container">
             <section class="flex-item__flexulations-grow-container">
-              <h5 class="flex-item__flexulations-grow-header">GROW</h5>
+              <h5 class="flex-item__flexulations-grow-header">GROW CALCULATION</h5>
               <section class="flex-item__flexulations-grow-formula">
                 <section class="flex-item__flexulations-section">
                   <h5 class="flex-item__flexuations-section-header">
@@ -189,7 +1113,7 @@
               </section>
             </section>
             <section class="flex-item__flexulations-shrink-container">
-              <h5 class="flex-item__flexulations-shrink-header">SHRINK</h5>
+              <h5 class="flex-item__flexulations-shrink-header">SHRINK CALCULATION</h5>
               <section class="flex-item__flexulations-shrink-formula">
 
                 <section class="flex-item__flexulations-section">
@@ -286,7 +1210,7 @@
 
           <section class="flex-item__flexulations-container">
             <section class="flex-item__flexulations-grow-container">
-              <h5 class="flex-item__flexulations-grow-header">GROW</h5>
+              <h5 class="flex-item__flexulations-grow-header">GROW CALCULATION</h5>
               <section class="flex-item__flexulations-grow-formula">
                 <section class="flex-item__flexulations-section">
                   <h5 class="flex-item__flexuations-section-header">
@@ -326,7 +1250,7 @@
               </section>
             </section>
             <section class="flex-item__flexulations-shrink-container">
-              <h5 class="flex-item__flexulations-shrink-header">SHRINK</h5>
+              <h5 class="flex-item__flexulations-shrink-header">SHRINK CALCULATION</h5>
               <section class="flex-item__flexulations-shrink-formula">
 
                 <section class="flex-item__flexulations-section">
@@ -425,7 +1349,7 @@
 
           <section class="flex-item__flexulations-container">
             <section class="flex-item__flexulations-grow-container">
-              <h5 class="flex-item__flexulations-grow-header">GROW</h5>
+              <h5 class="flex-item__flexulations-grow-header">GROW CALCULATION</h5>
               <section class="flex-item__flexulations-grow-formula">
                 <section class="flex-item__flexulations-section">
                   <h5 class="flex-item__flexuations-section-header">
@@ -465,7 +1389,7 @@
               </section>
             </section>
             <section class="flex-item__flexulations-shrink-container">
-              <h5 class="flex-item__flexulations-shrink-header">SHRINK</h5>
+              <h5 class="flex-item__flexulations-shrink-header">SHRINK CALCULATION</h5>
               <section class="flex-item__flexulations-shrink-formula">
 
                 <section class="flex-item__flexulations-section">
@@ -978,6 +1902,29 @@
               </li>
 
               <li class="resources__list-item">
+                <h3 class="resources__list-header">Deeper Reads</h3>
+              </li>
+
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="https://stackoverflow.com/questions/34352140/what-are-the-differences-between-flex-basis-and-width">
+                  What are the differences between flex-basis and width?
+                </a>
+              </li>
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="https://stackoverflow.com/questions/23569229/what-exactly-flex-basis-property-sets">
+                  What exactly flex-basis property sets?
+                </a>
+              </li>
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="https://mastery.games/post/the-difference-between-width-and-flex-basis/">
+                  The Difference Between Width and Flex Basis
+                </a>
+              </li>
+
+              <li class="resources__list-item">
                 <h3 class="resources__list-header">Tools</h3>
               </li>
 
@@ -1001,29 +1948,6 @@
                 <span class="resources__triangle"></span>
                 <a href="https://demos.scotch.io/visual-guide-to-css3-flexbox-flexbox-playground/demos/">
                   Flexbox Playground
-                </a>
-              </li>
-
-              <li class="resources__list-item">
-                <h3 class="resources__list-header">Specs</h3>
-              </li>
-
-              <li class="resources__list-item">
-                <span class="resources__triangle"></span>
-                <a href="https://www.w3.org/TR/css-display-3/">
-                  W3C Display Module
-                </a>
-              </li>
-              <li class="resources__list-item">
-                <span class="resources__triangle"></span>
-                <a href="https://www.w3.org/TR/css-align-3/">
-                  Box Alignment
-                </a>
-              </li>
-              <li class="resources__list-item">
-                <span class="resources__triangle"></span>
-                <a href="https://drafts.csswg.org/css-flexbox/#layout-algorithm">
-                  Flexbox Layout Algorithm
                 </a>
               </li>
 
@@ -1059,6 +1983,29 @@
                 <span class="resources__triangle"></span>
                 <a href="https://medium.com/@js_tut/the-complete-css-flex-box-tutorial-d17971950bdc">
                   The Complete CSS Flexbox Tutorial
+                </a>
+              </li>
+
+              <li class="resources__list-item">
+                <h3 class="resources__list-header">Specs</h3>
+              </li>
+
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="https://www.w3.org/TR/css-display-3/">
+                  W3C Display Module
+                </a>
+              </li>
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="https://www.w3.org/TR/css-align-3/">
+                  Box Alignment
+                </a>
+              </li>
+              <li class="resources__list-item">
+                <span class="resources__triangle"></span>
+                <a href="https://drafts.csswg.org/css-flexbox/#layout-algorithm">
+                  Flexbox Layout Algorithm
                 </a>
               </li>
             </ul>
@@ -1098,54 +2045,11 @@
 
 
   <script src="js/gsap.min.js"></script>
-  <script src="js/flexItem.js" type="module"></script>
   <script src="js/flexulator.js" type="module"></script>
-  <script>
-    const tabs = document.querySelectorAll(".formula__tabs-button");
-    const sections = document.querySelectorAll(".formula__tab-content");
-
-    tabs.forEach(tab => {
-      tab.addEventListener("click", e => {
-        e.preventDefault();
-        removeActiveTab();
-        addActiveTab(tab);
-      });
-    })
-
-    const removeActiveTab = () => {
-      tabs.forEach(tab => {
-        tab.classList.remove("is-active");
-      });
-      sections.forEach(section => {
-        section.classList.remove("is-active");
-      });
-    }
-
-    const addActiveTab = tab => {
-      tab.classList.add("is-active");
-      let id = tab.getAttribute("data-id");
-      id = `#${id}`;
-      const matchingSection = document.querySelector(id);
-      matchingSection.classList.add("is-active");
-    }
-
-    if (window.innerWidth >= 688) {
-      gsap.timeline({repeat: -1, repeatDelay: 2})
-        .from('.grow-animation__item', {width: '7rem', duration: 2, delay: 2, ease: 'slow'})
-        .to('.grow-animation__item', {width: '33.33%', duration: 2, ease: 'slow'});
-    } else {
-      gsap.timeline({repeat: -1, repeatDelay: 2})
-        .from('.grow-animation__item', {width: '3rem', duration: 2, delay: 2, ease: 'slow'})
-        .to('.grow-animation__item', {width: '33.33%', duration: 2, ease: 'slow'});
-    }
-
-    gsap.timeline({repeat: -1, repeatDelay: 2})
-      .to('.shrink-animation__item', {width: '37.33%', duration: 2, ease: 'slow'})
-      .to('.shrink-animation__item', {width: '30.66%', duration: 2, delay: 2, ease: 'slow'});
-
-  </script>
+  <script src="js/app.js"></script>
   <!-- <script src="https://cdn.usefathom.com/script.js" site="UOWJELBH" defer></script> -->
-<noscript><link rel="stylesheet" href="css/styles.css"></noscript>
+  <noscript>
+    <link rel="stylesheet" href="css/styles.css"></noscript>
 </body>
 
 </html>
