@@ -14,7 +14,7 @@
     "build:css-autoprefix": "postcss -u autoprefixer -o dist/css/styles.css css/*.css",
     "build:css-compress": "node-sass --output-style compressed -o dist/css dist/css/*.css",
     "build:css-critical": "node css/critical.js",
-    "build:html": "html-minifier index.html -o dist/index.html --collapse-whitespace",
+    "build:html": "html-minifier index.html -o dist/index.html --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-tag-whitespace",
     "build:js-lint": "",
     "build:minify-js": "mkdir -p dist/js && terser js/flexItem.js js/flexulator.js js/app.js -o dist/js/scripts.min.js -c -m",
     "build:img": "imagemin img --out-dir dist/img -p",
