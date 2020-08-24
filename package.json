@@ -14,6 +14,7 @@
     "build:css-comment-remove": "postcss -u postcss-discard-comments -o css/styles.css css/styles.css",
     "build:css-autoprefix": "postcss -u autoprefixer -o dist/css/styles.css css/*.css",
     "build:css-compress": "node-sass --output-style compressed -o dist/css dist/css/*.css",
+    "build:css-critical": "node css/critical.js",
     "build:js-lint": "",
     "build:minify-js": "mkdir -p dist/js && terser js/flexItem.js js/flexulator.js js/app.js -o dist/js/scripts.min.js -c -m",
     "build:img": "imagemin img --out-dir dist/img -p",

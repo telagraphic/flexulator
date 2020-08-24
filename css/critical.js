@@ -2,12 +2,20 @@ var critical = require('critical');
 
 critical.generate({
     inline: true,
-    base: 'dist/',
+    base: 'dist',
     src: 'index.html',
     target: {
-      html: 'index.html',
+      html: 'index.html'
     },
     minify: true,
-    width: 320,
-    height: 480
+    dimensions: [
+      {
+        width: 320,
+        height: 480
+      },
+      {
+        width: 2000,
+        height: 1000
+      }
+    ]
 });

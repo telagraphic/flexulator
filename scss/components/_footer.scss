@@ -7,5 +7,20 @@
 
   &-container {
     padding: 3%;
+    text-align: center;
+  }
+
+  p {
+    color: $blue-3;
+  }
+
+  a {
+    color: $blue-3;
+    text-decoration: none;
+
+    &:focus,
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
