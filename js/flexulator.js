@@ -1,8 +1,6 @@
 // import newFlexItemObject from './flexItem.js';
-
 let select = e => document.querySelector(e);
 let selectAll = e => document.querySelectorAll(e);
-let selectClassName = e => document.getElementsByClassName(e);
 
 const flexulator = {
   elements: {
@@ -85,7 +83,6 @@ const flexulator = {
   addNewFlexItem: function() {
     let item = flexulator.elements.flexItems[flexulator.elements.flexItems.length -1];
     let [...flexStyles] = [item.style.flexGrow, item.style.flexShrink, item.style.flexBasis.replace('px', '')];
-    let id = item.dataset.id;
     let newFlexItem = flexulator.newFlexItem();
     newFlexItem.initialize(item);
     newFlexItem.updateItemStyles(flexStyles);
@@ -413,7 +410,7 @@ const flexulator = {
         item.addEventListener('click', function(event) {
           flexulator.removeFlexItem(event);
         });
-      };
+      }
     });
   },
   setupRemoveButton: function() {
@@ -449,7 +446,7 @@ const flexulator = {
       }
     }
   },
-  updateShrinkExample: function(item) {
+  updateShrinkExample: function() {
     let shrinkButton = select('.flexulator__items-container-shrink-button');
     shrinkButton.addEventListener('click', function(event) {
       event.preventDefault();
@@ -478,7 +475,6 @@ const flexulator = {
 
       shrinkButton.dataset.active = 1;
       growButton.dataset.active = 0;
-
     });
   },
   updateGrowExample: function() {
@@ -512,7 +508,7 @@ const flexulator = {
     });
   },
   updateResize: function() {
-    window.addEventListener('resize', function(event) {
+    window.addEventListener('resize', function() {
       flexulator.updateWidth();
       flexulator.updateRemainingSpace();
       flexulator.updateFlexItemsContainerValues();
@@ -522,8 +518,6 @@ const flexulator = {
   },
   updateFlexItemGrowFormulaExample: function() {
     let flexItem = flexulator.flexItems[0];
-
-    let flexGrowExample = select('.grow-formula__formula-container');
     let container = select('.grow-example__container');
     let totalFlexBasis = select('.grow-example__total-flex-basis');
     let remainingSpace = selectAll('.grow-example__remaining-space');
