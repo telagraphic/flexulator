@@ -19,7 +19,7 @@
 # Deeper Reads
 - [Flex Basis Versus Width](https://stackoverflow.com/questions/34352140/what-are-the-differences-between-flex-basis-and-width)
 - [What Does Flex Basis Do?](https://stackoverflow.com/questions/23569229/what-exactly-flex-basis-property-sets)
-- [The Difference Between Width and Flex Basis]((https://mastery.games/post/the-difference-between-width-and-flex-basis/)
+- [The Difference Between Width and Flex Basis](https://mastery.games/post/the-difference-between-width-and-flex-basis/)
 
 # Tools
 - [Flexbox Tester](https://www.madebymike.com.au/demos/flexbox-tester/)
