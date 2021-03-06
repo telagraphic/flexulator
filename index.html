@@ -11,7 +11,10 @@
   <meta name="description" content="A visual flexbox space distribution calculator">
   <script async defer src="https://buttons.github.io/buttons.js"></script>
 
-  <link rel="stylesheet" href="css/styles.css">
+  <script async defer data-website-id="9926fee9-47c3-430e-a7d2-e581e2a75901" src="https://umami-8gr7cpkr4-telagraphic.vercel.app/umami.js"></script>
+
+  <!-- <link rel="stylesheet" href="css/styles.css"> -->
+  <link rel="stylesheet" href="css/styles.css" media="print" onload="this.media='all'; this.onload=null;">
   <link rel="preload" href="fonts/web/Consolas.woff2" as="font" type="font/woff" crossorigin>
   <link rel="preload" href="fonts/web/Consolas-Bold.woff2" as="font" type="font/woff" crossorigin>
   <link rel="preload" href="fonts/web/Roboto-Thin.woff2" as="font" type="font/woff" crossorigin>
@@ -572,8 +575,13 @@
 
               <section class="example-formula__description-container">
                 <p class="example-formula__description">
-                  When the combined size of all the flex items is <b>less</b> than their container, the <b>remaining space</b> is distributed amongst all the items.
+                  Take all the sizes from the flex items and add them up. If this <b>total flex basis</b> is <b>less</b> than the parent container,
+                  the remaining space will be distributed amongst the items.
+                </p>
+
+                <p class="example-formula__description" style="padding: 1rem 0 0 0;">
                   The flex-grow attribute is used to determine how the remaining space should be allocated.
+                  Think of flex-grow as a mulitplier which will increase the amount of space it will get in the final calculation.
                 </p>
               </section>
 
@@ -726,10 +734,14 @@
 
               <section class="example-formula__description-container">
                 <p class="example-formula__description">
-                  If the space remaining is a <b>negative</b> this means that the flex container is
-                  smaller than the preferred width of all the flex items.
-                  They are going to have to <b>shrink</b>.
-                  By assigning a flex-shrink value we can control much space each flex item will surrender.
+                  Take all the sizes from the flex items and add them up. If this <b>total flex basis</b> is <b>greater</b> than the parent container,
+                  each flex-item will have to reduce it's size to fit.
+                </p>
+
+                <p class="example-formula__description" style="padding: 1rem 0 0 0;">
+                  The flex-shrink attribute determines how much space is <b>given up</b> by the flex-item.
+                  Unlike <b>flex-grow</b>, the <b>flex-shrink</b> value controls how much space is given up.
+                  Increasing the <b>flex-shrink</b> will reduce the size of the flex-item relative to its siblings.
                 </p>
               </section>
 
@@ -1124,7 +1136,7 @@
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.0/gsap.min.js"></script>
-  <script src="js/scripts.min.js"></script>
+  <!-- <script src="js/scripts.min.js"></script> -->
   <!-- <script src="js/flexItem.js" type="module"></script> -->
   <!-- <script src="js/flexulator.js" type="module"></script> -->
   <!-- <script src="js/app.js"></script> -->

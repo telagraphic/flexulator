@@ -83,12 +83,6 @@ function newFlexItemObject() {
         flexBasisTotal: 0,
         remainingSpace: 0
       },
-      form: {
-        width: 0,
-        grow: 0,
-        shrink: 0,
-        basis: 0
-      },
       itemWidth: 0,
       grow: {
         value: 0,
@@ -139,13 +133,13 @@ function newFlexItemObject() {
       return [...this.elements.self.querySelectorAll(selector)];
     },
     getChildrenElements: function () {
-      this.elements.flexulations.container.width = this.selectAll(this.selectors.flexulations.container.width);
-      this.elements.flexulations.container.flexBasisTotal = this.selectAll(this.selectors.flexulations.container.flexBasisTotal);
-      this.elements.flexulations.container.remainingSpace = this.selectAll(this.selectors.flexulations.container.remainingSpace);
       this.elements.form.width = this.select(this.selectors.form.width);
       this.elements.form.grow = this.select(this.selectors.form.grow);
       this.elements.form.shrink = this.select(this.selectors.form.shrink);
       this.elements.form.flexBasis = this.select(this.selectors.form.flexBasis);
+      this.elements.flexulations.container.width = this.selectAll(this.selectors.flexulations.container.width);
+      this.elements.flexulations.container.flexBasisTotal = this.selectAll(this.selectors.flexulations.container.flexBasisTotal);
+      this.elements.flexulations.container.remainingSpace = this.selectAll(this.selectors.flexulations.container.remainingSpace);
       this.elements.flexulations.grow.value = this.select(this.selectors.flexulations.grow.value);
       this.elements.flexulations.grow.total = this.select(this.selectors.flexulations.grow.total);
       this.elements.flexulations.grow.width = this.selectAll(this.selectors.flexulations.grow.width);
@@ -175,7 +169,7 @@ function newFlexItemObject() {
       this.elements.flexulations.container.flexBasisTotal.forEach(flexBasisTotal => flexBasisTotal.textContent = this.flexulations.container.flexBasisTotal);
       this.elements.flexulations.container.remainingSpace.forEach(remainingSpace => remainingSpace.textContent = this.flexulations.container.remainingSpace);
       this.elements.form.width.textContent = this.elements.form.width.clientWidth;
-      this.elements.form.flexBasis.textContent = this.flexulations.form.basis;
+      this.elements.form.flexBasis.textContent = this.form.flexBasis;
       this.elements.flexulations.grow.value.textContent = this.flexulations.grow.value;
       this.elements.flexulations.grow.total.textContent = this.flexulations.grow.total;
       this.elements.flexulations.grow.width.forEach(width => width.textContent = this.flexulations.grow.width);
@@ -212,7 +206,7 @@ function newFlexItemObject() {
     },
     updateShrinkBasisTotal: function(shrinkBasisTotal) {
       this.flexulations.shrink.basisTotal = shrinkBasisTotal;
-      this.elements.flexulations.shrink.basisTotal.textContent = shrinkBasisTotal;
+      // this.elements.flexulations.shrink.basisTotal.textContent = shrinkBasisTotal;
       this.updateShrinkFactor();
       this.updateShrinkComputedWidth();
       this.writeItemFlexulations();
@@ -234,14 +228,14 @@ function newFlexItemObject() {
         let newGrowValue = parseFloat(this.elements.form.grow.value);
         this.form.grow = newGrowValue;
         this.style.grow = newGrowValue;
-        this.flexulations.form.grow = newGrowValue;
+        // this.flexulations.form.grow = newGrowValue;
         this.flexulations.grow.value = newGrowValue;
         this.elements.self.style.flexGrow = newGrowValue;
       } else if (property === "shrink") {
         let newShrinkValue = parseFloat(this.elements.form.shrink.value);
         this.form.shrink = newShrinkValue;
         this.style.shrink = newShrinkValue;
-        this.flexulations.form.shrink = newShrinkValue;
+        // this.flexulations.form.shrink = newShrinkValue;
         this.flexulations.shrink.value = newShrinkValue;
         this.elements.self.style.flexShrink = newShrinkValue;
         this.updateItemShrinkBasis();
@@ -249,7 +243,7 @@ function newFlexItemObject() {
         let newBasisValue = parseFloat(this.elements.form.flexBasis.value);
         this.form.flexBasis = newBasisValue;
         this.style.flexBasis = newBasisValue;
-        this.flexulations.form.flexBasis = newBasisValue;
+        // this.flexulations.form.flexBasis = newBasisValue;
         this.flexulations.grow.itemBasis = newBasisValue;
         this.flexulations.shrink.itemBasis = newBasisValue;
         this.elements.self.style.flexBasis = `${newBasisValue}px`;

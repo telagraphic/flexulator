@@ -5,8 +5,7 @@ let selectAll = e => document.querySelectorAll(e);
 const flexulator = {
   elements: {
     container: null,
-    flexItems: null,
-    dashboard: null
+    flexItems: null
   },
   flexValues: {
     width: 0,
@@ -16,7 +15,6 @@ const flexulator = {
   flexItems: [],
   initialize: function(container) {
     flexulator.elements.container = select(container);
-    flexulator.elements.dashboard = select('.flexulator__dashboard');
     flexulator.updateWidth();
     flexulator.updateFlexItems();
     flexulator.updateFlexTotalBasis();
@@ -297,7 +295,7 @@ const flexulator = {
 
       <section class="flex-item__flexulations-container">
         <section class="flex-item__flexulations-grow-container" data-active="1" style="opacity:${growOpacity};">
-          <h5 class="flex-item__flexulations-grow-header">GROW</h5>
+          <h5 class="flex-item__flexulations-grow-header">GROW CALCULATION</h5>
           <section class="flex-item__flexulations-grow-formula">
             <section class="flex-item__flexulations-section">
               <h5 class="flex-item__flexuations-section-header">
@@ -337,7 +335,7 @@ const flexulator = {
           </section>
         </section>
         <section class="flex-item__flexulations-shrink-container" style="opacity:${shrinkOpacity};">
-          <h5 class="flex-item__flexulations-shrink-header">SHRINK</h5>
+          <h5 class="flex-item__flexulations-shrink-header">SHRINK CALCULATION</h5>
           <section class="flex-item__flexulations-shrink-formula">
 
             <section class="flex-item__flexulations-section">
