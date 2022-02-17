@@ -1,6 +1,95 @@
 @import '../config/mixins';
 @import '../config/variables';
 
+// .header {
+//   position: relative;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-around;
+//   align-items: center;
+//   background-color: $pink-1;
+//
+//   color: $black-6;
+//
+//   @include viewport-min(62.5rem) {
+//     flex-direction: row;
+//   }
+//
+//   &__title {
+//     flex: 1;
+//     text-align: center;
+//     text-transform: capitalize;
+//     letter-spacing: -.1rem;
+//     font-size: calc(25px + (35 - 25) * ((100vw - 300px) / (1600 - 300)));
+//     font-weight: 700;
+//
+//   }
+//
+//   &__title-advert {
+//     padding: 0 0 0 1%;
+//   }
+//
+//   &__title-logo {
+//     width: 100%;
+//     max-width: 45%;
+//     height: 0;
+//     padding-top: 12.5%;
+//     position: relative;
+//
+//     @include viewport-min($mobile) {
+//       max-width: 32%;
+//       padding-top: 11%;
+//     }
+//
+//     @include viewport-min($desktop) {
+//       max-width: 15%;
+//       padding-top: 5%;
+//     }
+//
+//     svg {
+//       position: absolute;
+//       top: 0;
+//       left: 0;
+//       padding: 3% 0;
+//
+//       @include viewport-min($mobile) {
+//         padding: 5% 0;
+//       }
+//     }
+//   }
+//
+//   &__github-counter {
+//     position: relative;
+//
+//     @include viewport-min($mobile) {
+//       position: absolute;
+//       padding: 0 1rem;
+//       right: 0;
+//       top: 1rem;
+//     }
+//   }
+//
+//   &__message {
+//     display: flex;
+//     justify-content: center;
+//
+//     padding: 2%;
+//
+//     text-align: center;
+//
+//     @include viewport-min(62.5rem) {
+//       display: none;
+//     }
+//   }
+// }
+
+
+
+
+
+@import '../config/mixins';
+@import '../config/variables';
+
 .header {
   position: relative;
   display: flex;
@@ -12,25 +101,29 @@
   color: $black-6;
 
   @include viewport-min(62.5rem) {
-    flex-direction: row;
+    // flex-direction: column;
   }
 
-  &__title {
-    flex: 1;
-    text-align: center;
-    text-transform: capitalize;
-    letter-spacing: -.1rem;
-    font-size: calc(25px + (35 - 25) * ((100vw - 300px) / (1600 - 300)));
-    font-weight: 700;
+  &__title-advert {
+    display: block;
+    // height: 100px;
+    // width: 330px;
+    // background-color: red;
 
+    @include viewport-min(62.5rem) {
+      display: none;
+    }
   }
 
   &__title-logo {
-    max-width: 45%;
+    justify-self: center;
+    position: relative;
+
     width: 100%;
+    max-width: 45%;
     height: 0;
     padding-top: 12.5%;
-    position: relative;
+
 
     @include viewport-min($mobile) {
       max-width: 32%;
@@ -38,8 +131,8 @@
     }
 
     @include viewport-min($desktop) {
-      max-width: 15%;
-      padding-top: 5%;
+      max-width: 17%;
+      padding-top: 6%;
     }
 
     svg {

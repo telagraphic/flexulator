@@ -25,6 +25,20 @@
     }
   }
 
+  &-advert {
+    position: absolute;
+    left: 0;
+    padding: .5%;
+
+    // height: 100px;
+    // width: 330px;
+    // background-color: red;
+
+    @include viewport-min(2000px) {
+
+    }
+  }
+
   &-artwork {
     grid-area: artwork;
     grid-row: 1 / 2;
