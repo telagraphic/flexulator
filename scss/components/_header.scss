@@ -16,22 +16,13 @@
     grid-template-columns: 30% 40% 30%;
   }
 
-  &__title-advert-desktop {
-    display: none;
+  &__title-advert {
     padding: 1%;
-
-    @include viewport-min(62.5rem) {
-      padding: 1%;
-      display: block;
-    }
-  }
-
-  &__title-advert-mobile {
     display: block;
-    padding: .5%;
+    order: 4;
 
     @include viewport-min(62.5rem) {
-      display: none;
+      order:1;
     }
   }
 
@@ -44,10 +35,13 @@
     height: 0;
     padding-top: 12.5%;
 
+    order: 1;
+
 
     @include viewport-min($mobile) {
       max-width: 32%;
       padding-top: 11%;
+      order: 2;
     }
 
     @include viewport-min($desktop) {
@@ -85,6 +79,8 @@
     padding: 2%;
 
     text-align: center;
+
+    order: 3;
 
     @include viewport-min(62.5rem) {
       display: none;

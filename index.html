@@ -56,7 +56,7 @@
     <article class="flexulator__container">
       <header class="header">
 
-        <section class="header__title-advert-desktop">
+        <section class="header__title-advert">
           <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CEBDT23I&placement=wwwflexulatorcom" id="_carbonads_js"></script>
         </section>
 
@@ -78,9 +78,6 @@
           </p>
         </section>
 
-        <section class="header__title-advert-mobile">
-          <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CEBDT23I&placement=wwwflexulatorcom" id="_carbonads_js"></script>
-        </section>
 
       </header>
       <section class="flexulator__form">
@@ -1153,7 +1150,33 @@
   <!-- <script src="js/flexItem.js" type="module"></script> -->
   <!-- <script src="js/flexulator.js" type="module"></script> -->
   <!-- <script src="js/app.js"></script> -->
-  <script src="https://cdn.usefathom.com/script.js" site="UOWJELBH" defer></script>
+
+  <script>
+    const header = document.querySelector(".header");
+
+    // Create a condition that targets viewports at least 768px wide
+    const mediaQuery = window.matchMedia('(min-width: 62.5rem)');
+
+    let advert = `<p>Advert</p>`;
+
+    function advertLocation(e) {
+      // Check if the media query is true
+      if (e.matches) {
+        console.log("Desktop");
+        // header.insertAdjacentHTML('afterbegin', advert);
+      } else {
+        console.log("Mobile");
+        // header.insertAdjacentHTML('beforeend', advert);
+      }
+    }
+
+
+    // Register event listener
+    mediaQuery.addListener(advertLocation)
+
+    // Initial check
+    advertLocation(mediaQuery)
+  </script>
 </body>
 
 </html>
