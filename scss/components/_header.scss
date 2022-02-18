@@ -101,14 +101,22 @@
   color: $black-6;
 
   @include viewport-min(62.5rem) {
-    // flex-direction: column;
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
   }
 
-  &__title-advert {
+  &__title-advert-desktop {
+    display: none;
+    padding: 1%;
+
+    @include viewport-min(62.5rem) {
+      display: block;
+    }
+  }
+
+  &__title-advert-mobile {
     display: block;
-    // height: 100px;
-    // width: 330px;
-    // background-color: red;
+    padding: .5%;
 
     @include viewport-min(62.5rem) {
       display: none;
@@ -131,8 +139,8 @@
     }
 
     @include viewport-min($desktop) {
-      max-width: 17%;
-      padding-top: 6%;
+      max-width: 38%;
+      padding-top: 15%;
     }
 
     svg {
