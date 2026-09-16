@@ -1,0 +1,3 @@
+# calculateFlexValues returns a throwaway snapshot
+
+`calculateFlexValues(containerWidth, items)` returns `{ container, items }` with both grow and shrink fields on every item. Canonical inputs stay on `state.items` (`id`, `grow`, `shrink`, `basis`). Measured Width is not in this object. The snapshot is computed each cycle and discarded; it is not stored on the Flex Item. Derived field names are `totalBasis`, `remainingSpace`, `totalGrow`, `totalShrinkBasis`, `growShare`, `allocatedSpace`, `shrinkProduct`, `shrinkFactor`, `shrinkAmount`, `growWidth`, `shrinkWidth` — not the old `flexulations.*` tree.
