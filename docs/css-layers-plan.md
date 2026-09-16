@@ -129,4 +129,4 @@ Compile as now (`sass scss:css`). No new bundler required for `@layer`.
 
 ## Out of scope
 
-JS `render()` / `data-field`, NumberFlow, stepper UX, dark mode, mobile calculator, Every Layout primitive rewrite of the Item Card (can follow as a third pass if the hatch/row still fights intrinsic sizing).
+JS `render()` / `data-field`, NumberFlow, stepper UX, dark mode, mobile calculator, Every Layout primitive rewrite of the Item Card (can follow as a third pass if the hatch/row still fights intrinsic sizing). NumberFlow constraints vs Item Card markup: [semantic-control-markup.md](semantic-control-markup.md).

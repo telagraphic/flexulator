@@ -12,35 +12,36 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
 
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="preload" href="fonts/web/Consolas.woff2" as="font" type="font/woff" crossorigin>
-  <link rel="preload" href="fonts/web/Consolas-Bold.woff2" as="font" type="font/woff" crossorigin>
-  <link rel="preload" href="fonts/web/Roboto-Thin.woff2" as="font" type="font/woff" crossorigin>
+  <link rel="preconnect" href="https://flexulator.b-cdn.net" crossorigin>
+  <link rel="preload" href="https://flexulator.b-cdn.net/fonts/Consolas.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://flexulator.b-cdn.net/fonts/Consolas-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://flexulator.b-cdn.net/fonts/Roboto-Thin.woff2" as="font" type="font/woff2" crossorigin>
 
   <style>
     @font-face {
       font-family: "Consolas";
-      src: url('fonts/web/Consolas.woff') format('woff'), url('fonts/web/Consolas.woff2') format('woff2');
+      src: url('https://flexulator.b-cdn.net/fonts/Consolas.woff2') format('woff2'), url('https://flexulator.b-cdn.net/fonts/Consolas.woff') format('woff');
       font-display: swap;
       font-weight: 400;
     }
 
     @font-face {
       font-family: "Consolas";
-      src: url('fonts/web/Consolas-Bold.woff') format('woff'), url('fonts/web/Consolas-Bold.woff2') format('woff2');
+      src: url('https://flexulator.b-cdn.net/fonts/Consolas-Bold.woff2') format('woff2'), url('https://flexulator.b-cdn.net/fonts/Consolas-Bold.woff') format('woff');
       font-display: swap;
       font-weight: 800;
     }
 
     @font-face {
       font-family: "Roboto";
-      src: url('fonts/web/Roboto-Thin.woff') format('woff'), url('fonts/web/Roboto-Thin.woff2') format('woff2');
+      src: url('https://flexulator.b-cdn.net/fonts/Roboto-Thin.woff2') format('woff2');
       font-display: swap;
       font-weight: 100;
     }
 
     @font-face {
       font-family: "Roboto";
-      src: url('fonts/web/Roboto-Regular.woff') format('woff'), url('fonts/web/Roboto-Regular.woff2') format('woff2');
+      src: url('https://flexulator.b-cdn.net/fonts/Roboto-Regular.woff2') format('woff2'), url('https://flexulator.b-cdn.net/fonts/Roboto-Regular.woff') format('woff');
       font-display: swap;
       font-weight: 400;
     }
@@ -523,8 +524,6 @@
 
           <button class="flex-item__remove-button">Remove</button>
         </article>
-      </section>
-      <section class="flexulator__footer">
       </section>
     </article>
     <article class="formula__tabs-container">
@@ -1122,7 +1121,6 @@
 
 
   <script src="js/gsap.min.js"></script>
-  <script src="js/flexulator.js" type="module"></script>
   <script src="js/app.js"></script>
   <!-- <script src="https://cdn.usefathom.com/script.js" site="UOWJELBH" defer></script> -->
 </body>

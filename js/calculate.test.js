@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { calculateFlexValues } from './calculate.js'
 
+/** Fixture Flex Item used by calculateFlexValues tests. */
 function item(id, grow, shrink, basis) {
   return { id, grow, shrink, basis }
 }

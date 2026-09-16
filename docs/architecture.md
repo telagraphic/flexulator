@@ -21,7 +21,7 @@ Target design after the ADRs. Domain words from [CONTEXT.md](../CONTEXT.md).
  0014  fixture tests on Calculate      browser tests later
 ```
 
-CSS `@layer` work is a separate plan, not this map.
+CSS `@layer` work is a separate plan, not this map. Add form / Item Card tag markup: [semantic-control-markup.md](semantic-control-markup.md).
 
 ## Modules and callers
 

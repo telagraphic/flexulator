@@ -33,7 +33,7 @@
   padding: 0;
   width: auto;
   opacity: 1;
-  transition: width .5s ease-in, flex .5s ease-in, opacity .1s ease-out;
+  transition: opacity .1s ease-out;
   position: relative;
   z-index: 100;
 
@@ -106,6 +106,10 @@
   }
 
   &__form-button--show {
+    opacity: 1;
+  }
+
+  &__form-label-container:hover &__form-button {
     opacity: 1;
   }
 

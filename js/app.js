@@ -1,3 +1,8 @@
+import gsap from 'gsap'
+import { SlowMo } from 'gsap/EasePack'
+
+gsap.registerPlugin(SlowMo)
+
 let tabs = document.querySelectorAll(".formula__tabs-button");
 let sections = document.querySelectorAll(".formula__tab-content");
 
@@ -9,7 +14,10 @@ tabs.forEach(tab => {
   });
 })
 
-const removeActiveTab = () => {
+/**
+ * Clear the active class from every formula tab and panel.
+ */
+function removeActiveTab() {
   tabs.forEach(tab => {
     tab.classList.remove("is-active");
   });
@@ -18,10 +26,14 @@ const removeActiveTab = () => {
   });
 }
 
-const addActiveTab = tab => {
+/**
+ * Show the formula panel that matches the clicked tab.
+ *
+ * @param {Element} tab
+ */
+function addActiveTab(tab) {
   tab.classList.add("is-active");
-  let id = tab.getAttribute("data-id");
-  id = `#${id}`;
+  const id = `#${tab.getAttribute("data-id")}`;
   const matchingSection = document.querySelector(id);
   matchingSection.classList.add("is-active");
 }

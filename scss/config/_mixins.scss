@@ -42,13 +42,13 @@
 
 
 @mixin flex-item-increment() {
-  background-image: url('../img/increment-button.svg');
+  background-image: url('../../img/increment-button.svg');
   background-repeat: no-repeat;
   background-position: center;
 }
 
 @mixin flex-item-decrement() {
-  background-image: url('../img/decrement-button.svg');
+  background-image: url('../../img/decrement-button.svg');
   background-repeat: no-repeat;
   background-position: center;
 }

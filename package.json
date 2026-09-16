@@ -1,53 +1,31 @@
 {
   "name": "flexulator",
   "version": "1.0.0",
+  "private": true,
   "description": "A visual flexbox space distribution calculator",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev:scss": "sass --style=expanded css:scss/styles.scss",
-    "dev:watch": "onchange 'scss' -- npm run dev:scss",
-    "dev:serve": "browser-sync start --server --ss './' --files 'scss/**/*.scss, ./*.html, js/*.js'",
-    "build:clean": "rm -rf dist",
-    "server": "run-p dev:watch dev:serve",
-    "build:dist": "mkdir -p dist/{css,js,img,fonts/web}",
-    "build:css-comment-remove": "postcss -u postcss-discard-comments -o css/styles.css css/styles.css",
-    "build:css-autoprefix": "postcss -u autoprefixer -o dist/css/styles.css css/*.css",
-    "build:css-compress": "sass --style=compressed dist/css/styles.css dist/css/styles.css",
-    "build:css-critical": "node css/critical.js",
-    "build:html": "html-minifier index.html -o dist/index.html --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-tag-whitespace",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "test": "node --test js/calculate.test.js",
-    "build:js-lint": "eslint js",
-    "build:minify-js": "mkdir -p dist/js && terser js/flexItem.js js/flexulator.js js/app.js -o dist/js/scripts.min.js -c -m",
-    "build:img": "node build-images.js",
-    "build:fonts": "cp fonts/web/* dist/fonts/web",
-    "build": "run-s build:*"
+    "lint": "eslint js"
   },
   "repository": {
-    "url": "https://github.com/telagraphic/flexulator"
+    "type": "git",
+    "url": "git+https://github.com/telagraphic/flexulator.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "homepage": "https://www.flexulator.com/",
+  "license": "ISC",
+  "packageManager": "pnpm@10.1.0",
+  "dependencies": {
+    "gsap": "^3.13.0"
+  },
   "devDependencies": {
-    "autoprefixer": "^9.8.8",
-    "browser-sync": "^2.29.3",
-    "critical": "^2.0.6",
-    "eslint": "^7.32.0",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "html-minifier": "^4.0.0",
-    "imagemin": "^8.0.1",
-    "imagemin-svgo": "^10.0.1",
-    "npm-run-all": "^4.1.5",
-    "onchange": "^7.1.0",
-    "postcss-cli": "^7.1.2",
-    "postcss-discard-comments": "^4.0.2",
-    "sass": "^1.97.2",
-    "sharp": "^0.33.5",
-    "terser": "^5.46.0"
+    "autoprefixer": "^10.4.21",
+    "eslint": "^8.57.1",
+    "postcss": "^8.5.6",
+    "sass": "^1.92.1",
+    "vite": "^7.1.5"
   }
 }

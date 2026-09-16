@@ -504,7 +504,7 @@ button{
   padding:0;
   width:auto;
   opacity:1;
-  transition:width .5s ease-in, flex .5s ease-in, opacity .1s ease-out;
+  transition:opacity .1s ease-out;
   position:relative;
   z-index:100; }
   .flex-item::before{
@@ -555,6 +555,9 @@ button{
   z-index:100; }
 
 .flex-item__form-button--show{
+  opacity:1; }
+
+.flex-item__form-label-container:hover .flex-item__form-button{
   opacity:1; }
 
 .flex-item__form-button-svg{
