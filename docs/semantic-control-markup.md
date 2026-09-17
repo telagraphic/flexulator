@@ -2,6 +2,8 @@
 
 Pickup doc for the visual-first markup pass. Domain words from [CONTEXT.md](../CONTEXT.md). Does **not** restyle, rename BEM classes, or touch NumberFlow. Apply in `index.html` first; `404.html` / `500.html` after that is settled. **Ship this pass before** [prd-numberflow.md](prd-numberflow.md): NumberFlow assumes labeled native inputs and only swaps read-only `data-field` hosts.
 
+Parent issue: [#57](https://github.com/telagraphic/flexulator/issues/57). Children: [#58](https://github.com/telagraphic/flexulator/issues/58) Add form, [#59](https://github.com/telagraphic/flexulator/issues/59) Item Card labels, [#60](https://github.com/telagraphic/flexulator/issues/60) 404/500 mirror.
+
 This is not one “control panel.” The product already has three jobs.
 
 ```mermaid
