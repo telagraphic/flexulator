@@ -47,8 +47,8 @@ Every read-only number on the Item Cards and the teaching Grow / Shrink panels b
 33. As a maintainer, I want no fourth JavaScript module for this work, so that we do not split paint until Render actually has two reasons to change.
 34. As a maintainer, I want read-only `data-field` hosts to become NumberFlow elements in place, keeping the same `data-field` key and BEM class, so that paint still binds by snapshot key and Sass still skins by class.
 35. As a maintainer, I want Item Card identity and reconcile-by-id unchanged, so that NumberFlow nodes survive across renders the way ADR 0002 intended.
-36. As a maintainer, I want a NumberFlow group inside each Item Card that does not become a layout box (`display: contents`), so that grouping does not break the card’s existing children.
-37. As a maintainer, I want a NumberFlow group around the teaching panels, so that example-formula digit-count changes stay in sync without grouping every Item Card together (which would couple a new card’s hydrate to in-flight spins).
+36. As a maintainer, I want a NumberFlow group around Measured Width and the formula block that does not become a layout box (`display: contents`), so that grouping does not wrap Item Card inputs or Remove.
+37. As a maintainer, I want a NumberFlow group around teaching-panel formula values, not the formula tab buttons, so that example-formula digit-count changes stay in sync without grouping every Item Card together (which would couple a new card’s hydrate to in-flight spins).
 38. As a maintainer, I want paint to call `.update()` with a real number, not a formatted string, so that NumberFlow owns formatting through `Intl.NumberFormat` options.
 39. As a maintainer, I want string `formatField` to remain only for native inputs, so that focused Grow / Shrink / Basis fields still round-trip as text.
 40. As a maintainer, I want a WeakMap of last painted values, so that skip-unchanged does not smash six-decimal floats into `data-*` strings.
@@ -68,11 +68,12 @@ Every read-only number on the Item Cards and the teaching Grow / Shrink panels b
 - Trigger: paint is the only caller of NumberFlow `.update()`. Add, remove, input, stepper, Grow Demo, Shrink Demo, resize, and boot stay on `scheduleRender` → render → paint.
 - Surface (v1): every read-only `data-field` host on Item Cards and on the teaching Grow / Shrink panels, including Measured Width. Native inputs (`data-field` Grow / Shrink / Basis on the Item Card, and the add form) stay `<input type="number">`.
 - Markup: replace those read-only hosts in place with NumberFlow, keeping BEM class and `data-field`. Do not wrap a NumberFlow inside the old span/heading.
-- Grouping: one NumberFlow group inside each Item Card (not replacing the card root, so reconcile still keys on the Item Card). The group uses `display: contents`. A second group wraps the teaching formula panels. Do not wrap the whole Flex Container’s item row in one group.
+- Grouping: one NumberFlow group around the rolling numbers on each Item Card (Measured Width plus the formula block), not the Item Card root and not `.flex-item__form` or Remove. The group uses `display: contents` so it is not a layout box. A second group wraps teaching-panel formula values, not the formula tab buttons. Do not wrap the whole Flex Container’s item row in one group. Inputs stay outside the group so `display: contents` cannot drop labeled controls from the accessibility tree.
 - Paint contract: if the host is NumberFlow and the value is a finite number and it differs from the last painted value, configure (once) then `.update(number)`. If the host is an input, keep today’s skip-focused-input plus string `formatField`. First paint has no WeakMap entry, so it hydrates.
 - Format: `useGrouping: false` for all fields (console-style `1440`). Grow share and shrink factor use six fraction digits. All other painted NumberFlow fields use zero fraction digits. Remaining Space may be negative; NumberFlow’s default sign handling is enough.
 - Motion config: one object at the top of Render with `spinTiming` (duration 350, ease-out), `transformTiming` (duration 350, ease-out), `opacityTiming` (duration 200, ease-out). Copied onto each NumberFlow when first configured. `respectMotionPreference` stays true. Library default trend (direction follows the value change).
-- CSS: existing BEM classes stay on the host. Measured Width host must be `display: block` because it is no longer a heading element. All NumberFlow hosts get `font-variant-numeric: tabular-nums` and `line-height: 0.85` (NumberFlow’s spin spacing). No `::part` rules in this PRD.
+- CSS: existing BEM classes stay on the host. Measured Width is `<number-flow class="flex-item__width" data-field="measuredWidth">` (not a heading) with `display: block`. The “width” caption is `<span class="flex-item__width-header">`, not `h5`. All NumberFlow hosts get `font-variant-numeric: tabular-nums` and `line-height: 0.85` (NumberFlow’s spin spacing). No `::part` rules in this PRD.
+- Accessibility: NumberFlow hosts stay in the tree like the spans they replace. Do not add `aria-live`, `aria-hidden`, or a spoken summary. Labeled Grow / Shrink / Basis inputs remain the editable controls. If a later VoiceOver pass shows NumberFlow itself is a noisy live region, park a mute as a follow-up (same visual-first rule as unnamed steppers).
 - Resize v1: leave animation on during ResizeObserver paints (existing rAF coalescing is the throttle). Do not debounce until mouseup in the first implementation. Record an `animateDuringResize` flag on the same config object as the place to A/B freeze-then-settle after visual testing.
 - Architecture constraints respected: one render cycle (ADR 0001 / 0004), reconcile Item Cards by id (ADR 0002), paint via `data-field` (ADR 0012), three ES modules (ADR 0006), ResizeObserver still the width source (ADR 0009), no grow/shrink mode (ADR 0005).
 
@@ -91,6 +92,7 @@ Every read-only number on the Item Cards and the teaching Grow / Shrink panels b
 - Custom increment/decrement steppers on the add form.
 - On-page debug sliders for timings.
 - NumberFlow `::part` styling, `data-will-change` unless leftover jitter shows up after v1.
+- `aria-live` / `aria-hidden` on formula NumberFlows, or a spoken summary of Remaining Space (visual-first; revisit only if NumberFlow itself proves noisy).
 - Matching GSAP formula-tab loop timings.
 - CSS cascade layers, token migration, and `flexulations` class rename.
 - Mobile/compact calculator below the current hide breakpoint.
@@ -99,7 +101,8 @@ Every read-only number on the Item Cards and the teaching Grow / Shrink panels b
 
 ## Further Notes
 
-- Domain language: CONTEXT.md. Decisions this work stands on: ADRs 0001, 0002, 0004, 0006, 0009, 0012. Call graph: architecture.md. JS ↔ DOM map: naming.md. Prior rewrite: prd-javascript-refactor.md (NumberFlow was explicitly out of that PRD; Item Cards surviving in place was the prerequisite).
+- Domain language: CONTEXT.md. Decisions this work stands on: ADRs 0001, 0002, 0004, 0006, 0009, 0012, [0015](adr/0015-numberflow-read-only.md). Call graph: architecture.md. JS ↔ DOM map: naming.md. Prior rewrite: prd-javascript-refactor.md (NumberFlow was explicitly out of that PRD; Item Cards surviving in place was the prerequisite).
+- **Prerequisite:** [semantic-control-markup.md](semantic-control-markup.md) ships first (Add form submit + labeled Item Card inputs). NumberFlow then only swaps read-only hosts and adds groups around rolling numbers ([ADR 0015](adr/0015-numberflow-read-only.md)).
 - NumberFlow docs: https://number-flow.barvian.me/vanilla
 - Parked visual experiments after v1 is on screen: (1) load intro from 0, (2) input overlay, (3) resize live-spin vs freeze-then-settle via `animateDuringResize`.
 
@@ -109,16 +112,17 @@ Tracer-bullet issues, filed under [#50](https://github.com/telagraphic/flexulato
 
 ### 1. Measured Width rolls through paint — AFK — [#51](https://github.com/telagraphic/flexulator/issues/51)
 
-**Blocked by:** none — can start immediately.
+**Blocked by:** semantic-control-markup pass on `index.html` (Add form + Item Card labels).
 
 **User stories:** 1, 15–18, 24–25 (foundation), 27–32, 34–35, 38–43, 47–48.
 
-**What to build:** Install vanilla NumberFlow. Add the Render config object. Teach paint to configure-once and `.update(number)` on NumberFlow hosts, skip unchanged via WeakMap, hydrate on first paint, and keep string paint for native inputs (still skip focused). Replace only the Measured Width host on the Item Card template. CSS: Measured Width `display: block`; NumberFlow `tabular-nums` and `line-height: 0.85`.
+**What to build:** Install vanilla NumberFlow. Add the Render config object. Teach paint to configure-once and `.update(number)` on NumberFlow hosts, skip unchanged via WeakMap, hydrate on first paint, and keep string paint for native inputs (still skip focused). Replace the Measured Width `<h4>` with `<number-flow class="flex-item__width" data-field="measuredWidth">`. Change the “width” caption from `<h5>` to `<span class="flex-item__width-header">`. CSS: Measured Width `display: block`; NumberFlow `tabular-nums` and `line-height: 0.85`.
 
 **Acceptance criteria:**
 
 - [ ] After add, remove, stepper, type (blurred field), Grow Demo, Shrink Demo, or resize, Measured Width rolls to `clientWidth`.
 - [ ] First load and a newly added Item Card show the real width with no 0 → value intro.
+- [ ] Measured Width is not a heading; the “width” caption is a span.
 - [ ] Typing in Grow / Shrink / Basis does not lose the caret.
 - [ ] Calculate fixtures still pass.
 - [ ] Timings are editable from one config object.
@@ -129,7 +133,7 @@ Tracer-bullet issues, filed under [#50](https://github.com/telagraphic/flexulato
 
 **User stories:** 2–5, 7–12, 20–26, 33, 36, 38.
 
-**What to build:** Replace remaining read-only `data-field` hosts on the Item Card template with NumberFlow. Wrap card contents in a NumberFlow group that does not generate a layout box. Apply integer vs six-decimal format from the `data-field` key.
+**What to build:** Replace remaining read-only `data-field` hosts on the Item Card template with NumberFlow. Wrap Measured Width plus the formula block in a NumberFlow group that does not generate a layout box. Leave Item Card inputs, steppers, and Remove outside the group. Apply integer vs six-decimal format from the `data-field` key.
 
 **Acceptance criteria:**
 
@@ -145,7 +149,7 @@ Tracer-bullet issues, filed under [#50](https://github.com/telagraphic/flexulato
 
 **User stories:** 6, 20–23, 37.
 
-**What to build:** Replace read-only `data-field` hosts on the teaching Grow and Shrink panels with NumberFlow. Wrap those panels in a NumberFlow group. Same format rules as Item Cards.
+**What to build:** Replace read-only `data-field` hosts on the teaching Grow and Shrink panels with NumberFlow. Wrap those formula values in a NumberFlow group, not the formula tab buttons. Same format rules as Item Cards.
 
 **Acceptance criteria:**
 

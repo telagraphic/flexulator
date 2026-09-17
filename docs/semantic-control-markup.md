@@ -1,6 +1,6 @@
 # Semantic markup for the Add form and Item Card inputs
 
-Pickup doc for the visual-first markup pass. Domain words from [CONTEXT.md](../CONTEXT.md). Does **not** restyle, rename BEM classes, or touch NumberFlow. Apply in `index.html` first; `404.html` / `500.html` after that is settled.
+Pickup doc for the visual-first markup pass. Domain words from [CONTEXT.md](../CONTEXT.md). Does **not** restyle, rename BEM classes, or touch NumberFlow. Apply in `index.html` first; `404.html` / `500.html` after that is settled. **Ship this pass before** [prd-numberflow.md](prd-numberflow.md): NumberFlow assumes labeled native inputs and only swaps read-only `data-field` hosts.
 
 This is not one “control panel.” The product already has three jobs.
 
@@ -55,32 +55,29 @@ Item Card template:
 
 `autocomplete="off"`: these are not personal-data fields. No fieldset: three labeled fields plus submit do not need one.
 
-**Item Card** — wrapping `<label>` so cloned cards do not need unique `id`s.
+**Item Card** — wrapping `<label>` around the visible name and the `<input>` only, so cloned cards do not need unique `id`s. Increment / decrement stay **outside** the label: a label’s control is the first labelable descendant, so buttons inside would steal “grow” from the input. NumberFlow v1 never sits in this cluster; a later overlay still labels the input.
 
 ```html
 <section class="flex-item__form">
-  <label class="flex-item__form-label">
+  <div class="flex-item__form-label">
     <span class="flex-item__form-label-container">
       <button type="button" class="flex-item__grow-increment flex-item__form-button"></button>
-      <input type="number" class="flex-item__grow-value" name="grow" data-field="grow" min="0" value="1" autocomplete="off">
+      <label>
+        <input type="number" class="flex-item__grow-value" name="grow" data-field="grow" min="0" value="1" autocomplete="off">
+        <span class="flex-item__form-label-name">grow</span>
+      </label>
       <button type="button" class="flex-item__grow-decrement flex-item__form-button"></button>
     </span>
-    <span class="flex-item__form-label-name">grow</span>
-  </label>
+  </div>
   <!-- shrink, flex-basis -->
 </section>
 ```
 
 **JS:** keep `submit` → Add; drop the extra click listener on the Add button once it is `type="submit"`. Item `input` / stepper handlers stay. Do not write legends in `syncItemCards`.
 
-## Glossary (write into CONTEXT.md when this ships)
+**Add form** is in [CONTEXT.md](../CONTEXT.md). This pass does not add AT-only chrome (no unique legends, no visually-hidden utility, no stepper `aria-label`).
 
-**Add form**: draft Grow / Shrink / Basis plus Add. Independent of any Flex Item until submit.
-_Avoid_: control panel, flexulator form (BEM name is not the concept)
-
-Flag: “control panel” for the whole calculator — resolved: three jobs (Add form, Item Card inputs, Grow Demo / Shrink Demo). No ADR.
-
-## Reconcile with NumberFlow later
+## Reconcile with NumberFlow
 
 NumberFlow is out of this pass ([PRD](prd-javascript-refactor.md), [css-layers-plan.md](css-layers-plan.md) parks `::part`). Markup must not make that work harder.
 
@@ -93,19 +90,22 @@ NumberFlow animates a displayed number on a **stable node**. Constraints already
 | Skip the focused input | Typing grow/shrink/basis must not fight an in-flight number animation |
 | BEM classes stay; `data-field` stays on the control | Style vs paint stay split; NumberFlow `::part` can target the number without renaming classes |
 
-What this markup pass does **not** decide:
+Reconciled with [prd-numberflow.md](prd-numberflow.md) and [ADR 0015](adr/0015-numberflow-read-only.md):
 
-- Whether NumberFlow wraps **Measured Width** and formula spans (likely) vs the Grow / Shrink / Basis **inputs** (unlikely — those are typed, not only displayed).
-- Whether `<number-flow>` sits inside the wrapping `<label>` next to the input, or replaces a `data-field` span in the formula block.
-- `::part` styling (CSS layers plan).
+- v1 NumberFlow replaces read-only `data-field` hosts (Measured Width, formulas, teaching panels). Native inputs stay native.
+- The wrapping `<label>` contains only the name and the `<input>`. Steppers stay outside. A parked overlay still paints/labels that same input; do not put `<number-flow>` inside the label in v1.
+- `<number-flow-group>` wraps Measured Width plus the formula block (and teaching-panel values). It does **not** wrap `.flex-item__form` or Remove.
+- Measured Width is not a heading: `<number-flow>` plus a `<span>` caption. Fake headings in the Add form / Item Card labels are `<span>`s (this pass). Formula-section `h5`s stay out of both passes until a heading-outline pass.
+- NumberFlow hosts stay readable like today’s spans: no `aria-live`, no `aria-hidden`, no spoken summary. Labeled inputs remain the editable controls.
+- `::part` styling stays with the CSS layers plan.
 
-Safe for a later NumberFlow pass if this markup ships as specified: wrapping labels leave the `<input data-field>` as a descendant; formula `data-field` spans are untouched; Item Card identity is unchanged.
+Safe for NumberFlow if this markup ships as specified: the labeled control is the `<input data-field>`; formula `data-field` spans are untouched by this pass; Item Card identity is unchanged.
 
-If NumberFlow later wraps an input, keep `data-field` on the node `paintFields` writes (the custom element or a child). Do not introduce a second selector vocabulary.
+If NumberFlow later overlays an input, keep `data-field` on the node `paintFields` writes (the input). Do not introduce a second selector vocabulary.
 
 ## Out of scope this pass
 
 - `404.html` and `500.html` until `index.html` is settled
 - Formula tabs, heading outline elsewhere, class renames, restyling
-- NumberFlow, stepper UX, focus rings
+- NumberFlow (next pass — see [prd-numberflow.md](prd-numberflow.md)), stepper UX, focus rings
 - Fieldset / unique legend / stepper `aria-label` (rejected: visual-first)

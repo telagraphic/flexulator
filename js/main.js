@@ -1,6 +1,9 @@
 import { render } from './render.js'
 import './app.js'
 
+
+
+// TODO: global state
 let nextId = 1
 
 /**
@@ -29,6 +32,7 @@ const state = {
   items: [createItem(), createItem(), createItem()],
 }
 
+// TODO: global state
 let renderFrame = 0
 
 /**
@@ -215,6 +219,7 @@ function onShrinkDemo(event) {
 
 /**
  * Register listeners once, observe Flex Container width, and run the first render.
+ * TODO: does too many things, split into two!
  */
 function boot() {
   if (!els.container || !els.template) return

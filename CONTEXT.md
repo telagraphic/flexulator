@@ -36,6 +36,10 @@ _Avoid_: observed child, child object, flex child
 A preset that sets every Flex Item's Basis so Remaining Space is positive (grow) or negative (shrink). Not a calculation mode.
 _Avoid_: grow mode, shrink mode, toggle
 
+**Add form**:
+Draft Grow / Shrink / Basis plus Add. Independent of any Flex Item until submit.
+_Avoid_: control panel, flexulator form (that is a BEM class, not the concept)
+
 ## Relationships
 
 - A **Flex Container** contains one or more **Flex Items** (never zero)
@@ -46,6 +50,8 @@ _Avoid_: grow mode, shrink mode, toggle
 - The formula shown on an **Item Card** follows the sign of **Remaining Space** (positive → grow, negative → shrink)
 - **Grow Demo** and **Shrink Demo** only change **Basis**; they do not switch which arithmetic exists
 - **Measured Width** is read from the DOM after grow, shrink, and basis have been applied as CSS
+- The **Add form** drafts Grow / Shrink / Basis; submit creates a new **Flex Item**. It is never a live Item Card
+- **Grow Demo** / **Shrink Demo** sit outside the **Add form**; they only change **Basis** on existing **Flex Items**
 
 ## Example dialogue
 
@@ -58,3 +64,4 @@ _Avoid_: grow mode, shrink mode, toggle
 - "child" / "flex child" was used for both the data record and the DOM card — resolved: **Flex Item** is the record; the **Item Card** is a view of it.
 - "mode" was used as if grow/shrink were a calculation toggle — resolved: there is no mode. Remaining Space picks the algorithm; the buttons are **Grow Demo** / **Shrink Demo**.
 - JS property names vs CSS `flex-grow` — resolved: records use **Grow** / **Shrink** / **Basis**; CSSOM names are assigned only in `applyFlexStyles`. Map: [docs/naming.md](docs/naming.md).
+- "control panel" for the whole calculator — resolved: three jobs (**Add form**, **Item Card** inputs, **Grow Demo** / **Shrink Demo**).

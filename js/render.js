@@ -46,6 +46,9 @@ function paintFields(root, values, focused) {
 }
 
 /**
+ * 
+ * TODO: explain this in relationship to two sets of state tracking???
+ * 
  * Match Item Cards to Flex Items by id: clone the template for new ids,
  * remove cards whose id left the list, and keep existing nodes in list order.
  *
@@ -158,10 +161,13 @@ function paintExampleFormulas(snapshot, item, examples) {
   paintFields(examples, values, null)
 }
 
+
+// TODO: global state
 let paintGeneration = 0
 
 /**
  * One render cycle: calculate, sync Item Cards, apply flex, then paint after layout.
+ * TODO: acts as an orchestrator or pipeline for all the methods in this file
  *
  * @param {{ width: number, items: { id: string, grow: number, shrink: number, basis: number }[] }} state
  * @param {{ container: Element, template: HTMLTemplateElement, examples: ParentNode | null }} els

@@ -19,9 +19,10 @@ Target design after the ADRs. Domain words from [CONTEXT.md](../CONTEXT.md).
  0012  paint via data-field
  0013  at least one Flex Item          hide Remove when last
  0014  fixture tests on Calculate      browser tests later
+ 0015  NumberFlow read-only only       native inputs stay inputs
 ```
 
-CSS `@layer` work is a separate plan, not this map. Add form / Item Card tag markup: [semantic-control-markup.md](semantic-control-markup.md).
+CSS `@layer` work is a separate plan, not this map. Add form / Item Card tag markup: [semantic-control-markup.md](semantic-control-markup.md). NumberFlow: [prd-numberflow.md](prd-numberflow.md).
 
 ## Modules and callers
 
