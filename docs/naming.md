@@ -67,12 +67,18 @@ Formula spans that echo container keys use the container `data-field` names abov
 | Function | Module | Does |
 | --- | --- | --- |
 | `createItem` | `main.js` | `{ id, grow, shrink, basis }` |
+| `scheduleRender` | `main.js` | coalesce mutations to one `render` per frame |
+| `setupListeners` / `observeContainerWidth` / `boot` | `main.js` | wire once; ResizeObserver; first paint |
+| `onItemInput` / `onItemClick` / label hover handlers | `item-controls.js` | mutate Flex Items from Item Card gestures; return whether to render |
+| `parseNonNegative` | `utils.js` | shared number parse for Add form + Item Card inputs |
 | `calculateFlexValues` | `calculate.js` | snapshot |
 | `syncItemCards` | `render.js` | clone/remove template by id |
 | `applyFlexStyles` | `render.js` | `style.flex` from state |
 | `paintItemCards` | `render.js` | `[data-field]` ← snapshot + measured width |
 | `paintExampleFormulas` | `render.js` | same hooks on the example panel, item 0 |
 | `render` | `render.js` | calculate → sync → apply → rAF → paint |
+| NumberFlow config / `paintNumberFlow` / `setNumberFlowAnimated` | `number-flow.js` | digit hosts; called from paint only |
+| formula tabs + GSAP loops | `formula-demos.js` | teaching panel below the calculator (not the render cycle) |
 
 ## Grow / Shrink Demo
 

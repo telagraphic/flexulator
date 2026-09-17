@@ -1,9 +1,10 @@
 import { calculateFlexValues } from './calculate.js'
+import { paintNumberFlow } from './number-flow.js'
 
 const FRACTION_FIELDS = new Set(['growShare', 'shrinkFactor'])
 
 /**
- * Format a snapshot or state value for an Item Card or example formula.
+ * Format a snapshot or state value for a native input.
  * Grow share and shrink factor keep six decimal places; other numbers stay as-is.
  *
  * @param {string} key
@@ -25,6 +26,7 @@ function formatField(key, value) {
 
 /**
  * Write snapshot and state values onto every `[data-field]` hook under root.
+ * NumberFlow hosts get `.update(number)`; inputs get string values.
  * Skips the focused input so a keystroke is not overwritten mid-edit.
  *
  * @param {ParentNode} root
@@ -36,7 +38,15 @@ function paintFields(root, values, focused) {
     const key = el.dataset.field
     if (!(key in values)) continue
     if (el === focused) continue
-    const text = formatField(key, values[key])
+    const raw = values[key]
+
+    if (el.localName === 'number-flow') {
+      if (typeof raw !== 'number' || !Number.isFinite(raw)) continue
+      paintNumberFlow(/** @type {any} */ (el), key, raw)
+      continue
+    }
+
+    const text = formatField(key, raw)
     if (el instanceof HTMLInputElement) {
       el.value = text
     } else {
@@ -46,9 +56,6 @@ function paintFields(root, values, focused) {
 }
 
 /**
- * 
- * TODO: explain this in relationship to two sets of state tracking???
- * 
  * Match Item Cards to Flex Items by id: clone the template for new ids,
  * remove cards whose id left the list, and keep existing nodes in list order.
  *
@@ -161,13 +168,10 @@ function paintExampleFormulas(snapshot, item, examples) {
   paintFields(examples, values, null)
 }
 
-
-// TODO: global state
 let paintGeneration = 0
 
 /**
  * One render cycle: calculate, sync Item Cards, apply flex, then paint after layout.
- * TODO: acts as an orchestrator or pipeline for all the methods in this file
  *
  * @param {{ width: number, items: { id: string, grow: number, shrink: number, basis: number }[] }} state
  * @param {{ container: Element, template: HTMLTemplateElement, examples: ParentNode | null }} els

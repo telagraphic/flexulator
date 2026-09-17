@@ -44,7 +44,8 @@ Every read-only number on the Item Cards and the teaching Grow / Shrink panels b
 30. As a maintainer, I want NumberFlow updates to live in the existing paint path, so that add, remove, edit, demo, resize, and boot cannot grow a second animation API.
 31. As a maintainer, I want event handlers to keep only mutating state and scheduling render, so that NumberFlow never needs to know why a number changed.
 32. As a maintainer, I want Render to own NumberFlow, so that Calculate stays a pure snapshot function and Main stays state and events.
-33. As a maintainer, I want no fourth JavaScript module for this work, so that we do not split paint until Render actually has two reasons to change.
+33. As a maintainer, I want NumberFlow paint helpers extractable when Render has two reasons to change (reconcile/apply vs digit motion), so that split follows ADR 0016 rather than a blanket “no fourth file.”
+
 34. As a maintainer, I want read-only `data-field` hosts to become NumberFlow elements in place, keeping the same `data-field` key and BEM class, so that paint still binds by snapshot key and Sass still skins by class.
 35. As a maintainer, I want Item Card identity and reconcile-by-id unchanged, so that NumberFlow nodes survive across renders the way ADR 0002 intended.
 36. As a maintainer, I want a NumberFlow group around Measured Width and the formula block that does not become a layout box (`display: contents`), so that grouping does not wrap Item Card inputs or Remove.
@@ -63,7 +64,8 @@ Every read-only number on the Item Cards and the teaching Grow / Shrink panels b
 
 ## Implementation Decisions
 
-- Modules: Render is the only JavaScript module that changes. Calculate is untouched. Main is untouched: it already coalesces mutations into one render per frame, including ResizeObserver. No fourth module, no per-card view class, no NumberFlow wrapper type.
+- Modules (v1 ship): NumberFlow lived in Render. Calculate untouched. Main untouched for coalescing. No per-card view class, no NumberFlow wrapper type. **Later (ADR 0016):** digit config/paint may move to `number-flow.js`; Render still owns the cycle and is the only caller.
+
 - Library: vanilla NumberFlow custom element plus its group custom element. Not the React/Vue wrappers. Register by importing from Render so the first render already has the elements defined.
 - Trigger: paint is the only caller of NumberFlow `.update()`. Add, remove, input, stepper, Grow Demo, Shrink Demo, resize, and boot stay on `scheduleRender` → render → paint.
 - Surface (v1): every read-only `data-field` host on Item Cards and on the teaching Grow / Shrink panels, including Measured Width. Native inputs (`data-field` Grow / Shrink / Basis on the Item Card, and the add form) stay `<input type="number">`.
@@ -71,11 +73,13 @@ Every read-only number on the Item Cards and the teaching Grow / Shrink panels b
 - Grouping: one NumberFlow group around the rolling numbers on each Item Card (Measured Width plus the formula block), not the Item Card root and not `.flex-item__form` or Remove. The group uses `display: contents` so it is not a layout box. A second group wraps teaching-panel formula values, not the formula tab buttons. Do not wrap the whole Flex Container’s item row in one group. Inputs stay outside the group so `display: contents` cannot drop labeled controls from the accessibility tree.
 - Paint contract: if the host is NumberFlow and the value is a finite number and it differs from the last painted value, configure (once) then `.update(number)`. If the host is an input, keep today’s skip-focused-input plus string `formatField`. First paint has no WeakMap entry, so it hydrates.
 - Format: `useGrouping: false` for all fields (console-style `1440`). Grow share and shrink factor use six fraction digits. All other painted NumberFlow fields use zero fraction digits. Remaining Space may be negative; NumberFlow’s default sign handling is enough.
-- Motion config: one object at the top of Render with `spinTiming` (duration 350, ease-out), `transformTiming` (duration 350, ease-out), `opacityTiming` (duration 200, ease-out). Copied onto each NumberFlow when first configured. `respectMotionPreference` stays true. Library default trend (direction follows the value change).
+- Motion config: one object (`NUMBER_FLOW`) with `spinTiming` (duration 350, ease-out), `transformTiming` (duration 350, ease-out), `opacityTiming` (duration 200, ease-out). Lives with NumberFlow paint (Render at v1; `number-flow.js` under ADR 0016). Copied onto each NumberFlow when first configured. `respectMotionPreference` stays true. Library default trend (direction follows the value change).
+
 - CSS: existing BEM classes stay on the host. Measured Width is `<number-flow class="flex-item__width" data-field="measuredWidth">` (not a heading) with `display: block`. The “width” caption is `<span class="flex-item__width-header">`, not `h5`. All NumberFlow hosts get `font-variant-numeric: tabular-nums` and `line-height: 0.85` (NumberFlow’s spin spacing). No `::part` rules in this PRD.
 - Accessibility: NumberFlow hosts stay in the tree like the spans they replace. Do not add `aria-live`, `aria-hidden`, or a spoken summary. Labeled Grow / Shrink / Basis inputs remain the editable controls. If a later VoiceOver pass shows NumberFlow itself is a noisy live region, park a mute as a follow-up (same visual-first rule as unnamed steppers).
-- Resize v1: leave animation on during ResizeObserver paints (existing rAF coalescing is the throttle). Do not debounce until mouseup in the first implementation. Record an `animateDuringResize` flag on the same config object as the place to A/B freeze-then-settle after visual testing.
-- Architecture constraints respected: one render cycle (ADR 0001 / 0004), reconcile Item Cards by id (ADR 0002), paint via `data-field` (ADR 0012), three ES modules (ADR 0006), ResizeObserver still the width source (ADR 0009), no grow/shrink mode (ADR 0005).
+- Resize A/B: `NUMBER_FLOW.animateDuringResize` (default `true` — digits roll every resize frame). Set to `false` to freeze NumberFlow while ResizeObserver is hot and animate once ~150ms after width settles. Flip the flag on `NUMBER_FLOW` and reload to compare ([#54](https://github.com/telagraphic/flexulator/issues/54)).
+
+- Architecture constraints respected: one render cycle (ADR 0001 / 0004), reconcile Item Cards by id (ADR 0002), paint via `data-field` (ADR 0012), module boundaries (ADR 0016; supersedes 0006 — NumberFlow may live in `number-flow.js`), ResizeObserver still the width source (ADR 0009), no grow/shrink mode (ADR 0005).
 
 ## Testing Decisions
 
@@ -96,12 +100,13 @@ Every read-only number on the Item Cards and the teaching Grow / Shrink panels b
 - Matching GSAP formula-tab loop timings.
 - CSS cascade layers, token migration, and `flexulations` class rename.
 - Mobile/compact calculator below the current hide breakpoint.
-- A fourth JavaScript module, React NumberFlow, or a third-party animated input package.
+- React NumberFlow, or a third-party animated input package. (A dedicated `number-flow.js` under ADR 0016 is in scope for the module-boundaries refactor.)
+
 - Browser/end-to-end test harness.
 
 ## Further Notes
 
-- Domain language: CONTEXT.md. Decisions this work stands on: ADRs 0001, 0002, 0004, 0006, 0009, 0012, [0015](adr/0015-numberflow-read-only.md). Call graph: architecture.md. JS ↔ DOM map: naming.md. Prior rewrite: prd-javascript-refactor.md (NumberFlow was explicitly out of that PRD; Item Cards surviving in place was the prerequisite).
+- Domain language: CONTEXT.md. Decisions this work stands on: ADRs 0001, 0002, 0004, 0009, 0012, [0015](adr/0015-numberflow-read-only.md), [0016](adr/0016-module-boundaries.md). Call graph: architecture.md. JS ↔ DOM map: naming.md. Prior rewrite: prd-javascript-refactor.md (NumberFlow was explicitly out of that PRD; Item Cards surviving in place was the prerequisite).
 - **Prerequisite:** [semantic-control-markup.md](semantic-control-markup.md) ships first (Add form submit + labeled Item Card inputs). NumberFlow then only swaps read-only hosts and adds groups around rolling numbers ([ADR 0015](adr/0015-numberflow-read-only.md)).
 - NumberFlow docs: https://number-flow.barvian.me/vanilla
 - Parked visual experiments after v1 is on screen: (1) load intro from 0, (2) input overlay, (3) resize live-spin vs freeze-then-settle via `animateDuringResize`.

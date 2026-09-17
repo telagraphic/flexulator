@@ -1,0 +1,5 @@
+# Module boundaries beyond three files
+
+Supersedes [0006](0006-three-es-modules.md). Scripts remain native ES modules. Split by **named job** (two independent reasons to change you can state), not by pattern names (no store, view class, or orchestrator). Leaves never import Main; Main is the HTML entry, owns module-scoped state, registers listeners once, and calls `scheduleRender`.
+
+**Allowlist (this refactor):** `calculate.js` (math); `render.js` (sync → apply → paint cycle); `number-flow.js` (NumberFlow config + paint/update; called only from Render); `item-controls.js` (Item Card handlers: input, steppers/remove, label hover — export handlers, Main wires `addEventListener` and decides when to `scheduleRender`); `utils.js` (pure DOM-free helpers with ≥2 callers only — start with `parseNonNegative`); `main.js` (state, Add, Grow/Shrink Demo, `createItem`, `scheduleRender`, `boot` → `setupListeners` + `observeContainerWidth`); `formula-demos.js` (formula tabs + GSAP teaching loops; renamed from `app.js`). Further modules need a new ADR. No `createApp` factory; no injecting `scheduleRender` into leaves.

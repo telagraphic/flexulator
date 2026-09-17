@@ -25,6 +25,7 @@
 }
 
 .flex-item {
+  display: flex;
   flex-flow: column nowrap;
   text-align: center;
   background-color: $blue-1;
@@ -37,6 +38,29 @@
   position: relative;
   z-index: 100;
 
+  &__number-flow-group {
+    display: contents;
+  }
+
+  &__width-container {
+    order: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__form {
+    order: 1;
+  }
+
+  &__flexulations-container {
+    order: 2;
+  }
+
+  &__remove-button {
+    order: 3;
+  }
+
   &::before {
     position: absolute;
     content: '';
@@ -46,13 +70,26 @@
     bottom: 0;
     right: 0;
     z-index: -10;
+    pointer-events: none;
   }
 
   &__width {
+    display: block;
+    margin: 0;
     padding: 1rem 0 0 0;
     color: $blue-4;
     font-size: 3rem;
     font-weight: 400;
+    font-variant-numeric: tabular-nums;
+    line-height: 0.85;
+  }
+
+  &__width-header {
+    margin: -.5rem 0 0;
+    line-height: 1;
+    font-size: $h5-font-size;
+    font-weight: 600;
+    text-transform: uppercase;
   }
 }
 
@@ -63,18 +100,8 @@
     flex-flow: column nowrap;
     align-items: center;
     z-index: -100;
-  }
-
-  &__width-container {
-
-  }
-
-  &__width {
-
-  }
-
-  &__width-header {
-    text-transform: uppercase;
+    padding-top: 1rem;
+    order: 1;
   }
 
   &__form-label {
@@ -87,20 +114,50 @@
   }
 
   &__form-label-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto auto;
     justify-content: center;
-    align-items: center;
+    align-items: baseline;
     width: auto;
     padding: .25rem 0 0 0;
+    column-gap: 0;
+
+    > label {
+      display: contents;
+    }
+
+    > .flex-item__form-button:first-child {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    > .flex-item__form-button:last-child {
+      grid-column: 3;
+      grid-row: 1;
+    }
+
+    .flex-item__grow-value,
+    .flex-item__shrink-value,
+    .flex-item__basis-value {
+      grid-column: 2;
+      grid-row: 1;
+    }
   }
 
   &__form-label-name {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: center;
+    margin: 0;
+    line-height: 1;
+    font-size: $h5-font-size;
+    font-weight: 600;
     text-transform: uppercase;
   }
 
   &__form-button {
     opacity: 0;
-    transition: opacity 1s ease;
+    transition: opacity .15s ease-out;
 
     z-index: 100;
   }
@@ -117,16 +174,15 @@
     position: absolute;
     top: 0;
     left: 0;
-    max-width: 100%;
+    width: 100%;
     height: 100%;
-
-    z-index: -100;
+    display: block;
+    pointer-events: none;
   }
 
 
   &__grow-increment {
     @include flex-item-button();
-    @include flex-item-increment();
   }
 
   &__grow-value {
@@ -135,12 +191,10 @@
   }
   &__grow-decrement {
     @include flex-item-button();
-    @include flex-item-decrement();
   }
 
   &__shrink-increment {
     @include flex-item-button();
-    @include flex-item-increment();
   }
 
   &__shrink-value {
@@ -149,45 +203,28 @@
   }
   &__shrink-decrement {
     @include flex-item-button();
-    @include flex-item-decrement();
   }
 
   &__basis-increment {
     @include flex-item-button();
-    @include flex-item-increment();
   }
   &__basis-value {
     @include flex-item-input();
     @include input-number();
-    width: 7rem;
   }
   &__basis-decrement {
     @include flex-item-button();
-    @include flex-item-decrement();
   }
 
   &__remove-button {
-    // position: relative;
-    // padding: 1rem;
-    // margin: 1.5rem 0;
-    // background-color: $pink-1;
-    // background-clip: padding-box;
-    // border: 4px solid $black-1;
-    // color: $black-1;
-    // font-weight: 400;
-    // transform: scale(1);
-    // transition: background-color .25s ease-in, color .15s ease-in, transform .15s ease-in;
-    // text-transform: uppercase;
-    //
-    // &:focus,
-    // &:hover {
-    //   background-color: $pink-3;
-    //   color: $white;
-    // }
-
+    align-self: center;
+    flex: 0 0 auto;
+    width: max-content;
     padding: 0 4%;
-    margin: 4%;
-
+    margin-top: auto;
+    margin-right: 4%;
+    margin-bottom: 0.75rem;
+    margin-left: 4%;
 
     border-radius: .67rem;
     background-color: $gray-3;
@@ -220,7 +257,7 @@
 
     width: 79%;
     margin: 0 auto;
-    padding: 4% 0 0 0;
+    padding: 0.75rem 0 0 0;
   }
 
   &-section {

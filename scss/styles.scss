@@ -1,9 +1,9 @@
 @import 'base/normalize';
+@import 'config/variables';
 @import 'base/typography';
 @import 'base/defaults';
 
 @import 'config/mixins';
-@import 'config/variables';
 
 @import 'components/header';
 @import 'components/flexulator';

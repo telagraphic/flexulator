@@ -10,7 +10,7 @@ Target design after the ADRs. Domain words from [CONTEXT.md](../CONTEXT.md).
  0003  calculateFlexValues             (not Strategy classes)
  0004  render() is the cycle           (not an Orchestrator)
  0005  no grow/shrink mode             (demos only change Basis)
- 0006  three ES modules                calculate / render / main
+ 0006  three ES modules                (superseded by 0016)
  0007  state owns initial three items  empty container + template
  0008  event delegation once at boot
  0009  width from ResizeObserver
@@ -20,7 +20,11 @@ Target design after the ADRs. Domain words from [CONTEXT.md](../CONTEXT.md).
  0013  at least one Flex Item          hide Remove when last
  0014  fixture tests on Calculate      browser tests later
  0015  NumberFlow read-only only       native inputs stay inputs
+ 0016  module boundaries               calculate / render / number-flow /
+                                       item-controls / utils / main /
+                                       formula-demos
 ```
+
 
 CSS `@layer` work is a separate plan, not this map. Add form / Item Card tag markup: [semantic-control-markup.md](semantic-control-markup.md). NumberFlow: [prd-numberflow.md](prd-numberflow.md).
 
@@ -30,27 +34,31 @@ CSS `@layer` work is a separate plan, not this map. Add form / Item Card tag mar
                     ┌─────────────────────────────────────┐
                     │              MAIN                   │
                     │  state: width + Flex Item[]         │
-                    │  createItem                         │
-                    │  add / remove / patch / demos       │
-                    │  boot: listeners + ResizeObserver   │
-                    └──────────────┬──────────────────────┘
-                                   │ render(state, els)
-                                   ▼
-                    ┌─────────────────────────────────────┐
-                    │             RENDER                  │
-                    │  render                             │
-                    │    ├─ calculateFlexValues  ─────────│──► CALCULATE
-                    │    ├─ syncItemCards                 │
-                    │    ├─ applyFlexStyles               │
-                    │    ├─ rAF                           │
-                    │    ├─ paintItemCards                │
-                    │    └─ paintExampleFormulas          │
-                    └─────────────────────────────────────┘
-                                   │
-          ┌────────────────────────┼────────────────────────┐
-          ▼                        ▼                        ▼
-   Flex Container            Item Cards              Example formulas
-   (measures width)          (one per Flex Item)     (item 0 teaching panel)
+                    │  createItem, scheduleRender         │
+                    │  Add / Grow Demo / Shrink Demo      │
+                    │  boot → setupListeners              │
+                    │       → observeContainerWidth       │
+                    └───────┬───────────────┬─────────────┘
+           import handlers  │               │ render(state, els)
+                            ▼               ▼
+              ┌─────────────────┐   ┌─────────────────────────────────────┐
+              │ ITEM-CONTROLS   │   │             RENDER                  │
+              │ onItemInput     │   │  render                             │
+              │ onItemClick     │   │    ├─ calculateFlexValues  ─────────│──► CALCULATE
+              │ onFormLabel…    │   │    ├─ syncItemCards                 │
+              └─────────────────┘   │    ├─ applyFlexStyles               │
+                                    │    ├─ rAF                           │
+                                    │    ├─ paintItemCards ──► NUMBER-FLOW│
+                                    │    └─ paintExampleFormulas ─────────│
+                                    └─────────────────────────────────────┘
+                                                   │
+          ┌────────────────────────────────────────┼────────────────────────┐
+          ▼                                        ▼                        ▼
+   Flex Container                            Item Cards              Example formulas
+   (measures width)                          (one per Flex Item)     (item 0 teaching panel)
+
+  formula-demos.js  — formula tabs + GSAP loops (side-imported from Main; not in render cycle)
+  utils.js          — parseNonNegative (Add + Item Card input); pure helpers with ≥2 callers only
 ```
 
 **Who calls whom**
@@ -59,10 +67,13 @@ CSS `@layer` work is a separate plan, not this map. Add form / Item Card tag mar
 | --- | --- | --- |
 | `calculateFlexValues` | `render` only | event handlers, ResizeObserver, paint |
 | `render` | Main mutators and the ResizeObserver callback | itself (no nested render) |
+| NumberFlow paint helpers | `render` / paint only | Main, item-controls |
+| Item Card handlers | Main’s listeners only | Render |
 | `syncItemCards` / `applyFlexStyles` / `paintItemCards` / `paintExampleFormulas` | `render` only | Main |
-| `createItem` | Main (boot defaults and Add) | Render, Calculate |
+| `createItem` | Main (boot defaults and Add) | Render, Calculate, item-controls |
 
-Calculate does not import Render or Main. Render does not import Main. Main holds state and calls Render.
+Calculate does not import Render or Main. Render does not import Main. Item-controls does not import Main (no `scheduleRender` injection). Main holds state, registers listeners, and calls Render.
+
 
 ## Component flow (what the user sees)
 
@@ -95,12 +106,15 @@ Calculate does not import Render or Main. Render does not import Main. Main hold
 ```
   [boot]
     createItem × 3  →  state.items
-    register click/input on Flex Container   (once)
-    register Add, Demos                      (once)
-    ResizeObserver.observe(Flex Container)   (once)
+    setupListeners
+      register click/input/hover on Flex Container  (once; handlers from item-controls)
+      register Add, Demos                           (once)
+    observeContainerWidth
+      ResizeObserver.observe(Flex Container)        (once)
                     │
                     │  first size  OR  any later mutation
                     ▼
+
   [render]
     1. snapshot = calculateFlexValues(state.width, state.items)
     2. syncItemCards(state.items)

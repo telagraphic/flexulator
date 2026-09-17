@@ -2,6 +2,10 @@ $mobile: 37.5rem;
 $tablet: 46.25rem;
 $desktop: 75rem;
 
+// Fluid type — h5 matches UA-style 0.83× body without em parent quirks
+$body-font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+$h5-font-size: calc((14px + (26 - 14) * ((100vw - 300px) / (1600 - 300))) * 0.83);
+
 
 
 // COLORS

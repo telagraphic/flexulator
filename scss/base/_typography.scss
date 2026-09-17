@@ -3,7 +3,7 @@ body {
   font-weight: 400;
   font-style: normal;
   font-size: 100%;
-  font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+  font-size: $body-font-size;
 }
 
 h1 {
@@ -24,6 +24,11 @@ h3 {
 
 h4 {
   font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+}
+
+// Absolute size (not em) so nested parents don’t shrink/grow h5 vs label spans
+h5 {
+  font-size: $h5-font-size;
 }
 
 p span {

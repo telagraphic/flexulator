@@ -525,6 +525,7 @@ button{
 .flex-item__form{
   display:flex;
   flex-flow:column nowrap;
+  padding-top: 1rem;
   align-items:center;
   z-index:-100; }
 

@@ -291,9 +291,14 @@
   }
   &__section-formula-value {
     font-weight: 400;
-
     padding: 1.75% 0;
+    font-variant-numeric: tabular-nums;
+    line-height: 0.85;
   }
+}
+
+.formula__number-flow-group {
+  display: contents;
 }
 
 

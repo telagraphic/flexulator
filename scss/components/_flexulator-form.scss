@@ -13,80 +13,52 @@
     width: 100%;
   }
 
+  // Column: artwork stage, then grow/shrink below
+  // Width ≈ old wrapper (50%) × artwork max-width (65%→55%)
   &-wrapper {
-    display: grid;
-    grid-template-areas: "artwork" "form" "buttons";
-    width: 50%;
-
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 32.5%;
     margin: 1rem 0;
 
-    @include viewport-min(2000px) {
-
+    @include viewport-min(1200px) {
+      width: 31.5%;
     }
+
+    @include viewport-min(1500px) {
+      width: 30%;
+    }
+
+    @include viewport-min(2000px) {
+      width: 27.5%;
+    }
+  }
+
+  // viewBox 0 0 209 141 — SVG chrome; add form only
+  &-stage {
+    box-sizing: border-box;
+    width: 100%;
+    aspect-ratio: 209 / 141;
+    background: url('../../design/form-box.svg') center / contain no-repeat;
+  }
+
+  // Padding % relative to stage width (containing block)
+  &-container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    // Vertical ≈ viewBox y fractions × aspect (141/209); bottom clears brace tips
+    padding: 8.1% 18% 11%;
   }
 
   &-advert {
     position: absolute;
     left: 0;
     padding: .5%;
-
-    // height: 100px;
-    // width: 330px;
-    // background-color: red;
-
-    @include viewport-min(2000px) {
-
-    }
-  }
-
-  &-artwork {
-    grid-area: artwork;
-    grid-row: 1 / 2;
-    grid-column: 1 / 2;
-    max-width: 65%;
-    width: 100%;
-    height: 0;
-    padding-top: 0;
-    position: relative;
-    justify-self: center;
-
-    @include viewport-min(1200px) {
-      max-width: 63%;
-    }
-
-    @include viewport-min(1500px) {
-      max-width: 60%;
-    }
-
-    @include viewport-min(2000px) {
-      max-width: 55%;
-    }
-  }
-
-
-  &-container {
-    grid-area: form;
-    grid-row: 1 / 2;
-    grid-column: 1 / 2;
-    z-index: 10;
-    width: 65%;
-    justify-self: center;
-    padding: 8% 0;
-
-    @include viewport-min(1000px) {
-      padding: 8% 0;
-      width: 40%;
-    }
-
-    @include viewport-min(1500px) {
-      padding: 8% 0;
-      width: 35%;
-    }
-
-    @include viewport-min(2000px) {
-      padding: 8% 0;
-      width: 30%;
-    }
   }
 
   &-label {
@@ -94,28 +66,13 @@
     flex-flow: row nowrap;
     align-items: center;
     color: $blue-4;
-
-    &:nth-of-type(2),
-    &:nth-of-type(3) {
-      border-top: 1px solid transparent;
-    }
-
-    &:nth-of-type(3) input {
-      width: 6rem;
-    }
-
-    &:last-of-type {
-      border-top: 0px solid transparent;
-      padding: 0;
-    }
   }
 
   &-header {
     flex: 1 0 auto;
-    font-weight: 700;
+    font-weight: 400;
     font-size: calc(12px + (34 - 12) * ((100vw - 300px) / (1600 - 300)));
     text-transform: lowercase;
-    font-weight: 400;
   }
 
   &-input {
@@ -137,7 +94,6 @@
 
     &:focus,
     &:hover {
-      border-bottom: 1px solid $gray-4;
       background-color: $blue-1;
       border-bottom: 2px dashed $blue-3;
     }
@@ -158,59 +114,42 @@
   }
 
   &-label-button {
-    padding: .15rem 0rem;
-    width: 89%;
-    margin: 0 auto;
-    height: 100%;
-    color: $black-5;
-    text-transform: uppercase;
+    display: block;
+    box-sizing: border-box;
+    padding: 0 4%;
+    width: 70%;
+    margin: .25rem auto 0;
+    color: $black-6;
     text-transform: lowercase;
-    transition: background-color .15s ease-in, border .15s ease-in, color .15s ease-in;
-
     border-radius: .67rem;
     background-color: $gray-3;
     border: 2px solid $gray-7;
-
-    color: $black-6;
-    text-transform: lowercase;
-
     transition: background-color .25s ease;
 
     &:hover,
     &:focus {
       background-color: $gray-8;
     }
-
-    @include viewport-min(1300px) {
-      width: 100%;
-      padding: .5rem 0rem;
-    }
   }
 
   &-label-button-text {
     font-weight: 400;
-    font-size: calc(18px + (32 - 18) * ((100vw - 300px) / (1600 - 300)));
   }
 }
 
 .flexulator__items-container-buttons {
-  grid-area: buttons;
-  justify-self: center;
   display: flex;
   flex-direction: row;
   justify-content: center;
-
-  padding: 2% 0;
-  width: 60%;
-
-  z-index: 10;
+  align-items: center;
+  width: 100%;
+  margin-top: 0.75rem;
 }
 
 .flexulator__items-container-grow-button,
 .flexulator__items-container-shrink-button {
   padding: 0 4%;
   margin: 0 4%;
-
 
   border-radius: .67rem;
   background-color: $gray-3;
@@ -219,10 +158,16 @@
   color: $black-6;
   text-transform: lowercase;
 
-  transition: background-color .25s ease;
+  transition: background-color .25s ease, border-color .25s ease, color .25s ease;
 
   &:hover,
   &:focus {
     background-color: $gray-8;
+  }
+
+  &[data-active="1"] {
+    background-color: $blue-1;
+    border-color: $blue-3;
+    color: $blue-4;
   }
 }
