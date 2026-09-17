@@ -112,7 +112,7 @@ Tracer-bullet issues, filed under [#50](https://github.com/telagraphic/flexulato
 
 ### 1. Measured Width rolls through paint — AFK — [#51](https://github.com/telagraphic/flexulator/issues/51)
 
-**Blocked by:** semantic-control-markup pass on `index.html` (Add form + Item Card labels).
+**Blocked by:** [#58](https://github.com/telagraphic/flexulator/issues/58) and [#59](https://github.com/telagraphic/flexulator/issues/59) (semantic markup parent [#57](https://github.com/telagraphic/flexulator/issues/57)).
 
 **User stories:** 1, 15–18, 24–25 (foundation), 27–32, 34–35, 38–43, 47–48.
 
