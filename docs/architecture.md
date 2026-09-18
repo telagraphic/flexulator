@@ -23,10 +23,11 @@ Target design after the ADRs. Domain words from [CONTEXT.md](../CONTEXT.md).
  0016  module boundaries               calculate / render / number-flow /
                                        item-controls / utils / main /
                                        formula-demos
+ 0017  five CSS layers, one file       per UI region (not ITCSS folders)
 ```
 
 
-CSS `@layer` work is a separate plan, not this map. Add form / Item Card tag markup: [semantic-control-markup.md](semantic-control-markup.md). NumberFlow: [prd-numberflow.md](prd-numberflow.md).
+CSS `@layer` work: [ADR 0017](adr/0017-css-layers-and-files.md), [css-layers-plan.md](css-layers-plan.md). Add form / Item Card tag markup: [semantic-control-markup.md](semantic-control-markup.md). NumberFlow: [prd-numberflow.md](prd-numberflow.md).
 
 ## Modules and callers
 

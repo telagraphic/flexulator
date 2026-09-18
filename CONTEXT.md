@@ -38,7 +38,7 @@ _Avoid_: grow mode, shrink mode, toggle
 
 **Add form**:
 Draft Grow / Shrink / Basis plus Add. Independent of any Flex Item until submit.
-_Avoid_: control panel, flexulator form (that is a BEM class, not the concept)
+_Avoid_: control panel, flexulator form
 
 ## Relationships
 
@@ -65,3 +65,4 @@ _Avoid_: control panel, flexulator form (that is a BEM class, not the concept)
 - "mode" was used as if grow/shrink were a calculation toggle — resolved: there is no mode. Remaining Space picks the algorithm; the buttons are **Grow Demo** / **Shrink Demo**.
 - JS property names vs CSS `flex-grow` — resolved: records use **Grow** / **Shrink** / **Basis**; CSSOM names are assigned only in `applyFlexStyles`. Map: [docs/naming.md](docs/naming.md).
 - "control panel" for the whole calculator — resolved: three jobs (**Add form**, **Item Card** inputs, **Grow Demo** / **Shrink Demo**).
+- Four different Grow/Shrink surfaces were treated as one switch — resolved: they are not connected. **Add form** Grow/Shrink fields draft a new **Flex Item**. **Grow Demo** / **Shrink Demo** patch **Basis** on every existing item. **Item Card** formula visibility follows **Remaining Space**. Formula tabs only show a teaching panel.

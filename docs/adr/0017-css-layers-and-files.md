@@ -1,0 +1,3 @@
+# Five cascade layers, one file per UI region
+
+CSS is SCSS with nesting, organized as one partial per UI region (not ITCSS folders, not one file per `@layer`). Cascade order is declared once: `reset, tokens, base, components, vendor`. There is no `layouts` or `utilities` layer. Each partial opens its own `@layer`; `styles.scss` only declares order and `@use`s. The `page` block (including `page__footer`) lives in `_page.scss` under `components`, not in `base`. No Sass mixins, functions, or `$variables` — tokens are CSS custom properties; media queries are range literals. Breakpoint values are revisited after the refactor, not in this pass.
