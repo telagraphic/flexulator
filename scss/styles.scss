@@ -1,22 +1,12 @@
-@import 'base/normalize';
-@import 'config/variables';
-@import 'base/typography';
-@import 'base/defaults';
-
-@import 'config/mixins';
-
-@import 'components/header';
-@import 'components/flexulator';
-@import 'components/flexulator-form';
-@import 'components/flexulator-item';
-@import 'components/flexulator-formula';
-@import 'components/flexulator-links';
-@import 'components/formula';
-@import 'components/footer';
-
-@import 'globals/global';
-@import 'pages/page';
-@import 'objects/object';
-@import 'utilities/utility';
-
-@import 'components/advert'
+// Sass requires @use before any other rules. Cascade order is declared
+// at the top of _reset.scss: reset, tokens, base, components, vendor.
+@use "reset";
+@use "tokens";
+@use "base";
+@use "page";
+@use "header";
+@use "flexulator";
+@use "add-form";
+@use "formula";
+@use "resources";
+@use "vendor";

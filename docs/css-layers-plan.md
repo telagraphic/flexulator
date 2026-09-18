@@ -11,7 +11,7 @@ The Sass tree *looks* like ITCSS (`base/`, `objects/`, `components/`, `utilities
 - Tokens are Sass `$gray-3` only. Runtime CSS cannot theme, and `@layer` files cannot share values without compiling Sass first.
 - Breakpoints are a mix of `1000px`, `62.5rem`, `$mobile`, `43rem`, `2000px`.
 - Type is `calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)))` instead of `clamp()`.
-- BEM is real and useful (`.flex-item__grow-value`). `flexulations` is a fossil name; **do not rename those classes in the JS pass** — [`docs/naming.md`](naming.md) already maps them. A class rename is this CSS pass or later UI, not a third vocabulary.
+- BEM is real and useful (`.flex-item__input`). `flexulations` is gone from the live Item Card; 404/500 stay snapshots. Class map: [`docs/naming.md`](naming.md).
 
 ## Target cascade
 
@@ -49,10 +49,10 @@ Fluid type: replace the vw formula with `clamp(min, preferred, max)` on a small 
 ## Class rules (do not fight the JS plan)
 
 1. **BEM blocks stay** for components: `.flex-item`, `.flexulator`, `.formula`, `.header`, `.page`.
-2. **`data-field` is not a styling API.** No `[data-field="grow"] { color: ... }` unless we later decide attributes are the skin. Style `.flex-item__grow-value`.
+2. **`data-field` is not a styling API.** No `[data-field="grow"] { color: ... }` unless we later decide attributes are the skin. Style `.flex-item__input`.
 3. **State classes:** keep `.is-active` on tabs *or* switch to `[aria-selected="true"]` when the JS tab widget lands. One state hook, not both.
 4. **No new utility framework.** If `utilities` stays empty after the pass, delete the folder.
-5. **`flexulations` in class names** may be renamed to `formula` in this CSS pass (HTML template + Sass together). If JS already shipped `data-field`, class rename is safe. If CSS ships first, keep `flexulations` until the template exists.
+5. **`flexulations` in class names** are gone on the live Item Card (`flex-item__formula-*`). 404/500 stay snapshots.
 6. **Do not style `id`s** except `#carbonads` in `vendor`.
 
 ## Modern CSS methods to apply while layering
@@ -63,7 +63,7 @@ Not a visual redesign. Each is a mechanical swap:
 | --- | --- |
 | `margin: 0 !important` on headings | `@layer reset { :where(h1, h2, h3, h4, h5, h6) { margin: 0 } }` |
 | `outline: none` on all inputs | Remove from reset. Component `:focus-visible` in `base` or `components` |
-| `z-index: -100` on `.flex-item__form` | Normal stacking; form is not under the card |
+| `z-index: -100` on `.flex-item__fields` | Normal stacking; fields are not under the card |
 | `left` / `padding-left` | `inset-inline-start` / `padding-inline` where it is direction-related |
 | `viewport-min(1000px)` scatter | Content-driven named breakpoints; calculator hide/show is one query |
 | `calc((100vw - 300px) / …)` type | `clamp()` |
@@ -81,7 +81,8 @@ Park (true UI): hatch contrast, NumberFlow `::part`, stepper hit areas, Bunny fo
 
 All fluid sizes use the same interpolation: `300px–1600px` viewport, min at 300, max at 1600. Token form:
 
-`clamp({min}px, calc({min}px + ({max} - {min}) * (100vw - 300px) / 1300px), {max}px)`
+`clamp({min}px, calc({min}px + ({max} - {min}) * (100vw - 300px) / 1300), {max}px)`
+The `1300` is unitless. `/ 1300px` makes the preferred value a number, so `px + number` is invalid and the size falls back to 16px.
 
 | Token | clamp min–max | Exact current formulas |
 | --- | --- | --- |

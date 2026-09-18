@@ -132,8 +132,8 @@ function paintItemCards(state, snapshot, container) {
     }
     paintFields(card, values, focused)
 
-    const growBox = card.querySelector('.flex-item__flexulations-grow-container')
-    const shrinkBox = card.querySelector('.flex-item__flexulations-shrink-container')
+    const growBox = card.querySelector('.flex-item__formula-grow')
+    const shrinkBox = card.querySelector('.flex-item__formula-shrink')
     if (growBox) {
       growBox.style.opacity = showGrow ? '1' : '0'
     }
@@ -141,7 +141,7 @@ function paintItemCards(state, snapshot, container) {
       shrinkBox.style.opacity = showGrow ? '0' : '1'
     }
 
-    const remove = card.querySelector('.flex-item__remove-button')
+    const remove = card.querySelector('.flex-item__remove')
     if (remove) remove.hidden = hideRemove
   }
 }
@@ -165,7 +165,7 @@ function paintExampleFormulas(snapshot, item, examples) {
     shrink: item.shrink,
     basis: item.basis,
   }
-  const activeTab = examples.querySelector('.formula__tab-content.is-active')
+  const activeTab = examples.querySelector('.formula__panel--active')
   paintFields(activeTab ?? examples, values, null)
 }
 

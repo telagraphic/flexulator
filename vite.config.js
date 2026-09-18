@@ -9,7 +9,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        silenceDeprecations: ['import', 'global-builtin', 'color-functions'],
+        silenceDeprecations: ['global-builtin', 'color-functions'],
       },
     },
   },

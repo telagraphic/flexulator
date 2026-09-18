@@ -1,0 +1,81 @@
+@layer components {
+  .header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--color-bg-accent-subtle);
+    color: var(--color-text);
+
+    @media (width >= 62.5rem) {
+      display: grid;
+      grid-template-columns: 30% 40% 30%;
+    }
+
+    &__advert {
+      padding: 1%;
+      display: block;
+      order: 4;
+
+      @media (width >= 62.5rem) {
+        order: 1;
+      }
+    }
+
+    &__logo {
+      justify-self: center;
+      position: relative;
+      width: 100%;
+      max-width: 45%;
+      height: 0;
+      padding-top: 12.5%;
+      order: 1;
+
+      @media (width >= 37.5rem) {
+        max-width: 32%;
+        padding-top: 11%;
+        order: 2;
+      }
+
+      @media (width >= 75rem) {
+        max-width: 38%;
+        padding-top: 15%;
+      }
+
+      svg {
+        position: absolute;
+        inset-block-start: 0;
+        inset-inline-start: 0;
+        padding: 3% 0;
+
+        @media (width >= 37.5rem) {
+          padding: 5% 0;
+        }
+      }
+    }
+
+    &__github {
+      position: relative;
+
+      @media (width >= 37.5rem) {
+        position: absolute;
+        padding: 0 1rem;
+        inset-inline-end: 0;
+        inset-block-start: 1rem;
+      }
+    }
+
+    &__message {
+      display: flex;
+      justify-content: center;
+      padding: 2%;
+      text-align: center;
+      order: 3;
+
+      @media (width >= 62.5rem) {
+        display: none;
+      }
+    }
+  }
+}

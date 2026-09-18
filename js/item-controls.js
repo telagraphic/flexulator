@@ -21,16 +21,8 @@ function itemFromCard(state, card) {
  * @returns {'grow' | 'shrink' | 'basis' | null}
  */
 function stepperField(button) {
-  const classes = button.classList
-  if (classes.contains('flex-item__grow-increment') || classes.contains('flex-item__grow-decrement')) {
-    return 'grow'
-  }
-  if (classes.contains('flex-item__shrink-increment') || classes.contains('flex-item__shrink-decrement')) {
-    return 'shrink'
-  }
-  if (classes.contains('flex-item__basis-increment') || classes.contains('flex-item__basis-decrement')) {
-    return 'basis'
-  }
+  const field = button.dataset.step
+  if (field === 'grow' || field === 'shrink' || field === 'basis') return field
   return null
 }
 
@@ -43,11 +35,7 @@ function stepperField(button) {
  */
 function stepperDelta(button, field) {
   const step = field === 'basis' ? 50 : 1
-  const incrementClass = `flex-item__${field}-increment`
-  if (button.classList.contains(incrementClass)) {
-    return step
-  }
-  return -step
+  return button.dataset.dir === 'up' ? step : -step
 }
 
 /**
@@ -75,8 +63,8 @@ function stepperPatch(state, button) {
  * @param {boolean} show
  */
 function setStepperVisibility(labelContainer, show) {
-  for (const button of labelContainer.querySelectorAll('.flex-item__form-button')) {
-    button.classList.toggle('flex-item__form-button--show', show)
+  for (const button of labelContainer.querySelectorAll('.flex-item__stepper')) {
+    button.classList.toggle('flex-item__stepper--show', show)
   }
 }
 
@@ -108,14 +96,14 @@ export function onItemInput(state, event) {
  * @returns {boolean}
  */
 export function onItemClick(state, event) {
-  if (event.target.closest('.flex-item__remove-button')) {
+  if (event.target.closest('.flex-item__remove')) {
     const item = itemFromCard(state, event.target.closest('.flex-item'))
     if (!item || state.items.length === 1) return false
     state.items = state.items.filter((entry) => entry.id !== item.id)
     return true
   }
 
-  const stepper = event.target.closest('.flex-item__form-button')
+  const stepper = event.target.closest('.flex-item__stepper')
   if (stepper && stepperPatch(state, stepper)) {
     event.preventDefault()
     return true
@@ -130,7 +118,7 @@ export function onItemClick(state, event) {
  * @param {MouseEvent} event
  */
 export function onFormLabelOver(container, event) {
-  const labelContainer = event.target.closest('.flex-item__form-label-container')
+  const labelContainer = event.target.closest('.flex-item__field-row')
   if (!labelContainer || !container.contains(labelContainer)) return
   const from = event.relatedTarget
   if (from instanceof Node && labelContainer.contains(from)) return
@@ -144,7 +132,7 @@ export function onFormLabelOver(container, event) {
  * @param {MouseEvent} event
  */
 export function onFormLabelOut(container, event) {
-  const labelContainer = event.target.closest('.flex-item__form-label-container')
+  const labelContainer = event.target.closest('.flex-item__field-row')
   if (!labelContainer || !container.contains(labelContainer)) return
   const to = event.relatedTarget
   if (to instanceof Node && labelContainer.contains(to)) return

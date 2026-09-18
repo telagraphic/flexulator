@@ -1,0 +1,106 @@
+@layer tokens {
+  :root {
+    /* -------------------------------------------------------------------------
+     * Primitives — what the paint is. Never use these in a component.
+     * Numbered light → dark. No light-dark(). No site dark mode.
+     * Dark-end steps exist so a later region can look like the dark inspector.
+     * ------------------------------------------------------------------------- */
+
+    /* Neutral */
+    --grey-1: #ffffff;   /* #ffffff — light page / CSS pane */
+    --grey-2: #f9f8fb;   /* #f9f8fb — toolbar, tabs, resources header */
+    --grey-3: #ededf0;   /* #ededf0 — control fill */
+    --grey-4: #e0e0e2;   /* #e0e0e2 — light splitter / tab rail */
+    --grey-5: #dfdfe8;   /* #dfdfe8 — control hover */
+    --grey-6: #cacad1;   /* #cacad1 — control border */
+    --grey-7: #bebec0;   /* #bebec0 — tab underline */
+    --grey-8: #b1b1b3;   /* #b1b1b3 — parked: dark-section body text */
+    --grey-9: #939395;   /* #939395 — parked: dark-section secondary */
+    --grey-10: #5c5c5f;  /* #5c5c5f — parked: light secondary */
+    --grey-11: #38383d;  /* #38383d — teaching statement text */
+    --grey-12: #232327;  /* #232327 — parked: dark section page */
+    --grey-13: #1b1b1d;  /* #1b1b1d — parked: dark alt toolbar */
+    --grey-14: #18181a;  /* #18181a — parked: dark section sidebar */
+    --grey-15: #0c0c0d;  /* #0c0c0d — strongest ink / header text */
+    --grey-16: #000000;  /* #000000 — Item Card text, teaching borders */
+
+    /* Blue — inspector tool color (grow, selection, Item Card). Not accent. */
+    --blue-1: #cbe8ff;   /* #cbe8ff — Item Card fill / selected demo fill */
+    --blue-2: #75bfff;   /* #75bfff — parked: dark-section grow / link */
+    --blue-3: #45a1ff;   /* #45a1ff — parked: dark item border */
+    --blue-4: #0ba2ff;   /* #0ba2ff — Item Card dotted border */
+    --blue-5: #1780ea;   /* #1780ea — grow text, resources links, Add labels */
+    --blue-6: #0c74dd;   /* #0c74dd — formula titles, footer links, selected border */
+    --blue-7: #0074e8;   /* #0074e8 — parked: inspector selected */
+    --blue-8: #0060df;   /* #0060df — parked: inspector link */
+    --blue-9: #204e8a;   /* #204e8a — parked: dark selected row */
+    --blue-10: #003eaa;  /* #003eaa — parked: inspector selected border */
+
+    /* Magenta — brand / accent (logo, inputs, formula titles) */
+    --magenta-1: #fbdef4; /* #fbdef4 — accent wash (header, footer, teaching) */
+    --magenta-2: #ff7de9; /* #ff7de9 — parked: inspector attribute pink */
+    --magenta-3: #dd00a9; /* #dd00a9 — input / formula accent text */
+    --magenta-4: #ca3694; /* #ca3694 — logo */
+
+    /* -------------------------------------------------------------------------
+     * Semantics — the job. Components only call these.
+     * ------------------------------------------------------------------------- */
+
+    --color-bg-page: var(--grey-1);                 /* page canvas */
+    --color-bg-toolbar: var(--grey-2);              /* resources header, tabs */
+    --color-bg-tab: var(--grey-2);                  /* formula tab button */
+    --color-bg-tab-hover: var(--grey-3);            /* formula tab hover */
+    --color-bg-accent-subtle: var(--magenta-1);     /* header, footer, teaching wash */
+    --color-bg-item: var(--blue-1);                 /* Item Card, operand, demo box */
+    --color-bg-control: var(--grey-3);              /* Add, Remove, demo chips */
+    --color-bg-control-hover: var(--grey-5);        /* control hover fill */
+    --color-bg-selected: var(--blue-1);             /* demo chip when data-active */
+    --color-bg-input-hover: var(--blue-1);          /* Add form input hover/focus */
+
+    --color-text: var(--grey-15);                   /* body, header, controls */
+    --color-text-strong: var(--grey-16);            /* Item Card copy, teaching notes */
+    --color-text-secondary: var(--grey-11);         /* teaching formula statement */
+    --color-text-accent: var(--magenta-3);          /* inputs, teaching titles */
+    --color-text-grow: var(--blue-5);               /* Measured Width, Add labels, active tab */
+    --color-text-formula: var(--blue-6);            /* Item Card formula titles */
+    --color-text-link: var(--blue-5);               /* resources links */
+    --color-text-footer: var(--blue-6);             /* footer copy and links */
+
+    --color-accent-solid: var(--magenta-4);         /* logo fill */
+
+    --color-border-subtle: var(--grey-4);           /* tab rail, resources rules */
+    --color-border-control: var(--grey-6);          /* chip / Remove border */
+    --color-border-tab: var(--grey-7);              /* tab hover underline */
+    --color-border-item: var(--blue-4);             /* Item Card / demo dotted edge */
+    --color-border-selected: var(--blue-6);         /* active demo, input dashed focus */
+    --color-border-strong: var(--grey-16);          /* teaching section frames */
+    --color-border-focus: var(--blue-5);            /* keyboard :focus-visible */
+
+    /* Parked after manual test — do not use in this pass:
+     * modular type scale; breakpoint rationalization;
+     * which region consumes dark-end primitives (--grey-12+, --blue-2/3/7–10, --magenta-2).
+     * Suggested later: --color-bg-canvas: var(--grey-12);
+     */
+
+    /* -------------------------------------------------------------------------
+     * Type — families + clamp() of today’s 300px–1600px formulas.
+     * Carbon ads keep their own stack in vendor.
+     * ------------------------------------------------------------------------- */
+
+    --font-ui: "Consolas", ui-monospace, monospace; /* calculator, Item Card, numbers */
+    --font-prose: "Roboto", sans-serif;             /* formula tabs, teaching copy */
+
+    /* clamp(min, calc(min + (max - min) * (100vw - 300px) / 1300), max).
+     * 1300 is unitless so the interpolation is a length, not px + number. */
+    --text-ui-sm: clamp(12px, calc(12px + 10 * (100vw - 300px) / 1300), 22px);     /* formula numbers; h5-like labels (collapse from ≈11.6–21.6) */
+    --text-ui: clamp(14px, calc(14px + 12 * (100vw - 300px) / 1300), 26px);        /* body, h3, h4; Item Card formula titles (collapse from 12–25) */
+    --text-prose: clamp(12px, calc(12px + 20 * (100vw - 300px) / 1300), 32px);     /* formula lede */
+    --text-input: clamp(12px, calc(12px + 22 * (100vw - 300px) / 1300), 34px);     /* Add form labels/inputs, Item Card steppers */
+    --text-subhead: clamp(18px, calc(18px + 16 * (100vw - 300px) / 1300), 34px);   /* resources heading */
+    --text-operator: clamp(26px, calc(26px + 12 * (100vw - 300px) / 1300), 38px);  /* formula operators */
+    --text-heading: clamp(32px, calc(32px + 14 * (100vw - 300px) / 1300), 46px);   /* h2 */
+    --text-tab: clamp(26px, calc(26px + 34 * (100vw - 300px) / 1300), 60px);       /* formula tab labels; step numbers (collapse from 26–68) */
+    --text-title: clamp(55px, calc(55px + 30 * (100vw - 300px) / 1300), 85px);     /* h1, resources title */
+    --text-measured: 3rem;                                                          /* Item Card Measured Width value */
+  }
+}

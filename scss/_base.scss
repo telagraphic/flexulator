@@ -1,0 +1,86 @@
+@layer base {
+  @font-face {
+    font-family: "Consolas";
+    src:
+      url("https://flexulator.b-cdn.net/fonts/Consolas.woff2") format("woff2"),
+      url("https://flexulator.b-cdn.net/fonts/Consolas.woff") format("woff");
+    font-display: swap;
+    font-weight: 400;
+  }
+
+  @font-face {
+    font-family: "Consolas";
+    src:
+      url("https://flexulator.b-cdn.net/fonts/Consolas-Bold.woff2") format("woff2"),
+      url("https://flexulator.b-cdn.net/fonts/Consolas-Bold.woff") format("woff");
+    font-display: swap;
+    font-weight: 800;
+  }
+
+  @font-face {
+    font-family: "Roboto";
+    src: url("https://flexulator.b-cdn.net/fonts/Roboto-Thin.woff2") format("woff2");
+    font-display: swap;
+    font-weight: 100;
+  }
+
+  @font-face {
+    font-family: "Roboto";
+    src:
+      url("https://flexulator.b-cdn.net/fonts/Roboto-Regular.woff2") format("woff2"),
+      url("https://flexulator.b-cdn.net/fonts/Roboto-Regular.woff") format("woff");
+    font-display: swap;
+    font-weight: 400;
+  }
+
+  html {
+    min-height: 100%;
+  }
+
+  body {
+    min-height: 100%;
+    font-family: var(--font-ui);
+    font-weight: 400;
+    font-style: normal;
+    font-size: var(--text-ui);
+    color: var(--color-text);
+    background-color: var(--color-bg-page);
+  }
+
+  h1 {
+    font-family: var(--font-ui);
+    font-size: var(--text-title);
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  h2 {
+    font-size: var(--text-heading);
+  }
+
+  h3,
+  h4 {
+    font-size: var(--text-ui);
+  }
+
+  h5 {
+    font-size: var(--text-ui-sm);
+  }
+
+  p {
+    display: block;
+    word-break: keep-all;
+  }
+
+  p span {
+    font-family: var(--font-ui);
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: 0.15rem;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+  }
+}

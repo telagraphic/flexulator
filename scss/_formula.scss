@@ -1,0 +1,300 @@
+@layer components {
+  .formula {
+    &__nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      border-top: 3px solid var(--color-border-subtle);
+      border-bottom: 3px solid var(--color-border-subtle);
+
+      @media (width >= 43rem) {
+        border-top: 5px solid var(--color-border-subtle);
+        border-bottom: 5px solid var(--color-border-subtle);
+      }
+    }
+
+    &__tab {
+      flex: 1;
+      height: 4rem;
+      background-color: var(--color-bg-tab);
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+
+      @media (width >= 43rem) {
+        height: 8rem;
+      }
+
+      &::after {
+        display: block;
+        content: "";
+        position: absolute;
+        inset-inline: 0;
+        inset-block-start: 0;
+        border-top: solid 3px var(--color-border-tab);
+        transform: scaleX(0);
+        transition: transform 0.1s ease-in-out;
+
+        @media (width >= 43rem) {
+          border-top: solid 5px var(--color-border-tab);
+        }
+      }
+
+      &:hover {
+        background-color: var(--color-bg-tab-hover);
+      }
+
+      &:hover::after {
+        transform: scaleX(1);
+      }
+
+      &--active {
+        color: var(--color-text-grow);
+      }
+
+      &--active::after {
+        border-top: solid 3px var(--color-text-grow);
+        transform: scaleX(1);
+
+        @media (width >= 43rem) {
+          border-top: solid 5px var(--color-text-grow);
+        }
+      }
+    }
+
+    &__tab-label {
+      font-size: var(--text-tab);
+      font-family: var(--font-prose);
+      font-weight: 100;
+    }
+
+    &__panels {
+      padding: 5% 0;
+    }
+
+    &__panel {
+      display: none;
+
+      &--active {
+        display: block;
+      }
+    }
+
+    &__number-flow-group {
+      display: contents;
+    }
+
+    &__lede-wrap {
+      width: 89%;
+      margin: 5% auto;
+      text-align: start;
+
+      @media (width >= 43rem) {
+        width: 55%;
+      }
+    }
+
+    &__lede {
+      font-family: var(--font-prose);
+      font-weight: 400;
+      font-size: var(--text-prose);
+      line-height: 125%;
+    }
+
+    &__steps {
+      width: auto;
+      margin: 5% auto;
+    }
+
+    &__step {
+      display: grid;
+      grid-template-areas: "header" "statement";
+      grid-template-rows: 1fr 1.25fr;
+      padding: 0;
+      margin: 0 auto 2%;
+      width: 100%;
+      border: 2px solid var(--color-border-strong);
+      border-inline: 0;
+      font-family: var(--font-prose);
+      font-weight: 400;
+
+      @media (width >= 45rem) {
+        width: 89%;
+        border: 2px solid var(--color-border-strong);
+      }
+
+      @media (width >= 75rem) {
+        width: 55%;
+      }
+    }
+
+    &__step-header {
+      grid-area: header;
+      display: grid;
+      grid-template-columns: 1fr 4fr;
+      grid-template-rows: 1fr 1fr;
+      grid-template-areas: "number container" "number container";
+      width: 100%;
+    }
+
+    &__step-number {
+      grid-area: number;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat, var(--color-bg-accent-subtle);
+      border: 2px solid var(--color-border-strong);
+      border-block-start: 0;
+      border-inline-start: 0;
+      color: var(--color-text-strong);
+      font-size: var(--text-tab);
+
+      h1 {
+        font-size: var(--text-tab);
+      }
+    }
+
+    &__step-copy {
+      grid-area: container;
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__step-title {
+      flex: 0.5;
+      padding: 1.5%;
+      background-color: var(--color-bg-accent-subtle);
+      border-bottom: 2px solid var(--color-border-strong);
+      color: var(--color-text-accent);
+      text-align: start;
+    }
+
+    &__step-details {
+      flex: 1;
+      padding: 1.5%;
+      border-bottom: 2px solid var(--color-border-strong);
+      text-align: start;
+      font-family: var(--font-prose);
+      font-weight: 400;
+    }
+
+    &__statement {
+      grid-area: statement;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      width: 100%;
+      padding: 1.5%;
+      margin: 0 auto;
+      color: var(--color-text-secondary);
+    }
+
+    &__operand {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1;
+      padding: 1.5%;
+      border: 2px solid var(--color-border-strong);
+      background-color: var(--color-bg-item);
+      text-transform: uppercase;
+      font-size: var(--text-ui-sm);
+    }
+
+    &__operator {
+      align-self: center;
+      padding: 2.5% 3%;
+      text-transform: uppercase;
+      font-size: var(--text-operator);
+    }
+
+    &__property {
+      color: var(--color-text-strong);
+      font-weight: 800;
+    }
+
+    &__value {
+      font-weight: 400;
+      padding: 1.75% 0;
+      font-variant-numeric: tabular-nums;
+      line-height: 0.85;
+    }
+
+    &__demo--grow {
+      width: 69%;
+      margin: 0 auto;
+    }
+
+    &__demo--grow &__demo-track {
+      display: flex;
+      background-color: var(--color-bg-accent-subtle);
+      border: 2px solid var(--color-border-strong);
+      z-index: 1000;
+    }
+
+    &__demo--grow &__demo-item {
+      width: 3rem;
+      height: 3rem;
+
+      @media (width >= 43rem) {
+        width: 7rem;
+        height: 7rem;
+      }
+    }
+
+    &__demo-box {
+      height: 100%;
+      background-color: var(--color-bg-item);
+      border: 3px dotted var(--color-border-item);
+      z-index: 100;
+
+      @media (width >= 43rem) {
+        border: 5px dotted var(--color-border-item);
+      }
+    }
+
+    &__demo--shrink {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+    }
+
+    &__demo--shrink &__demo-track {
+      display: flex;
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+      width: 69%;
+      margin: 0 auto;
+      background-color: var(--color-bg-accent-subtle);
+      border: 2px solid var(--color-border-strong);
+      height: 3rem;
+      z-index: 10;
+
+      @media (width >= 43rem) {
+        height: 7rem;
+      }
+    }
+
+    &__demo-overlay {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+      display: flex;
+      justify-content: center;
+      width: 75%;
+      margin: 0 auto;
+      z-index: 100;
+      opacity: 0.5;
+    }
+
+    &__demo--shrink &__demo-item {
+      width: 33.33%;
+      height: 3rem;
+
+      @media (width >= 43rem) {
+        height: 7rem;
+      }
+    }
+  }
+}

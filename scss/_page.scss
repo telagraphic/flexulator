@@ -1,0 +1,31 @@
+@layer components {
+  .page {
+    &__main {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__footer {
+      background-color: var(--color-bg-accent-subtle);
+
+      &-inner {
+        padding: 3%;
+        text-align: center;
+      }
+
+      p {
+        color: var(--color-text-footer);
+      }
+
+      a {
+        color: var(--color-text-footer);
+        text-decoration: none;
+
+        &:focus,
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

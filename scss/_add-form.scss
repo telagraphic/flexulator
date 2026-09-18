@@ -1,0 +1,98 @@
+@layer components {
+  .add-form {
+    &__stage {
+      box-sizing: border-box;
+      width: 100%;
+      aspect-ratio: 209 / 141;
+      background: url("../design/form-box.svg") center / contain no-repeat;
+    }
+
+    &__fields {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 8.1% 18% 11%;
+    }
+
+    &__label {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      color: var(--color-text-grow);
+    }
+
+    &__name {
+      flex: 1 0 auto;
+      font-weight: 400;
+      font-size: var(--text-input);
+      text-transform: lowercase;
+    }
+
+    &__input {
+      padding: 0.1rem;
+      margin: 0 1rem;
+      width: 4.5rem;
+      background-color: transparent;
+      border-bottom: 2px dashed transparent;
+      color: var(--color-text-accent);
+      font-size: var(--text-input);
+      text-align: center;
+      transition: border-bottom 0.1s ease-in, background-color 0.15s ease-in;
+
+      &::selection,
+      &::-moz-selection {
+        background: transparent;
+      }
+
+      &:focus,
+      &:hover {
+        background-color: var(--color-bg-input-hover);
+        border-bottom: 2px dashed var(--color-border-selected);
+      }
+
+      &:focus-visible {
+        outline: none;
+      }
+
+      @media (width >= 1200px) {
+        width: 6rem;
+      }
+    }
+
+    &__input[type="number"] {
+      appearance: textfield;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        appearance: none;
+        margin: 0;
+      }
+    }
+
+    &__submit {
+      display: block;
+      box-sizing: border-box;
+      padding: 0 4%;
+      width: 70%;
+      margin: 0.25rem auto 0;
+      color: var(--color-text);
+      text-transform: lowercase;
+      border-radius: 0.67rem;
+      background-color: var(--color-bg-control);
+      border: 2px solid var(--color-border-control);
+      transition: background-color 0.25s ease;
+
+      &:hover,
+      &:focus {
+        background-color: var(--color-bg-control-hover);
+      }
+    }
+
+    &__submit-text {
+      font-weight: 400;
+    }
+  }
+}

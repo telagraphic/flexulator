@@ -27,9 +27,9 @@ export function createItem({ grow = 1, shrink = 1, basis = 100 } = {}) {
 }
 
 const els = {
-  container: document.querySelector('.flexulator__items-container'),
+  container: document.querySelector('.flexulator__items'),
   template: document.querySelector('#flex-item-template'),
-  examples: document.querySelector('.formula__tabs-content-container'),
+  examples: document.querySelector('.formula__panels'),
 }
 
 const state = {
@@ -56,7 +56,7 @@ function scheduleRender() {
  * @returns {{ grow: number, shrink: number, basis: number }}
  */
 function readAddForm() {
-  const form = document.querySelector('.flexulator__form-container')
+  const form = document.querySelector('.add-form')
   const grow = parseNonNegative(form.querySelector('[name="flex-grow"]').value)
   const shrink = parseNonNegative(form.querySelector('[name="flex-shrink"]').value)
   const basis = parseNonNegative(form.querySelector('[name="flex-basis"]').value)
@@ -84,8 +84,8 @@ function onAdd(event) {
  * @param {'grow' | 'shrink'} mode
  */
 function setDemoActive(mode) {
-  const growBtn = document.querySelector('.flexulator__items-container-grow-button')
-  const shrinkBtn = document.querySelector('.flexulator__items-container-shrink-button')
+  const growBtn = document.querySelector('.flexulator__grow-demo')
+  const shrinkBtn = document.querySelector('.flexulator__shrink-demo')
   if (growBtn) growBtn.dataset.active = mode === 'grow' ? '1' : '0'
   if (shrinkBtn) shrinkBtn.dataset.active = mode === 'shrink' ? '1' : '0'
 }
@@ -136,11 +136,11 @@ function setupListeners() {
   els.container.addEventListener('mouseout', (event) => {
     onFormLabelOut(els.container, event)
   })
-  document.querySelector('.flexulator__form-container')
+  document.querySelector('.add-form')
     ?.addEventListener('submit', onAdd)
-  document.querySelector('.flexulator__items-container-grow-button')
+  document.querySelector('.flexulator__grow-demo')
     ?.addEventListener('click', onGrowDemo)
-  document.querySelector('.flexulator__items-container-shrink-button')
+  document.querySelector('.flexulator__shrink-demo')
     ?.addEventListener('click', onShrinkDemo)
   setFormulaTabChangeHandler(scheduleRender)
 }
