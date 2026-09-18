@@ -6,6 +6,18 @@ gsap.registerPlugin(SlowMo)
 let tabs = document.querySelectorAll(".formula__tabs-button");
 let sections = document.querySelectorAll(".formula__tab-content");
 
+/** @type {(() => void) | null} */
+let formulaTabChangeHandler = null
+
+/**
+ * Main registers a render callback so showing a hidden formula tab paints NumberFlow while it has layout.
+ *
+ * @param {() => void} handler
+ */
+export function setFormulaTabChangeHandler(handler) {
+  formulaTabChangeHandler = handler
+}
+
 tabs.forEach(tab => {
   tab.addEventListener("click", e => {
     e.preventDefault();
@@ -36,6 +48,7 @@ function addActiveTab(tab) {
   const id = `#${tab.getAttribute("data-id")}`;
   const matchingSection = document.querySelector(id);
   matchingSection.classList.add("is-active");
+  formulaTabChangeHandler?.()
 }
 
 if (window.innerWidth >= 688) {

@@ -61,7 +61,8 @@ function numberFlowFormat(key) {
  * @param {number} value
  */
 export function paintNumberFlow(flow, key, value) {
-  if (lastPainted.get(flow) === value) return
+  const hasLayout = flow.offsetWidth > 0 && flow.offsetHeight > 0
+  if (lastPainted.get(flow) === value && hasLayout) return
   if (!flow.dataset.numberFlowReady) {
     flow.format = numberFlowFormat(key)
     flow.spinTiming = NUMBER_FLOW.spinTiming
@@ -69,7 +70,7 @@ export function paintNumberFlow(flow, key, value) {
     flow.opacityTiming = NUMBER_FLOW.opacityTiming
     flow.dataset.numberFlowReady = '1'
   }
-  flow.animated = numberFlowAnimated
+  flow.animated = numberFlowAnimated && hasLayout
   flow.update(value)
   lastPainted.set(flow, value)
 }

@@ -7,7 +7,7 @@ import {
   onFormLabelOver,
   onFormLabelOut,
 } from './item-controls.js'
-import './formula-demos.js'
+import { setFormulaTabChangeHandler } from './formula-demos.js'
 
 let nextId = 1
 
@@ -142,6 +142,7 @@ function setupListeners() {
     ?.addEventListener('click', onGrowDemo)
   document.querySelector('.flexulator__items-container-shrink-button')
     ?.addEventListener('click', onShrinkDemo)
+  setFormulaTabChangeHandler(scheduleRender)
 }
 
 /**

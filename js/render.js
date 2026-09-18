@@ -165,7 +165,8 @@ function paintExampleFormulas(snapshot, item, examples) {
     shrink: item.shrink,
     basis: item.basis,
   }
-  paintFields(examples, values, null)
+  const activeTab = examples.querySelector('.formula__tab-content.is-active')
+  paintFields(activeTab ?? examples, values, null)
 }
 
 let paintGeneration = 0
