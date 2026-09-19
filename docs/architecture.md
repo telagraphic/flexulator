@@ -34,11 +34,13 @@ CSS `@layer` work: [ADR 0017](adr/0017-css-layers-and-files.md), [css-layers-pla
 ```
                     ┌─────────────────────────────────────┐
                     │              MAIN                   │
+                    │  unexported class; start()          │
                     │  state: width + Flex Item[]         │
-                    │  createItem, scheduleRender         │
                     │  Add / Grow Demo / Shrink Demo      │
-                    │  boot → setupListeners              │
+                    │  start → setupListeners             │
                     │       → observeContainerWidth       │
+                    │       → startFormulaDemos           │
+                    │       → scheduleRender              │
                     └───────┬───────────────┬─────────────┘
            import handlers  │               │ render(state, els)
                             ▼               ▼
@@ -58,7 +60,7 @@ CSS `@layer` work: [ADR 0017](adr/0017-css-layers-and-files.md), [css-layers-pla
    Flex Container                            Item Cards              Example formulas
    (measures width)                          (one per Flex Item)     (item 0 teaching panel)
 
-  formula-demos.js  — formula tabs + GSAP loops (side-imported from Main; not in render cycle)
+  formula-demos.js  — tabs + GSAP; Main calls startFormulaDemos; tabs dispatch formula-tab-change
   utils.js          — parseNonNegative (Add + Item Card input); pure helpers with ≥2 callers only
 ```
 
@@ -67,13 +69,13 @@ CSS `@layer` work: [ADR 0017](adr/0017-css-layers-and-files.md), [css-layers-pla
 | Callee | Called by | Never called by |
 | --- | --- | --- |
 | `calculateFlexValues` | `render` only | event handlers, ResizeObserver, paint |
-| `render` | Main mutators and the ResizeObserver callback | itself (no nested render) |
-| NumberFlow paint helpers | `render` / paint only | Main, item-controls |
+| `render` | Main mutators, ResizeObserver, and `formula-tab-change`; freeze-thaw may re-enter from NumberFlow | nested user-event render |
+| NumberFlow paint / freeze | `render` only | Main, item-controls |
 | Item Card handlers | Main’s listeners only | Render |
 | `syncItemCards` / `applyFlexStyles` / `paintItemCards` / `paintExampleFormulas` | `render` only | Main |
 | `createItem` | Main (boot defaults and Add) | Render, Calculate, item-controls |
 
-Calculate does not import Render or Main. Render does not import Main. Item-controls does not import Main (no `scheduleRender` injection). Main holds state, registers listeners, and calls Render.
+Calculate does not import Render or Main. Render does not import Main. Item-controls does not import Main (no `scheduleRender` injection). Formula-demos does not import Main; it dispatches `formula-tab-change`. Main holds session state on the unexported class, registers calculator listeners, and calls Render.
 
 
 ## Component flow (what the user sees)
@@ -105,13 +107,16 @@ Calculate does not import Render or Main. Render does not import Main. Item-cont
 ## Render sequence
 
 ```
-  [boot]
+  [start]
     createItem × 3  →  state.items
     setupListeners
       register click/input/hover on Flex Container  (once; handlers from item-controls)
       register Add, Demos                           (once)
+      listen for formula-tab-change on teaching-examples root
     observeContainerWidth
-      ResizeObserver.observe(Flex Container)        (once)
+      ResizeObserver.observe(Flex Container)        (once; width + scheduleRender only)
+    startFormulaDemos(examples)
+      tab clicks + GSAP loops                       (once; not at import)
                     │
                     │  first size  OR  any later mutation
                     ▼
@@ -155,6 +160,10 @@ Calculate does not import Render or Main. Render does not import Main. Item-cont
 
   container resized
        → state.width = content width
+       → render
+
+  formula tab shown
+       → formula-demos dispatches formula-tab-change
        → render
 ```
 

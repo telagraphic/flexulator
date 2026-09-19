@@ -1,5 +1,5 @@
 import { calculateFlexValues } from './calculate.js'
-import { paintNumberFlow } from './number-flow.js'
+import { paintNumberFlow, observeResizeFreeze } from './number-flow.js'
 
 const FRACTION_FIELDS = new Set(['growShare', 'shrinkFactor'])
 
@@ -171,6 +171,9 @@ function paintExampleFormulas(snapshot, item, examples) {
 
 let paintGeneration = 0
 
+/** Last cycle args so freeze-thaw can paint without Main importing NumberFlow. */
+let latestCycle = /** @type {{ state: object, els: object } | null} */ (null)
+
 /**
  * One render cycle: calculate, sync Item Cards, apply flex, then paint after layout.
  *
@@ -178,6 +181,10 @@ let paintGeneration = 0
  * @param {{ container: Element, template: HTMLTemplateElement, examples: ParentNode | null }} els
  */
 export function render(state, els) {
+  latestCycle = { state, els }
+  observeResizeFreeze(els.container, () => {
+    if (latestCycle) render(latestCycle.state, latestCycle.els)
+  })
   const snapshot = calculateFlexValues(state.width, state.items)
   syncItemCards(state.items, els)
   applyFlexStyles(state.items, els.container)

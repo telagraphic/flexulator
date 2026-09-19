@@ -21,11 +21,38 @@ let numberFlowAnimated = true
  *
  * @param {boolean} animated
  */
-export function setNumberFlowAnimated(animated) {
+function setNumberFlowAnimated(animated) {
   numberFlowAnimated = animated
   for (const el of document.querySelectorAll('number-flow')) {
     /** @type {any} */ (el).animated = animated
   }
+}
+
+let freezeBound = false
+
+/**
+ * When `animateDuringResize` is false, freeze digits while the Flex Container
+ * is resizing and thaw ~150ms after it settles. Render passes onSettled so
+ * the cycle can paint once with animation on. No-op when the flag is true.
+ *
+ * @param {Element} container Flex Container
+ * @param {() => void} [onSettled]
+ */
+export function observeResizeFreeze(container, onSettled) {
+  if (freezeBound || !container) return
+  freezeBound = true
+  if (NUMBER_FLOW.animateDuringResize) return
+
+  let resizeSettle = 0
+  const observer = new ResizeObserver(() => {
+    setNumberFlowAnimated(false)
+    clearTimeout(resizeSettle)
+    resizeSettle = window.setTimeout(() => {
+      setNumberFlowAnimated(true)
+      onSettled?.()
+    }, 150)
+  })
+  observer.observe(container)
 }
 
 const FRACTION_FIELDS = new Set(['growShare', 'shrinkFactor'])
