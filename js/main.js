@@ -5,6 +5,14 @@ import {
   onItemClick,
   onFormLabelOver,
   onFormLabelOut,
+  onFormulaRowOver,
+  onFormulaRowOut,
+  onFormulaRowPointerDown,
+  onFormulaRowPointerUp,
+  onFormulaRowFocusIn,
+  onFormulaRowFocusOut,
+  onFormulaRowKeyDown,
+  onFormulaReadoutPointerDown,
 } from './item-controls.js'
 import { startFormulaDemos } from './formula-demos.js'
 
@@ -155,6 +163,30 @@ class Main {
     })
     container.addEventListener('mouseout', (event) => {
       onFormLabelOut(container, event)
+    })
+    container.addEventListener('pointerover', (event) => {
+      onFormulaRowOver(container, event)
+    })
+    container.addEventListener('pointerout', (event) => {
+      onFormulaRowOut(container, event)
+    })
+    container.addEventListener('pointerdown', (event) => {
+      onFormulaRowPointerDown(container, event)
+    })
+    container.addEventListener('pointerup', (event) => {
+      onFormulaRowPointerUp(container, event)
+    })
+    container.addEventListener('focusin', (event) => {
+      onFormulaRowFocusIn(container, event)
+    })
+    container.addEventListener('focusout', (event) => {
+      onFormulaRowFocusOut(container, event)
+    })
+    container.addEventListener('keydown', (event) => {
+      onFormulaRowKeyDown(container, event)
+    })
+    document.addEventListener('pointerdown', (event) => {
+      onFormulaReadoutPointerDown(container, event)
     })
     addForm?.addEventListener('submit', (event) => this.#onAdd(event))
     growDemo?.addEventListener('click', (event) => this.#onGrowDemo(event))

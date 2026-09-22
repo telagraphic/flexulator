@@ -1,6 +1,8 @@
 @layer components {
   .formula {
     &__nav {
+      --formula-tab: 0;
+      position: relative;
       display: flex;
       flex-direction: row;
       justify-content: space-around;
@@ -10,6 +12,25 @@
       @media (width >= 43rem) {
         border-top: 5px solid var(--color-border-subtle);
         border-bottom: 5px solid var(--color-border-subtle);
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        inset-inline-start: 0;
+        inset-block-start: -3px;
+        width: calc(100% / 3);
+        height: 3px;
+        background-color: var(--color-text-grow);
+        pointer-events: none;
+        transform: translateX(calc(var(--formula-tab) * 100%));
+        transition: transform var(--duration-indicator) var(--ease-swift);
+
+        @media (width >= 43rem) {
+          inset-block-start: -5px;
+          height: 5px;
+        }
       }
     }
 
@@ -22,63 +43,48 @@
       align-items: center;
       justify-content: center;
       position: relative;
+      transition:
+        color var(--duration-tab-color) var(--ease-swift),
+        background-color var(--duration-tab-color) var(--ease-swift);
 
       @media (width >= 43rem) {
         height: 8rem;
-      }
-
-      &::after {
-        display: block;
-        content: "";
-        position: absolute;
-        inset-inline: 0;
-        inset-block-start: 0;
-        border-top: solid 3px var(--color-border-tab);
-        transform: scaleX(0);
-        transition: transform 0.1s ease-in-out;
-
-        @media (width >= 43rem) {
-          border-top: solid 5px var(--color-border-tab);
-        }
       }
 
       &:hover {
         background-color: var(--color-bg-tab-hover);
       }
 
-      &:hover::after {
-        transform: scaleX(1);
-      }
-
       &--active {
         color: var(--color-text-grow);
-      }
-
-      &--active::after {
-        border-top: solid 3px var(--color-text-grow);
-        transform: scaleX(1);
-
-        @media (width >= 43rem) {
-          border-top: solid 5px var(--color-text-grow);
-        }
       }
     }
 
     &__tab-label {
       font-size: var(--text-tab);
       font-family: var(--font-prose);
-      font-weight: 100;
+      font-weight: 400;
     }
 
     &__panels {
+      display: grid;
+      align-items: start;
+      overflow: clip;
       padding: 5% 0;
+      transition: height var(--duration-swipe) var(--ease-swift);
+
+      &.is-resizing {
+        transition: none;
+      }
     }
 
     &__panel {
-      display: none;
+      grid-area: 1 / 1;
+      align-self: start;
+      min-width: 0;
 
-      &--active {
-        display: block;
+      &:not(.formula__panel--active) {
+        visibility: hidden;
       }
     }
 
@@ -115,14 +121,15 @@
       padding: 0;
       margin: 0 auto 2%;
       width: 100%;
-      border: 2px solid var(--color-border-strong);
+      border: 1px dashed var(--color-border-item);
       border-inline: 0;
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat, var(--color-bg-accent-subtle);
       font-family: var(--font-prose);
       font-weight: 400;
 
       @media (width >= 45rem) {
         width: 89%;
-        border: 2px solid var(--color-border-strong);
+        border: 1px dashed var(--color-border-item);
       }
 
       @media (width >= 75rem) {
@@ -134,9 +141,11 @@
       grid-area: header;
       display: grid;
       grid-template-columns: 1fr 4fr;
-      grid-template-rows: 1fr 1fr;
-      grid-template-areas: "number container" "number container";
+      grid-template-rows: auto;
+      grid-template-areas: "number container";
       width: 100%;
+      background-color: var(--color-bg-inspector-flex);
+      color: var(--color-text-inspector);
     }
 
     &__step-number {
@@ -144,11 +153,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat, var(--color-bg-accent-subtle);
-      border: 2px solid var(--color-border-strong);
+      border: 1px solid var(--color-border-subtle);
       border-block-start: 0;
       border-inline-start: 0;
-      color: var(--color-text-strong);
+      color: inherit;
+      font-family: var(--font-ui);
       font-size: var(--text-tab);
 
       h1 {
@@ -159,25 +168,16 @@
     &__step-copy {
       grid-area: container;
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      border-block-end: 1px solid var(--color-border-subtle);
+      font-family: var(--font-ui);
     }
 
     &__step-title {
-      flex: 0.5;
-      padding: 1.5%;
-      background-color: var(--color-bg-accent-subtle);
-      border-bottom: 2px solid var(--color-border-strong);
-      color: var(--color-text-accent);
-      text-align: start;
-    }
-
-    &__step-details {
       flex: 1;
       padding: 1.5%;
-      border-bottom: 2px solid var(--color-border-strong);
+      color: inherit;
       text-align: start;
-      font-family: var(--font-prose);
-      font-weight: 400;
     }
 
     &__statement {
@@ -186,7 +186,8 @@
       justify-content: center;
       align-content: center;
       width: 100%;
-      padding: 1.5%;
+      padding-block: 1.5rem;
+      padding-inline: 1.5%;
       margin: 0 auto;
       color: var(--color-text-secondary);
     }
@@ -195,12 +196,16 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
       flex: 1;
-      padding: 1.5%;
-      border: 2px solid var(--color-border-strong);
+      padding: 0.65rem 1.5% 0.45rem;
+      border: 1px dashed var(--color-border-item);
       background-color: var(--color-bg-item);
+      text-align: center;
       text-transform: uppercase;
+      font-family: var(--font-ui);
       font-size: var(--text-ui-sm);
+      -webkit-font-smoothing: antialiased;
     }
 
     &__operator {
@@ -211,13 +216,15 @@
     }
 
     &__property {
+      align-self: stretch;
       color: var(--color-text-strong);
       font-weight: 800;
+      line-height: 1.1;
     }
 
     &__value {
       font-weight: 400;
-      padding: 1.75% 0;
+      padding-block-end: 0.2rem;
       font-variant-numeric: tabular-nums;
       line-height: 0.85;
     }
@@ -235,11 +242,14 @@
     }
 
     &__demo--grow &__demo-item {
-      width: 3rem;
+      flex: 0 0 3rem;
+      width: auto;
+      min-width: 0;
       height: 3rem;
+      animation: demo-grow 7600ms var(--ease-swift) infinite;
 
       @media (width >= 43rem) {
-        width: 7rem;
+        flex-basis: 7rem;
         height: 7rem;
       }
     }
@@ -289,12 +299,58 @@
     }
 
     &__demo--shrink &__demo-item {
-      width: 33.33%;
+      flex: 0 0 33.33%;
+      width: auto;
+      min-width: 0;
       height: 3rem;
+      animation: demo-shrink 2800ms var(--ease-swift) infinite;
 
       @media (width >= 43rem) {
         height: 7rem;
       }
+    }
+
+    &__panel:not(.formula__panel--active) &__demo-item {
+      animation-play-state: paused;
+    }
+  }
+
+  @keyframes demo-grow {
+    /* 800ms rests. Each move is 3s. */
+    0%,
+    10.53% {
+      flex-grow: 0;
+    }
+
+    50%,
+    60.53% {
+      flex-grow: 1;
+    }
+
+    100% {
+      flex-grow: 0;
+    }
+  }
+
+  @keyframes demo-shrink {
+    0%,
+    28.57% {
+      flex-basis: 33.33%;
+    }
+
+    50%,
+    78.57% {
+      flex-basis: 30.67%;
+    }
+
+    100% {
+      flex-basis: 33.33%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .formula__demo-item {
+      animation: none;
     }
   }
 }

@@ -55,7 +55,10 @@ export function observeResizeFreeze(container, onSettled) {
   observer.observe(container)
 }
 
-const FRACTION_FIELDS = new Set(['growShare', 'shrinkFactor'])
+const FRACTION_DIGITS = {
+  growShare: 2,
+  shrinkFactor: 2,
+}
 
 /** @type {WeakMap<Element, number>} */
 const lastPainted = new WeakMap()
@@ -67,11 +70,12 @@ const lastPainted = new WeakMap()
  * @returns {Intl.NumberFormatOptions}
  */
 function numberFlowFormat(key) {
-  if (FRACTION_FIELDS.has(key)) {
+  const digits = FRACTION_DIGITS[key]
+  if (digits != null) {
     return {
       useGrouping: false,
-      minimumFractionDigits: 6,
-      maximumFractionDigits: 6,
+      minimumFractionDigits: digits,
+      maximumFractionDigits: digits,
     }
   }
   return {

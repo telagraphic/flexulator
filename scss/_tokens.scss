@@ -1,3 +1,21 @@
+@property --item-grow {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+
+@property --item-shrink {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+
+@property --item-basis {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 100px;
+}
+
 @layer tokens {
   :root {
     /* -------------------------------------------------------------------------
@@ -56,6 +74,7 @@
     --color-bg-control-hover: var(--grey-5);        /* control hover fill */
     --color-bg-selected: var(--blue-1);             /* demo chip when data-active */
     --color-bg-input-hover: var(--blue-1);          /* Add form input hover/focus */
+    --color-bg-input-focus: var(--grey-1);          /* Item Card input when focused */
 
     --color-text: var(--grey-15);                   /* body, header, controls */
     --color-text-strong: var(--grey-16);            /* Item Card copy, teaching notes */
@@ -76,9 +95,16 @@
     --color-border-strong: var(--grey-16);          /* teaching section frames */
     --color-border-focus: var(--blue-5);            /* keyboard :focus-visible */
 
+    --color-bg-inspector-basis: var(--blue-9);      /* inspector base-size segment */
+    --color-bg-inspector-flex: color-mix(in srgb, var(--magenta-4) 68%, var(--grey-14)); /* inspector flexibility segment */
+    --color-text-inspector: var(--grey-1);          /* inspector final label */
+    --color-text-inspector-basis: var(--blue-2);    /* inspector base-size label */
+    --color-text-inspector-flex: var(--magenta-2);  /* inspector arrow */
+    --color-border-inspector-track: var(--grey-8);  /* inspector gray frame */
+    --color-border-inspector-basis: var(--blue-3);  /* inspector base-size dots */
+
     /* Parked after manual test — do not use in this pass:
-     * modular type scale; breakpoint rationalization;
-     * which region consumes dark-end primitives (--grey-12+, --blue-2/3/7–10, --magenta-2).
+     * modular type scale; breakpoint rationalization.
      * Suggested later: --color-bg-canvas: var(--grey-12);
      */
 
@@ -102,5 +128,27 @@
     --text-tab: clamp(26px, calc(26px + 34 * (100vw - 300px) / 1300), 60px);       /* formula tab labels; step numbers (collapse from 26–68) */
     --text-title: clamp(55px, calc(55px + 30 * (100vw - 300px) / 1300), 85px);     /* h1, resources title */
     --text-measured: 3rem;                                                          /* Item Card Measured Width value */
+
+    /* Motion. Fast start, soft settle, no bounce. Durations stay specific. */
+    --ease-swift: cubic-bezier(0.22, 1, 0.36, 1);
+    --duration-flex: 360ms;
+    --duration-reveal: 280ms;
+    --duration-exit: 280ms;
+    --duration-swipe: 280ms;
+    --duration-indicator: 420ms;
+    --duration-tab-color: 420ms;
+    --stagger-step: 80ms;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --duration-flex: 0ms;
+      --duration-reveal: 0ms;
+      --duration-exit: 0ms;
+      --duration-swipe: 0ms;
+      --duration-indicator: 0ms;
+      --duration-tab-color: 0ms;
+      --stagger-step: 0ms;
+    }
   }
 }

@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      gsap:
-        specifier: ^3.13.0
-        version: 3.15.0
       number-flow:
         specifier: ^0.6.2
         version: 0.6.2
@@ -686,9 +683,6 @@ packages:
 
   graphemer@1.4.0:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
-
-  gsap@3.15.0:
-    resolution: {integrity: sha512-dMW4CWBTUK1AEEDeZc1g4xpPGIrSf9fJF960qbTZmN/QwZIWY5wgliS6JWl9/25fpTGJrMRtSjGtOmPnfjZB+A==}
 
   has-flag@4.0.0:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
@@ -1548,8 +1542,6 @@ snapshots:
       type-fest: 0.20.2
 
   graphemer@1.4.0: {}
-
-  gsap@3.15.0: {}
 
   has-flag@4.0.0: {}
 

@@ -87,90 +87,259 @@
             <section class="flex-item__formula-grow">
               <h5 class="flex-item__formula-title">GROW CALCULATION</h5>
               <section class="flex-item__formula">
-                <section class="flex-item__formula-row">
+                <section class="flex-item__formula-row" tabindex="0" aria-expanded="false">
+                  <span class="flex-item__formula-equation">
+                    <number-flow class="flex-item__formula-value" data-field="width"></number-flow>
+                    <span class="flex-item__formula-operator">-</span>
+                    <number-flow class="flex-item__formula-value" data-field="totalBasis"></number-flow>
+                    <span class="flex-item__formula-operator">=</span>
+                    <number-flow class="flex-item__formula-value" data-field="remainingSpace"></number-flow>
+                  </span>
                   <h5 class="flex-item__formula-label">
                     remaining space
                   </h5>
-                  <number-flow class="flex-item__formula-value" data-field="width"></number-flow>
-                  <span class="flex-item__formula-operator">-</span>
-                  <number-flow class="flex-item__formula-value" data-field="totalBasis"></number-flow>
-                  <span class="flex-item__formula-operator">=</span>
-                  <number-flow class="flex-item__formula-value" data-field="remainingSpace"></number-flow>
+                  <div class="flex-item__formula-readout" popover="manual">
+                    <div class="flex-item__formula-readout-line">
+                      <span class="flex-item__formula-readout-operand">
+                        <number-flow class="flex-item__formula-readout-value" data-field="width"></number-flow>
+                        <span class="flex-item__formula-readout-name">Container Width</span>
+                      </span>
+                      <span class="flex-item__formula-readout-operator" aria-hidden="true">-</span>
+                      <span class="flex-item__formula-readout-operand">
+                        <number-flow class="flex-item__formula-readout-value" data-field="totalBasis"></number-flow>
+                        <span class="flex-item__formula-readout-name">Total Flex Basis</span>
+                      </span>
+                      <span class="flex-item__formula-readout-operator" aria-hidden="true">=</span>
+                      <span class="flex-item__formula-readout-operand">
+                        <number-flow class="flex-item__formula-readout-value" data-field="remainingSpace"></number-flow>
+                        <span class="flex-item__formula-readout-name">Remaining Space</span>
+                      </span>
+                    </div>
+                  </div>
                 </section>
-                <section class="flex-item__formula-row">
+                <section class="flex-item__formula-row" tabindex="0" aria-expanded="false">
+                  <span class="flex-item__formula-equation">
+                    <number-flow class="flex-item__formula-value" data-field="grow"></number-flow>
+                    <span class="flex-item__formula-operator">/</span>
+                    <number-flow class="flex-item__formula-value" data-field="totalGrow"></number-flow>
+                    <span class="flex-item__formula-operator">*</span>
+                    <number-flow class="flex-item__formula-value" data-field="remainingSpace"></number-flow>
+                    <span class="flex-item__formula-operator">=</span>
+                    <number-flow class="flex-item__formula-value" data-field="allocatedSpace"></number-flow>
+                  </span>
                   <h5 class="flex-item__formula-label">
                     allocated space
                   </h5>
-                  <number-flow class="flex-item__formula-value" data-field="grow"></number-flow>
-                  <span class="flex-item__formula-operator">/</span>
-                  <number-flow class="flex-item__formula-value" data-field="totalGrow"></number-flow>
-                  <span class="flex-item__formula-operator">*</span>
-                  <number-flow class="flex-item__formula-value" data-field="remainingSpace"></number-flow>
-                  <span class="flex-item__formula-operator">=</span>
-                  <number-flow class="flex-item__formula-value" data-field="allocatedSpace"></number-flow>
+                  <div class="flex-item__formula-readout" popover="manual">
+                    <div class="flex-item__formula-readout-line">
+                      <span class="flex-item__formula-readout-operand">
+                        <number-flow class="flex-item__formula-readout-value" data-field="grow"></number-flow>
+                        <span class="flex-item__formula-readout-name">Item Grow</span>
+                      </span>
+                      <span class="flex-item__formula-readout-operator" aria-hidden="true">/</span>
+                      <span class="flex-item__formula-readout-operand">
+                        <number-flow class="flex-item__formula-readout-value" data-field="totalGrow"></number-flow>
+                        <span class="flex-item__formula-readout-name">Total Grow</span>
+                      </span>
+                      <span class="flex-item__formula-readout-operator" aria-hidden="true">*</span>
+                      <span class="flex-item__formula-readout-operand">
+                        <number-flow class="flex-item__formula-readout-value" data-field="remainingSpace"></number-flow>
+                        <span class="flex-item__formula-readout-name">Remaining Space</span>
+                      </span>
+                      <span class="flex-item__formula-readout-operator" aria-hidden="true">=</span>
+                      <span class="flex-item__formula-readout-operand">
+                        <number-flow class="flex-item__formula-readout-value" data-field="allocatedSpace"></number-flow>
+                        <span class="flex-item__formula-readout-name">Allocated Space</span>
+                      </span>
+                    </div>
+                  </div>
                 </section>
-                <section class="flex-item__formula-row">
+                <section class="flex-item__formula-row" tabindex="0" aria-expanded="false">
+                  <span class="flex-item__formula-equation">
+                    <number-flow class="flex-item__formula-value" data-field="allocatedSpace"></number-flow>
+                    <span class="flex-item__formula-operator">+</span>
+                    <number-flow class="flex-item__formula-value" data-field="basis"></number-flow>
+                    <span class="flex-item__formula-operator">=</span>
+                    <number-flow class="flex-item__formula-value" data-field="growWidth"></number-flow>
+                  </span>
                   <h5 class="flex-item__formula-label">
                     final width
                   </h5>
-                  <number-flow class="flex-item__formula-value" data-field="allocatedSpace"></number-flow>
-                  <span class="flex-item__formula-operator">+</span>
-                  <number-flow class="flex-item__formula-value" data-field="basis"></number-flow>
-                  <span class="flex-item__formula-operator">=</span>
-                  <number-flow class="flex-item__formula-value" data-field="growWidth"></number-flow>
+                  <div class="flex-item__formula-readout" popover="manual">
+                    <div class="flex-item__formula-readout-line">
+                      <span class="flex-item__formula-readout-operand">
+                        <number-flow class="flex-item__formula-readout-value" data-field="allocatedSpace"></number-flow>
+                        <span class="flex-item__formula-readout-name">Allocated Space</span>
+                      </span>
+                      <span class="flex-item__formula-readout-operator" aria-hidden="true">+</span>
+                      <span class="flex-item__formula-readout-operand">
+                        <number-flow class="flex-item__formula-readout-value" data-field="basis"></number-flow>
+                        <span class="flex-item__formula-readout-name">Item Basis</span>
+                      </span>
+                      <span class="flex-item__formula-readout-operator" aria-hidden="true">=</span>
+                      <span class="flex-item__formula-readout-operand">
+                        <number-flow class="flex-item__formula-readout-value" data-field="growWidth"></number-flow>
+                        <span class="flex-item__formula-readout-name">Final Width</span>
+                      </span>
+                    </div>
+                  </div>
                 </section>
               </section>
             </section>
             <section class="flex-item__formula-shrink">
               <h5 class="flex-item__formula-title">SHRINK CALCULATION</h5>
               <section class="flex-item__formula">
-                <section class="flex-item__formula-row">
+                <section class="flex-item__formula-row" tabindex="0" aria-expanded="false">
+                  <span class="flex-item__formula-equation">
+                    <number-flow class="flex-item__formula-value" data-field="width"></number-flow>
+                    <span class="flex-item__formula-operator">-</span>
+                    <number-flow class="flex-item__formula-value" data-field="totalBasis"></number-flow>
+                    <span class="flex-item__formula-operator">=</span>
+                    <number-flow class="flex-item__formula-value" data-field="remainingSpace"></number-flow>
+                  </span>
                   <h5 class="flex-item__formula-label">
                     remaining space
                   </h5>
-                  <number-flow class="flex-item__formula-value" data-field="width"></number-flow>
-                  <span class="flex-item__formula-operator">-</span>
-                  <number-flow class="flex-item__formula-value" data-field="totalBasis"></number-flow>
-                  <span class="flex-item__formula-operator">=</span>
-                  <number-flow class="flex-item__formula-value" data-field="remainingSpace"></number-flow>
+                  <div class="flex-item__formula-readout" popover="manual">
+                    <div class="flex-item__formula-readout-line">
+                      <span class="flex-item__formula-readout-operand">
+                        <number-flow class="flex-item__formula-readout-value" data-field="width"></number-flow>
+                        <span class="flex-item__formula-readout-name">Container Width</span>
+                      </span>
+                      <span class="flex-item__formula-readout-operator" aria-hidden="true">-</span>
+                      <span class="flex-item__formula-readout-operand">
+                        <number-flow class="flex-item__formula-readout-value" data-field="totalBasis"></number-flow>
+                        <span class="flex-item__formula-readout-name">Total Flex Basis</span>
+                      </span>
+                      <span class="flex-item__formula-readout-operator" aria-hidden="true">=</span>
+                      <span class="flex-item__formula-readout-operand">
+                        <number-flow class="flex-item__formula-readout-value" data-field="remainingSpace"></number-flow>
+                        <span class="flex-item__formula-readout-name">Remaining Space</span>
+                      </span>
+                    </div>
+                  </div>
                 </section>
-                <section class="flex-item__formula-row">
+                <section class="flex-item__formula-row" tabindex="0" aria-expanded="false">
+                  <span class="flex-item__formula-equation">
+                    <span class="flex-item__formula-operator">(</span>
+                    <number-flow class="flex-item__formula-value" data-field="shrink"></number-flow>
+                    <span class="flex-item__formula-operator"> * </span>
+                    <number-flow class="flex-item__formula-value" data-field="basis"></number-flow>
+                    <span class="flex-item__formula-operator">) </span>
+                    <number-flow class="flex-item__formula-value" data-field="shrinkProduct"></number-flow>
+                    <span class="flex-item__formula-operator"> / </span>
+                    <number-flow class="flex-item__formula-value" data-field="totalShrinkBasis"></number-flow>
+                    <span class="flex-item__formula-operator"> = </span>
+                    <number-flow class="flex-item__formula-value" data-field="shrinkFactor"></number-flow>
+                  </span>
                   <h5 class="flex-item__formula-label">
                     shrink factor
                   </h5>
-                  <span class="flex-item__formula-operator">(</span>
-                  <number-flow class="flex-item__formula-value" data-field="shrink"></number-flow>
-                  <span class="flex-item__formula-operator"> * </span>
-                  <number-flow class="flex-item__formula-value" data-field="basis"></number-flow>
-                  <span class="flex-item__formula-operator">) </span>
-                  <number-flow class="flex-item__formula-value" data-field="shrinkProduct"></number-flow>
-                  <span class="flex-item__formula-operator"> / </span>
-                  <number-flow class="flex-item__formula-value" data-field="totalShrinkBasis"></number-flow>
-                  <span class="flex-item__formula-operator"> = </span>
-                  <number-flow class="flex-item__formula-value" data-field="shrinkFactor"></number-flow>
+                  <div class="flex-item__formula-readout" popover="manual">
+                    <div class="flex-item__formula-readout-line">
+                      <span class="flex-item__formula-readout-operator" aria-hidden="true">(</span>
+                      <span class="flex-item__formula-readout-operand">
+                        <number-flow class="flex-item__formula-readout-value" data-field="shrink"></number-flow>
+                        <span class="flex-item__formula-readout-name">Item Shrink</span>
+                      </span>
+                      <span class="flex-item__formula-readout-operator" aria-hidden="true">*</span>
+                      <span class="flex-item__formula-readout-operand">
+                        <number-flow class="flex-item__formula-readout-value" data-field="basis"></number-flow>
+                        <span class="flex-item__formula-readout-name">Item Basis</span>
+                      </span>
+                      <span class="flex-item__formula-readout-operator" aria-hidden="true">)</span>
+                      <span class="flex-item__formula-readout-operand">
+                        <number-flow class="flex-item__formula-readout-value" data-field="shrinkProduct"></number-flow>
+                        <span class="flex-item__formula-readout-name">Item Shrink Basis</span>
+                      </span>
+                      <span class="flex-item__formula-readout-operator" aria-hidden="true">/</span>
+                      <span class="flex-item__formula-readout-operand">
+                        <number-flow class="flex-item__formula-readout-value" data-field="totalShrinkBasis"></number-flow>
+                        <span class="flex-item__formula-readout-name">Total Shrink Basis</span>
+                      </span>
+                      <span class="flex-item__formula-readout-operator" aria-hidden="true">=</span>
+                      <span class="flex-item__formula-readout-operand">
+                        <number-flow class="flex-item__formula-readout-value" data-field="shrinkFactor"></number-flow>
+                        <span class="flex-item__formula-readout-name">Shrink Factor</span>
+                      </span>
+                    </div>
+                  </div>
                 </section>
-                <section class="flex-item__formula-row">
+                <section class="flex-item__formula-row" tabindex="0" aria-expanded="false">
+                  <span class="flex-item__formula-equation">
+                    <number-flow class="flex-item__formula-value" data-field="shrinkFactor"></number-flow>
+                    <span class="flex-item__formula-operator"> * </span>
+                    <number-flow class="flex-item__formula-value" data-field="remainingSpace"></number-flow>
+                    <span class="flex-item__formula-operator"> = </span>
+                    <number-flow class="flex-item__formula-value" data-field="shrinkAmount"></number-flow>
+                  </span>
                   <h5 class="flex-item__formula-label">
                     shrink amount
                   </h5>
-                  <number-flow class="flex-item__formula-value" data-field="shrinkFactor"></number-flow>
-                  <span class="flex-item__formula-operator"> * </span>
-                  <number-flow class="flex-item__formula-value" data-field="remainingSpace"></number-flow>
-                  <span class="flex-item__formula-operator"> = </span>
-                  <number-flow class="flex-item__formula-value" data-field="shrinkAmount"></number-flow>
+                  <div class="flex-item__formula-readout" popover="manual">
+                    <div class="flex-item__formula-readout-line">
+                      <span class="flex-item__formula-readout-operand">
+                        <number-flow class="flex-item__formula-readout-value" data-field="shrinkFactor"></number-flow>
+                        <span class="flex-item__formula-readout-name">Shrink Factor</span>
+                      </span>
+                      <span class="flex-item__formula-readout-operator" aria-hidden="true">*</span>
+                      <span class="flex-item__formula-readout-operand">
+                        <number-flow class="flex-item__formula-readout-value" data-field="remainingSpace"></number-flow>
+                        <span class="flex-item__formula-readout-name">Remaining Space</span>
+                      </span>
+                      <span class="flex-item__formula-readout-operator" aria-hidden="true">=</span>
+                      <span class="flex-item__formula-readout-operand">
+                        <number-flow class="flex-item__formula-readout-value" data-field="shrinkAmount"></number-flow>
+                        <span class="flex-item__formula-readout-name">Shrink Amount</span>
+                      </span>
+                    </div>
+                  </div>
                 </section>
-                <section class="flex-item__formula-row">
+                <section class="flex-item__formula-row" tabindex="0" aria-expanded="false">
+                  <span class="flex-item__formula-equation">
+                    <number-flow class="flex-item__formula-value" data-field="basis"></number-flow>
+                    <span class="flex-item__formula-operator"> + </span>
+                    <number-flow class="flex-item__formula-value" data-field="shrinkAmount"></number-flow>
+                    <span class="flex-item__formula-operator"> = </span>
+                    <number-flow class="flex-item__formula-value" data-field="shrinkWidth"></number-flow>
+                  </span>
                   <h5 class="flex-item__formula-label">
                     final width
                   </h5>
-                  <number-flow class="flex-item__formula-value" data-field="basis"></number-flow>
-                  <span class="flex-item__formula-operator"> + </span>
-                  <number-flow class="flex-item__formula-value" data-field="shrinkAmount"></number-flow>
-                  <span class="flex-item__formula-operator"> = </span>
-                  <number-flow class="flex-item__formula-value" data-field="shrinkWidth"></number-flow>
+                  <div class="flex-item__formula-readout" popover="manual">
+                    <div class="flex-item__formula-readout-line">
+                      <span class="flex-item__formula-readout-operand">
+                        <number-flow class="flex-item__formula-readout-value" data-field="basis"></number-flow>
+                        <span class="flex-item__formula-readout-name">Item Basis</span>
+                      </span>
+                      <span class="flex-item__formula-readout-operator" aria-hidden="true">+</span>
+                      <span class="flex-item__formula-readout-operand">
+                        <number-flow class="flex-item__formula-readout-value" data-field="shrinkAmount"></number-flow>
+                        <span class="flex-item__formula-readout-name">Shrink Amount</span>
+                      </span>
+                      <span class="flex-item__formula-readout-operator" aria-hidden="true">=</span>
+                      <span class="flex-item__formula-readout-operand">
+                        <number-flow class="flex-item__formula-readout-value" data-field="shrinkWidth"></number-flow>
+                        <span class="flex-item__formula-readout-name">Final Width</span>
+                      </span>
+                    </div>
+                  </div>
                 </section>
               </section>
             </section>
+          </section>
+          <section class="flex-item__inspector" aria-label="Flex item size">
+            <div class="flex-item__inspector-diagram">
+              <div class="flex-item__inspector-track">
+                <div class="flex-item__inspector-basis">
+                  <span class="flex-item__inspector-caption flex-item__inspector-caption--basis">basis</span>
+                </div>
+                <div class="flex-item__inspector-flex">
+                  <span class="flex-item__inspector-arrow" aria-hidden="true"></span>
+                  <span class="flex-item__inspector-caption flex-item__inspector-caption--final">final</span>
+                </div>
+              </div>
+            </div>
           </section>
           </number-flow-group>
           <section class="flex-item__fields">
@@ -284,33 +453,32 @@
                     </section>
                     <section class="formula__step-copy">
                       <section class="formula__step-title">Flex Container Remaining Space</section>
-                      <section class="formula__step-details">Add up each flex item's <b>flex basis</b> to get the <b>total flex basis</b></section>
                     </section>
                   </header>
                   <section class="formula__statement">
                     <section class="formula__operand">
+                      <number-flow class="formula__value" data-field="width"></number-flow>
                       <span class="formula__property">
                         Container Width
                       </span>
-                      <number-flow class="formula__value" data-field="width"></number-flow>
                     </section>
                     <section class="formula__operator">
                       -
                     </section>
                     <section class="formula__operand">
+                      <number-flow class="formula__value" data-field="totalBasis"></number-flow>
                       <span class="formula__property">
                         Total Flex Basis
                       </span>
-                      <number-flow class="formula__value" data-field="totalBasis"></number-flow>
                     </section>
                     <section class="formula__operator">
                       =
                     </section>
                     <section class="formula__operand">
+                      <number-flow class="formula__value" data-field="remainingSpace"></number-flow>
                       <span class="formula__property">
                         Remaining Space
                       </span>
-                      <number-flow class="formula__value" data-field="remainingSpace"></number-flow>
                     </section>
                   </section>
                 </section>
@@ -321,35 +489,34 @@
                     </section>
                     <section class="formula__step-copy">
                       <section class="formula__step-title">Calculate Flex Grow Space</section>
-                      <section class="formula__step-details">Add up each flex item flex grow value to get the <b>total grow</b></section>
                     </section>
                   </header>
                   <section class="formula__statement">
                     <section class="formula__operand">
-                      <span class="formula__property">
-                        (Item Grow / Total Grow)
-                      </span>
                       <span class="formula__value">
                         (<number-flow class="formula__value" data-field="grow"></number-flow>/<number-flow class="formula__value" data-field="totalGrow"></number-flow> = <number-flow class="formula__value" data-field="growShare"></number-flow>)
+                      </span>
+                      <span class="formula__property">
+                        (Item Grow / Total Grow)
                       </span>
                     </section>
                     <section class="formula__operator">
                       *
                     </section>
                     <section class="formula__operand">
+                      <number-flow class="formula__value" data-field="remainingSpace"></number-flow>
                       <span class="formula__property">
                         Remaining Space
                       </span>
-                      <number-flow class="formula__value" data-field="remainingSpace"></number-flow>
                     </section>
                     <section class="formula__operator">
                       =
                     </section>
                     <section class="formula__operand">
+                      <number-flow class="formula__value" data-field="allocatedSpace"></number-flow>
                       <span class="formula__property">
                         Allocated Space
                       </span>
-                      <number-flow class="formula__value" data-field="allocatedSpace"></number-flow>
                     </section>
                   </section>
                 </section>
@@ -360,33 +527,32 @@
                     </section>
                     <section class="formula__step-copy">
                       <section class="formula__step-title">Compute Final Width</section>
-                      <section class="formula__step-details">Add the <b>allocated space</b> to the item's <b>flex basis</b> to get the final width</section>
                     </section>
                   </header>
                   <section class="formula__statement">
                     <section class="formula__operand">
+                      <number-flow class="formula__value" data-field="allocatedSpace"></number-flow>
                       <span class="formula__property">
                         Allocated Space
                       </span>
-                      <number-flow class="formula__value" data-field="allocatedSpace"></number-flow>
                     </section>
                     <section class="formula__operator">
                       +
                     </section>
                     <section class="formula__operand">
+                      <number-flow class="formula__value" data-field="basis"></number-flow>
                       <span class="formula__property">
                         Item Flex Basis
                       </span>
-                      <number-flow class="formula__value" data-field="basis"></number-flow>
                     </section>
                     <section class="formula__operator">
                       =
                     </section>
                     <section class="formula__operand">
+                      <number-flow class="formula__value" data-field="growWidth"></number-flow>
                       <span class="formula__property">
                         Final Width
                       </span>
-                      <number-flow class="formula__value" data-field="growWidth"></number-flow>
                     </section>
                   </section>
                 </section>
@@ -396,7 +562,7 @@
         </section>
         </number-flow-group>
         <number-flow-group class="formula__number-flow-group">
-        <section class="formula__panel" id="shrink">
+        <section class="formula__panel" id="shrink" inert>
           <section class="formula__body">
             <section>
               <section class="formula__demo formula__demo--shrink">
@@ -442,33 +608,32 @@
                     </section>
                     <section class="formula__step-copy">
                       <section class="formula__step-title">Flex Container Remaining Space</section>
-                      <section class="formula__step-details">Add up each flex item's <b>flex basis</b> to get the <b>total flex basis</b></section>
                     </section>
                   </header>
                   <section class="formula__statement">
                     <section class="formula__operand">
+                      <number-flow class="formula__value" data-field="width"></number-flow>
                       <span class="formula__property">
                         Container Width
                       </span>
-                      <number-flow class="formula__value" data-field="width"></number-flow>
                     </section>
                     <section class="formula__operator">
                       -
                     </section>
                     <section class="formula__operand">
+                      <number-flow class="formula__value" data-field="totalBasis"></number-flow>
                       <span class="formula__property">
                         Total Basis
                       </span>
-                      <number-flow class="formula__value" data-field="totalBasis"></number-flow>
                     </section>
                     <section class="formula__operator">
                       =
                     </section>
                     <section class="formula__operand">
+                      <number-flow class="formula__value" data-field="remainingSpace"></number-flow>
                       <span class="formula__property">
                         Remaining Space
                       </span>
-                      <number-flow class="formula__value" data-field="remainingSpace"></number-flow>
                     </section>
                   </section>
                 </section>
@@ -479,38 +644,34 @@
                     </section>
                     <section class="formula__step-copy">
                       <section class="formula__step-title">Calculate Shrink Factor</section>
-                      <section class="formula__step-details">
-                        Multiple each items' shrink value by it's basis to get the <b>item shrink basis total</b>. Sum all <b>item shrink basis total</b> values to get the <b>shrink basis total</b>.
-                        Divide these two to get the <b>shrink factor</b>.
-                      </section>
                     </section>
                   </header>
                   <section class="formula__statement">
                     <section class="formula__operand">
-                      <span class="formula__property">
-                        (Item Shrink * Item Basis) = Item Shrink Basis Total
-                      </span>
                       <span class="formula__value">
                         (<number-flow class="formula__value" data-field="shrink"></number-flow>/<number-flow class="formula__value" data-field="basis"></number-flow>) <number-flow class="formula__value" data-field="shrinkProduct"></number-flow>
+                      </span>
+                      <span class="formula__property">
+                        (Item Shrink * Item Basis) = Item Shrink Basis Total
                       </span>
                     </section>
                     <section class="formula__operator">
                       /
                     </section>
                     <section class="formula__operand">
+                      <number-flow class="formula__value" data-field="totalShrinkBasis"></number-flow>
                       <span class="formula__property">
                         Shrink Basis Total
                       </span>
-                      <number-flow class="formula__value" data-field="totalShrinkBasis"></number-flow>
                     </section>
                     <section class="formula__operator">
                       =
                     </section>
                     <section class="formula__operand">
+                      <number-flow class="formula__value" data-field="shrinkFactor"></number-flow>
                       <span class="formula__property">
                         Shrink Factor
                       </span>
-                      <number-flow class="formula__value" data-field="shrinkFactor"></number-flow>
                     </section>
                   </section>
                 </section>
@@ -521,36 +682,32 @@
                     </section>
                     <section class="formula__step-copy">
                       <section class="formula__step-title">Allocated Shrink Amount</section>
-                      <section class="formula__step-details">
-                        Multiply the <b>shrink factor</b> against the <b>remaining space</b> to finally get the amount
-                        to reduce from the item.
-                      </section>
                     </section>
                   </header>
                   <section class="formula__statement">
                     <section class="formula__operand">
+                      <number-flow class="formula__value" data-field="shrinkFactor"></number-flow>
                       <span class="formula__property">
                         Shrink Factor
                       </span>
-                      <number-flow class="formula__value" data-field="shrinkFactor"></number-flow>
                     </section>
                     <section class="formula__operator">
                       *
                     </section>
                     <section class="formula__operand">
+                      <number-flow class="formula__value" data-field="remainingSpace"></number-flow>
                       <span class="formula__property">
                         Remaining Space
                       </span>
-                      <number-flow class="formula__value" data-field="remainingSpace"></number-flow>
                     </section>
                     <section class="formula__operator">
                       =
                     </section>
                     <section class="formula__operand">
+                      <number-flow class="formula__value" data-field="shrinkAmount"></number-flow>
                       <span class="formula__property">
                         Shrink Amount
                       </span>
-                      <number-flow class="formula__value" data-field="shrinkAmount"></number-flow>
                     </section>
                   </section>
                 </section>
@@ -561,35 +718,32 @@
                     </section>
                     <section class="formula__step-copy">
                       <section class="formula__step-title">Compute Final Width</section>
-                      <section class="formula__step-details">
-                        Reduce the <b>item basis</b> by the <b>shrink amount</b> to get the element's final size
-                      </section>
                     </section>
                   </header>
                   <section class="formula__statement">
                     <section class="formula__operand">
+                      <number-flow class="formula__value" data-field="basis"></number-flow>
                       <span class="formula__property">
                         Item Basis
                       </span>
-                      <number-flow class="formula__value" data-field="basis"></number-flow>
                     </section>
                     <section class="formula__operator">
                       -
                     </section>
                     <section class="formula__operand">
+                      <number-flow class="formula__value" data-field="shrinkAmount"></number-flow>
                       <span class="formula__property">
                         Shrink Amount
                       </span>
-                      <number-flow class="formula__value" data-field="shrinkAmount"></number-flow>
                     </section>
                     <section class="formula__operator">
                       =
                     </section>
                     <section class="formula__operand">
+                      <number-flow class="formula__value" data-field="shrinkWidth"></number-flow>
                       <span class="formula__property">
                         Final Width
                       </span>
-                      <number-flow class="formula__value" data-field="shrinkWidth"></number-flow>
                     </section>
                   </section>
                 </section>
@@ -598,7 +752,7 @@
           </section>
         </section>
         </number-flow-group>
-        <section class="formula__panel" id="links">
+        <section class="formula__panel" id="links" inert>
           <article class="resources__container">
             <ul class="resources__list">
               <li class="resources__list-item">
@@ -785,7 +939,8 @@
   <footer class="page__footer">
     <section class="page__footer-inner">
       <p>
-        Made by <a href="https://www.telagraphic.com/">telagraphic</a> - <a href="mailto:telagraphic@gmail.com">telagraphic@gmail.com</a>
+        Made by <a href="https://www.mywebsiteforthis.com/">mywebsiteforthis.com</a> -
+        <a href="https://x.com/mynickforthis">@mynickforthis</a>
       </p>
     </section>
   </footer>

@@ -97,8 +97,11 @@
     color: var(--color-text-strong);
     padding: 0;
     width: auto;
+    min-width: 0;
     opacity: 1;
-    transition: opacity 0.1s ease-out;
+    flex-grow: var(--item-grow);
+    flex-shrink: var(--item-shrink);
+    flex-basis: var(--item-basis);
     position: relative;
     z-index: 100;
 
@@ -163,10 +166,11 @@
       display: grid;
       grid-template-columns: auto auto auto;
       justify-content: center;
-      align-items: baseline;
+      align-items: center;
       width: auto;
       padding: 0.25rem 0 0;
-      column-gap: 0;
+      column-gap: 0.4rem;
+      row-gap: 0.15rem;
 
       > label {
         display: contents;
@@ -185,6 +189,7 @@
       .flex-item__input {
         grid-column: 2;
         grid-row: 1;
+        justify-self: center;
       }
     }
 
@@ -215,7 +220,8 @@
       opacity: 1;
     }
 
-    &__field-row:hover &__stepper {
+    &__field-row:hover &__stepper,
+    &__field-row:focus-within &__stepper {
       opacity: 1;
     }
 
@@ -230,24 +236,157 @@
     }
 
     &__input {
-      width: 5rem;
+      /* 4ch is four digits. Equal inline padding keeps that text centered.
+         field-sizing grows past four digits instead of scrolling them off-center. */
+      box-sizing: content-box;
+      width: auto;
+      min-width: 4ch;
+      field-sizing: content;
       margin: 0;
-      padding: 0;
+      padding-block: 0.08em;
+      padding-inline: 0.5ch;
       line-height: 1;
       border: 0;
+      /* Always reserve the underline so hover and focus only change its color. */
       border-bottom: 2px dashed transparent;
       background-color: transparent;
       color: var(--color-text-accent);
       text-align: center;
       font-size: var(--text-input);
       font-weight: 400;
+      font-variant-numeric: tabular-nums;
       appearance: textfield;
+      transition: border-bottom 0.1s ease-in, background-color 0.15s ease-in;
+
+      &::selection,
+      &::-moz-selection {
+        background: transparent;
+      }
+
+      &:hover,
+      &:focus {
+        background-color: var(--color-bg-input-hover);
+        border-bottom: 2px dashed var(--color-border-selected);
+      }
+
+      &:focus {
+        background-color: var(--color-bg-input-focus);
+      }
+
+      &:focus-visible {
+        outline: none;
+      }
 
       &::-webkit-outer-spin-button,
       &::-webkit-inner-spin-button {
         appearance: none;
         margin: 0;
       }
+    }
+
+    &__inspector {
+      --inspector-basis: 0%;
+      order: 2;
+      align-self: stretch;
+      margin-block: 0.75rem 0.25rem;
+      margin-inline: 0.3rem;
+      text-align: start;
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      font-weight: 700;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    &__inspector-track {
+      display: flex;
+      align-items: stretch;
+      width: 100%;
+      height: 2.5rem;
+      box-sizing: border-box;
+      border: 3px solid var(--color-border-inspector-track);
+    }
+
+    &__inspector-basis {
+      container-type: inline-size;
+      display: grid;
+      place-items: center;
+      flex: 0 0 var(--inspector-basis);
+      box-sizing: border-box;
+      min-width: 0;
+      background-color: var(--color-bg-inspector-basis);
+      border: 5px dotted var(--color-border-inspector-basis);
+      transition: flex-basis 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    &__inspector-caption {
+      white-space: nowrap;
+    }
+
+    &__inspector-caption--basis {
+      color: var(--color-text-inspector-basis);
+
+      @container (width < 3.2rem) {
+        visibility: hidden;
+      }
+    }
+
+    &__inspector-flex {
+      container-type: inline-size;
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex: 1 1 auto;
+      min-width: 0;
+      background-color: var(--color-bg-inspector-flex);
+    }
+
+    &__inspector-arrow {
+      position: absolute;
+      inset-inline: 0.55rem;
+      inset-block-start: 50%;
+      translate: 0 -50%;
+      height: 2px;
+      background-color: var(--color-text-inspector-flex);
+
+      &::after {
+        content: "";
+        position: absolute;
+        inset-inline-end: 0;
+        inset-block-start: 50%;
+        translate: 0 -50%;
+        border-inline-start: 7px solid var(--color-text-inspector-flex);
+        border-block-start: 4px solid transparent;
+        border-block-end: 4px solid transparent;
+      }
+
+      @container (width < 1.4rem) {
+        visibility: hidden;
+      }
+    }
+
+    &__inspector.is-shrink &__inspector-arrow {
+      scale: -1 1;
+    }
+
+    &__inspector-caption--final {
+      position: absolute;
+      z-index: 1;
+      inset-inline-end: 1rem;
+      inset-block-start: 50%;
+      translate: 0 -50%;
+      padding-inline: 0.25rem;
+      background-color: var(--color-bg-inspector-flex);
+      color: var(--color-text-inspector);
+
+      @container (width < 3.5rem) {
+        visibility: hidden;
+      }
+    }
+
+    &__inspector.is-shrink &__inspector-caption--final {
+      inset-inline-end: auto;
+      inset-inline-start: 1rem;
     }
 
     &__formulas {
@@ -257,7 +396,7 @@
       width: 79%;
       margin: 0 auto;
       padding: 0.75rem 0 0;
-      order: 2;
+      order: 3;
     }
 
     &__formula-grow,
@@ -303,10 +442,178 @@
 
     &__formula-label {
       color: var(--color-text-formula);
+      font-weight: 600;
     }
 
+    &__formula-readout {
+      inset: unset;
+      top: calc(anchor(bottom) + 0.35rem);
+      left: anchor(left);
+      width: max-content;
+      max-width: calc(100vw - 1rem);
+      margin: 0;
+      margin-left: var(--equation-offset, 0px);
+      padding: 0.65rem;
+      border: 2px solid var(--color-border-inspector-track);
+      background-color: var(--color-bg-inspector-flex);
+      pointer-events: none;
+      opacity: 0;
+      transition-property: opacity, display, overlay;
+      transition-duration: 150ms;
+      transition-timing-function: ease-out;
+      transition-behavior: allow-discrete;
+      position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
+
+      &:popover-open {
+        opacity: 1;
+      }
+
+      &.is-instant {
+        transition-duration: 0s;
+      }
+    }
+
+    &__formula-readout-line {
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-rows: auto auto;
+      align-items: center;
+      column-gap: 0.35rem;
+      row-gap: 0.2rem;
+      width: max-content;
+    }
+
+    &__formula-readout-operand {
+      display: grid;
+      grid-row: span 2;
+      grid-template-rows: subgrid;
+      justify-items: center;
+      align-items: center;
+      padding-inline: 0.5rem;
+      border: 1px dashed var(--color-border-item);
+      background-color: var(--color-bg-item);
+      text-align: center;
+      text-transform: uppercase;
+      font-size: var(--text-ui-sm);
+    }
+
+    &__formula-readout-value {
+      padding-block-start: 0.35rem;
+      font-weight: 400;
+      font-variant-numeric: tabular-nums;
+      line-height: 0.85;
+      color: var(--color-text-secondary);
+    }
+
+    &__formula-readout-name {
+      padding-block-end: 0.35rem;
+      color: var(--color-text-strong);
+      font-weight: 800;
+      font-size: 0.72em;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+
+    &__formula-readout-operator {
+      grid-row: 1 / span 2;
+      align-self: center;
+      justify-self: center;
+      font-size: var(--text-ui);
+      line-height: 1;
+      color: var(--color-text-inspector);
+    }
+
+    &--enter {
+      overflow: clip;
+    }
+
+    &--exit {
+      pointer-events: none;
+    }
+  }
+
+  .flexulator__items.is-motion .flex-item {
+    transition:
+      --item-grow var(--duration-flex) var(--ease-swift),
+      --item-shrink var(--duration-flex) var(--ease-swift),
+      --item-basis var(--duration-flex) var(--ease-swift);
+  }
+
+  .flexulator__items.is-motion .flex-item--exit {
+    opacity: 0;
+    transition:
+      --item-grow var(--duration-exit) var(--ease-swift),
+      --item-shrink var(--duration-exit) var(--ease-swift),
+      --item-basis var(--duration-exit) var(--ease-swift),
+      opacity var(--duration-exit) var(--ease-swift);
+  }
+
+  .flex-item--enter {
+    .flex-item__measured-width,
+    .flex-item__formulas,
+    .flex-item__inspector,
+    .flex-item__field,
+    .flex-item__remove {
+      opacity: 0;
+    }
+  }
+
+  .flex-item--reveal {
+    .flex-item__measured-width,
+    .flex-item__formulas,
+    .flex-item__inspector,
+    .flex-item__field,
+    .flex-item__remove {
+      animation: itemReveal var(--duration-reveal) var(--ease-swift) both;
+    }
+
+    .flex-item__measured-width {
+      animation-delay: 0ms;
+    }
+
+    .flex-item__formulas,
+    .flex-item__inspector {
+      animation-delay: var(--stagger-step);
+    }
+
+    .flex-item__field:nth-child(1) {
+      animation-delay: calc(var(--stagger-step) * 2);
+    }
+
+    .flex-item__field:nth-child(2) {
+      animation-delay: calc(var(--stagger-step) * 3);
+    }
+
+    .flex-item__field:nth-child(3) {
+      animation-delay: calc(var(--stagger-step) * 4);
+    }
+
+    .flex-item__remove {
+      animation-delay: calc(var(--stagger-step) * 5);
+    }
+  }
+
+  @starting-style {
+    .flex-item__formula-readout:popover-open {
+      opacity: 0;
+    }
+  }
+
+  @keyframes itemReveal {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .flex-item {
     &__remove {
-      order: 3;
+      order: 4;
       align-self: center;
       flex: 0 0 auto;
       width: max-content;

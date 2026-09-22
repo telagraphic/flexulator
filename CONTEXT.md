@@ -40,6 +40,18 @@ _Avoid_: grow mode, shrink mode, toggle
 Draft Grow / Shrink / Basis plus Add. Independent of any Flex Item until submit.
 _Avoid_: control panel, flexulator form
 
+**Formula row**:
+One line of an Item Card formula: the equation, then a single result label under the whole line.
+_Avoid_: flex child, calculation step
+
+**Formula readout**:
+The surface for one Formula row. The same equation, with the numbers on the first line and an operand name under each number, wide enough to show the full line. It uses that Item Card's numbers and does not change the row. Hover is the main way to open it. Keyboard focus and a tap also open it. Operand names match the teaching panel where the equations match. The shrink-factor row names each number on the card.
+_Avoid_: hover context, tooltip, teaching step
+
+**Shrink Amount**:
+The signed pixels this Flex Item gives up. Negative when Remaining Space is negative. Final width is Basis plus Shrink Amount.
+_Avoid_: amount to subtract
+
 ## Relationships
 
 - A **Flex Container** contains one or more **Flex Items** (never zero)
@@ -52,11 +64,26 @@ _Avoid_: control panel, flexulator form
 - **Measured Width** is read from the DOM after grow, shrink, and basis have been applied as CSS
 - The **Add form** drafts Grow / Shrink / Basis; submit creates a new **Flex Item**. It is never a live Item Card
 - **Grow Demo** / **Shrink Demo** sit outside the **Add form**; they only change **Basis** on existing **Flex Items**
+- Each **Formula row** has one **Formula readout**
+- A **Formula readout** shows that **Item Card**'s numbers. The teaching panel still shows only the first Flex Item
+- Opening a **Formula readout** does not change the **Item Card**
+- Hover is the main way to open a **Formula readout**. Keyboard focus and a tap open the same readout
+- Each visible **Formula row** is in the tab order before that **Item Card**'s Grow, Shrink, and Basis inputs. If that many stops is clumsy, drop the keyboard path. Hover stays the main path.
+- A **Formula readout** closes when the pointer leaves its **Formula row**, including when the pointer moves onto the readout or to the next row. Escape, blur, tapping that row again, and tapping outside also close it.
+- A **Formula readout** fades in and out. The fade starts at 150ms with an ease-out curve. Shorten it if it lags the pointer.
+- Moving from one **Formula row** to another hides the readout you left immediately. The 150ms fade-out is only for leaving the formulas with nothing else opening.
+- A **Formula readout** opens only for the formula **Remaining Space** is showing
+- **Shrink Amount** is signed. The Item Card and its **Formula readout** add it to **Basis**. The teaching panel's minus is a different writing of that same step
+- A **Formula readout** sits just under its **Formula row**, aligned with the start of the equation, and does not cover that row. It may cover the next **Item Card**. Near the bottom of the viewport it sits above the row. If either side edge would cut the line off, the readout shifts until the full line is readable.
+- A **Formula readout** shows each operand the way the teaching statement does, with the number above the name. Only one readout is open at a time.
 
 ## Example dialogue
 
 > **Dev:** "Does the SHRINK button switch the calculator into shrink mode?"
 > **Domain expert:** "No. It raises every Basis until Remaining Space is negative. The layout shrinks because the numbers overflow, not because a mode flag flipped."
+
+> **Dev:** "If I hover the second Item Card's allocated-space row, do I get the teaching panel's first-item numbers?"
+> **Domain expert:** "No. The Formula readout is that card's equation, numbers on the first line and a name under each one. The row on the card stays as it is."
 
 ## Flagged ambiguities
 
@@ -66,3 +93,5 @@ _Avoid_: control panel, flexulator form
 - JS property names vs CSS `flex-grow` — resolved: records use **Grow** / **Shrink** / **Basis**; CSSOM names are assigned only in `applyFlexStyles`. Map: [docs/naming.md](docs/naming.md).
 - "control panel" for the whole calculator — resolved: three jobs (**Add form**, **Item Card** inputs, **Grow Demo** / **Shrink Demo**).
 - Four different Grow/Shrink surfaces were treated as one switch — resolved: they are not connected. **Add form** Grow/Shrink fields draft a new **Flex Item**. **Grow Demo** / **Shrink Demo** patch **Basis** on every existing item. **Item Card** formula visibility follows **Remaining Space**. Formula tabs only show a teaching panel.
+- "hover context" was used for the wide labeled equation — resolved: that surface is a **Formula readout**. The **Formula row** on the Item Card does not change.
+- The teaching panel writes the last shrink step as Basis minus Shrink Amount — resolved: **Shrink Amount** is already negative, so the Item Card and the **Formula readout** add it to **Basis**.

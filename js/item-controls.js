@@ -138,3 +138,219 @@ export function onFormLabelOut(container, event) {
   if (to instanceof Node && labelContainer.contains(to)) return
   setStepperVisibility(labelContainer, false)
 }
+
+/** @type {number} */
+let readoutAnchorId = 0
+
+/**
+ * The Formula row under the pointer or focus, or null.
+ *
+ * @param {Element} container
+ * @param {EventTarget | null} target
+ * @returns {HTMLElement | null}
+ */
+function formulaRowFrom(container, target) {
+  if (!(target instanceof Element)) return null
+  const row = target.closest('.flex-item__formula-row')
+  if (!(row instanceof HTMLElement) || !container.contains(row)) return null
+  if (row.closest('[inert]')) return null
+  return row
+}
+
+/**
+ * @param {HTMLElement} row
+ * @returns {HTMLElement | null}
+ */
+function readoutFor(row) {
+  const readout = row.querySelector(':scope > .flex-item__formula-readout')
+  return readout instanceof HTMLElement ? readout : null
+}
+
+/**
+ * Give the equation a unique anchor so cloned cards do not share one name.
+ *
+ * @param {HTMLElement} row
+ * @param {HTMLElement} readout
+ */
+function anchorReadout(row, readout) {
+  const equation = row.querySelector('.flex-item__formula-equation')
+  if (!(equation instanceof HTMLElement)) return
+  if (!row.style.anchorName) {
+    readoutAnchorId += 1
+    row.style.anchorName = `--formula-row-${readoutAnchorId}`
+    readout.id = `formula-readout-${readoutAnchorId}`
+    row.setAttribute('aria-controls', readout.id)
+  }
+  readout.style.positionAnchor = row.style.anchorName
+  const rowRect = row.getBoundingClientRect()
+  const equationRect = equation.getBoundingClientRect()
+  readout.style.setProperty('--equation-offset', `${equationRect.left - rowRect.left}px`)
+}
+
+/**
+ * @param {HTMLElement} readout
+ * @param {boolean} instant
+ */
+function hideReadout(readout, instant) {
+  if (!readout.matches(':popover-open')) return
+  readout.classList.toggle('is-instant', instant)
+  readout.hidePopover()
+  readout.closest('.flex-item__formula-row')?.setAttribute('aria-expanded', 'false')
+}
+
+/**
+ * Open this row's readout. Another open readout hides immediately.
+ *
+ * @param {HTMLElement} row
+ */
+function showReadout(row) {
+  const readout = readoutFor(row)
+  if (!readout) return
+  const container = row.closest('.flexulator__items')
+  const open = container?.querySelector('.flex-item__formula-readout:popover-open')
+  if (open instanceof HTMLElement && open !== readout) hideReadout(open, true)
+  if (readout.matches(':popover-open')) return
+  anchorReadout(row, readout)
+  readout.classList.remove('is-instant')
+  readout.showPopover()
+  row.setAttribute('aria-expanded', 'true')
+}
+
+/**
+ * True when the pointer or focus is still inside this row's equation, not its readout.
+ *
+ * @param {HTMLElement} row
+ * @param {EventTarget | null} to
+ * @returns {boolean}
+ */
+function stayedInRow(row, to) {
+  if (!(to instanceof Node) || !row.contains(to)) return false
+  if (to instanceof Element && to.closest('.flex-item__formula-readout')) return false
+  return true
+}
+
+/**
+ * @param {HTMLElement} row
+ * @param {EventTarget | null} to
+ * @returns {boolean}
+ */
+function movedToFormulaRow(row, to) {
+  if (!(to instanceof Element)) return false
+  const next = to.closest('.flex-item__formula-row')
+  return next instanceof HTMLElement && next !== row && !next.closest('[inert]')
+}
+
+/**
+ * Show the Formula readout when the pointer enters that row.
+ *
+ * @param {Element} container
+ * @param {PointerEvent} event
+ */
+export function onFormulaRowOver(container, event) {
+  if (event.pointerType === 'touch') return
+  const row = formulaRowFrom(container, event.target)
+  if (!row) return
+  if (stayedInRow(row, event.relatedTarget)) return
+  showReadout(row)
+}
+
+/**
+ * Fade the readout closed when the pointer leaves the formulas.
+ * Moving to another row lets that row open and hide this one immediately.
+ *
+ * @param {Element} container
+ * @param {PointerEvent} event
+ */
+export function onFormulaRowOut(container, event) {
+  if (event.pointerType === 'touch') return
+  const row = formulaRowFrom(container, event.target)
+  if (!row) return
+  if (stayedInRow(row, event.relatedTarget)) return
+  if (movedToFormulaRow(row, event.relatedTarget)) return
+  if (document.activeElement === row) return
+  const readout = readoutFor(row)
+  if (readout) hideReadout(readout, false)
+}
+
+/**
+ * Keep a mouse click from focusing the row. Hover already opened the readout.
+ *
+ * @param {Element} container
+ * @param {PointerEvent} event
+ */
+export function onFormulaRowPointerDown(container, event) {
+  if (event.pointerType !== 'mouse' && event.pointerType !== 'touch') return
+  const row = formulaRowFrom(container, event.target)
+  if (!row) return
+  event.preventDefault()
+}
+
+/**
+ * Tap toggles the readout. Mouse clicks do not.
+ *
+ * @param {Element} container
+ * @param {PointerEvent} event
+ */
+export function onFormulaRowPointerUp(container, event) {
+  if (event.pointerType === 'mouse') return
+  const row = formulaRowFrom(container, event.target)
+  if (!row) return
+  const readout = readoutFor(row)
+  if (!readout) return
+  if (readout.matches(':popover-open')) hideReadout(readout, false)
+  else showReadout(row)
+}
+
+/**
+ * Open the readout when a formula row is focused from the keyboard.
+ *
+ * @param {Element} container
+ * @param {FocusEvent} event
+ */
+export function onFormulaRowFocusIn(container, event) {
+  const row = formulaRowFrom(container, event.target)
+  if (!row || event.target !== row) return
+  showReadout(row)
+}
+
+/**
+ * Fade the readout closed when focus leaves the formulas.
+ *
+ * @param {Element} container
+ * @param {FocusEvent} event
+ */
+export function onFormulaRowFocusOut(container, event) {
+  const row = formulaRowFrom(container, event.target)
+  if (!row) return
+  if (movedToFormulaRow(row, event.relatedTarget)) return
+  const readout = readoutFor(row)
+  if (readout) hideReadout(readout, false)
+}
+
+/**
+ * Escape fades the open readout closed.
+ *
+ * @param {Element} container
+ * @param {KeyboardEvent} event
+ */
+export function onFormulaRowKeyDown(container, event) {
+  if (event.key !== 'Escape') return
+  const open = container.querySelector('.flex-item__formula-readout:popover-open')
+  if (!(open instanceof HTMLElement)) return
+  hideReadout(open, false)
+  event.preventDefault()
+}
+
+/**
+ * A pointer down outside the open row fades that readout closed.
+ *
+ * @param {Element} container
+ * @param {PointerEvent} event
+ */
+export function onFormulaReadoutPointerDown(container, event) {
+  const open = container.querySelector('.flex-item__formula-readout:popover-open')
+  if (!(open instanceof HTMLElement)) return
+  const row = open.closest('.flex-item__formula-row')
+  if (row && event.target instanceof Node && row.contains(event.target)) return
+  hideReadout(open, false)
+}

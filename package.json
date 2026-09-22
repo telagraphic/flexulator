@@ -19,7 +19,6 @@
   "license": "ISC",
   "packageManager": "pnpm@10.1.0",
   "dependencies": {
-    "gsap": "^3.13.0",
     "number-flow": "^0.6.2"
   },
   "devDependencies": {

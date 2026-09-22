@@ -1,11 +1,14 @@
 import { calculateFlexValues } from './calculate.js'
 import { paintNumberFlow, observeResizeFreeze } from './number-flow.js'
 
-const FRACTION_FIELDS = new Set(['growShare', 'shrinkFactor'])
+const FRACTION_DIGITS = {
+  growShare: 2,
+  shrinkFactor: 2,
+}
 
 /**
  * Format a snapshot or state value for a native input.
- * Grow share and shrink factor keep six decimal places; other numbers stay as-is.
+ * Grow share and shrink factor keep two decimal places. Other numbers stay as-is.
  *
  * @param {string} key
  * @param {unknown} value
@@ -18,8 +21,9 @@ function formatField(key, value) {
     }
     return String(value)
   }
-  if (FRACTION_FIELDS.has(key) && !Number.isInteger(value)) {
-    return value.toFixed(6)
+  const digits = FRACTION_DIGITS[key]
+  if (digits != null && !Number.isInteger(value)) {
+    return value.toFixed(digits)
   }
   return String(value)
 }
@@ -55,9 +59,95 @@ function paintFields(root, values, focused) {
   }
 }
 
+const EXIT_CLASS = 'flex-item--exit'
+const ENTER_CLASS = 'flex-item--enter'
+const REVEAL_CLASS = 'flex-item--reveal'
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+
+/** True after the first cards exist, so load does not play the enter stagger. */
+let motionReady = false
+
+/**
+ * @param {Element} container
+ * @param {number} index
+ * @returns {Element | null}
+ */
+function liveCardAt(container, index) {
+  let seen = 0
+  for (const child of container.children) {
+    if (!(child instanceof HTMLElement)) continue
+    if (!child.classList.contains('flex-item') || child.classList.contains(EXIT_CLASS)) continue
+    if (seen === index) return child
+    seen += 1
+  }
+  return null
+}
+
+/**
+ * Collapse a card, then drop the node. A second pass leaves an exit in place.
+ *
+ * @param {HTMLElement} card
+ */
+function beginExit(card) {
+  if (card.classList.contains(EXIT_CLASS)) return
+  card.classList.add(EXIT_CLASS)
+  card.style.setProperty('--item-grow', '0')
+  card.style.setProperty('--item-basis', '0px')
+
+  let removed = false
+  const remove = () => {
+    if (removed) return
+    removed = true
+    card.remove()
+  }
+  const timer = window.setTimeout(remove, 360)
+  card.addEventListener('transitionend', (event) => {
+    if (event.target !== card || event.propertyName !== 'opacity') return
+    window.clearTimeout(timer)
+    remove()
+  })
+}
+
+/**
+ * After the width ease, fade the card's text groups. Reduced motion shows them now.
+ *
+ * @param {HTMLElement} card
+ */
+function startReveal(card) {
+  if (reduceMotion.matches) {
+    card.classList.remove(ENTER_CLASS)
+    return
+  }
+  card.classList.add(REVEAL_CLASS)
+  window.setTimeout(() => {
+    card.classList.remove(ENTER_CLASS, REVEAL_CLASS)
+  }, 760)
+}
+
+/**
+ * Reveal once basis finishes easing. The timeout covers a transition that never starts.
+ *
+ * @param {HTMLElement} card
+ */
+function watchEnter(card) {
+  let started = false
+  const finish = () => {
+    if (started) return
+    started = true
+    card.removeEventListener('transitionend', onEnd)
+    startReveal(card)
+  }
+  const onEnd = (event) => {
+    if (event.target !== card || event.propertyName !== '--item-basis') return
+    finish()
+  }
+  card.addEventListener('transitionend', onEnd)
+  window.setTimeout(finish, 450)
+}
+
 /**
  * Match Item Cards to Flex Items by id: clone the template for new ids,
- * remove cards whose id left the list, and keep existing nodes in list order.
+ * ease out cards whose id left the list, and keep existing nodes in list order.
  *
  * @param {{ id: string }[]} items
  * @param {{ container: Element, template: HTMLTemplateElement }} els
@@ -70,29 +160,45 @@ function syncItemCards(items, els) {
   const keep = new Set(items.map((item) => item.id))
 
   for (const [id, card] of existing) {
-    if (!keep.has(id)) card.remove()
+    if (!keep.has(id)) beginExit(/** @type {HTMLElement} */ (card))
   }
 
   items.forEach((item, index) => {
     let card = existing.get(item.id)
+    const isNew = !card
     if (!card) {
-      card = template.content.firstElementChild.cloneNode(true)
+      card = /** @type {HTMLElement} */ (template.content.firstElementChild.cloneNode(true))
       card.dataset.id = item.id
-      container.append(card)
+      if (motionReady && !reduceMotion.matches) card.classList.add(ENTER_CLASS)
     }
-    const current = container.children[index]
-    if (current === card) return
-    if (current) {
-      container.insertBefore(card, current)
-    } else {
-      container.append(card)
+    const anchor = liveCardAt(container, index)
+    if (anchor === card) return
+    if (isNew || anchor) {
+      if (anchor) container.insertBefore(card, anchor)
+      else container.append(card)
     }
   })
 }
 
 /**
- * Apply CSS flex shorthand from Flex Item records. This is the only place
- * that talks to the browser in flexGrow / flexShrink / flexBasis terms.
+ * @param {HTMLElement} card
+ * @param {{ grow: number, shrink: number, basis: number }} item
+ */
+function commitFlex(card, item) {
+  const next = {
+    '--item-grow': String(item.grow),
+    '--item-shrink': String(item.shrink),
+    '--item-basis': `${item.basis}px`,
+  }
+  for (const [name, value] of Object.entries(next)) {
+    if (card.style.getPropertyValue(name) !== value) card.style.setProperty(name, value)
+  }
+}
+
+/**
+ * Write flex factors as registered custom properties so they can ease.
+ * A new card paints at grow 0 and basis 0, then eases to its record.
+ * Exiting cards keep the zeros beginExit set.
  *
  * @param {{ id: string, grow: number, shrink: number, basis: number }[]} items
  * @param {Element} container
@@ -100,14 +206,46 @@ function syncItemCards(items, els) {
 function applyFlexStyles(items, container) {
   for (const item of items) {
     const card = container.querySelector(`.flex-item[data-id="${item.id}"]`)
-    if (!card) continue
-    card.style.flex = `${item.grow} ${item.shrink} ${item.basis}px`
+    if (!(card instanceof HTMLElement) || card.classList.contains(EXIT_CLASS)) continue
+    if (card.classList.contains(ENTER_CLASS) && card.dataset.enterPhase !== 'live') {
+      if (card.dataset.enterPhase !== 'from') {
+        card.dataset.enterPhase = 'from'
+        card.style.setProperty('--item-grow', '0')
+        card.style.setProperty('--item-shrink', String(item.shrink))
+        card.style.setProperty('--item-basis', '0px')
+        requestAnimationFrame(() => {
+          if (!card.isConnected || card.classList.contains(EXIT_CLASS)) return
+          card.dataset.enterPhase = 'live'
+          commitFlex(card, item)
+          watchEnter(card)
+        })
+      }
+      continue
+    }
+    commitFlex(card, item)
   }
 }
 
 /**
- * Paint Measured Width and formula numbers onto each Item Card, show the
- * grow or shrink formula from Remaining Space, and hide Remove when last.
+ * Blue segment of the inspector bar, as a percentage of the track.
+ * Grow: track is the final width, blue is the basis.
+ * Shrink: track is the basis, blue is the size that remains.
+ *
+ * @param {boolean} showGrow
+ * @param {{ basis: number, growWidth: number, shrinkWidth: number }} values
+ * @returns {number}
+ */
+function inspectorBasisShare(showGrow, values) {
+  const total = showGrow ? values.growWidth : values.basis
+  const filled = showGrow ? values.basis : values.shrinkWidth
+  if (total <= 0) return 0
+  return Math.min(Math.max(filled / total, 0), 1) * 100
+}
+
+/**
+ * Paint Measured Width, the size inspector, and formula numbers onto each
+ * Item Card, show the grow or shrink formula from Remaining Space, and hide
+ * Remove when last.
  *
  * @param {{ items: { id: string, grow: number, shrink: number, basis: number }[] }} state
  * @param {{ container: { remainingSpace: number }, items: { id: string }[] }} snapshot
@@ -132,13 +270,21 @@ function paintItemCards(state, snapshot, container) {
     }
     paintFields(card, values, focused)
 
+    const inspector = card.querySelector('.flex-item__inspector')
+    if (inspector) {
+      inspector.classList.toggle('is-shrink', !showGrow)
+      inspector.style.setProperty('--inspector-basis', `${inspectorBasisShare(showGrow, values)}%`)
+    }
+
     const growBox = card.querySelector('.flex-item__formula-grow')
     const shrinkBox = card.querySelector('.flex-item__formula-shrink')
     if (growBox) {
       growBox.style.opacity = showGrow ? '1' : '0'
+      growBox.toggleAttribute('inert', !showGrow)
     }
     if (shrinkBox) {
       shrinkBox.style.opacity = showGrow ? '0' : '1'
+      shrinkBox.toggleAttribute('inert', showGrow)
     }
 
     const remove = card.querySelector('.flex-item__remove')
@@ -188,6 +334,12 @@ export function render(state, els) {
   const snapshot = calculateFlexValues(state.width, state.items)
   syncItemCards(state.items, els)
   applyFlexStyles(state.items, els.container)
+  if (!motionReady) {
+    requestAnimationFrame(() => {
+      els.container.classList.add('is-motion')
+      motionReady = true
+    })
+  }
   const generation = ++paintGeneration
   requestAnimationFrame(() => {
     if (generation !== paintGeneration) return
