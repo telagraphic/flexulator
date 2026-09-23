@@ -102,6 +102,7 @@ class Main {
   #onAdd(event) {
     event.preventDefault()
     this.#state.items.push(this.#createItem(this.#readAddForm()))
+    if (this.#els.addForm instanceof HTMLFormElement) this.#els.addForm.reset()
     this.#scheduleRender()
   }
 

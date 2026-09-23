@@ -67,8 +67,8 @@ _Avoid_: amount to subtract
 - Each **Formula row** has one **Formula readout**
 - A **Formula readout** shows that **Item Card**'s numbers. The teaching panel still shows only the first Flex Item
 - Opening a **Formula readout** does not change the **Item Card**
-- Hover is the main way to open a **Formula readout**. Keyboard focus and a tap open the same readout
-- Each visible **Formula row** is in the tab order before that **Item Card**'s Grow, Shrink, and Basis inputs. If that many stops is clumsy, drop the keyboard path. Hover stays the main path.
+- Hover is the main way to open a **Formula readout**. A tap opens the same readout
+- **Formula rows** are not in the tab order. Tab stops on an **Item Card** are its Grow, Shrink, and Basis inputs
 - A **Formula readout** closes when the pointer leaves its **Formula row**, including when the pointer moves onto the readout or to the next row. Escape, blur, tapping that row again, and tapping outside also close it.
 - A **Formula readout** fades in and out. The fade starts at 150ms with an ease-out curve. Shorten it if it lags the pointer.
 - Moving from one **Formula row** to another hides the readout you left immediately. The 150ms fade-out is only for leaving the formulas with nothing else opening.

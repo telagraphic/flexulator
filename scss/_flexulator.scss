@@ -247,8 +247,6 @@
       padding-inline: 0.5ch;
       line-height: 1;
       border: 0;
-      /* Always reserve the underline so hover and focus only change its color. */
-      border-bottom: 2px dashed transparent;
       background-color: transparent;
       color: var(--color-text-accent);
       text-align: center;
@@ -256,7 +254,7 @@
       font-weight: 400;
       font-variant-numeric: tabular-nums;
       appearance: textfield;
-      transition: border-bottom 0.1s ease-in, background-color 0.15s ease-in;
+      transition: background-color 0.15s ease-in;
 
       &::selection,
       &::-moz-selection {
@@ -266,7 +264,6 @@
       &:hover,
       &:focus {
         background-color: var(--color-bg-input-hover);
-        border-bottom: 2px dashed var(--color-border-selected);
       }
 
       &:focus {
@@ -392,7 +389,8 @@
     &__formulas {
       display: grid;
       grid-template-columns: 1fr;
-      grid-template-rows: 1fr;
+      /* Remaining, middle, grow final width, then an empty track that shrink's final width fills. */
+      grid-template-rows: repeat(4, auto);
       width: 79%;
       margin: 0 auto;
       padding: 0.75rem 0 0;
@@ -401,38 +399,59 @@
 
     &__formula-grow,
     &__formula-shrink {
+      display: grid;
       grid-column: 1 / 2;
-      grid-row: 1 / 2;
+      grid-row: 1 / -1;
+      grid-template-rows: subgrid;
+      padding: 0.5rem 0;
       font-size: var(--text-ui-sm);
       font-weight: 400;
       letter-spacing: -0.03rem;
-    }
-
-    &__formula-grow {
-      padding: 1rem 0 0.5rem;
+      transition: opacity var(--duration-flex) var(--ease-swift);
     }
 
     &__formula-shrink {
-      padding: 0.5rem 0;
       opacity: 0;
     }
 
-    &__formula-title {
-      font-weight: 800;
-      text-transform: uppercase;
-      font-size: var(--text-ui);
-      color: var(--color-text-formula);
-    }
-
-    &__formula-shrink &__formula-title {
-      letter-spacing: 0;
-    }
-
     &__formula {
+      display: grid;
+      grid-row: 1 / -1;
+      grid-template-rows: subgrid;
       margin: 0.5rem 0;
     }
 
+    /* Grow's final width sits on the third track. The fourth stays empty until shrink. */
+    &__formula-grow &__formula-row:nth-child(1) {
+      grid-row: 1;
+    }
+
+    &__formula-grow &__formula-row:nth-child(2) {
+      grid-row: 2;
+    }
+
+    &__formula-grow &__formula-row:nth-child(3) {
+      grid-row: 3;
+    }
+
+    &__formula-shrink &__formula-row:nth-child(1) {
+      grid-row: 1;
+    }
+
+    &__formula-shrink &__formula-row:nth-child(2) {
+      grid-row: 2;
+    }
+
+    &__formula-shrink &__formula-row:nth-child(3) {
+      grid-row: 3;
+    }
+
+    &__formula-shrink &__formula-row:nth-child(4) {
+      grid-row: 4;
+    }
+
     &__formula-row {
+      align-self: start;
       padding: 0.5rem 0;
 
       h5 {
@@ -455,7 +474,7 @@
       margin-left: var(--equation-offset, 0px);
       padding: 0.65rem;
       border: 2px solid var(--color-border-inspector-track);
-      background-color: var(--color-bg-inspector-flex);
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat, var(--color-bg-accent-subtle);
       pointer-events: none;
       opacity: 0;
       transition-property: opacity, display, overlay;
@@ -520,7 +539,7 @@
       justify-self: center;
       font-size: var(--text-ui);
       line-height: 1;
-      color: var(--color-text-inspector);
+      color: var(--color-text-secondary);
     }
 
     &--enter {
@@ -571,25 +590,28 @@
       animation-delay: 0ms;
     }
 
-    .flex-item__formulas,
-    .flex-item__inspector {
+    .flex-item__field:nth-child(1) {
       animation-delay: var(--stagger-step);
     }
 
-    .flex-item__field:nth-child(1) {
+    .flex-item__field:nth-child(2) {
       animation-delay: calc(var(--stagger-step) * 2);
     }
 
-    .flex-item__field:nth-child(2) {
+    .flex-item__field:nth-child(3) {
       animation-delay: calc(var(--stagger-step) * 3);
     }
 
-    .flex-item__field:nth-child(3) {
+    .flex-item__inspector {
       animation-delay: calc(var(--stagger-step) * 4);
     }
 
-    .flex-item__remove {
+    .flex-item__formulas {
       animation-delay: calc(var(--stagger-step) * 5);
+    }
+
+    .flex-item__remove {
+      animation-delay: calc(var(--stagger-step) * 6);
     }
   }
 

@@ -26,6 +26,7 @@
 
     &__name {
       flex: 1 0 auto;
+      padding-inline-start: 15%;
       font-weight: 400;
       font-size: var(--text-input);
       text-transform: lowercase;
@@ -36,11 +37,11 @@
       margin: 0 1rem;
       width: 4.5rem;
       background-color: transparent;
-      border-bottom: 2px dashed transparent;
+      border: 0;
       color: var(--color-text-accent);
       font-size: var(--text-input);
       text-align: center;
-      transition: border-bottom 0.1s ease-in, background-color 0.15s ease-in;
+      transition: background-color 0.15s ease-in;
 
       &::selection,
       &::-moz-selection {
@@ -50,7 +51,6 @@
       &:focus,
       &:hover {
         background-color: var(--color-bg-input-hover);
-        border-bottom: 2px dashed var(--color-border-selected);
       }
 
       &:focus-visible {

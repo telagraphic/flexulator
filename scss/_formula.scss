@@ -1,5 +1,11 @@
 @layer components {
   .formula {
+    --formula-measure: 89%;
+
+    @media (width >= 43rem) {
+      --formula-measure: 55%;
+    }
+
     &__nav {
       --formula-tab: 0;
       position: relative;
@@ -93,19 +99,15 @@
     }
 
     &__lede-wrap {
-      width: 89%;
+      width: var(--formula-measure);
       margin: 5% auto;
       text-align: start;
-
-      @media (width >= 43rem) {
-        width: 55%;
-      }
     }
 
     &__lede {
       font-family: var(--font-prose);
       font-weight: 400;
-      font-size: var(--text-prose);
+      font-size: var(--text-ui);
       line-height: 125%;
     }
 
@@ -115,21 +117,24 @@
     }
 
     &__step {
+      --step-pad: 1.5%;
+      --step-border: 1.5px;
       display: grid;
       grid-template-areas: "header" "statement";
-      grid-template-rows: 1fr 1.25fr;
+      grid-template-rows: auto auto;
       padding: 0;
       margin: 0 auto 2%;
       width: 100%;
-      border: 1px dashed var(--color-border-item);
-      border-inline: 0;
       background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat, var(--color-bg-accent-subtle);
       font-family: var(--font-prose);
       font-weight: 400;
 
+      @media (width >= 43rem) {
+        --step-border: 2.5px;
+      }
+
       @media (width >= 45rem) {
         width: 89%;
-        border: 1px dashed var(--color-border-item);
       }
 
       @media (width >= 75rem) {
@@ -140,28 +145,30 @@
     &__step-header {
       grid-area: header;
       display: grid;
-      grid-template-columns: 1fr 4fr;
+      grid-template-columns: max-content minmax(0, 1fr);
       grid-template-rows: auto;
       grid-template-areas: "number container";
       width: 100%;
-      background-color: var(--color-bg-inspector-flex);
-      color: var(--color-text-inspector);
+      padding-inline: var(--step-pad);
+      border: var(--step-border) solid var(--color-border-subtle);
+      background-color: var(--color-bg-tab);
+      color: var(--grey-11);
     }
 
     &__step-number {
       grid-area: number;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
-      border: 1px solid var(--color-border-subtle);
-      border-block-start: 0;
-      border-inline-start: 0;
       color: inherit;
-      font-family: var(--font-ui);
-      font-size: var(--text-tab);
+      font-family: var(--font-prose);
+      font-size: var(--text-ui);
+      font-weight: 400;
 
       h1 {
-        font-size: var(--text-tab);
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
       }
     }
 
@@ -169,14 +176,18 @@
       grid-area: container;
       display: flex;
       align-items: center;
-      border-block-end: 1px solid var(--color-border-subtle);
-      font-family: var(--font-ui);
+      font-family: var(--font-prose);
+      font-size: var(--text-ui);
+      font-weight: 400;
     }
 
     &__step-title {
       flex: 1;
-      padding: 1.5%;
+      padding-block: 0.3rem;
+      padding-inline: 0.75rem;
       color: inherit;
+      font-size: inherit;
+      font-weight: inherit;
       text-align: start;
     }
 
@@ -184,10 +195,11 @@
       grid-area: statement;
       display: flex;
       justify-content: center;
-      align-content: center;
+      align-items: center;
       width: 100%;
       padding-block: 1.5rem;
-      padding-inline: 1.5%;
+      /* Header padding sits inside the border, so the statement adds that border to share the same inset. */
+      padding-inline: calc(var(--step-pad) + var(--step-border));
       margin: 0 auto;
       color: var(--color-text-secondary);
     }
@@ -230,7 +242,7 @@
     }
 
     &__demo--grow {
-      width: 69%;
+      width: var(--formula-measure);
       margin: 0 auto;
     }
 
@@ -275,7 +287,7 @@
       display: flex;
       grid-column: 1 / 2;
       grid-row: 1 / 2;
-      width: 69%;
+      width: var(--formula-measure);
       margin: 0 auto;
       background-color: var(--color-bg-accent-subtle);
       border: 2px solid var(--color-border-strong);
@@ -292,7 +304,7 @@
       grid-row: 1 / 2;
       display: flex;
       justify-content: center;
-      width: 75%;
+      width: calc(var(--formula-measure) * 75 / 69);
       margin: 0 auto;
       z-index: 100;
       opacity: 0.5;
