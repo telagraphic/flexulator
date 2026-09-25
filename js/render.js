@@ -64,7 +64,7 @@ const ENTER_CLASS = 'flex-item--enter'
 const REVEAL_CLASS = 'flex-item--reveal'
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
 
-/** True after the first cards exist, so load does not play the enter stagger. */
+/** True after the first cards exist. Load reveals groups in place; later cards grow in. */
 let motionReady = false
 
 /**
@@ -109,7 +109,8 @@ function beginExit(card) {
 }
 
 /**
- * After the width ease, fade the card's text groups. Reduced motion shows them now.
+ * Fade the card's text groups. Load calls this on the first frame.
+ * Add calls it after the width ease. Reduced motion shows them now.
  *
  * @param {HTMLElement} card
  */
@@ -169,7 +170,10 @@ function syncItemCards(items, els) {
     if (!card) {
       card = /** @type {HTMLElement} */ (template.content.firstElementChild.cloneNode(true))
       card.dataset.id = item.id
-      if (motionReady && !reduceMotion.matches) card.classList.add(ENTER_CLASS)
+      if (!reduceMotion.matches) {
+        if (motionReady) card.classList.add(ENTER_CLASS)
+        else startReveal(card)
+      }
     }
     const anchor = liveCardAt(container, index)
     if (anchor === card) return
@@ -247,14 +251,19 @@ function inspectorBasisShare(showGrow, values) {
  * Item Card, show the grow or shrink formula from Remaining Space, and hide
  * Remove when last.
  *
+ * Measured Width is the snapshot final width (`growWidth` or `shrinkWidth`),
+ * the same integer as the formula's final-width line. It is not `clientWidth`:
+ * that sample lands mid-transition and truncates subpixels.
+ *
  * @param {{ items: { id: string, grow: number, shrink: number, basis: number }[] }} state
- * @param {{ container: { remainingSpace: number }, items: { id: string }[] }} snapshot
+ * @param {{ container: { remainingSpace: number }, items: { id: string, growWidth: number, shrinkWidth: number }[] }} snapshot
  * @param {Element} container
  */
 function paintItemCards(state, snapshot, container) {
   const focused = document.activeElement
   const showGrow = snapshot.container.remainingSpace >= 0
   const hideRemove = state.items.length === 1
+  container.closest('.flexulator')?.classList.toggle('is-shrink', !showGrow)
 
   for (const item of state.items) {
     const card = container.querySelector(`.flex-item[data-id="${item.id}"]`)
@@ -266,7 +275,7 @@ function paintItemCards(state, snapshot, container) {
       grow: item.grow,
       shrink: item.shrink,
       basis: item.basis,
-      measuredWidth: card.clientWidth,
+      measuredWidth: showGrow ? row?.growWidth : row?.shrinkWidth,
     }
     paintFields(card, values, focused)
 

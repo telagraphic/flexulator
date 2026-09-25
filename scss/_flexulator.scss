@@ -1,10 +1,28 @@
 @layer components {
   .flexulator {
+    --label-color: var(--color-text-formula);
+    --item-fill: var(--color-bg-item);
     display: flex;
     flex-flow: column nowrap;
     height: 100%;
     padding: 0;
     background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat;
+    transition:
+      --label-color var(--duration-flex) var(--ease-swift),
+      --item-fill var(--duration-flex) var(--ease-swift);
+
+    &.is-shrink {
+      --label-color: var(--color-text-shrink);
+      --item-fill: var(--color-bg-accent-subtle);
+
+      .flex-item__formula-readout {
+        background-color: var(--color-bg-item);
+      }
+
+      .flex-item__formula-readout-operand {
+        background-color: var(--color-bg-accent-subtle);
+      }
+    }
 
     &__items {
       display: none;
@@ -13,7 +31,6 @@
         display: flex;
         flex-flow: row nowrap;
         height: 100%;
-        animation: fadeItems 0.3s ease-in;
         background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFUlEQVQImWNgQAKLGf6nkcphYGAAABQDCCEc2tDBAAAAAElFTkSuQmCC) repeat;
       }
     }
@@ -55,14 +72,16 @@
 
   .flexulator__grow-demo,
   .flexulator__shrink-demo {
-    padding: 0 4%;
-    margin: 0 4%;
-    border-radius: 0.67rem;
+    padding-block: 0;
+    padding-inline: 6%;
+    text-align: center;
     background-color: var(--color-bg-control);
     border: 2px solid var(--color-border-control);
     color: var(--color-text);
     text-transform: lowercase;
-    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+    transition-property: background-color, border-color, color;
+    transition-duration: 0.25s;
+    transition-timing-function: ease;
 
     &:hover,
     &:focus {
@@ -76,23 +95,45 @@
     }
   }
 
-  @keyframes fadeItems {
-    0% {
-      opacity: 0;
-      transform: translateY(2.5rem);
-    }
+  .flexulator__grow-demo {
+    margin-inline-start: 4%;
+    margin-inline-end: 0;
+    border-start-start-radius: 0.67rem;
+    border-end-start-radius: 0.67rem;
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
+  }
 
-    100% {
-      opacity: 1;
-      transform: translateY(0);
+  .flexulator__shrink-demo {
+    margin-inline-start: 0;
+    margin-inline-end: 4%;
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+    border-start-end-radius: 0.67rem;
+    border-end-end-radius: 0.67rem;
+    border-inline-start-width: 0;
+    /* The missing shared border would shift the label by 1px. */
+    padding-inline-start: calc(6% + 2px);
+
+    &[data-active="1"] {
+      border-inline-start-width: 2px;
+      padding-inline-start: 6%;
+      background-color: var(--color-bg-selected-shrink);
+      border-color: var(--color-border-selected-shrink);
+      color: var(--color-text-shrink);
     }
+  }
+
+  .flexulator__grow-demo:not([data-active="1"]) {
+    border-inline-end-width: 0;
+    padding-inline-end: calc(6% + 2px);
   }
 
   .flex-item {
     display: flex;
     flex-flow: column nowrap;
     text-align: center;
-    background-color: var(--color-bg-item);
+    background-color: var(--item-fill);
     background-clip: padding-box;
     color: var(--color-text-strong);
     padding: 0;
@@ -129,14 +170,18 @@
       display: block;
       margin: 0;
       padding: 1rem 0 0;
-      color: var(--color-text-grow);
+      color: var(--color-text-strong);
       font-size: var(--text-measured);
       font-weight: 400;
       font-variant-numeric: tabular-nums;
       line-height: 0.85;
+      overflow: clip;
+      /* Label is pulled 0.5rem into this box. Inset past that so a downward digit is gone before the word. */
+      clip-path: inset(0 0 1.05rem 0);
     }
 
     &__measured-width-label {
+      color: var(--label-color);
       margin: -0.5rem 0 0;
       line-height: 1;
       font-size: var(--text-ui-sm);
@@ -198,6 +243,7 @@
       grid-row: 2;
       justify-self: center;
       margin: 0;
+      color: var(--label-color);
       line-height: 1;
       font-size: var(--text-ui-sm);
       font-weight: 600;
@@ -205,7 +251,7 @@
     }
 
     &__stepper {
-      opacity: 0;
+      opacity: 0.2;
       transition: opacity 0.15s ease-out;
       z-index: 100;
       align-items: center;
@@ -243,12 +289,14 @@
       min-width: 4ch;
       field-sizing: content;
       margin: 0;
-      padding-block: 0.08em;
+      /* Digits sit high in the em box. Extra padding above drops them to the middle. */
+      padding-block-start: 0.16em;
+      padding-block-end: 0;
       padding-inline: 0.5ch;
       line-height: 1;
-      border: 0;
+      border: 1px dashed var(--color-border-item);
       background-color: transparent;
-      color: var(--color-text-accent);
+      color: var(--color-text-strong);
       text-align: center;
       font-size: var(--text-input);
       font-weight: 400;
@@ -264,6 +312,10 @@
       &:hover,
       &:focus {
         background-color: var(--color-bg-input-hover);
+      }
+
+      .flexulator:not(.is-shrink) &:hover:not(:focus) {
+        background-color: var(--color-bg-accent-subtle);
       }
 
       &:focus {
@@ -460,7 +512,7 @@
     }
 
     &__formula-label {
-      color: var(--color-text-formula);
+      color: var(--label-color);
       font-weight: 600;
     }
 

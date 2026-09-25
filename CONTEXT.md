@@ -26,7 +26,7 @@ _Avoid_: width (that word is reserved for the laid-out result)
 Flex Container width minus the sum of all items' Basis. Positive means leftover space (grow). Negative means overflow (shrink).
 
 **Measured Width**:
-The Flex Item's actual `clientWidth` after the browser has laid out `flex: grow shrink basis`. A reading from the DOM, not an input.
+The Flex Item's final width from the snapshot: `growWidth` when Remaining Space is positive or zero, `shrinkWidth` when it is negative. The same integer as that Item Card's final-width line. Not an input, and not a `clientWidth` sample.
 
 **Item Card**:
 The on-screen column that shows one Flex Item: its inputs, Measured Width, and formula.
@@ -61,7 +61,7 @@ _Avoid_: amount to subtract
 - **Remaining Space** is derived from **Flex Container** width and every item's **Basis**
 - The formula shown on an **Item Card** follows the sign of **Remaining Space** (positive → grow, negative → shrink)
 - **Grow Demo** and **Shrink Demo** only change **Basis**; they do not switch which arithmetic exists
-- **Measured Width** is read from the DOM after grow, shrink, and basis have been applied as CSS
+- **Measured Width** is the snapshot final width (`growWidth` or `shrinkWidth`), chosen by the sign of **Remaining Space**
 - The **Add form** drafts Grow / Shrink / Basis; submit creates a new **Flex Item**. It is never a live Item Card
 - **Grow Demo** / **Shrink Demo** sit outside the **Add form**; they only change **Basis** on existing **Flex Items**
 - Each **Formula row** has one **Formula readout**

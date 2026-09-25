@@ -76,7 +76,7 @@
       display: grid;
       align-items: start;
       overflow: clip;
-      padding: 5% 0;
+      padding: 5% 0 0;
       transition: height var(--duration-swipe) var(--ease-swift);
 
       &.is-resizing {
@@ -113,7 +113,9 @@
 
     &__steps {
       width: auto;
-      margin: 5% auto;
+      margin: 0 auto;
+      padding-block: 2.75rem 2.5rem;
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat, var(--color-bg-accent-subtle);
     }
 
     &__step {
@@ -125,7 +127,10 @@
       padding: 0;
       margin: 0 auto 2%;
       width: 100%;
-      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAF0lEQVQImWNgQAILGf5vZsAGqChBOwAAeoAJTfR0/MoAAAAASUVORK5CYII=) repeat, var(--color-bg-accent-subtle);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
       font-family: var(--font-prose);
       font-weight: 400;
 
@@ -195,12 +200,13 @@
       grid-area: statement;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: stretch;
       width: 100%;
       padding-block: 1.5rem;
-      /* Header padding sits inside the border, so the statement adds that border to share the same inset. */
-      padding-inline: calc(var(--step-pad) + var(--step-border));
+      padding-inline: 1.25rem;
+      gap: 0.75rem;
       margin: 0 auto;
+      background-color: var(--color-bg-item);
       color: var(--color-text-secondary);
     }
 
@@ -212,7 +218,7 @@
       flex: 1;
       padding: 0.65rem 1.5% 0.45rem;
       border: 1px dashed var(--color-border-item);
-      background-color: var(--color-bg-item);
+      background-color: transparent;
       text-align: center;
       text-transform: uppercase;
       font-family: var(--font-ui);
@@ -232,6 +238,14 @@
       color: var(--color-text-strong);
       font-weight: 800;
       line-height: 1.1;
+    }
+
+    #grow &__property {
+      color: var(--color-text-formula);
+    }
+
+    #shrink &__property {
+      color: var(--color-text-shrink);
     }
 
     &__value {

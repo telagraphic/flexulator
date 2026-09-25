@@ -58,11 +58,11 @@ Add-form fields (not Flex Items): `input[name="flex-grow"]`, `input[name="flex-s
 
 Formula spans that echo container keys use the container `data-field` names above (same `remainingSpace` on every copy of that span).
 
-## Measured Width (DOM read, not calculate)
+## Measured Width (snapshot final width, not `clientWidth`)
 
-| Concept | JS | CSSOM | `data-field` | Style class |
+| Concept | JS | Source | `data-field` | Style class |
 | --- | --- | --- | --- | --- |
-| Measured Width | `measuredWidth` in paint | `element.clientWidth` | `measuredWidth` | `.flex-item__measured-width-value` |
+| Measured Width | `measuredWidth` in paint | `growWidth` if Remaining Space ≥ 0, else `shrinkWidth` | `measuredWidth` | `.flex-item__measured-width-value` |
 
 ## Functions
 

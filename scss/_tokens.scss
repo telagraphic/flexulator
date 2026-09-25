@@ -16,6 +16,18 @@
   initial-value: 100px;
 }
 
+@property --label-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #0c74dd;
+}
+
+@property --item-fill {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #cbe8ff;
+}
+
 @layer tokens {
   :root {
     /* -------------------------------------------------------------------------
@@ -48,14 +60,14 @@
     --blue-3: #45a1ff;   /* #45a1ff — parked: dark item border */
     --blue-4: #0ba2ff;   /* #0ba2ff — Item Card dotted border */
     --blue-5: #1780ea;   /* #1780ea — grow text, resources links, Add labels */
-    --blue-6: #0c74dd;   /* #0c74dd — formula titles, footer links, selected border */
+    --blue-6: #0c74dd;   /* #0c74dd — formula titles, selected border */
     --blue-7: #0074e8;   /* #0074e8 — parked: inspector selected */
     --blue-8: #0060df;   /* #0060df — parked: inspector link */
     --blue-9: #204e8a;   /* #204e8a — parked: dark selected row */
     --blue-10: #003eaa;  /* #003eaa — parked: inspector selected border */
 
     /* Magenta — brand / accent (logo, inputs, formula titles) */
-    --magenta-1: #fbdef4; /* #fbdef4 — accent wash (header, footer, teaching) */
+    --magenta-1: #fbdef4; /* #fbdef4 — accent wash (header, teaching) */
     --magenta-2: #ff7de9; /* #ff7de9 — parked: inspector attribute pink */
     --magenta-3: #dd00a9; /* #dd00a9 — input / formula accent text */
     --magenta-4: #ca3694; /* #ca3694 — logo */
@@ -68,22 +80,24 @@
     --color-bg-toolbar: var(--grey-2);              /* resources header, tabs */
     --color-bg-tab: var(--grey-2);                  /* formula tab button */
     --color-bg-tab-hover: var(--grey-3);            /* formula tab hover */
-    --color-bg-accent-subtle: var(--magenta-1);     /* header, footer, teaching wash */
+    --color-bg-accent-subtle: var(--magenta-1);     /* header, teaching wash */
     --color-bg-item: var(--blue-1);                 /* Item Card, operand, demo box */
     --color-bg-control: var(--grey-3);              /* Add, Remove, demo chips */
     --color-bg-control-hover: var(--grey-5);        /* control hover fill */
-    --color-bg-selected: var(--blue-1);             /* demo chip when data-active */
+    --color-bg-selected: var(--blue-1);             /* Grow demo when data-active */
+    --color-bg-selected-shrink: var(--magenta-1);   /* Shrink demo when data-active */
     --color-bg-input-hover: var(--blue-1);          /* Add form input hover/focus */
     --color-bg-input-focus: var(--grey-1);          /* Item Card input when focused */
 
     --color-text: var(--grey-11);                   /* body, header, controls */
     --color-text-strong: var(--grey-12);            /* Item Card copy, teaching notes */
     --color-text-secondary: var(--grey-11);         /* teaching formula statement */
-    --color-text-accent: var(--magenta-3);          /* inputs, teaching titles */
-    --color-text-grow: var(--blue-5);               /* Measured Width, Add labels, active tab */
-    --color-text-formula: var(--blue-6);            /* Item Card formula titles */
+    --color-text-accent: var(--magenta-3);          /* parked: was input text */
+    --color-text-grow: var(--blue-5);               /* active Grow demo, teaching tab */
+    --color-text-shrink: var(--magenta-3);          /* shrink labels, active Shrink demo */
+    --color-text-formula: var(--blue-6);            /* grow labels: formula titles, fields */
     --color-text-link: var(--blue-5);               /* resources links */
-    --color-text-footer: var(--blue-6);             /* footer copy and links */
+    --color-text-footer: var(--magenta-3);          /* footer copy and links */
 
     --color-accent-solid: var(--magenta-4);         /* logo fill */
 
@@ -91,7 +105,8 @@
     --color-border-control: var(--grey-6);          /* chip / Remove border */
     --color-border-tab: var(--grey-7);              /* tab hover underline */
     --color-border-item: var(--blue-4);             /* Item Card / demo dotted edge */
-    --color-border-selected: var(--blue-6);         /* active demo, input dashed focus */
+    --color-border-selected: var(--blue-6);         /* active Grow demo, input dashed focus */
+    --color-border-selected-shrink: var(--magenta-3); /* active Shrink demo; same ink as the label */
     --color-border-strong: var(--grey-16);          /* teaching section frames */
     --color-border-focus: var(--blue-5);            /* keyboard :focus-visible */
 

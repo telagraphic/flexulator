@@ -113,8 +113,16 @@ class Main {
    */
   #setDemoActive(mode) {
     const { growDemo, shrinkDemo } = this.#els
-    if (growDemo) growDemo.dataset.active = mode === 'grow' ? '1' : '0'
-    if (shrinkDemo) shrinkDemo.dataset.active = mode === 'shrink' ? '1' : '0'
+    if (growDemo) {
+      const growOn = mode === 'grow'
+      growDemo.dataset.active = growOn ? '1' : '0'
+      growDemo.setAttribute('aria-pressed', growOn ? 'true' : 'false')
+    }
+    if (shrinkDemo) {
+      const shrinkOn = mode === 'shrink'
+      shrinkDemo.dataset.active = shrinkOn ? '1' : '0'
+      shrinkDemo.setAttribute('aria-pressed', shrinkOn ? 'true' : 'false')
+    }
   }
 
   /**

@@ -18,28 +18,38 @@
     }
 
     &__label {
-      display: flex;
-      flex-flow: row nowrap;
-      align-items: center;
-      color: var(--color-text-grow);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 4.5rem;
+      align-items: baseline;
+      column-gap: 0.75rem;
+      color: var(--label-color);
+
+      @media (width >= 1200px) {
+        grid-template-columns: minmax(0, 1fr) 6rem;
+      }
     }
 
     &__name {
-      flex: 1 0 auto;
       padding-inline-start: 15%;
       font-weight: 400;
       font-size: var(--text-input);
+      line-height: 1;
       text-transform: lowercase;
+      white-space: nowrap;
     }
 
     &__input {
-      padding: 0.1rem;
-      margin: 0 1rem;
-      width: 4.5rem;
+      width: 100%;
+      margin: 0;
+      /* Digits sit high in the em box. Extra padding above drops them to the middle. */
+      padding-block-start: 0.16em;
+      padding-block-end: 0;
+      padding-inline: 0;
       background-color: transparent;
-      border: 0;
-      color: var(--color-text-accent);
+      border: 1px dashed var(--color-border-item);
+      color: var(--color-text-strong);
       font-size: var(--text-input);
+      line-height: 1;
       text-align: center;
       transition: background-color 0.15s ease-in;
 
@@ -56,10 +66,10 @@
       &:focus-visible {
         outline: none;
       }
+    }
 
-      @media (width >= 1200px) {
-        width: 6rem;
-      }
+    &__label:not(:last-of-type) &__input {
+      border-block-end-width: 0;
     }
 
     &__input[type="number"] {
