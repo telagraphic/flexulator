@@ -14,16 +14,6 @@ const path = require('path');
     fs.mkdirSync(outputDir, { recursive: true });
   }
 
-  // Copy non-image files first
-  const nonImageFiles = ['manifest.json', 'browserconfig.xml'];
-  nonImageFiles.forEach(file => {
-    const srcPath = path.join(inputDir, file);
-    const destPath = path.join(outputDir, file);
-    if (fs.existsSync(srcPath)) {
-      fs.copyFileSync(srcPath, destPath);
-    }
-  });
-
   // Get all image files
   const files = fs.readdirSync(inputDir);
   const imageFiles = files

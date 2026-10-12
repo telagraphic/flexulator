@@ -1,0 +1,31 @@
+{
+  "name": "Flexulator",
+  "short_name": "Flexulator",
+  "description": "A visual calculator for how a flex container distributes leftover or missing space. Change grow, shrink, and basis and see each item's width.",
+  "icons": [
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#ca3694",
+  "background_color": "#ffffff",
+  "display": "browser",
+  "start_url": "/"
+}

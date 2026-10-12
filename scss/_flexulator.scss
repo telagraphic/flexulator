@@ -505,15 +505,12 @@
     &__formula-row {
       align-self: start;
       padding: 0.5rem 0;
-
-      h5 {
-        text-transform: uppercase;
-      }
     }
 
     &__formula-label {
       color: var(--label-color);
       font-weight: 600;
+      text-transform: uppercase;
     }
 
     &__formula-readout {
